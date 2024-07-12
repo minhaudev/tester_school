@@ -3,9 +3,11 @@
 import Header from "@/components/layouts/Header/Header";
 
 export default function Home() {
-    return (
-        <>
-            <Header />
-        </>
-    );
+  return (
+    <>
+  <div className=" text-2xl text-primary-8 font-medium">
+       test font SF UI Display Font
+      </div>
+  </>
+  );
 }
