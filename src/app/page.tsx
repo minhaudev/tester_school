@@ -1,10 +1,14 @@
-
+import IconListItem from "@/components/atoms/IconListItem";
 export default function Home() {
-  return (
-    <>
-  <div className=" text-2xl text-primary-8 font-medium">
-       test font SF UI Display Font
-      </div>
-  </>
-  );
+    return (
+        <>
+            <div className="max-w-[255px]">
+                <IconListItem
+                    active={true}
+                    href="#"
+                    title="Create Sales Order"
+                />
+            </div>
+        </>
+    );
 }
