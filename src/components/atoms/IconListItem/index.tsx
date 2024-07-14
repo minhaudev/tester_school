@@ -8,9 +8,10 @@ interface IconListItemProps {
     prefixIcon?: React.ComponentType<{className?: string}>;
     leadingIcon?: React.ComponentType<{className?: string}>;
     active?: boolean;
-    onActive: () => void;
+    onActive?: () => void;
     expand?: boolean;
     isAnimate?: boolean;
+    classCustom?: string;
 }
 
 const IconListItem: React.FC<IconListItemProps> = ({
@@ -22,7 +23,7 @@ const IconListItem: React.FC<IconListItemProps> = ({
     onActive,
     expand = true,
     isAnimate = false,
-    ...props
+    classCustom = ""
 }) => {
     return (
         <Link
@@ -30,8 +31,7 @@ const IconListItem: React.FC<IconListItemProps> = ({
             href={href}
             className={`group flex items-center justify-center w-full  px-4 py-4 text-white ${
                 active ? "bg-secondary" : "bg-primary"
-            } ${expand ? "flex-row" : "flex-col"}`}
-            {...props}>
+            } ${expand ? "flex-row" : "flex-col"} ${classCustom}`}>
             {PrefixIcon && (
                 <PrefixIcon
                     className={`w-6 h-6 text-white ${
