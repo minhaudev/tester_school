@@ -8,9 +8,11 @@ const config: Config = {
     ],
     theme: {
         colors: {
+            disable: "#F7F7F7",
             text: "#3A3B3C",
             primary: "#01559B",
             secondary: "#00ADEF",
+            ["secondary-hover"]: "#12BDFE",
             stroke: "#E4E4E4",
             highlight: "#F2F5F8",
             white: "#FFFFFF",
@@ -19,6 +21,7 @@ const config: Config = {
             green: "#69AA43",
             orange: "#ED8400",
             warning: "#ED1E24",
+            "warning-hover": "#F56569",
             dangerous: "#FFF4F4",
             violet: "#A644F6",
             blue: "#5A92F7",
@@ -29,6 +32,7 @@ const config: Config = {
             "primary-3": "#15395B",
             "primary-4": "#164C7E",
             "primary-5": "#01559B",
+            "primary-5-hover": "#0376D7",
             "primary-6": "#1765AD",
             "primary-7": "#177DDC",
             "primary-8": "#3C9AE8",
