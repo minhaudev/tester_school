@@ -22,8 +22,7 @@ const ServiceTimeValue: Record<ServiceTimeEnum, ServiceTimeValue> = {
     },
     [ServiceTimeEnum.Warning]: {
         color: "text-yellow",
-        icon: <TimeFillWarning className={`mr-1`} />,
-        background: "bg-warning-light"
+        background: "bg-error"
     },
     [ServiceTimeEnum.Error]: {
         color: "text-red",

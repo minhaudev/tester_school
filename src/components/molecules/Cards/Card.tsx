@@ -7,7 +7,7 @@ interface CardProps {
 }
 const Card = ({title, content}: CardProps) => {
     return (
-        <div className=" rounded overflow-hidden   p-4">
+        <div className=" rounded overflow-hidden shadow-lg p-4 bg-white">
             <div className="flex items-center mb-4 justify-center">
                 <h2 className="text-xl font-bold ">{title}</h2>
             </div>

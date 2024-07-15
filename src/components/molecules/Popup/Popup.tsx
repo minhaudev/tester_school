@@ -46,7 +46,7 @@ const Popup = ({type, description, className, button = false}: PopupProps) => {
     return (
         <div
             id="popup-modal"
-            className={`z-50 shadow-lg relative justify-center items-center rounded-lg w-full max-w-[554px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
+            className={`z-50 relative justify-center items-center rounded-lg w-full max-w-[554px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
             <button
                 type="button"
                 className="absolute top-6 right-6 w-5 h-5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ms-auto inline-flex justify-center items-center"
@@ -65,9 +65,13 @@ const Popup = ({type, description, className, button = false}: PopupProps) => {
             </div>
             {button && (
                 <div className="flex flex-row gap-x-2.5 justify-center mt-6">
-                    <Button variant="secondary">No</Button>
+                    <Button size="largexl" variant="secondary">
+                        No
+                    </Button>
 
-                    <Button variant="primary-dark">Yes</Button>
+                    <Button size="largexl" variant="primary-dark">
+                        Yes
+                    </Button>
                 </div>
             )}
         </div>

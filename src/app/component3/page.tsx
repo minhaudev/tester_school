@@ -1,4 +1,5 @@
 "use client";
+"use client";
 import {CheckFillIcon, SuccessfulIcon, WarningIcon} from "@/assets/svgs";
 import {CircleIcon} from "@/assets/svgs/icons";
 import Propertie from "@/components/atoms/Properties/Propertie";
@@ -6,6 +7,7 @@ import Card from "@/components/molecules/Cards/Card";
 import ServiceTime from "@/components/molecules/ServiceTimes/ServiceTime";
 // import StatusNote from "@/components/molecules/StatusNote/StatusNote";
 import Toast from "@/components/molecules/Toasts/Toast";
+import {ServiceTimeEnum} from "@/enums/ServiceTimeEum";
 import {ServiceTimeEnum} from "@/enums/ServiceTimeEum";
 import {StatusEnum} from "@/enums/StatusNum";
 import {ToastEnum} from "@/enums/ToastEnum";
@@ -32,6 +34,7 @@ import Popup from "@/components/molecules/Popup/Popup";
 import {PopupEnum} from "@/enums/PopupEnum";
 import PopupRequest from "@/components/molecules/PopupRequest/PopupRequest";
 import LogData from "@/faker/LogData";
+import App from "next/app";
 import ApproveOrderData from "@/faker/ApproveOrder";
 import OfferData from "@/faker/Offer";
 import Pending from "@/components/atoms/Pending/pending";
@@ -60,8 +63,156 @@ const page = () => {
         });
     };
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 20;
+    const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+    const [selected, setSelected] = useState("option1");
+    const [checkedValues, setCheckedValues] = useState<Set<string>>(new Set());
+    const [checked, setChecked] = useState<boolean>(true);
+    const handleCheckboxChange = (value: string) => {
+        setCheckedValues((prev) => {
+            const newCheckedValues = new Set(prev);
+            if (newCheckedValues.has(value)) {
+                newCheckedValues.delete(value);
+            } else {
+                newCheckedValues.add(value);
+            }
+            return newCheckedValues;
+        });
+    };
+
     return (
         <div className="flex flex-col gap-8">
+            <div className="flex flex-row gap-8">
+                <div className="flex-1">
+                    <Card
+                        title="Popup warning"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <Popup
+                                    type={PopupEnum.Warning}
+                                    title="Warning"
+                                    button
+                                    description={
+                                        "Are you sure to change the permission"
+                                    }></Popup>
+                            </div>
+                        }
+                    />
+                </div>
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <Popup
+                                    type={PopupEnum.Success}
+                                    title="You have successfully created an account"
+                                    description={
+                                        "Your ID and password have been self-generated. Please copy the information to use"
+                                    }></Popup>
+                            </div>
+                        }
+                    />
+                </div>
+            </div>
+            <div className="flex flex-row gap-8">
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <PopupRequest
+                                    title="Request information"
+                                    attachmentButton
+                                    description="Please leave the note"
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <PopupRequest
+                                    title="Note"
+                                    description="Please leave the note"
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+            </div>
+            <div className="flex flex-row gap-8">
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <PopupRequest
+                                    title="Request information"
+                                    isLog
+                                    logItems={LogData}
+                                    attachmentButton
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <PopupRequest
+                                    title="Note"
+                                    isConfirm
+                                    description="Please leave the note"
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+            </div>
+            <div className="flex flex-row gap-8">
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <PopupRequest
+                                    title="Approve order"
+                                    description="Please leave the note"
+                                    isApproveOrder
+                                    approveOrder={ApproveOrderData}
+                                    attachmentButton
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+                <div className="flex-1">
+                    <Card
+                        title="Popup request information"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <PopupRequest
+                                    title="Are you sure to offer this order?"
+                                    description="Information offered:"
+                                    isOffer
+                                    offer={OfferData}
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+            </div>
             <div className="flex flex-row gap-8">
                 <div className="flex-1">
                     <Card
@@ -80,8 +231,21 @@ const page = () => {
                                         "The number of rolls has been successfully selected"
                                     }
                                 />
+                                <Toast
+                                    type={ToastEnum.Warning}
+                                    description={
+                                        "Recommened products cannot exceed the selected number of rolls"
+                                    }
+                                />
+                                <Toast
+                                    type={ToastEnum.Success}
+                                    description={
+                                        "The number of rolls has been successfully selected"
+                                    }
+                                />
                             </div>
                         }
+                    />
                     />
                 </div>
                 <div className="flex-1">
@@ -126,6 +290,16 @@ const page = () => {
                                     buttonDouble
                                     onPageChange={handlePageChange}
                                 />
+                                <Paginator
+                                    length={totalPages}
+                                    currentPage={currentPage}
+                                    onPageChange={handlePageChange}
+                                />
+                                <Paginator
+                                    length={5}
+                                    currentPage={currentPage}
+                                    onPageChange={handlePageChange}
+                                />
                                 {/* <Paginator
                                     length={totalPages}
                                     currentPage={currentPage}
@@ -141,62 +315,32 @@ const page = () => {
                     />
                 </div>
             </div>
-
             <div className="flex flex-row gap-8">
                 <div className="flex-1">
                     <Card
-                        title="Service time"
+                        title="Status note"
                         content={
                             <div className="gap-8 items-center flex flex-col">
-                                <ServiceTime
-                                    type={ServiceTimeEnum.Success}
-                                    start={"01:24:45"}
-                                    end={"10:00:00"}
+                                <Pending
+                                    type={PendingEnum.Current}
+                                    description={"CURRENT"}
                                 />
-                                <ServiceTime
-                                    type={ServiceTimeEnum.Warning}
-                                    start={"01:24:45"}
-                                    end={"10:00:00"}
+                                <Pending
+                                    type={PendingEnum.Expired}
+                                    description={"EXPIRED"}
                                 />
-                                <ServiceTime
-                                    type={ServiceTimeEnum.Error}
-                                    start={"01:24:45"}
-                                    end={"10:00:00"}
+                                <Pending
+                                    type={PendingEnum.Approve}
+                                    description={"APPROVE"}
                                 />
-                            </div>
-                        }
-                    />
-                </div>
-                <div className="flex-1">
-                    <Card
-                        title="Status"
-                        content={
-                            <div className="gap-8 items-center flex flex-col">
-                                <ValidityTime
-                                    type={ValidityTimeEnum.Success}
-                                    start={"01:24:45"}
+                                <Pending
+                                    type={PendingEnum.Denied}
+                                    description={"DENIED"}
                                 />
-                                <ValidityTime
-                                    type={ValidityTimeEnum.Warning}
-                                    start={"01:24:45"}
+                                <StatusNote
+                                    type={StatusEnum.Warning}
+                                    description="Kế hoạch sản xuất: Có lỗi trong thông tin giao hàng."
                                 />
-                                <ValidityTime
-                                    type={ValidityTimeEnum.Error}
-                                    start={"01:24:45"}
-                                />
-                            </div>
-                        }
-                    />
-                </div>
-                <div className="flex-1">
-                    <Card
-                        title="Progresses"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <NVS />
-                                <QLKD />
-                                <BGD />
-                                <KHSX />
                             </div>
                         }
                     />
@@ -410,21 +554,58 @@ const page = () => {
             <div className="flex flex-row gap-8">
                 <div className="flex-1">
                     <Card
-                        title="Status note"
+                        title="Service time"
                         content={
                             <div className="gap-8 items-center flex flex-col">
-                                {/* <StatusNote
-                                    type={StatusEnum.Normal}
-                                    description="Kế hoạch sản xuất: Cần phải chỉnh sửa thông tin giao hàng của no.5"
+                                <ServiceTime
+                                    type={ServiceTimeEnum.Success}
+                                    start={"01:24:45"}
+                                    end={"10:00:00"}
                                 />
-                                <StatusNote
-                                    type={StatusEnum.Success}
-                                    description="Kế hoạch sản xuất: Đã hoàn tất thông tin giao hàng."
+                                <ServiceTime
+                                    type={ServiceTimeEnum.Warning}
+                                    start={"01:24:45"}
+                                    end={"10:00:00"}
                                 />
-                                <StatusNote
-                                    type={StatusEnum.Warning}
-                                    description="Kế hoạch sản xuất: Có lỗi trong thông tin giao hàng."
-                                /> */}
+                                <ServiceTime
+                                    type={ServiceTimeEnum.Error}
+                                    start={"01:24:45"}
+                                    end={"10:00:00"}
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+                <div className="flex-1">
+                    <Card
+                        title="Status"
+                        content={
+                            <div className="gap-8 items-center flex flex-col">
+                                <ValidityTime
+                                    type={ValidityTimeEnum.Success}
+                                    start={"01:24:45"}
+                                />
+                                <ValidityTime
+                                    type={ValidityTimeEnum.Warning}
+                                    start={"01:24:45"}
+                                />
+                                <ValidityTime
+                                    type={ValidityTimeEnum.Error}
+                                    start={"01:24:45"}
+                                />
+                            </div>
+                        }
+                    />
+                </div>
+                <div className="flex-1">
+                    <Card
+                        title="Progresses"
+                        content={
+                            <div className="gap-8 items-center flex flex-row justify-center">
+                                <NVS />
+                                <QLKD />
+                                <BGD />
+                                <KHSX />
                             </div>
                         }
                     />
@@ -433,124 +614,13 @@ const page = () => {
             <div className="flex flex-row gap-8">
                 <div className="flex-1">
                     <Card
-                        title="Popup warning"
+                        title="Popup"
                         content={
                             <div className="gap-8 items-center flex flex-row justify-center">
-                                <Popup
-                                    type={PopupEnum.Warning}
-                                    title="Warning"
-                                    button
-                                    description={
-                                        "Are you sure to change the permission"
-                                    }></Popup>
-                            </div>
-                        }
-                    />
-                </div>
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <Popup
-                                    type={PopupEnum.Success}
-                                    title="You have successfully created an account"
-                                    description={
-                                        "Your ID and password have been self-generated. Please copy the information to use"
-                                    }></Popup>
-                            </div>
-                        }
-                    />
-                </div>
-            </div>
-            <div className="flex flex-row gap-8">
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <PopupRequest
-                                    title="Request information"
-                                    attachmentButton
-                                    description="Please leave the note"
-                                />
-                            </div>
-                        }
-                    />
-                </div>
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <PopupRequest
-                                    title="Note"
-                                    description="Please leave the note"
-                                />
-                            </div>
-                        }
-                    />
-                </div>
-            </div>
-            <div className="flex flex-row gap-8">
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <PopupRequest
-                                    title="Request information"
-                                    isLog
-                                    logItems={LogData}
-                                    attachmentButton
-                                />
-                            </div>
-                        }
-                    />
-                </div>
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <PopupRequest
-                                    title="Please leave the note"
-                                    isConfirm
-                                    description="Please leave the note"
-                                />
-                            </div>
-                        }
-                    />
-                </div>
-            </div>
-            <div className="flex flex-row gap-8">
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <PopupRequest
-                                    title="Approve order"
-                                    description="Please leave the note"
-                                    isApproveOrder
-                                    approveOrder={ApproveOrderData}
-                                    attachmentButton
-                                />
-                            </div>
-                        }
-                    />
-                </div>
-                <div className="flex-1">
-                    <Card
-                        title="Popup request information"
-                        content={
-                            <div className="gap-8 items-center flex flex-row justify-center">
-                                <PopupRequest
-                                    title="Are you sure to offer this order?"
-                                    description="Information offered:"
-                                    isOffer
-                                    offer={OfferData}
-                                />
+                                <NVS />
+                                <QLKD />
+                                <BGD />
+                                <KHSX />
                             </div>
                         }
                     />

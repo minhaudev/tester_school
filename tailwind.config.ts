@@ -55,18 +55,8 @@ const config: Config = {
         },
         extend: {
             backgroundColor: {
-                "green-bold": "#69AA43",
-                secondary: "#00ADEF",
-                primary: "#E9E9E9",
-                "red-bold": "#ED1E24",
-                confirm: "#D6292E",
-                yellow: "#F5BF00",
-                "red-light": "#FFEEEE",
-                "warning-light": "#FFFBEB",
-                "blue-bold": "#01559B",
-                highlight: "#F2F5F8",
+                error: "#FFFBEB",
                 green: "#F2FFEB",
-                stroke: "#E4E4E4",
                 normal: "#EDFAFF",
                 warning: "#FCE7E7",
                 success: "#D2E5F5"
