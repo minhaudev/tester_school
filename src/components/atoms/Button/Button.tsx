@@ -5,7 +5,8 @@ import Link from "next/link";
 import React, {
     ReactNode,
     ButtonHTMLAttributes,
-    AnchorHTMLAttributes
+    AnchorHTMLAttributes,
+    useState
 } from "react";
 
 interface PropsBtn {
@@ -17,7 +18,7 @@ interface PropsBtn {
         | "dashed"
         | "link"
         | "text";
-    size: "large" | "medium" | "small";
+    size: "2xl" | "large" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
     isDisabled: boolean;
     children?: ReactNode;
@@ -57,7 +58,20 @@ export default function Button(
         onChange,
         ...rest
     } = props;
-
+    const [fileNames, setFileNames] = useState<string[]>([]);
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const files = Array.from(event.target.files).map(
+                (file) => file.name
+            );
+            setFileNames(files);
+        } else {
+            setFileNames([]);
+        }
+        if (onChange) {
+            onChange(event);
+        }
+    };
     const getVariantClass = (variant: string) => {
         switch (variant) {
             case "primary-light":
@@ -116,6 +130,8 @@ export default function Button(
 
     const getSizeClass = (size: string) => {
         switch (size) {
+            case "2xl":
+                return "min-w-[50px] min-h-[50px]";
             case "large":
                 return "min-w-[40px] min-h-[40px]";
             case "medium":
@@ -160,11 +176,18 @@ export default function Button(
               text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
                     size
                 )}`}>
-                <input type="file" id="file-input" hidden onChange={onChange} />
+                <input
+                    type="file"
+                    id="file-input"
+                    hidden
+                    onChange={handleFileChange}
+                />
                 <span className="w-4 h-4">
                     <Frame />
                 </span>
-                <span>{children}</span>
+                <span>
+                    {fileNames.length > 0 ? fileNames.join(", ") : children}
+                </span>
             </label>
         );
     }
@@ -181,7 +204,10 @@ export default function Button(
             )} ${getSizeClass(size)} ${getOutline(color)}`}
             style={{fontFamily: "inherit"}}>
             {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-            <span className={`${isIcon ? "[&_svg]:w-6 [&_svg]:h-6" : ""}`}>
+            <span
+                className={`${
+                    isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""
+                }`}>
                 {children}
             </span>
         </button>
