@@ -11,20 +11,7 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(1);
-    const getInitialExpandState = () => {
-        if (typeof window !== "undefined") {
-            const storedExpandState = localStorage.getItem("expand");
-            return storedExpandState ? JSON.parse(storedExpandState) : true;
-        }
-        return true;
-    };
-
-    const [expand, setExpand] = useState(getInitialExpandState);
-
-    useEffect(() => {
-        localStorage.setItem("expand", JSON.stringify(expand));
-    }, [expand]);
-
+    const [expand, setExpand] = useState(true);
     const handleExpand = () => {
         setExpand(!expand);
         setShowFirstMenu(false);
@@ -42,7 +29,7 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
 
     return (
         <div
-            className={`fixed left-0 top-0 h-[100vh] overflow-y-auto ${
+            className={` h-[100vh] overflow-y-auto ${
                 expand ? "w-full max-w-[255px]" : "w-fit"
             } bg-primary pb-[13px]`}>
             <div

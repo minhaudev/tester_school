@@ -6,10 +6,10 @@ import TableFuture from "@/components/molecules/TableFuture";
 import {NavigationType} from "@/interfaces";
 export default function Home() {
     return (
-        <>
+        <div className="flex w-full">
+            <Navigation type={NavigationType.MANAGE} />
             <Header />
-            <Navigation type={NavigationType.CLIENT} />
-            <TableFuture />
-        </>
+            {/* <TableFuture /> */}
+        </div>
     );
 }

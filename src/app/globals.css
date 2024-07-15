@@ -6,7 +6,6 @@
 
 body {
     margin: 0 auto;
-    max-width: 1440px;
 }
 ::-webkit-scrollbar {
     display: none;

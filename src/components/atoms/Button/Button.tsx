@@ -57,21 +57,6 @@ export default function Button(
         onChange,
         ...rest
     } = props;
-    const [fileNames, setFileNames] = useState<string[]>([]);
-
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            const files = Array.from(event.target.files).map(
-                (file) => file.name
-            );
-            setFileNames(files);
-        } else {
-            setFileNames([]);
-        }
-        if (onChange) {
-            onChange(event);
-        }
-    };
 
     const [fileNames, setFileNames] = useState<string[]>([]);
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
