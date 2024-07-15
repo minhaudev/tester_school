@@ -13,7 +13,7 @@ import UserAdd from "@/assets/svgs/User_add_alt_fill.svg";
 import GroupUser from "@/assets/svgs/manage_user-group.svg";
 import ProductUser from "@/assets/svgs/Product_User.svg";
 import IconListItem from "@/components/atoms/IconListItem";
-import {tableFuture} from "@/fake/tableFuture";
+import tableFuture from "@/fake/tableFuture";
 
 function TableFuture() {
     return (
@@ -22,9 +22,9 @@ function TableFuture() {
                 <IconListItem
                     key={index}
                     href="#"
-                    classCustom="px-0 py-[18px]"
-                    title="Create Sales Order"
-                    prefixIcon={IconFilleDocAdd}
+                    classCustom="pl-0 py-[18px]"
+                    title={future.title}
+                    prefixIcon={future.prefixIcon}
                     onActive={() => {}}
                 />
             ))}

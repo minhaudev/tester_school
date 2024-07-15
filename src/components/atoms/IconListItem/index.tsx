@@ -41,7 +41,7 @@ const IconListItem: React.FC<IconListItemProps> = ({
             )}
             {expand && (
                 <p
-                    className={`w-full text-white pl-2 ${
+                    className={`w-full text-white pl-2 font-sf-ui-display text-[16px] font-[500] leading-[19px] truncate ${
                         !active && "group-hover:text-secondary"
                     }`}>
                     {title}

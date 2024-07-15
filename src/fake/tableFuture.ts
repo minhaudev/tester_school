@@ -1,4 +1,3 @@
-"use client";
 import ChartFill from "@/assets/svgs/Chart_fill.svg";
 import IconFilleDocAdd from "@/assets/svgs/File_dock_add_fill.svg";
 import FileDocFill from "@/assets/svgs/File_dock_fill.svg";
@@ -12,81 +11,114 @@ import Box3d from "@/assets/svgs/3d_box.svg";
 import UserAdd from "@/assets/svgs/User_add_alt_fill.svg";
 import GroupUser from "@/assets/svgs/manage_user-group.svg";
 import ProductUser from "@/assets/svgs/Product_User.svg";
-
-export const tableFuture = [
+import ChevronDown from "@/assets/svgs/Expand_down.svg";
+interface NavbarProps {
+    id: number;
+    prefixIcon?: any;
+    leadingIcon?: any;
+    title: string;
+    href: string;
+    subMenu?: NavbarProps[];
+}
+const tableFuture: NavbarProps[] = [
     {
+        id: 1,
         prefixIcon: IconFilleDocAdd,
         title: "Create Sales Order",
-        onActive: () => {}
+        href: "/home"
     },
-
     {
-        prefixIcon: UserCircle,
-        title: "Create Sales Order",
-        onActive: () => {}
-    },
-
-    {
-        prefixIcon: GroupUser,
-        title: "Create Sales Order",
-        onActive: () => {}
-    },
-
-    {
-        prefixIcon: LineUp,
-        title: "Create Sales Order",
-        onActive: () => {}
-    },
-
-    {
+        id: 2,
         prefixIcon: FileDocFill,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Sales Order Management",
+        href: "#",
+        subMenu: [
+            {
+                id: 2.1,
+                leadingIcon: ChevronDown,
+                title: "Approved Orders",
+                href: "#",
+                subMenu: [
+                    {
+                        id: 2.12,
+                        title: "Pending Delivery",
+                        href: "#"
+                    },
+                    {id: 2.13, title: "Works in progress", href: "#"},
+                    {id: 2.14, title: "Complete & Denied", href: "#"}
+                ]
+            },
+            {id: 2.2, title: "Pending Approvals", href: "#"},
+            {id: 2.3, title: "Drafts", href: "#"},
+            {id: 2.4, title: "Canceled & Denied", href: "#"}
+        ]
     },
-
     {
+        id: 3,
+        prefixIcon: GroupUser,
+        title: "Customer Management",
+        href: "#"
+    },
+    {
+        id: 4,
+        prefixIcon: UserCircle,
+        title: "Employee Management",
+        href: "#"
+    },
+    {
+        id: 5,
+        prefixIcon: LineUp,
+        title: "Price index & Policy",
+        href: "#"
+    },
+    {
+        id: 6,
         prefixIcon: ChartFill,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Domestic Sales Management",
+        href: "#"
     },
-
     {
+        id: 7,
         prefixIcon: PaperFill,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Debt Management",
+        href: "#"
     },
-
     {
+        id: 8,
         prefixIcon: ProductUser,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Production Management",
+        href: "#"
     },
-
     {
+        id: 9,
         prefixIcon: Box3d,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Inventory Management    ",
+        href: "#"
     },
-
     {
+        id: 10,
         prefixIcon: UserAdd,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Other Department Management",
+        href: "#"
     },
-
     {
+        id: 11,
         prefixIcon: FileCheck,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Order Approvals",
+        href: "#"
     },
     {
+        id: 12,
         prefixIcon: Database,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Data Configuration",
+        href: "#"
     },
     {
+        id: 13,
         prefixIcon: TagPercent,
-        title: "Create Sales Order",
-        onActive: () => {}
+        title: "Discount Management",
+        href: "#"
     }
 ];
+
+export default tableFuture;
