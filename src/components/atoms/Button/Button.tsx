@@ -4,7 +4,8 @@ import Link from "next/link";
 import React, {
     ReactNode,
     ButtonHTMLAttributes,
-    AnchorHTMLAttributes
+    AnchorHTMLAttributes,
+    useState
 } from "react";
 
 interface PropsBtn {
@@ -16,21 +17,21 @@ interface PropsBtn {
         | "dashed"
         | "link"
         | "text";
-    size: "large" | "medium" | "small";
+    size: "2xl" | "large" | "semi" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
-    isDisabled: boolean;
+    isDisabled?: boolean;
     children?: ReactNode;
     prefixIcon?: ReactNode;
     url?: string;
-    isError: boolean;
-    isIcon: boolean;
-    className: string;
+    isError?: boolean;
+    isIcon?: boolean;
+    className?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 Button.defaultProps = {
-    variant: "primary-light",
-    size: "large",
+    variant: "file",
+    size: "semi",
     isDisabled: false,
     isError: false,
     isIcon: false,
@@ -56,6 +57,21 @@ export default function Button(
         onChange,
         ...rest
     } = props;
+    const [fileNames, setFileNames] = useState<string[]>([]);
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const files = Array.from(event.target.files).map(
+                (file) => file.name
+            );
+            setFileNames(files);
+        } else {
+            setFileNames([]);
+        }
+        if (onChange) {
+            onChange(event);
+        }
+    };
 
     const getVariantClass = (variant: string) => {
         switch (variant) {
@@ -115,10 +131,15 @@ export default function Button(
 
     const getSizeClass = (size: string) => {
         switch (size) {
+            case "2xl":
+                return "min-w-[50px] min-h-[50px]";
             case "large":
                 return "min-w-[40px] min-h-[40px]";
+            case "semi":
+                return "min-w-[36px] min-h-[36px]";
             case "medium":
                 return "min-w-[32px] min-h-[32px]";
+
             case "small":
                 return "min-w-[22px] min-h-[22px]";
             default:
@@ -145,7 +166,7 @@ export default function Button(
                 }  ${getErrorClass(variant)}`}
                 style={{fontFamily: "inherit"}}>
                 {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-                <span className={`${isIcon ? "[&_svg]:w-6 [&_svg]:h-6" : ""}`}>
+                <span className={`${isIcon ? "[&_svg]:w-5 [&_svg]:h-5 " : ""}`}>
                     {children}
                 </span>
             </Link>
@@ -153,18 +174,42 @@ export default function Button(
     }
     if (variant === "file") {
         return (
-            <label
-                htmlFor="file-input"
-                className={`inline-flex justify-center items-center gap-[6px]
-              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
-                    size
-                )}`}>
-                <input type="file" id="file-input" hidden onChange={onChange} />
-                <span className="w-4 h-4">
-                    <Frame />
-                </span>
-                <span>{children}</span>
-            </label>
+            <div className="file-input-container">
+                <label
+                    htmlFor="file-input"
+                    className={`inline-flex justify-center items-center gap-[6px]
+                  text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
+                        size
+                    )}`}>
+                    <input
+                        type="file"
+                        id="file-input"
+                        hidden
+                        onChange={handleFileChange}
+                        multiple={true}
+                        accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.csv,.txt,.ppt,.pptx,.zip,.rar,.gif,.bmp,.tiff,.svg,.html,.htm,.xml,.json,.mp3,.wav,.mp4,.avi,.mov"
+                    />
+                    <span className="w-4 h-4">
+                        <Frame />
+                    </span>
+                    <span>
+                        {fileNames.length === 1
+                            ? fileNames[0]
+                            : fileNames.length > 1
+                            ? "multiple file"
+                            : children}
+                    </span>
+                </label>
+                <ul className="flex gap-4 mt-2 r w-full">
+                    [
+                    {fileNames.slice(0, 3).map((fileName, index) => (
+                        <li className="cursor-pointer" key={index}>
+                            {fileName};
+                        </li>
+                    ))}
+                    {fileNames.length > 3 && <li>...</li>}]
+                </ul>
+            </div>
         );
     }
 
@@ -174,13 +219,16 @@ export default function Button(
             {...rest}
             className={`flex justify-center items-center gap-[6px]
               text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition disabled:bg-disable disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
-                  isIcon ? "px-0" : ""
+                  isIcon ? "!px-0 !border !border-white !text-white" : ""
               } ${className} ${getVariantClass(variant)} ${getErrorClass(
                 variant
             )} ${getSizeClass(size)} ${getOutline(color)}`}
             style={{fontFamily: "inherit"}}>
             {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-            <span className={`${isIcon ? "[&_svg]:w-6 [&_svg]:h-6" : ""}`}>
+            <span
+                className={`${
+                    isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""
+                }`}>
                 {children}
             </span>
         </button>

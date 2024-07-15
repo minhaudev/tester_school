@@ -21,7 +21,6 @@ interface PropsInput {
     prefix?: ReactNode;
     asterisk?: boolean;
 }
-
 const Input = (props: PropsInput) => {
     const {
         variant,
@@ -39,7 +38,6 @@ const Input = (props: PropsInput) => {
         label,
         type
     } = props;
-
     const getSizeClass = (size?: "large" | "medium" | "small") => {
         switch (size) {
             case "large":
