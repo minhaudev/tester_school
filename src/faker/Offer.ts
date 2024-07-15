@@ -1,3 +1,4 @@
+import {Offer} from "@/interfaces/Offer";
 const OfferData: Offer[] = [
     {
         title: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
