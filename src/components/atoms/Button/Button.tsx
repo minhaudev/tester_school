@@ -18,21 +18,21 @@ interface PropsBtn {
         | "dashed"
         | "link"
         | "text";
-    size: "2xl" | "large" | "medium" | "small";
+    size: "2xl" | "large" | "semi" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
-    isDisabled: boolean;
+    isDisabled?: boolean;
     children?: ReactNode;
     prefixIcon?: ReactNode;
     url?: string;
-    isError: boolean;
-    isIcon: boolean;
-    className: string;
+    isError?: boolean;
+    isIcon?: boolean;
+    className?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 Button.defaultProps = {
     variant: "primary-light",
-    size: "large",
+    size: "semi",
     isDisabled: false,
     isError: false,
     isIcon: false,
@@ -136,8 +136,11 @@ export default function Button(
                 return "min-w-[50px] min-h-[50px]";
             case "large":
                 return "min-w-[40px] min-h-[40px]";
+            case "semi":
+                return "min-w-[36px] min-h-[36px]";
             case "medium":
                 return "min-w-[32px] min-h-[32px]";
+
             case "small":
                 return "min-w-[22px] min-h-[22px]";
             default:
