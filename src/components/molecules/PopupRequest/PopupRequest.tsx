@@ -12,6 +12,7 @@ import ApproveOrderData from "@/faker/ApproveOrder";
 import Checkbox from "@/components/atoms/Checkbox/Checkbox";
 import OfferData from "@/faker/Offer";
 import Information from "@/assets/svgs/Infomation.svg";
+import {Offer} from "@/interfaces/Offer";
 
 interface PopupProps {
     attachmentButton?: boolean;
@@ -144,11 +145,9 @@ const PopupRequest = ({
                 }`}>
                 <textarea
                     className={`peer w-full resize-none rounded-[7px] border border-stroke border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm text-blue-gray-700 outline-none transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50 ${
-                        isLog
-                            ? "min-h-20"
-                            : isApproveOrder
-                            ? "min-h-[115px]"
-                            : "min-h-[169px]"
+                        isLog ? "min-h-20"
+                        : isApproveOrder ? "min-h-[115px]"
+                        : "min-h-[169px]"
                     }
                     `}
                     placeholder="Enter"
@@ -171,25 +170,21 @@ const PopupRequest = ({
                     <Button
                         variant="secondary"
                         color="blue-dark"
-                        size="large"
                         className="max-w-[93px]"
                         prefixIcon={<Attachment />}>
                         file.docx
                     </Button>
                     <div className="flex flex-row gap-x-2.5 items-end justify-end mt-4">
                         <Button variant="secondary">Cancel</Button>
-                        <Button
-                            variant={"primary-light"}
-                            size="large">
-                            Offer
-                        </Button>
+                        <Button variant={"primary-light"}>Offer</Button>
                     </div>
                 </div>
             )}
             {isApproveOrder && !isOffer && (
                 <div>
                     <Button
-                        variant="secondary"
+                        size="small"
+                        variant="file"
                         color="blue-dark"
                         prefixIcon={<Attachment />}>
                         Insert attachment
@@ -206,8 +201,8 @@ const PopupRequest = ({
                     <div className="flex flex-row gap-x-2.5 float-end mt-[35px]">
                         <Button variant="secondary">Cancel</Button>
                         <Button
-                            variant={isConfirm ? "confirm" : "primary-dark"}
-                            size="large">
+                            size="small"
+                            variant={isConfirm ? "confirm" : "primary-dark"}>
                             {isConfirm ? "Confirm" : "Save"}
                         </Button>
                     </div>
@@ -221,7 +216,8 @@ const PopupRequest = ({
                     } ${isLog ? "px-6" : ""}`}>
                     {attachmentButton && (
                         <Button
-                            variant="secondary"
+                            size="small"
+                            variant="file"
                             color="blue-dark"
                             prefixIcon={<Attachment />}>
                             Insert attachment
@@ -230,8 +226,8 @@ const PopupRequest = ({
                     <div className="flex flex-row gap-x-2.5">
                         <Button variant="secondary">Cancel</Button>
                         <Button
-                            variant={isConfirm ? "confirm" : "primary-dark"}
-                            size="large">
+                            size="small"
+                            variant={isConfirm ? "confirm" : "primary-dark"}>
                             {isConfirm ? "Confirm" : "Save"}
                         </Button>
                     </div>

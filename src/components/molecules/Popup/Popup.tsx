@@ -65,13 +65,9 @@ const Popup = ({type, description, className, button = false}: PopupProps) => {
             </div>
             {button && (
                 <div className="flex flex-row gap-x-2.5 justify-center mt-6">
-                    <Button size="largexl" variant="secondary">
-                        No
-                    </Button>
+                    <Button variant="secondary">No</Button>
 
-                    <Button size="largexl" variant="primary-dark">
-                        Yes
-                    </Button>
+                    <Button variant="primary-dark">Yes</Button>
                 </div>
             )}
         </div>

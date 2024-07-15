@@ -1,4 +1,4 @@
-interface Offer {
+export interface Offer {
     title: string;
     detail: string[];
 }

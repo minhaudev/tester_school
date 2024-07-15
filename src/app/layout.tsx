@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${myFonts.className} bg-primary`}>
+            <body className={`${myFonts.className} `}>
                 {children}
             </body>
         </html>

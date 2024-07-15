@@ -118,8 +118,6 @@ export default function Button(
 
     const getSizeClass = (size: string) => {
         switch (size) {
-            case "largexl":
-                return "min-w-[147px] min-h-[40px]";
             case "large":
                 return "min-w-[40px] min-h-[40px]";
             case "medium":
