@@ -15,6 +15,7 @@ export default function Home() {
                     title="Create Sales Order"
                 />
                 <Time className="text-green w-6 h-6" />
+                <Time className="text-green w-6 h-6" />
             </div>
             <Button value={"hello"} className="!bg-white !text-text boder"/>
         </>
