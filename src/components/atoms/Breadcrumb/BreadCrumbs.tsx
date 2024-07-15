@@ -62,4 +62,33 @@ const Breadcrumb = ({breadcrumbs, separator = ">"}: Props) => {
     return <nav className="flex items-center">{renderBreadcrumbs()}</nav>;
 };
 
+Breadcrumb.defaultProps = {
+    separator: ">",
+    breadcrumbs: [
+        {
+            url: "/",
+            label: "Home"
+        },
+        {
+            url: "/about",
+            label: "About"
+        },
+        {
+            url: "/select",
+            label: "Select"
+        },
+        {
+            url: "/detailuser",
+            label: "abc"
+        },
+        {
+            url: "/as",
+            label: "as"
+        },
+        {
+            url: "/abc",
+            label: "detailUser"
+        }
+    ]
+};
 export default Breadcrumb;
