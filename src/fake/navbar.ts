@@ -1,26 +1,54 @@
-import React from "react";
 import IconFilleDocAdd from "@/assets/svgs/File_dock_add_fill.svg";
 import FileDocFill from "@/assets/svgs/File_dock_fill.svg";
 import GroupUser from "@/assets/svgs/manage_user-group.svg";
+import ChevronDown from "@/assets/svgs/Expand_down.svg";
 interface NavbarProps {
-    icon?: any;
+    id: number;
+    prefixIcon?: any;
+    leadingIcon?: any;
     title: string;
+    href: string;
     subMenu?: NavbarProps[];
 }
-export const navbarData: NavbarProps[] = [
+const navbarData: NavbarProps[] = [
     {
-        icon: IconFilleDocAdd,
+        id: 1,
+        prefixIcon: IconFilleDocAdd,
         title: "Sales Order Management",
-        subMenu: [{icon: "", title: ""}]
+        href: "/home"
     },
     {
-        icon: FileDocFill,
+        id: 2,
+        prefixIcon: FileDocFill,
         title: "Create Sales Order",
-        subMenu: [{icon: "", title: ""}]
+        href: "#",
+        subMenu: [
+            {
+                id: 2.1,
+                leadingIcon: ChevronDown,
+                title: "Approved Orders",
+                href: "#",
+                subMenu: [
+                    {
+                        id: 2.12,
+                        title: "Pending Delivery",
+                        href: "#"
+                    },
+                    {id: 2.13, title: "Works in progress", href: "#"},
+                    {id: 2.14, title: "Complete & Denied", href: "#"}
+                ]
+            },
+            {id: 2.2, title: "Pending Approvals", href: "#"},
+            {id: 2.3, title: "Drafts", href: "#"},
+            {id: 2.4, title: "Canceled & Denied", href: "#"}
+        ]
     },
     {
-        icon: GroupUser,
+        id: 3,
+        prefixIcon: GroupUser,
         title: "Create Sales Order",
-        subMenu: [{icon: "", title: ""}]
+        href: "#"
     }
 ];
+
+export default navbarData;
