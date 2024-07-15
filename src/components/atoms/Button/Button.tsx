@@ -186,7 +186,8 @@ export default function Button(
                     <Frame />
                 </span>
                 <span>
-                    {fileNames.length > 0 ? fileNames.join(", ") : children}
+                    <span>{fileNames.join(", ")}</span>
+                    {fileNames.length > 0 ? fileNames.join(",,,, ") : children}
                 </span>
             </label>
         );
