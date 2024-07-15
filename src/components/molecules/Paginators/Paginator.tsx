@@ -3,14 +3,14 @@
 
 import React, {useEffect} from "react";
 
-import ExpandLeftLight from "@/assets/svgs/Expand_left_light.svg";
-import ExpandRightLight from "@/assets/svgs/Expand_right.svg";
-import ExpandLeftDoubleLight from "@/assets/svgs/Expand_left_double.svg";
-import ExpandRightDoubleLight from "@/assets/svgs/Expand_right_double_light.svg";
 import ExpandLeft from "@/assets/svgs/Expand_left.svg";
 import ExpandRight from "@/assets/svgs/Expand_right.svg";
+import ExpandLeftLight from "@/assets/svgs/Expand_left_light.svg";
+import ExpandRightLight from "@/assets/svgs/Expand_right_light.svg";
 import ExpandLeftDouble from "@/assets/svgs/Expand_left_double.svg";
 import ExpandRightDouble from "@/assets/svgs/Expand_right_double.svg";
+import ExpandLeftDoubleLight from "@/assets/svgs/Expand_left_double_light.svg";
+import ExpandRightDoubleLight from "@/assets/svgs/Expand_right_double_light.svg";
 
 interface PaginatorProps {
     length: number;
@@ -30,7 +30,7 @@ const Paginator = ({
     }, [currentPage]);
 
     const pageNumbers = Array.from({length}, (_, i) => i + 1);
-
+    const count = 3;
     const getPaginationButtons = () => {
         if (length <= 5) {
             return pageNumbers.map((page) => (
@@ -50,10 +50,10 @@ const Paginator = ({
         }
 
         const firstPages =
-            currentPage > 3 ?
-                pageNumbers.slice(currentPage - 3, currentPage)
-            :   pageNumbers.slice(0, 3);
-        const lastPages = pageNumbers.slice(-3);
+            currentPage > 3 && currentPage < length - count+1 ?
+                pageNumbers.slice(currentPage - count, currentPage)
+            :   pageNumbers.slice(0, count);
+        const lastPages = pageNumbers.slice(-count);
 
         const middlePages = (
             <div className="hs-tooltip flex items-end">
@@ -62,9 +62,8 @@ const Paginator = ({
                 </span>
             </div>
         );
-
         const shouldShowMiddlePages =
-            lastPages[0] > firstPages[firstPages.length - 1] + 1;
+            lastPages[0] > firstPages[firstPages.length - 1] + 1
 
         return (
             <>
@@ -115,9 +114,11 @@ const Paginator = ({
                         <button
                             type="button"
                             onClick={() => onPageChange(1)}
+                            disabled={currentPage === 1}
                             className="inline-flex justify-center items-center gap-x-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                            <ExpandLeftDoubleLight className="" />
-                            <ExpandLeft className="" />
+                            {currentPage === 1 ?
+                                <ExpandLeftDoubleLight />
+                            :   <ExpandLeftDouble />}
                         </button>
                     )}
                     <button
@@ -125,8 +126,9 @@ const Paginator = ({
                         onClick={() => onPageChange(currentPage - 1)}
                         disabled={currentPage === 1}
                         className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                        <ExpandLeftLight />
-                        <ExpandLeft />
+                        {currentPage === 1 ?
+                            <ExpandLeft />
+                        :   <ExpandLeftLight />}
                     </button>
                 </div>
                 <div className="flex gap-x-2">{getPaginationButtons()}</div>
@@ -136,16 +138,19 @@ const Paginator = ({
                         onClick={() => onPageChange(currentPage + 1)}
                         disabled={currentPage === length}
                         className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                        <ExpandRightLight />
-                        <ExpandRight />
+                        {currentPage === length ?
+                            <ExpandRightLight />
+                        :   <ExpandRight />}
                     </button>
                     {buttonDouble && (
                         <button
                             type="button"
                             onClick={() => onPageChange(length)}
+                            disabled={currentPage === length}
                             className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                            <ExpandRightDoubleLight />
-                            <ExpandRightDouble />
+                            {currentPage === length ?
+                                <ExpandRightDoubleLight />
+                            :   <ExpandRightDouble />}
                         </button>
                     )}
                 </div>

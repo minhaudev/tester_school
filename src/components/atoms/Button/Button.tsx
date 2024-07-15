@@ -1,5 +1,6 @@
 "use client";
 
+import Frame from "@/assets/images/Frame";
 import Link from "next/link";
 import React, {
     ReactNode,
@@ -13,11 +14,10 @@ interface PropsBtn {
         | "primary-light"
         | "primary-dark"
         | "secondary"
-        | "confirm"
         | "dashed"
         | "link"
         | "text";
-    size: "large" | "medium" | "small" | "largexl";
+    size: "large" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
     isDisabled: boolean;
     children?: ReactNode;
@@ -64,8 +64,6 @@ export default function Button(
                 return "bg-secondary text-white hover:bg-secondary-hover ";
             case "primary-dark":
                 return "bg-primary-5 text-white hover:bg-primary-5-hover";
-            case "confirm":
-                return "bg-confirm text-white hover:bg-primary-5-hover";
             case "secondary":
                 return "bg-white border border-stroke hover:bg-highlight hover:border-primary-5-hover hover:text-primary-5-hover text-text";
             case "dashed":
@@ -125,7 +123,7 @@ export default function Button(
             case "small":
                 return "min-w-[22px] min-h-[22px]";
             default:
-                return "min-w-[22px] min-h-[36px]";
+                return "";
         }
     };
 
@@ -163,7 +161,9 @@ export default function Button(
                   size
               )}`}>
                 <input type="file" id="file-input" hidden onChange={onChange} />
-                <span className="w-4 h-4">{/* <Frame /> */}</span>
+                <span className="w-4 h-4">
+                    <Frame />
+                </span>
                 <span>{children}</span>
             </label>
         );

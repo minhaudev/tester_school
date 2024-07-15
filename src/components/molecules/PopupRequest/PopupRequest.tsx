@@ -48,7 +48,7 @@ const PopupRequest = ({
             id="popup-modal"
             className={`z-50 ${
                 isLog ? "" : "px-6"
-            } py-6 justify-center items-center rounded-lg w-full max-w-[668px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
+            } shadow-lg py-6 justify-center items-center rounded-lg w-full max-w-[668px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
             <div
                 className={`flex flex-row justify-between items-center ${
                     isLog ? "px-6" : ""
@@ -200,9 +200,7 @@ const PopupRequest = ({
                     </div>
                     <div className="flex flex-row gap-x-2.5 float-end mt-[35px]">
                         <Button variant="secondary">Cancel</Button>
-                        <Button
-                            size="small"
-                            variant={isConfirm ? "confirm" : "primary-dark"}>
+                        <Button size="small" variant="primary-dark">
                             {isConfirm ? "Confirm" : "Save"}
                         </Button>
                     </div>
@@ -216,7 +214,6 @@ const PopupRequest = ({
                     } ${isLog ? "px-6" : ""}`}>
                     {attachmentButton && (
                         <Button
-                            size="small"
                             variant="file"
                             color="blue-dark"
                             prefixIcon={<Attachment />}>
@@ -225,11 +222,7 @@ const PopupRequest = ({
                     )}
                     <div className="flex flex-row gap-x-2.5">
                         <Button variant="secondary">Cancel</Button>
-                        <Button
-                            size="small"
-                            variant={isConfirm ? "confirm" : "primary-dark"}>
-                            {isConfirm ? "Confirm" : "Save"}
-                        </Button>
+                        <Button  variant="primary-dark">{isConfirm ? "Confirm" : "Save"}</Button>
                     </div>
                 </div>
             )}
