@@ -2,16 +2,16 @@
 import React, {ReactNode} from "react";
 import search from "@/assets/images/Search.svg";
 interface PropsInput {
-    size: "large" | "medium" | "small";
+    size?: "large" | "medium" | "small";
     label?: string;
-    value: string | number;
+    value?: string | number;
     type?: string;
     error?: boolean;
     helperText?: string;
     suffixIcon?: string;
-    placeholder: string;
+    placeholder?: string;
     name?: string;
-    handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleOnChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     isDisabled?: boolean;
     className?: string;
     prefix?: ReactNode;
