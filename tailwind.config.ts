@@ -1,5 +1,4 @@
 import type {Config} from "tailwindcss";
-import type {Config} from "tailwindcss";
 
 const config: Config = {
     content: [
@@ -11,6 +10,7 @@ const config: Config = {
     theme: {
         colors: {
             text: "#3A3B3C",
+            "text-light": "#4B5563",
             primary: "#01559B",
             secondary: "#00ADEF",
             stroke: "#E4E4E4",
@@ -21,10 +21,11 @@ const config: Config = {
             green: "#69AA43",
             greenLight: "#70E28D",
             orange: "#ED8400",
-            warning: "#ED1E24",
+            red: "#ED1E24",
             dangerous: "#FFF4F4",
             violet: "#A644F6",
             blue: "#5A92F7",
+            "blue-bold": "#1E4D83",
             pink: "#FFEDDF",
             yellow: "#F5BF00",
             "custom-light-blue": "#EDFAFF",
@@ -54,8 +55,21 @@ const config: Config = {
         },
         extend: {
             backgroundColor: {
-                error: "#FFFBEB",
+                "green-bold": "#69AA43",
+
+                secondary: "#00ADEF",
+                primary: "#E9E9E9",
+                "red-bold": "#ED1E24",
+                confirm: "#D6292E",
+                yellow: "#F5BF00",
+
+                "red-light": "#FFEEEE",
+                "warning-light": "#FFFBEB",
+                "blue-bold": "#01559B",
+                highlight: "#F2F5F8",
                 green: "#F2FFEB",
+                stroke: "#E4E4E4",
+
                 normal: "#EDFAFF",
                 warning: "#FCE7E7", // Updated from backgrounds to backgroundColor
                 success: "#D2E5F5" // Updated from backgrounds to backgroundColor
@@ -91,9 +105,11 @@ const config: Config = {
                 "custom-sm": "5px" // Define your custom border-radius value here
             },
             borderColor: {
+                input: "#D0D5DD",
                 normal: "#00ADEF",
                 success: "#01559B",
-                error: "#ED1E24"
+                warning: "#ED1E24",
+                stroke: "#E4E4E4"
             },
             maxWidth: {
                 "custom-448": "448px" // Define custom max-width value

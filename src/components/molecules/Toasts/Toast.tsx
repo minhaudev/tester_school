@@ -1,74 +1,77 @@
 import {WarningIcon} from "@/assets/svgs";
 import {ToastEnum} from "@/enums/ToastEnum";
+import Success from "@/assets/svgs/Success_toast.svg";
+import Warning from "@/assets/svgs/Warning_toast.svg";
+import Time from "@/assets/svgs/Time.svg";
+import Close from "@/assets/svgs/Close_round.svg";
 import React from "react";
+import Button from "@/components/atoms/Button/Button";
 
 interface ToastValue {
+    color: string;
     title: string;
     border: string;
+    background: string;
+    icon?: React.ReactNode;
 }
 
 interface ToastProps {
     type: ToastEnum;
     description: string;
-    icon?: React.ReactNode;
     className?: string;
 }
 
 export const ToastValue: Record<ToastEnum, ToastValue> = {
-    [ToastEnum.Success]: {
-        title: "Successful",
-        border: "border-success"
-    },
     [ToastEnum.Warning]: {
+        color: "text-red",
         title: "Warning",
-        border: "border-warning"
+        border: "border-warning",
+        background: "bg-red-bold",
+        icon: <Warning className="w-10 h-10" />
+    },
+    [ToastEnum.Success]: {
+        color: "text-blue-bold",
+        title: "Successful",
+        border: "border-success",
+        background: "bg-blue-bold",
+        icon: <Success className="w-10 h-10" />
     }
 };
 
-const Toast = ({type, description, icon, className}: ToastProps) => {
-    const {title, border} = ToastValue[type];
+const Toast = ({type, description, className}: ToastProps) => {
+    const {color, title, border, icon, background} = ToastValue[type];
 
     return (
         <div
-            id="toast-message-cta"
-            className={`w-full p-4 text-gray-500 rounded-r-lg bg-white shadow dark:bg-gray-800 border-l-4 `}
+            id="toast-default"
+            className="flex items-stretch max-w-md w-full text-gray-500 bg-white shadow dark:text-gray-400 dark:bg-gray-800"
             role="alert">
-            <div className={`w-1 border-b-error`}></div>
+            <div
+                className={`flex-shrink-0 w-1  rounded-r-lg ${background}`}></div>
+            <div className="w-full flex flex-row items-start my-5 mx-[15px] ">
+                <div className="inline-flex items-center justify-center flex-shrink-0  text-blue-500 bg-blue-100 rounded-lg dark:bg-blue-800 dark:text-blue-200">
+                    {icon}
+                </div>
+                <div className="flex w-full">
+                    <div className="flex flex-col ml-3.5 w-full gap-[6px]">
+                        <div className="flex justify-around">
+                            <div className={`text-sm font-normal ${color}`}>
+                                {title}
+                            </div>
+                            <button
+                                type="button"
+                                className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                                data-dismiss-target="#toast-default"
+                                aria-label="Close">
+                                <span className="sr-only">Close</span>
+                                <Close />
+                            </button>
+                        </div>
 
-            <div className="flex align-middle">
-                {icon || <WarningIcon fill={border} />}
-                {/* Use provided icon or default */}
-                <div className="ms-3 text-sm font-normal flex  justify-start">
-                    <div className="flex flex-col">
-                        <span className="mb-1 text-sm font-semibold text-gray-900">
-                            {title}
-                        </span>
-
-                        <div className="mb-2 font-normal text-xs">
+                        <div className=" text-xs font-normal">
                             {description}
                         </div>
                     </div>
-                    <button
-                        type="button"
-                        className="ms-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                        data-dismiss-target="#toast-message-cta"
-                        aria-label="Close">
-                        <span className="sr-only">Close</span>
-                        <svg
-                            className="w-3 h-3"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 14">
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                            />
-                        </svg>
-                    </button>
                 </div>
             </div>
         </div>
