@@ -8,6 +8,7 @@ import DropDown from "@/assets/svgs/Arrow_drop_down.svg";
 import User from "@/assets/svgs/User_alt_light.svg";
 import {dataOrderNotice} from "@/faker/OrderNotice";
 import DropsDown from "@/components/atoms/DropsDown/DropsDown";
+import Link from "next/link";
 
 export default function Header() {
     const [language, setLanguage] = useState<string>("ENG");
@@ -28,7 +29,9 @@ export default function Header() {
             <div className="">
                 <div className="h-14 w-full bg-white flex justify-between item-center px-6 border-b border-stroke">
                     <div className="flex items-center justify-center">
-                        <Image src={logo} alt="" />
+                        <Link href="/">
+                            <Image src={logo} alt="" />
+                        </Link>
                     </div>
                     <div className="flex gap-[16px] justify-center items-center">
                         <div className="relative">
@@ -47,11 +50,14 @@ export default function Header() {
                             )}
                         </div>
 
-                        <p
-                            className={`cursor-pointer transition text-[13px] font-normal leading-[15.51px] text-text duration-300 ease-in-out transform`}
-                            onClick={handleLanguage}>
-                            {language}
-                        </p>
+                        <div className="w-6 text-center">
+                            <p
+                                className={`cursor-pointer transition text-[13px] font-normal leading-[15.51px] text-text duration-300 ease-in-out transform`}
+                                onClick={handleLanguage}>
+                                {language}
+                            </p>
+                        </div>
+
                         <div className="h-[32px] w-[1px] bg-stroke"></div>
                         <div className="flex gap-[9px] items-center">
                             <User className="w-8 h-8" />
@@ -64,8 +70,10 @@ export default function Header() {
                                     Chuyên viên kinh doanh
                                 </p>
                             </div>
-                            <div onClick={handleClickDropDown}>
-                                <DropDown className="w-6 h-5 cursor-pointer" />
+                            <div
+                                className="relative"
+                                onClick={handleClickDropDown}>
+                                <DropDown className="w-6 h-5 cursor-pointer relative" />
                                 {isClicked && <DropsDown />}
                             </div>
                         </div>
