@@ -10,6 +10,7 @@ const config: Config = {
         colors: {
             disable: "#F7F7F7",
             text: "#3A3B3C",
+            "text-light": "#4B5563",
             primary: "#01559B",
             secondary: "#00ADEF",
             ["secondary-hover"]: "#12BDFE",
@@ -21,10 +22,10 @@ const config: Config = {
             green: "#69AA43",
             orange: "#ED8400",
             warning: "#ED1E24",
-            "warning-hover": "#F56569",
             dangerous: "#FFF4F4",
             violet: "#A644F6",
             blue: "#5A92F7",
+            "blue-bold": "#1E4D83",
             pink: "#FFEDDF",
             yellow: "#F5BF00",
             "primary-1": "#111D2C",
@@ -53,6 +54,13 @@ const config: Config = {
         },
 
         extend: {
+            backgroundColor: {
+                error: "#FFFBEB",
+                green: "#F2FFEB",
+                normal: "#EDFAFF",
+                warning: "#FCE7E7", // Updated from backgrounds to backgroundColor
+                success: "#D2E5F5" // Updated from backgrounds to backgroundColor
+            },
             backgroundImage: {
                 "custom-gradient":
                     "linear-gradient(90deg, #00ADEE 0%, #0087CA 15%, #006CAF 29%, #005CA0 41%, #00569A 50%, #005CA0 59%, #006CAF 71%, #0087CA 85%, #00AEEF 100%)"
@@ -79,6 +87,17 @@ const config: Config = {
                 regular: "400",
                 semibold: "600",
                 light: "300"
+            },
+            borderRadius: {
+                "custom-sm": "5px" // Define your custom border-radius value here
+            },
+            borderColor: {
+                normal: "#00ADEF",
+                success: "#01559B",
+                error: "#ED1E24"
+            },
+            maxWidth: {
+                "custom-448": "448px" // Define custom max-width value
             }
         },
         fontFamily: {

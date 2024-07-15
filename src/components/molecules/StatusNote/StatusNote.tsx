@@ -38,9 +38,7 @@ export const statusColors: Record<StatusEnum, StatusColors> = {
     }
 };
 const StatusNote = ({type, description}: StatusNoteProps) => {
-    const {icon, background, textClass, border} = statusColors[type]; // Destructure colors
-    console.log(icon);
-
+    const {background, textClass, border} = statusColors[type]; // Destructure colors
     return (
         <div
             className={`w-[1352px] h-8 top-2 left-2.5 p-2 px-4 gap-2 border-[1px] border-transparent flex items-center rounded-custom-sm ${border} ${background}`}>
