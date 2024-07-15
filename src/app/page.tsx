@@ -5,8 +5,8 @@ import Menu from "@/assets/svgs/Menu-1.svg";
 export default function Home() {
     return (
         <>
-            <Button isIcon size="large" variant="secondary" color="blue-dark">
-                <Menu />
+            <Button size="large" variant="file" color="blue-dark">
+                button
             </Button>
         </>
     );
