@@ -4,7 +4,7 @@ import {CircleIcon} from "@/assets/svgs/icons";
 import Propertie from "@/components/atoms/Properties/Propertie";
 import Card from "@/components/molecules/Cards/Card";
 import ServiceTime from "@/components/molecules/ServiceTimes/ServiceTime";
-import StatusNote from "@/components/molecules/StatusNote/StatusNote";
+// import StatusNote from "@/components/molecules/StatusNote/StatusNote";
 import Toast from "@/components/molecules/Toasts/Toast";
 import {ServiceTimeEnum} from "@/enums/ServiceTimeEum";
 import {StatusEnum} from "@/enums/StatusNum";
@@ -32,7 +32,6 @@ import Popup from "@/components/molecules/Popup/Popup";
 import {PopupEnum} from "@/enums/PopupEnum";
 import PopupRequest from "@/components/molecules/PopupRequest/PopupRequest";
 import LogData from "@/faker/LogData";
-import App from "next/app";
 import ApproveOrderData from "@/faker/ApproveOrder";
 import OfferData from "@/faker/Offer";
 import Pending from "@/components/atoms/Pending/pending";
@@ -414,7 +413,7 @@ const page = () => {
                         title="Status note"
                         content={
                             <div className="gap-8 items-center flex flex-col">
-                                <StatusNote
+                                {/* <StatusNote
                                     type={StatusEnum.Normal}
                                     description="Kế hoạch sản xuất: Cần phải chỉnh sửa thông tin giao hàng của no.5"
                                 />
@@ -425,7 +424,7 @@ const page = () => {
                                 <StatusNote
                                     type={StatusEnum.Warning}
                                     description="Kế hoạch sản xuất: Có lỗi trong thông tin giao hàng."
-                                />
+                                /> */}
                             </div>
                         }
                     />
