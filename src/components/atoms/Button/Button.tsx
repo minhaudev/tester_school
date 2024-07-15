@@ -1,5 +1,4 @@
 "use client";
-
 import Frame from "@/assets/images/Frame";
 import Link from "next/link";
 import React, {
