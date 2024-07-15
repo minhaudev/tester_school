@@ -1,19 +1,18 @@
+import Box3d from "@/assets/svgs/3d_box.svg";
 import ChartFill from "@/assets/svgs/Chart_fill.svg";
+import Database from "@/assets/svgs/Database_fill.svg";
+import ChevronUp from "@/assets/svgs/Expand_up.svg";
 import IconFilleDocAdd from "@/assets/svgs/File_dock_add_fill.svg";
 import FileDocFill from "@/assets/svgs/File_dock_fill.svg";
-import LineUp from "@/assets/svgs/Line_up.svg";
-import PaperFill from "@/assets/svgs/Paper_fill.svg";
-import UserCircle from "@/assets/svgs/User_cicrle.svg";
-import Database from "@/assets/svgs/Database_fill.svg";
-import TagPercent from "@/assets/svgs/Offer_Percent.svg";
 import FileCheck from "@/assets/svgs/File_Tick.svg";
-import Box3d from "@/assets/svgs/3d_box.svg";
-import UserAdd from "@/assets/svgs/User_add_alt_fill.svg";
+import LineUp from "@/assets/svgs/Line_up.svg";
 import GroupUser from "@/assets/svgs/manage_user-group.svg";
+import TagPercent from "@/assets/svgs/Offer_Percent.svg";
+import PaperFill from "@/assets/svgs/Paper_fill.svg";
 import ProductUser from "@/assets/svgs/Product_User.svg";
-import ChevronDown from "@/assets/svgs/Expand_down.svg";
-import ChevronUp from "@/assets/svgs/Expand_up.svg";
-import {NavbarProps, NavigationTypeData} from "@/interfaces";
+import UserAdd from "@/assets/svgs/User_add_alt_fill.svg";
+import UserCircle from "@/assets/svgs/User_cicrle.svg";
+import {NavigationTypeData} from "@/interfaces";
 
 export const navbarData: NavigationTypeData = {
     client: [

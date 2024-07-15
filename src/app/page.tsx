@@ -1,7 +1,7 @@
 "use client";
-import Header from "@/components/layouts/Header/Header";
 
 import Navigation from "@/components/molecules/Navigation";
+<<<<<<< HEAD
 import TableFuture from "@/components/molecules/TableFuture";
 export default function Home() {
     return (
@@ -9,6 +9,13 @@ export default function Home() {
             <Header />
             <Navigation />
             <TableFuture />
+=======
+import {NavigationType} from "@/interfaces";
+export default function Home() {
+    return (
+        <>
+            <Navigation type={NavigationType.MANAGE} />
+>>>>>>> a25154b (create navigation)
         </>
     );
 }
