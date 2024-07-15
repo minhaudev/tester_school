@@ -31,7 +31,7 @@ interface PropsBtn {
 }
 
 Button.defaultProps = {
-    variant: "primary-light",
+    variant: "file",
     size: "semi",
     isDisabled: false,
     isError: false,
@@ -186,26 +186,30 @@ export default function Button(
                         type="file"
                         id="file-input"
                         hidden
-                        accept=".docx,.pdf,.jpg"
                         onChange={handleFileChange}
                         multiple={true}
+                        accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.csv,.txt,.ppt,.pptx,.zip,.rar,.gif,.bmp,.tiff,.svg,.html,.htm,.xml,.json,.mp3,.wav,.mp4,.avi,.mov"
                     />
                     <span className="w-4 h-4">
                         <Frame />
                     </span>
                     <span>
-                        {fileNames.length === 1 ? fileNames[0] : children}
+                        {fileNames.length === 1
+                            ? fileNames[0]
+                            : fileNames.length > 1
+                            ? "multiple file"
+                            : children}
                     </span>
                 </label>
-                {fileNames.length > 1 && (
-                    <ul className="file-list mt-2">
-                        {fileNames.map((fileName, index) => (
-                            <li key={index} className="file-name">
-                                {fileName}
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <ul className="flex gap-4 mt-2 r w-full">
+                    [
+                    {fileNames.slice(0, 3).map((fileName, index) => (
+                        <li className="cursor-pointer" key={index}>
+                            {fileName};
+                        </li>
+                    ))}
+                    {fileNames.length > 3 && <li>...</li>}]
+                </ul>
             </div>
         );
     }
