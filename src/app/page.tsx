@@ -5,8 +5,8 @@ import Menu from "@/assets/svgs/Menu-1.svg";
 export default function Home() {
     return (
         <>
-            <Button isIcon variant="primary-dark" color="blue-dark">
-                <Menu />
+            <Button variant="file" url="http//:facebook.com" color="white">
+                Button
             </Button>
         </>
     );
