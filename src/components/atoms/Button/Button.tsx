@@ -1,5 +1,4 @@
 "use client";
-
 import Frame from "@/assets/images/Frame";
 import Link from "next/link";
 import React, {
@@ -18,21 +17,21 @@ interface PropsBtn {
         | "dashed"
         | "link"
         | "text";
-    size: "2xl" | "large" | "medium" | "small";
+    size: "2xl" | "large" | "semi" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
-    isDisabled: boolean;
+    isDisabled?: boolean;
     children?: ReactNode;
     prefixIcon?: ReactNode;
     url?: string;
-    isError: boolean;
-    isIcon: boolean;
-    className: string;
+    isError?: boolean;
+    isIcon?: boolean;
+    className?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 Button.defaultProps = {
-    variant: "primary-light",
-    size: "large",
+    variant: "file",
+    size: "semi",
     isDisabled: false,
     isError: false,
     isIcon: false,
@@ -58,6 +57,22 @@ export default function Button(
         onChange,
         ...rest
     } = props;
+    const [fileNames, setFileNames] = useState<string[]>([]);
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const files = Array.from(event.target.files).map(
+                (file) => file.name
+            );
+            setFileNames(files);
+        } else {
+            setFileNames([]);
+        }
+        if (onChange) {
+            onChange(event);
+        }
+    };
+
     const [fileNames, setFileNames] = useState<string[]>([]);
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
@@ -134,8 +149,11 @@ export default function Button(
                 return "min-w-[50px] min-h-[50px]";
             case "large":
                 return "min-w-[40px] min-h-[40px]";
+            case "semi":
+                return "min-w-[36px] min-h-[36px]";
             case "medium":
                 return "min-w-[32px] min-h-[32px]";
+
             case "small":
                 return "min-w-[22px] min-h-[22px]";
             default:
@@ -162,7 +180,7 @@ export default function Button(
                 }  ${getErrorClass(variant)}`}
                 style={{fontFamily: "inherit"}}>
                 {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-                <span className={`${isIcon ? "[&_svg]:w-6 [&_svg]:h-6" : ""}`}>
+                <span className={`${isIcon ? "[&_svg]:w-5 [&_svg]:h-5 " : ""}`}>
                     {children}
                 </span>
             </Link>
@@ -199,7 +217,7 @@ export default function Button(
             {...rest}
             className={`flex justify-center items-center gap-[6px]
               text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition disabled:bg-disable disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
-                  isIcon ? "px-0" : ""
+                  isIcon ? "!px-0 !border !border-white !text-white" : ""
               } ${className} ${getVariantClass(variant)} ${getErrorClass(
                 variant
             )} ${getSizeClass(size)} ${getOutline(color)}`}

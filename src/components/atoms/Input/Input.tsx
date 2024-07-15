@@ -1,17 +1,21 @@
 "use client";
 import React, {ReactNode} from "react";
-import search from "@/assets/images/Search.svg";
+import Search from "@/assets/svgs/Search.svg";
+
 interface PropsInput {
-    size: "large" | "medium" | "small";
+    variant?: "input" | "textarea";
+    size?: "large" | "medium" | "small";
     label?: string;
-    value: string | number;
+    value?: string | number;
     type?: string;
     error?: boolean;
     helperText?: string;
     suffixIcon?: string;
-    placeholder: string;
+    placeholder?: string;
     name?: string;
-    handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleOnChange?: (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => void;
     isDisabled?: boolean;
     className?: string;
     prefix?: ReactNode;
@@ -19,6 +23,7 @@ interface PropsInput {
 }
 const Input = (props: PropsInput) => {
     const {
+        variant,
         asterisk,
         value,
         placeholder,
@@ -33,7 +38,7 @@ const Input = (props: PropsInput) => {
         label,
         type
     } = props;
-    const getSizeClass = (size: string) => {
+    const getSizeClass = (size?: "large" | "medium" | "small") => {
         switch (size) {
             case "large":
                 return "min-h-[40px]";
@@ -45,6 +50,7 @@ const Input = (props: PropsInput) => {
                 return "";
         }
     };
+
     const defaultClasses = `${
         error
             ? "text-warning border-warning focus:border-warning"
@@ -53,20 +59,35 @@ const Input = (props: PropsInput) => {
         size
     )}`;
     const combinedClasses = `${defaultClasses} ${className}`;
+
     console.log(helperText);
+
     return (
-        <>
-            <div>
-                <label>
-                    {label}
-                    {label && asterisk && (
-                        <span className="text-warning">*</span>
-                    )}{" "}
-                </label>
-                <div className={combinedClasses}>
-                    <span className="absolute">{prefix}</span>
+        <div>
+            <label>
+                {label}
+                {label && asterisk && (
+                    <span className="text-warning">*</span>
+                )}{" "}
+            </label>
+            <div className={combinedClasses}>
+                <span className="absolute">{prefix}</span>
+                {variant === "textarea" ? (
+                    <textarea
+                        className={`w-full min-h-[169px] max-h-[169px] py-2 border-none outline-none ${
+                            prefix ? "ml-6" : ""
+                        }`}
+                        placeholder={placeholder}
+                        name={name}
+                        value={value as string}
+                        onChange={handleOnChange}
+                        disabled={isDisabled}
+                    />
+                ) : (
                     <input
-                        className="w-full py-2 border-none outline-none ml-6"
+                        className={`w-full py-2 border-none outline-none ${
+                            prefix ? "ml-6" : ""
+                        }`}
                         type={type}
                         placeholder={placeholder}
                         name={name}
@@ -74,14 +95,34 @@ const Input = (props: PropsInput) => {
                         onChange={handleOnChange}
                         disabled={isDisabled}
                     />
-                </div>
-
-                <small className={`${error ? "text-warning" : "text-unit"}`}>
-                    {helperText}
-                </small>
+                )}
             </div>
-        </>
+
+            <small className={`${error ? "text-warning" : "text-unit"}`}>
+                {helperText}
+            </small>
+        </div>
     );
+};
+
+const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+) => {
+    console.log(e.target.value);
+};
+
+Input.defaultProps = {
+    handleOnChange: handleOnChange,
+    helperText: "this is a helpertext",
+    label: "Note",
+    variant: "input",
+    size: "large",
+    type: "text",
+    isDisabled: false,
+    error: false,
+    asterisk: true,
+    className: ""
+    // prefix: <Search />
 };
 
 export default Input;
