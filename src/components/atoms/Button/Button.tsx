@@ -162,7 +162,7 @@ export default function Button(
                 }  ${getErrorClass(variant)}`}
                 style={{fontFamily: "inherit"}}>
                 {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-                <span className={`${isIcon ? "[&_svg]:w-6 [&_svg]:h-6" : ""}`}>
+                <span className={`${isIcon ? "[&_svg]:w-5 [&_svg]:h-5 " : ""}`}>
                     {children}
                 </span>
             </Link>
@@ -199,7 +199,7 @@ export default function Button(
             {...rest}
             className={`flex justify-center items-center gap-[6px]
               text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition disabled:bg-disable disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
-                  isIcon ? "px-0" : ""
+                  isIcon ? "!px-0 !border !border-white !text-white" : ""
               } ${className} ${getVariantClass(variant)} ${getErrorClass(
                 variant
             )} ${getSizeClass(size)} ${getOutline(color)}`}
