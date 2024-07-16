@@ -33,7 +33,7 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
                 expand ? "w-full max-w-[255px]" : "w-fit"
             } bg-primary pb-[13px]`}>
             <div
-                className={` sticky top-0 min-h-[56px] z-50 bg-primary flex items-center justify-between px-4 ${
+                className={` sticky top-0 min-h-[56px] z-50 bg-primary flex items-center justify-between px-4 py-[13px]  ${
                     expand ? "w-full" : "w-fit"
                 } font-[400] text-[32px]`}>
                 {expand && (
