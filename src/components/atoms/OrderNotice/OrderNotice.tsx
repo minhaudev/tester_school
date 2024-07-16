@@ -2,8 +2,11 @@ import React from "react";
 import Button from "../Button/Button";
 import {formatDate} from "@/utils/FormatDate";
 interface Notice {
-    noticeString: string;
-    time: Date;
+    id: string;
+    content: string;
+    timestamp: string;
+    type?: string;
+    read?: boolean;
 }
 interface PropsOrderNotice {
     dataNotice: Notice[];
@@ -20,13 +23,13 @@ export default function OrderNotice(props: PropsOrderNotice) {
                 Notifications
             </div>
             {latestNotices.map((item, index) => (
-                <div key={index}>
+                <div key={item.id}>
                     <div className="py-[12px] cursor-pointer border-t border-b border-stroke hover:bg-highlight hover:text-primary">
                         <p className="w-full px-4 mb-1 text-[13px] font-medium leading-[18.2px]">
-                            {item.noticeString}
+                            {item.content}
                         </p>
                         <p className="text-input text-[12px] font-normal leading-[14.32px] px-4">
-                            {formatDate(item.time)}
+                            {formatDate(item.timestamp)}
                         </p>
                     </div>
                 </div>
@@ -34,6 +37,7 @@ export default function OrderNotice(props: PropsOrderNotice) {
             <div className="text-center">
                 <Button
                     className="text-[14px] font-medium leading-[16.71px] mt-4"
+                    target="_blank"
                     url="https://www.youtube.com/watch?v=AJtDXIazrMo&list=PLPSCssPYXhWTTcpNZwYoEQWt8Wc8KO0NV&index=18"
                     variant="link">
                     See all
