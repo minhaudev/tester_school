@@ -42,9 +42,9 @@ const Input = (props: PropsInput) => {
     };
 
     const defaultClasses = `${
-        error ?
-            "text-warning border-warning focus:border-warning"
-        :   "border-[#D9D9D9] text-[#000000D9]"
+        error
+            ? "text-warning border-warning focus:border-warning"
+            : "border-[#D9D9D9] text-[#000000D9]"
     } flex items-center gap-1 px-3 relative bg-white rounded-sm !border text-[14px] !focus:outline-none !focus:border-[#40A9FF] !focus:shadow-md w-full ${getSizeClass(
         size
     )}`;
@@ -58,7 +58,7 @@ const Input = (props: PropsInput) => {
             </label>
             <div className={`${combinedClasses}`} tabIndex={0}>
                 <span className="absolute">{prefix}</span>
-                {variant === "textarea" ?
+                {variant === "textarea" ? (
                     <textarea
                         className={`w-full min-h-[169px] max-h-[169px] py-2 border-none outline-none ${
                             prefix ? "ml-6" : ""
@@ -69,7 +69,8 @@ const Input = (props: PropsInput) => {
                         onChange={handleOnChange}
                         disabled={isDisabled}
                     />
-                :   <input
+                ) : (
+                    <input
                         className={`w-full py-2 border-none outline-none ${
                             prefix ? "ml-6" : ""
                         }`}
@@ -80,7 +81,7 @@ const Input = (props: PropsInput) => {
                         onChange={handleOnChange}
                         disabled={isDisabled}
                     />
-                }
+                )}
                 <span
                     className="absolute right-0 mr-6 cursor-pointer"
                     onClick={() =>

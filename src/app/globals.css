@@ -10,3 +10,41 @@ body {
 ::-webkit-scrollbar {
     display: none;
 }
+
+/* @import url('../assets/fonts/SF-Pro-Display/'); */
+@import url("https://fonts.googleapis.com/css2?family=Wendy+One&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0 auto;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+@keyframes expandWidth {
+    from {
+        min-width: 56px;
+    }
+    to {
+        min-width: 255px;
+    }
+}
+
+@keyframes collapseWidth {
+    from {
+        min-width: 255px;
+    }
+    to {
+        min-width: 56px;
+    }
+}
+
+.animate-expand {
+    animation: expandWidth 0.1s ease forwards;
+}
+
+.animate-collapse {
+    animation: collapseWidth 0.1s ease-in-out forwards;
+}
