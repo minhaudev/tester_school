@@ -29,19 +29,19 @@ const IconListItem: React.FC<IconListItemProps> = ({
         <Link
             onClick={onActive}
             href={href}
-            className={`group flex items-center justify-center w-full  px-4 py-4 text-white ${
-                active ? "bg-secondary" : "bg-primary"
-            } ${expand ? "flex-row" : "flex-col"} ${classCustom}`}>
+            className={`group h-[60px] flex items-center justify-start w-full  px-4  text-white ${
+                active ? "bg-secondary" : "bg-primary flex-row"
+            }  ${classCustom}`}>
             {PrefixIcon && (
                 <PrefixIcon
-                    className={`w-6 h-6 text-white ${
+                    className={`min-w-6 min-h-6 text-white ${
                         !active && "group-hover:text-secondary"
                     }`}
                 />
             )}
             {expand && (
                 <p
-                    className={`w-full text-white pl-2 font-sf-ui-display text-[16px] font-[500] leading-[19px] truncate ${
+                    className={`w-full text-white pl-2 font-sf-ui-display text-[16px] font-[500] leading-[19px]  ${
                         !active && "group-hover:text-secondary"
                     }`}>
                     {title}

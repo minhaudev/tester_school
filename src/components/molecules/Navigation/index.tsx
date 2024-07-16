@@ -30,11 +30,11 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     return (
         <div
             className={` h-[100vh] overflow-y-auto ${
-                expand ? "w-full max-w-[255px]" : "w-fit"
+                expand ? "w-full max-w-[255px]" : "min-w-[56px]"
             } bg-primary pb-[13px]`}>
             <div
-                className={` sticky top-0 min-h-[56px] z-50 bg-primary flex items-center justify-between px-4 py-[13px]  ${
-                    expand ? "w-full" : "w-fit"
+                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
+                    expand ? "w-full px-4" : "w-[56px] px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
                     <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">
