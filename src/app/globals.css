@@ -1,10 +1,12 @@
-/* @import url("../assets/fonts/SF-Pro-Display/"); */
-
+/* @import url('../assets/fonts/SF-Pro-Display/'); */
+@import url("https://fonts.googleapis.com/css2?family=Wendy+One&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
     margin: 0 auto;
-    max-width: 1440px;
+}
+::-webkit-scrollbar {
+    display: none;
 }
