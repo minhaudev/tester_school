@@ -1,6 +1,6 @@
 import React from "react";
 
-import Input from "@/components/atoms/Input/Input";
+import Input from "@/components/atoms/Input";
 export default function GroupInput() {
     return (
         <div className="border ">

@@ -5,10 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import {optionSelect} from "@/faker/OptionSelect";
 
 interface PropsInput {
-    handleDateChange: (date: Date | null) => void;
-    variant: "input" | "textarea" | "select"; // Added "select" to variant type
+    handleDateChange?: (date: Date | null) => void;
+    variant?: "input" | "textarea" | "select"; // Added "select" to variant type
     require?: boolean;
-    value: string;
+    value?: string;
     placeholder?: string;
     name?: string;
     handleOnChange: (
@@ -25,9 +25,9 @@ interface PropsInput {
     helperText?: string;
     label?: string;
     type?: string;
-    showCalendar: boolean;
-    setShowCalendar: (show: boolean) => void;
-    selectedDate: Date | null;
+    showCalendar?: boolean;
+    setShowCalendar?: (show: boolean) => void;
+    selectedDate?: Date | null;
     handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void; // Added handleSelectChange
 }
 
