@@ -1,13 +1,19 @@
 "use client";
-
-import Frame from "@/assets/images/Frame";
+import Frame from "@/assets/svgs/link_alt.svg";
+import Delete from "@/assets/svgs/Dell_duotone.svg";
+import FileDock from "@/assets/svgs/File_dock_duotone.svg";
+import ImportLight from "@/assets/svgs/Import_light.svg";
 import Link from "next/link";
 import React, {
     ReactNode,
     ButtonHTMLAttributes,
-    AnchorHTMLAttributes,
-    useState
+    AnchorHTMLAttributes
 } from "react";
+
+interface FileDetail {
+    name: string;
+    size: number;
+}
 
 interface PropsBtn {
     variant:
@@ -27,7 +33,10 @@ interface PropsBtn {
     isError?: boolean;
     isIcon?: boolean;
     className?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onDelete?: (index: number) => void;
+    fileDetails?: FileDetail[];
+    setFileDetails?: React.Dispatch<React.SetStateAction<FileDetail[]>>;
+    typeFile?: string;
 }
 
 Button.defaultProps = {
@@ -36,7 +45,8 @@ Button.defaultProps = {
     isDisabled: false,
     isError: false,
     isIcon: false,
-    className: ""
+    className: "",
+    typeFile: ""
 };
 
 export default function Button(
@@ -45,6 +55,7 @@ export default function Button(
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
     const {
+        onDelete,
         isIcon,
         variant,
         size,
@@ -55,22 +66,22 @@ export default function Button(
         color,
         children,
         className,
-        onChange,
+        fileDetails,
+        setFileDetails,
         ...rest
     } = props;
-    const [fileNames, setFileNames] = useState<string[]>([]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            const files = Array.from(event.target.files).map(
-                (file) => file.name
-            );
-            setFileNames(files);
-        } else {
-            setFileNames([]);
-        }
-        if (onChange) {
-            onChange(event);
+        if (event.target.files && setFileDetails) {
+            const files = Array.from(event.target.files).map((file) => ({
+                name: file.name,
+                size: file.size
+            }));
+            if (files.length > 5) {
+                alert("Không được phép chọn quá 5 file.");
+                return;
+            }
+            setFileDetails(files);
         }
     };
 
@@ -161,9 +172,9 @@ export default function Button(
                 text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition op ${className} ${getVariantClass(
                     variant
                 )} ${
-                    isDisabled
-                        ? "text-input cursor-not-allowed pointer-events-none"
-                        : ""
+                    isDisabled ?
+                        "text-input cursor-not-allowed pointer-events-none"
+                    :   ""
                 }  ${getErrorClass(variant)}`}
                 style={{fontFamily: "inherit"}}>
                 {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
@@ -173,6 +184,7 @@ export default function Button(
             </Link>
         );
     }
+
     if (variant === "file") {
         return (
             <div className="file-input-container">
@@ -180,8 +192,8 @@ export default function Button(
                     htmlFor="file-input"
                     className={`inline-flex justify-center items-center gap-[6px]
                   text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
-                        size
-                    )}`}>
+                      size
+                  )}`}>
                     <input
                         type="file"
                         id="file-input"
@@ -194,22 +206,62 @@ export default function Button(
                         <Frame />
                     </span>
                     <span>
-                        {fileNames.length === 1
-                            ? fileNames[0]
-                            : fileNames.length > 1
-                            ? "multiple file"
-                            : children}
+                        {fileDetails && fileDetails.length === 1 ?
+                            fileDetails[0].name
+                        : fileDetails && fileDetails.length > 1 ?
+                            `${fileDetails.length} multiple file`
+                        :   children}
                     </span>
                 </label>
-                <ul className="flex gap-4 mt-2 r w-full">
-                    [
-                    {fileNames.slice(0, 3).map((fileName, index) => (
-                        <li className="cursor-pointer" key={index}>
-                            {fileName};
-                        </li>
-                    ))}
-                    {fileNames.length > 3 && <li>...</li>}]
-                </ul>
+                {fileDetails && fileDetails.length > 1 && (
+                    <div>
+                        <div className="flex-col mt-2 w-fit max-w-[620px] rounded-[5px] h-auto border border-stroke py-2 px-4">
+                            <ul className="flex gap-4 flex-wrap justify-between">
+                                {fileDetails
+                                    .slice(0, 10)
+                                    .map((fileDetail, index) => (
+                                        <li
+                                            className="cursor-pointer"
+                                            key={index}>
+                                            <div className="min-w-[200px] ">
+                                                <a
+                                                    className="flex justify-between max-w-[164px] items-center"
+                                                    href=""
+                                                    download>
+                                                    <FileDock className="w-[21.33px] h-[26.67px]" />
+                                                    <div>
+                                                        <p className="text-[#4B5563] font-normal text-[12px] leading-[14.32px]">
+                                                            {(
+                                                                fileDetail.name
+                                                                    .length > 10
+                                                            ) ?
+                                                                `${fileDetail.name.slice(
+                                                                    0,
+                                                                    10
+                                                                )}...${fileDetail.name.slice(
+                                                                    fileDetail.name.lastIndexOf(
+                                                                        "."
+                                                                    )
+                                                                )}`
+                                                            :   fileDetail.name}
+                                                        </p>
+                                                        <p className="font-normal text-[11px] text-input leading-[13.13px]">
+                                                            {(
+                                                                fileDetail.size /
+                                                                1024
+                                                            ).toLocaleString()}{" "}
+                                                            MB
+                                                        </p>
+                                                    </div>
+                                                    <ImportLight className="text-primary w-4 h-4" />
+                                                </a>
+                                            </div>
+                                        </li>
+                                    ))}
+                            </ul>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
@@ -218,18 +270,14 @@ export default function Button(
         <button
             disabled={isDisabled}
             {...rest}
-            className={`flex justify-center items-center gap-[6px]
-              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition disabled:bg-disable disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
-                  isIcon ? "!px-0 !border !border-white !text-white" : ""
-              } ${className} ${getVariantClass(variant)} ${getErrorClass(
+            className={`flex justify-center items-center gap-[6px] text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition ${className} ${getVariantClass(
                 variant
-            )} ${getSizeClass(size)} ${getOutline(color)}`}
+            )} ${getSizeClass(size)} ${getErrorClass(variant)} ${getOutline(
+                color
+            )} ${isDisabled ? "opacity-40 cursor-not-allowed" : ""}`}
             style={{fontFamily: "inherit"}}>
             {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-            <span
-                className={`${
-                    isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""
-                }`}>
+            <span className={`${isIcon ? "[&_svg]:w-5 [&_svg]:h-5 " : ""}`}>
                 {children}
             </span>
         </button>
