@@ -57,8 +57,8 @@ export default function Button(
         onChange,
         ...rest
     } = props;
-    const [fileNames, setFileNames] = useState<string[]>([]);
 
+    const [fileNames, setFileNames] = useState<string[]>([]);
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             const files = Array.from(event.target.files).map(
@@ -72,7 +72,6 @@ export default function Button(
             onChange(event);
         }
     };
-
     const getVariantClass = (variant: string) => {
         switch (variant) {
             case "primary-light":
@@ -174,42 +173,26 @@ export default function Button(
     }
     if (variant === "file") {
         return (
-            <div className="file-input-container">
-                <label
-                    htmlFor="file-input"
-                    className={`inline-flex justify-center items-center gap-[6px]
-                  text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
-                        size
-                    )}`}>
-                    <input
-                        type="file"
-                        id="file-input"
-                        hidden
-                        onChange={handleFileChange}
-                        multiple={true}
-                        accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.csv,.txt,.ppt,.pptx,.zip,.rar,.gif,.bmp,.tiff,.svg,.html,.htm,.xml,.json,.mp3,.wav,.mp4,.avi,.mov"
-                    />
-                    <span className="w-4 h-4">
-                        <Frame />
-                    </span>
-                    <span>
-                        {fileNames.length === 1
-                            ? fileNames[0]
-                            : fileNames.length > 1
-                            ? "multiple file"
-                            : children}
-                    </span>
-                </label>
-                <ul className="flex gap-4 mt-2 r w-full">
-                    [
-                    {fileNames.slice(0, 3).map((fileName, index) => (
-                        <li className="cursor-pointer" key={index}>
-                            {fileName};
-                        </li>
-                    ))}
-                    {fileNames.length > 3 && <li>...</li>}]
-                </ul>
-            </div>
+            <label
+                htmlFor="file-input"
+                className={`inline-flex justify-center items-center gap-[6px]
+              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
+                    size
+                )}`}>
+                <input
+                    type="file"
+                    id="file-input"
+                    hidden
+                    onChange={handleFileChange}
+                />
+                <span className="w-4 h-4">
+                    <Frame />
+                </span>
+                <span>
+                    <span>{fileNames.join(", ")}</span>
+                    {fileNames.length > 0 ? fileNames.join(",,,, ") : children}
+                </span>
+            </label>
         );
     }
 

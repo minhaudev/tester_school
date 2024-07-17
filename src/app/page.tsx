@@ -1,11 +1,15 @@
 "use client";
-import Input from "@/components/atoms/Input";
-import TestInput from "@/components/atoms/Input/TestInput";
+import Header from "@/components/layouts/Header/Header";
 
+import Navigation from "@/components/molecules/Navigation";
+import TableFuture from "@/components/molecules/TableFuture";
+import {NavigationType} from "@/interfaces";
 export default function Home() {
     return (
-        <>
-            <TestInput />
-        </>
+        <div className="flex w-full">
+            <Navigation type={NavigationType.MANAGE} />
+            <Header />
+            {/* <TableFuture /> */}
+        </div>
     );
 }

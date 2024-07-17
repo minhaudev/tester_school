@@ -1,16 +1,17 @@
 "use client";
-import React, {useState} from "react";
 import Menu from "@/assets/svgs/Menu.svg";
-import "../../../app/globals.css";
+import Button from "@/components/atoms/Button/Button";
 import IconListItem from "@/components/atoms/IconListItem";
-import navbarData from "@/fake/navbar";
+import {navbarData} from "@/faker/navbar";
+import {NavbarProps, NavigationType} from "@/interfaces";
+import React, {useEffect, useState} from "react";
+import "../../../app/globals.css";
 
-function Navigation() {
+function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(1);
-    const [expand, setExpand] = useState(false);
-
+    const [expand, setExpand] = useState(true);
     const handleExpand = () => {
         setExpand(!expand);
         setShowFirstMenu(false);
@@ -28,28 +29,30 @@ function Navigation() {
 
     return (
         <div
-            className={`fixed left-0 top-0 h-[100vh] ${
-                expand ? "w-full max-w-[255px]" : "w-fit"
-            } bg-primary py-[13px]`}>
+            className={` h-[100vh] overflow-y-auto ${
+                expand ? "w-full max-w-[255px]" : "min-w-[56px]"
+            } bg-primary pb-[13px]`}>
             <div
-                className={`flex items-center justify-between px-4 ${
-                    expand ? "w-full" : "w-fit"
+                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
+                    expand ? "w-full px-4" : "w-[56px] px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
-                    <p className="uppercase text-8 font-[400] text-white font-wendy">
+                    <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">
                         Luna
                     </p>
                 )}
-                <div className="w-8 h-8 border-white border-[1px] rounded-md flex items-center justify-center  ">
-                    <Menu
-                        className=" text-white w-5 h-5"
-                        onClick={handleExpand}
-                    />
-                </div>
+                <Button
+                    isIcon
+                    variant="primary-dark"
+                    color="white"
+                    size="medium"
+                    onClick={handleExpand}>
+                    <Menu />
+                </Button>
             </div>
-            <div className="pt-6">
+            <div className="pt-6 flex flex-col gap-3">
                 {navbarData &&
-                    navbarData.map((item, index) => (
+                    navbarData[type].map((item: NavbarProps, index: number) => (
                         <React.Fragment key={index}>
                             <div
                                 onClick={() => {
@@ -67,65 +70,79 @@ function Navigation() {
                                 />
                             </div>
                             {item.subMenu && showFirstMenu && (
-                                <div className="pl-8">
-                                    {item.subMenu.map((subItem, subIndex) => (
-                                        <React.Fragment key={subIndex}>
-                                            <div
-                                                onClick={() => {
-                                                    if (subItem.subMenu) {
-                                                        handleShowMenuSecond();
-                                                    }
-                                                }}>
-                                                <IconListItem
-                                                    onActive={() =>
-                                                        setActive(subItem.id)
-                                                    }
-                                                    active={
-                                                        active === subItem.id
-                                                    }
-                                                    title={subItem.title}
-                                                    href={subItem.href}
-                                                    isAnimate={showSecondMenu}
-                                                    leadingIcon={
-                                                        subItem.leadingIcon
-                                                    }
-                                                />
-                                            </div>
-                                            {subItem.subMenu &&
-                                                showFirstMenu &&
-                                                showSecondMenu && (
-                                                    <div className="pl-4">
-                                                        {subItem.subMenu.map(
-                                                            (
-                                                                subSubItem,
-                                                                subSubIndex
-                                                            ) => (
-                                                                <IconListItem
-                                                                    key={
-                                                                        subSubIndex
-                                                                    }
-                                                                    onActive={() =>
-                                                                        setActive(
-                                                                            subSubItem.id
-                                                                        )
-                                                                    }
-                                                                    active={
-                                                                        active ===
-                                                                        subSubItem.id
-                                                                    }
-                                                                    title={
-                                                                        subSubItem.title
-                                                                    }
-                                                                    href={
-                                                                        subSubItem.href
-                                                                    }
-                                                                />
+                                <div>
+                                    {item.subMenu.map(
+                                        (
+                                            subItem: NavbarProps,
+                                            subIndex: number
+                                        ) => (
+                                            <React.Fragment key={subIndex}>
+                                                <div
+                                                    onClick={() => {
+                                                        if (subItem.subMenu) {
+                                                            handleShowMenuSecond();
+                                                        }
+                                                    }}>
+                                                    <IconListItem
+                                                        onActive={() =>
+                                                            setActive(
+                                                                subItem.id
                                                             )
-                                                        )}
-                                                    </div>
-                                                )}
-                                        </React.Fragment>
-                                    ))}
+                                                        }
+                                                        classCustom={
+                                                            "pl-[56px]"
+                                                        }
+                                                        active={
+                                                            active ===
+                                                            subItem.id
+                                                        }
+                                                        title={subItem.title}
+                                                        href={subItem.href}
+                                                        isAnimate={
+                                                            showSecondMenu
+                                                        }
+                                                        leadingIcon={
+                                                            subItem.leadingIcon
+                                                        }
+                                                    />
+                                                </div>
+                                                {subItem.subMenu &&
+                                                    showFirstMenu &&
+                                                    showSecondMenu && (
+                                                        <div>
+                                                            {subItem.subMenu.map(
+                                                                (
+                                                                    subSubItem: NavbarProps,
+                                                                    subSubIndex: number
+                                                                ) => (
+                                                                    <IconListItem
+                                                                        key={
+                                                                            subSubIndex
+                                                                        }
+                                                                        classCustom="pl-[76px]"
+                                                                        onActive={() =>
+                                                                            setActive(
+                                                                                subSubItem.id
+                                                                            )
+                                                                        }
+                                                                        active={
+                                                                            active ===
+                                                                            subSubItem.id
+                                                                        }
+                                                                        title={
+                                                                            subSubItem.title
+                                                                        }
+                                                                        href={
+                                                                            subSubItem.href
+                                                                        }
+                                                                    />
+                                                                )
+                                                            )}
+                                                        </div>
+                                                    )}
+                                            </React.Fragment>
+                                        )
+                                    )}
                                 </div>
                             )}
                         </React.Fragment>
