@@ -1,4 +1,5 @@
 "use client";
+import TimeValidate from "@/components/atoms";
 import Header from "@/components/layouts/Header";
 
 import Navigation from "@/components/molecules/Navigation";
@@ -14,8 +15,9 @@ export default function Home() {
 
     return (
         <div className="flex w-full">
-            <Navigation type={NavigationType.CLIENT} />
-            <Header />
+            <TimeValidate />
+            {/* <Navigation type={NavigationType.CLIENT} />
+            <Header /> */}
             {/* <Button
                 size="semi"
                 variant="file"
