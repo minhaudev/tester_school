@@ -11,7 +11,6 @@ const usePersistedState = (key: string, initialValue: boolean) => {
         }
         return initialValue;
     });
-
     useEffect(() => {
         localStorage.setItem(key, JSON.stringify(state));
     }, [key, state]);

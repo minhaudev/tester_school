@@ -1,6 +1,6 @@
 "use client";
 import IconListItem from "@/components/atoms/IconListItem";
-import tableFuture from "@/faker/TableFuture";
+import tableFuture from "@/faker/tableFuture";
 
 function TableFuture() {
     return (

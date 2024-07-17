@@ -1,22 +1,29 @@
 "use client";
-import Menu from "@/assets/svgs/Menu.svg";
+import Menu from "@/assets/svgs/menu.svg";
 import Button from "@/components/atoms/Button/Button";
 import IconListItem from "@/components/atoms/IconListItem";
 import {navbarData} from "@/faker/NavbarData";
-
 import {NavbarProps, NavigationType} from "@/interfaces";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../../../app/globals.css";
 import usePersistedState from "@/hook/saveLocalStorage";
 
-function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
+function Navigation({
+    type = NavigationType.CLIENT,
+    routePath
+}: {
+    type: NavigationType;
+    routePath: string;
+}) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(1);
     const [expand, setExpand] = usePersistedState("expand", true);
+
     const handleExpand = () => {
-        setExpand((prev: boolean) => !prev);
+        setExpand(!expand);
         setShowFirstMenu(false);
+        setShowSecondMenu(false);
     };
 
     const handleShowMenuFirst = () => {
@@ -29,19 +36,27 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
         setExpand(true);
     };
 
+    useEffect(() => {
+        if (routePath.includes("/order")) {
+            setExpand(true);
+            setShowFirstMenu(true);
+            setShowSecondMenu(true);
+        }
+    }, [routePath]);
+
     return (
         <div
-            className={` h-[100vh] overflow-y-auto ${
-                expand ? "animate-expand" : "animate-collapse"
+            className={`h-[100vh] overflow-y-auto transition-width duration-100 ${
+                expand ? "min-w-[255px]" : "min-w-[56px]"
             } bg-primary pb-[13px]`}>
             <div
-                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
-                    expand ? "px-4" : " px-3"
+                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px] ${
+                    expand ? "px-4" : "px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
-                    <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">
+                    <div className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">
                         Luna
-                    </p>
+                    </div>
                 )}
                 <Button
                     isIcon
@@ -62,14 +77,21 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
                                         handleShowMenuFirst();
                                     }
                                 }}>
-                                <IconListItem
-                                    onActive={() => setActive(item.id)}
-                                    active={active === item.id}
-                                    expand={expand}
-                                    prefixIcon={item.prefixIcon}
-                                    title={item.title}
-                                    href={item.href}
-                                />
+                                {item.href ?
+                                    <IconListItem
+                                        active={item.href === routePath}
+                                        expand={expand}
+                                        prefixIcon={item.prefixIcon}
+                                        title={item.title}
+                                        href={item.href}
+                                    />
+                                :   <IconListItem
+                                        active={active === item.id}
+                                        expand={expand}
+                                        prefixIcon={item.prefixIcon}
+                                        title={item.title}
+                                    />
+                                }
                             </div>
                             {item.subMenu && showFirstMenu && (
                                 <div>
@@ -86,17 +108,12 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
                                                         }
                                                     }}>
                                                     <IconListItem
-                                                        onActive={() =>
-                                                            setActive(
-                                                                subItem.id
-                                                            )
-                                                        }
                                                         classCustom={
                                                             "pl-[56px]"
                                                         }
                                                         active={
-                                                            active ===
-                                                            subItem.id
+                                                            subItem.href ===
+                                                            routePath
                                                         }
                                                         title={subItem.title}
                                                         href={subItem.href}
@@ -122,14 +139,9 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
                                                                             subSubIndex
                                                                         }
                                                                         classCustom="pl-[76px]"
-                                                                        onActive={() =>
-                                                                            setActive(
-                                                                                subSubItem.id
-                                                                            )
-                                                                        }
                                                                         active={
-                                                                            active ===
-                                                                            subSubItem.id
+                                                                            subSubItem.href ===
+                                                                            routePath
                                                                         }
                                                                         title={
                                                                             subSubItem.title
