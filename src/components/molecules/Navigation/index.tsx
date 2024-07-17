@@ -15,13 +15,7 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     const [active, setActive] = useState(1);
     const [expand, setExpand] = usePersistedState("expand", true);
     const handleExpand = () => {
-        if (expand) {
-            setExpand(!expand);
-        } else {
-            setTimeout(() => {
-                setExpand(!expand);
-            }, 200);
-        }
+        setExpand((prev: boolean) => !prev);
         setShowFirstMenu(false);
     };
 
@@ -42,9 +36,7 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
             } bg-primary pb-[13px]`}>
             <div
                 className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
-                    expand ? "w-full px-4" : "w-[56px] px-3"
-                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
-                    expand ? "w-full px-4" : "w-[56px] px-3"
+                    expand ? "px-4" : " px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
                     <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">

@@ -9,7 +9,7 @@ interface IconListItemProps {
     leadingIcon?: React.ComponentType<{className?: string}>;
     active?: boolean;
     onActive?: () => void;
-    expand?: () => boolean;
+    expand?: boolean;
     isAnimate?: boolean;
     classCustom?: string;
 }
