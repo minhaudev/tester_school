@@ -1,10 +1,8 @@
-import {WarningIcon} from "@/assets/svgs";
+import React, {useState, useEffect, useRef} from "react";
 import {PopupEnum} from "@/enums/PopupEnum";
 import Success from "@/assets/svgs/Success_toast.svg";
 import Warning from "@/assets/svgs/Warning_primary.svg";
-import Time from "@/assets/svgs/Time.svg";
 import Close from "@/assets/svgs/Close_round.svg";
-import React from "react";
 import Button from "@/components/atoms/Button/Button";
 
 interface PopupValue {
@@ -15,21 +13,13 @@ interface PopupValue {
     icon?: React.ReactNode;
 }
 
-interface PopupProps {
-    type: PopupEnum;
-    title: string;
-    description: string;
-    className?: string;
-    button?: boolean;
-}
-
-export const PopupValue: Record<PopupEnum, PopupValue> = {
+const PopupValue: Record<PopupEnum, PopupValue> = {
     [PopupEnum.Warning]: {
         color: "text-blue-bold",
         title: "Warning",
         border: "border-warning",
         background: "bg-red-bold",
-        icon: <Warning className="w-20 h-20 mx-auto mb-2 mt-[53px]" />
+        icon: <Warning className="w-20 h-20 mx-auto mb-2 mt-[23px]" />
     },
     [PopupEnum.Success]: {
         color: "text-blue-bold",
@@ -40,41 +30,116 @@ export const PopupValue: Record<PopupEnum, PopupValue> = {
     }
 };
 
-const Popup = ({type, description, className, button = false}: PopupProps) => {
-    const {color, title, border, icon, background} = PopupValue[type];
+interface PopupProps {
+    isVisible: boolean;
+    type: PopupEnum;
+    title: string;
+    description: string;
+    button?: boolean;
+    onClose: () => void;
+    onCancel?: () => void;
+    onConfirm?: () => void;
+}
+
+const Popup = ({
+    isVisible,
+    type,
+    title,
+    description,
+    button,
+    onClose,
+    onCancel,
+    onConfirm
+}: PopupProps) => {
+    const {color, icon} = PopupValue[type];
+    const [showPopup, setShowPopup] = useState(false);
+    const popupRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (isVisible) {
+            setShowPopup(true);
+        } else {
+            const timer = setTimeout(() => {
+                setShowPopup(false);
+            }, 300);
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible]);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                popupRef.current &&
+                !popupRef.current.contains(event.target as Node)
+            ) {
+                onClose();
+            }
+        };
+
+        if (isVisible) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isVisible, onClose]);
+
+    if (!showPopup && !isVisible) return null;
 
     return (
-        <div
-            id="popup-modal"
-            className={`z-50 relative justify-center items-center rounded-lg w-full max-w-[554px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
-            <button
-                type="button"
-                className="absolute top-6 right-6 w-5 h-5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ms-auto inline-flex justify-center items-center"
-                data-modal-hide="popup-modal">
-                <Close />
-            </button>
-            <div className={button ? "" : "mt-[69px]"}>
-                {icon}
-                <h3
-                    className={`mb-2 text-primary text-base font-medium ${color}`}>
-                    {title}
-                </h3>
-                <h3 className="text-[13px] font-normal text-gray-500 dark:text-gray-400">
-                    {description}
-                </h3>
-            </div>
-            {button && (
-                <div className="flex flex-row gap-x-2.5 justify-center mt-6">
-                    <Button size="largexl" variant="secondary">
-                        No
-                    </Button>
+        <>
+            {/* Backdrop */}
+            <div
+                onClick={onClose}
+                className={`fixed inset-0 bg-input transition-opacity opacity-50 duration-300 ${
+                    isVisible ? "animate-fadeIn" : "animate-fadeOut"
+                }`}></div>
 
-                    <Button size="largexl" variant="primary-dark">
-                        Yes
-                    </Button>
+            {/* Popup Content */}
+            <div
+                className={` fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ${
+                    isVisible ? "animate-fadeIn" : "animate-fadeOut"
+                }`}>
+                <div
+                    ref={popupRef}
+                    className={`relative bg-white rounded-lg shadow-lg h-[279px] w-[554px]  p-6 z-50 flex flex-col justify-center`}>
+                    <button
+                        type="button"
+                        className="absolute top-4 right-4 w-6 h-6 text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-full "
+                        onClick={onClose}>
+                        <Close className="w-4 h-4" />
+                    </button>
+                    <div className="text-center">
+                        {icon}
+                        <h3 className={`mb-2 text-base font-medium ${color}`}>
+                            {title}
+                        </h3>
+                        <p className="text-sm font-normal text-gray-500">
+                            {description}
+                        </p>
+                    </div>
+                    {button && (
+                        <div className="flex justify-center gap-x-4 mt-6">
+                            <Button
+                                className="w-[147px]"
+                                size="semi"
+                                variant="secondary"
+                                onClick={onCancel}>
+                                No
+                            </Button>
+                            <Button
+                                className="w-[147px]"
+                                size="semi"
+                                variant="primary-dark"
+                                onClick={onConfirm}>
+                                Yes
+                            </Button>
+                        </div>
+                    )}
                 </div>
-            )}
-        </div>
+            </div>
+        </>
     );
 };
 

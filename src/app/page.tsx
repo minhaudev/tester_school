@@ -10,7 +10,7 @@ export default function Home() {
     };
     return (
         <div className="flex w-full">
-            <Navigation type={NavigationType.MANAGE} />
+            <Navigation type={NavigationType.CLIENT} />
             <Header />
             {/* <TableFuture /> */}
         </div>

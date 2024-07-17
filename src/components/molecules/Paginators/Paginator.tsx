@@ -50,7 +50,7 @@ const Paginator = ({
         }
 
         const firstPages =
-            currentPage > 3 && currentPage < length - count+1 ?
+            currentPage > 3 && currentPage < length - count + 1 ?
                 pageNumbers.slice(currentPage - count, currentPage)
             :   pageNumbers.slice(0, count);
         const lastPages = pageNumbers.slice(-count);
@@ -63,7 +63,7 @@ const Paginator = ({
             </div>
         );
         const shouldShowMiddlePages =
-            lastPages[0] > firstPages[firstPages.length - 1] + 1
+            lastPages[0] > firstPages[firstPages.length - 1] + 1;
 
         return (
             <>
@@ -127,8 +127,8 @@ const Paginator = ({
                         disabled={currentPage === 1}
                         className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
                         {currentPage === 1 ?
-                            <ExpandLeft />
-                        :   <ExpandLeftLight />}
+                            <ExpandLeftLight />
+                        :   <ExpandLeft />}
                     </button>
                 </div>
                 <div className="flex gap-x-2">{getPaginationButtons()}</div>

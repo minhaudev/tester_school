@@ -1,5 +1,4 @@
 "use client";
-import {ApproveNoteIcon, CircleIcon} from "@/assets/svgs";
 import MessengerSuccess from "@/assets/svgs/Messenger_success.svg";
 import MessengerNomal from "@/assets/svgs/Messenger_nomal.svg";
 import MessengerWarning from "@/assets/svgs/Messenger_warning.svg";

@@ -1,4 +1,3 @@
-import {WarningIcon} from "@/assets/svgs";
 import {PopupEnum} from "@/enums/PopupEnum";
 import Success from "@/assets/svgs/Success_toast.svg";
 import Warning from "@/assets/svgs/Warning_primary.svg";
@@ -10,8 +9,8 @@ import Attachment from "@/assets/svgs/Attachment.svg";
 import Image from "next/image";
 import ApproveOrderData from "@/faker/ApproveOrder";
 import Checkbox from "@/components/atoms/Checkbox/Checkbox";
-import OfferData from "@/faker/Offer";
 import Information from "@/assets/svgs/Infomation.svg";
+import OfferData from "@/faker/OfferData";
 
 interface PopupProps {
     attachmentButton?: boolean;
@@ -45,9 +44,9 @@ const PopupRequest = ({
     return (
         <div
             id="popup-modal"
-            className={`z-50 ${
+            className={`z-1 ${
                 isLog ? "" : "px-6"
-            } py-6 justify-center items-center rounded-lg w-full max-w-[668px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
+            } py-6 justify-center items-center rounded-lg shadow-lg w-full max-w-[668px] min-h-[279px] h-[calc(100%-1rem)] max-h-full text-center bg-white ${className}`}>
             <div
                 className={`flex flex-row justify-between items-center ${
                     isLog ? "px-6" : ""
@@ -111,7 +110,7 @@ const PopupRequest = ({
                                     alt={item.user}
                                     className="rounded-full"
                                 />
-                                <div className="flex flex-col">
+                                <div className="flex flex-col items-start">
                                     <h3 className="font-medium text-[13px]">
                                         {item.user}
                                     </h3>
@@ -144,11 +143,9 @@ const PopupRequest = ({
                 }`}>
                 <textarea
                     className={`peer w-full resize-none rounded-[7px] border border-stroke border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm text-blue-gray-700 outline-none transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50 ${
-                        isLog
-                            ? "min-h-20"
-                            : isApproveOrder
-                            ? "min-h-[115px]"
-                            : "min-h-[169px]"
+                        isLog ? "min-h-20"
+                        : isApproveOrder ? "min-h-[115px]"
+                        : "min-h-[169px]"
                     }
                     `}
                     placeholder="Enter"
@@ -172,15 +169,20 @@ const PopupRequest = ({
                         variant="secondary"
                         color="blue-dark"
                         size="large"
-                        className="max-w-[93px]"
+                        className="max-w-[93px] min-h-9"
                         prefixIcon={<Attachment />}>
                         file.docx
                     </Button>
                     <div className="flex flex-row gap-x-2.5 items-end justify-end mt-4">
-                        <Button variant="secondary">Cancel</Button>
+                        <Button
+                            variant="secondary"
+                            className="min-h-9 max-w-[81px]">
+                            Cancel
+                        </Button>
                         <Button
                             variant={"primary-light"}
-                            size="large">
+                            size="large"
+                            className="min-h-9 w-[81px]">
                             Offer
                         </Button>
                     </div>
@@ -189,6 +191,7 @@ const PopupRequest = ({
             {isApproveOrder && !isOffer && (
                 <div>
                     <Button
+                        className="min-h-9 w-[155px] !px-3"
                         variant="secondary"
                         color="blue-dark"
                         prefixIcon={<Attachment />}>
@@ -204,11 +207,16 @@ const PopupRequest = ({
                         ))}
                     </div>
                     <div className="flex flex-row gap-x-2.5 float-end mt-[35px]">
-                        <Button variant="secondary">Cancel</Button>
                         <Button
-                            variant={isConfirm ? "confirm" : "primary-dark"}
+                            variant="secondary"
+                            className="min-h-9 max-w-[81px]">
+                            Cancel
+                        </Button>
+                        <Button
+                            className="min-h-9 max-w-[81px] w-[81px]"
+                            variant="primary-dark"
                             size="large">
-                            {isConfirm ? "Confirm" : "Save"}
+                            Save
                         </Button>
                     </div>
                 </div>
@@ -221,6 +229,7 @@ const PopupRequest = ({
                     } ${isLog ? "px-6" : ""}`}>
                     {attachmentButton && (
                         <Button
+                            className="min-h-9 w-[155px] !px-3"
                             variant="secondary"
                             color="blue-dark"
                             prefixIcon={<Attachment />}>
@@ -228,11 +237,16 @@ const PopupRequest = ({
                         </Button>
                     )}
                     <div className="flex flex-row gap-x-2.5">
-                        <Button variant="secondary">Cancel</Button>
                         <Button
-                            variant={isConfirm ? "confirm" : "primary-dark"}
+                            variant="secondary"
+                            className="min-h-9 max-w-[81px]">
+                            Cancel
+                        </Button>
+                        <Button
+                            className={`min-h-9 max-w-[81px] w-[81px] `}
+                            variant="primary-dark"
                             size="large">
-                            {isConfirm ? "Confirm" : "Save"}
+                            Save
                         </Button>
                     </div>
                 </div>

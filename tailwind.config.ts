@@ -55,6 +55,11 @@ const config: Config = {
         },
         extend: {
             backgroundColor: {
+                "green-bold": "#69AA43",
+                gray: "#BBBBBC",
+                red: "#D6292E",
+                "red-bold": "#ED1E24",
+                "red-light": "#FFFBEB",
                 error: "#FFFBEB",
                 green: "#F2FFEB",
                 normal: "#EDFAFF",
@@ -100,6 +105,20 @@ const config: Config = {
             },
             maxWidth: {
                 "custom-448": "448px"
+            },
+            keyframes: {
+                fadeIn: {
+                    "0%": {opacity: "0", transform: "translateY(-20px)"},
+                    "100%": {opacity: "0.5", transform: "translateY(0)"}
+                },
+                fadeOut: {
+                    "0%": {opacity: "0.5", transform: "translateY(0)"},
+                    "100%": {opacity: "0", transform: "translateY(-20px)"}
+                }
+            },
+            animation: {
+                fadeIn: "fadeIn 300ms ease-out",
+                fadeOut: "fadeOut 300ms ease-out"
             }
         },
         fontFamily: {
