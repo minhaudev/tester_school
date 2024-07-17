@@ -9,7 +9,12 @@ import React, {useState} from "react";
 import "../../../app/globals.css";
 import usePersistedState from "@/hook/saveLocalStorage";
 
-function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
+function Navigation({
+    type = NavigationType.CLIENT
+}: {
+    type: NavigationType;
+    routePath: string;
+}) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(1);
