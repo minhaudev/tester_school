@@ -33,14 +33,14 @@ interface PropsBtn {
     isError?: boolean;
     isIcon?: boolean;
     className?: string;
-
+    onDelete?: (index: number) => void;
     fileDetails?: FileDetail[];
     setFileDetails?: React.Dispatch<React.SetStateAction<FileDetail[]>>;
     typeFile?: string;
 }
 
 Button.defaultProps = {
-    variant: "link",
+    variant: "file",
     size: "semi",
     isDisabled: false,
     isError: false,
@@ -55,6 +55,7 @@ export default function Button(
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
     const {
+        onDelete,
         isIcon,
         variant,
         size,
@@ -165,7 +166,6 @@ export default function Button(
 
         return (
             <Link
-                target="_blank"
                 {...anchorProps}
                 href={url || ""}
                 className={`inline-flex justify-center items-center gap-[6px]
@@ -200,6 +200,7 @@ export default function Button(
                         hidden
                         onChange={handleFileChange}
                         multiple={true}
+                        accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.csv,.txt,.ppt,.pptx,.zip,.rar,.gif,.bmp,.tiff,.svg,.html,.htm,.xml,.json,.mp3,.wav,.mp4,.avi,.mov"
                     />
                     <span className="w-4 h-4">
                         <Frame />

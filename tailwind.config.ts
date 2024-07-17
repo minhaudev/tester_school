@@ -6,38 +6,40 @@ const config: Config = {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
     ],
+
     theme: {
         colors: {
-            disable: "#F7F7F7",
             text: "#3A3B3C",
+            "text-light": "#4B5563",
             primary: "#01559B",
             secondary: "#00ADEF",
-            ["secondary-hover"]: "#12BDFE",
             stroke: "#E4E4E4",
             highlight: "#F2F5F8",
             white: "#FFFFFF",
             input: "#929292",
             unit: "#A2A5A9",
             green: "#69AA43",
+            greenLight: "#70E28D",
             orange: "#ED8400",
-            warning: "#ED1E24",
-            "warning-hover": "#F56569",
+            red: "#ED1E24",
             dangerous: "#FFF4F4",
             violet: "#A644F6",
             blue: "#5A92F7",
+            "blue-bold": "#1E4D83",
             pink: "#FFEDDF",
             yellow: "#F5BF00",
+            "custom-light-blue": "#EDFAFF",
             "primary-1": "#111D2C",
             "primary-2": "#112A45",
             "primary-3": "#15395B",
             "primary-4": "#164C7E",
             "primary-5": "#01559B",
-            "primary-5-hover": "#0376D7",
             "primary-6": "#1765AD",
             "primary-7": "#177DDC",
             "primary-8": "#3C9AE8",
             "primary-9": "#65B7F3",
             "primary-10": "#65B7F3",
+            gray: "#9A9C9F",
             "gray-1": "#FFFFFF",
             "gray-2": "#FAFAFA",
             "gray-3": "#F5F5F5",
@@ -51,8 +53,19 @@ const config: Config = {
             "gray-11": "#1f1f1f",
             "gray-12": "#141414"
         },
-
         extend: {
+            backgroundColor: {
+                "green-bold": "#69AA43",
+                gray: "#BBBBBC",
+                red: "#D6292E",
+                "red-bold": "#ED1E24",
+                "red-light": "#FFFBEB",
+                error: "#FFFBEB",
+                green: "#F2FFEB",
+                normal: "#EDFAFF",
+                warning: "#FCE7E7",
+                success: "#D2E5F5"
+            },
             backgroundImage: {
                 "custom-gradient":
                     "linear-gradient(90deg, #00ADEE 0%, #0087CA 15%, #006CAF 29%, #005CA0 41%, #00569A 50%, #005CA0 59%, #006CAF 71%, #0087CA 85%, #00AEEF 100%)"
@@ -66,11 +79,11 @@ const config: Config = {
                 "captions-11": "11pt"
             },
             lineHeight: {
-                "title-20": "1", // Auto
-                "title-16": "1", // Auto
-                "body-14": "1", // Auto
-                "body-13": "1", // Auto
-                "body-12": "1", // Auto
+                "title-20": "1",
+                "title-16": "1",
+                "body-14": "1",
+                "body-13": "1",
+                "body-12": "1",
                 "captions-11": "12pt"
             },
             fontWeight: {
@@ -79,6 +92,33 @@ const config: Config = {
                 regular: "400",
                 semibold: "600",
                 light: "300"
+            },
+            borderRadius: {
+                "custom-sm": "5px"
+            },
+            borderColor: {
+                input: "#D0D5DD",
+                normal: "#00ADEF",
+                success: "#01559B",
+                warning: "#ED1E24",
+                stroke: "#E4E4E4"
+            },
+            maxWidth: {
+                "custom-448": "448px"
+            },
+            keyframes: {
+                fadeIn: {
+                    "0%": {opacity: "0", transform: "translateY(-20px)"},
+                    "100%": {opacity: "0.5", transform: "translateY(0)"}
+                },
+                fadeOut: {
+                    "0%": {opacity: "0.5", transform: "translateY(0)"},
+                    "100%": {opacity: "0", transform: "translateY(-20px)"}
+                }
+            },
+            animation: {
+                fadeIn: "fadeIn 300ms ease-out",
+                fadeOut: "fadeOut 300ms ease-out"
             }
         },
         fontFamily: {
