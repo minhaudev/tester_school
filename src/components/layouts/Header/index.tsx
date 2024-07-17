@@ -7,7 +7,7 @@ import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";
 import DropDown from "@/assets/svgs/Arrow_drop_down.svg";
 import User from "@/assets/svgs/User_alt_light.svg";
 import {dataOrderNotice} from "@/faker/OrderNotice";
-import DropsDown from "@/components/atoms/DropsDown/DropsDown";
+import DropsDown from "@/components/atoms/Dropdown";
 import Link from "next/link";
 import "../../../app/globals.css";
 export default function Header() {
@@ -55,11 +55,11 @@ export default function Header() {
 
     return (
         <>
-            <div className="">
+            <div className="w-full">
                 <div className="h-14 w-full bg-white flex justify-between items-center px-6 border-b border-stroke">
                     <div className="flex items-center justify-center">
                         <Link href="/">
-                            <p className="uppercase text-[32px] font-[400] leading-[33.76px] text-primary  wendy-one-regular">
+                            <p className="uppercase text-[32px] font-[400] leading-[33.76px] text-primary  font-wendy-one">
                                 Luna
                             </p>
                         </Link>

@@ -10,7 +10,6 @@ function defineNextConfig(config) {
 }
 export default defineNextConfig({
     reactStrictMode: true,
-    swMinify: true,
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,

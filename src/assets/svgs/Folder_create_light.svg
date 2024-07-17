@@ -6,9 +6,9 @@
 <path d="M19.5 11L19.5 10C19.5 9.17157 18.8284 8.5 18 8.5L17 8.5" stroke="currentColor"/>
 <path d="M15 8.5H14.1213C13.7235 8.5 13.342 8.34196 13.0607 8.06066L12.5 7.5" stroke="currentColor"/>
 <path d="M11.5 6.5L10.9393 5.93934C10.658 5.65804 10.2765 5.5 9.87868 5.5H9" stroke="currentColor"/>
-<rect x="19" y="13" width="1" height="2" fill="#222222"/>
-<rect x="4" y="13" width="1" height="2" fill="#222222"/>
-<rect x="4" y="9" width="1" height="2" fill="#222222"/>
-<rect x="13" y="19" width="2" height="1" fill="#222222"/>
-<rect x="9" y="19" width="2" height="1" fill="#222222"/>
+<rect x="19" y="13" width="1" height="2" fill="currentColor"/>
+<rect x="4" y="13" width="1" height="2" fill="currentColor"/>
+<rect x="4" y="9" width="1" height="2" fill="currentColor"/>
+<rect x="13" y="19" width="2" height="1" fill="currentColor"/>
+<rect x="9" y="19" width="2" height="1" fill="currentColor"/>
 </svg>
