@@ -1,6 +1,6 @@
 "use client";
 import Menu from "@/assets/svgs/Menu.svg";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import IconListItem from "@/components/atoms/IconListItem";
 import {navbarData} from "@/faker/NavbarData";
 

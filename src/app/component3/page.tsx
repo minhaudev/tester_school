@@ -25,7 +25,7 @@ import {PendingEnum} from "@/enums/PendingEnum";
 import PendingStatus from "@/components/PendingStatus/PendingStatus";
 import StatusNote from "@/components/molecules/StatusNote/StatusNote";
 import OfferData from "@/faker/OfferData";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import {ToastPosition, ToastType} from "@/enums/ToastEnum";
 import {usePopup} from "@/context/PopupContext";
 const page = () => {
@@ -72,9 +72,6 @@ const page = () => {
     };
     return (
         <div className="flex flex-col gap-8">
-           
-            
-            
             <div className="flex flex-row gap-8">
                 <div className="flex-1"></div>
                 <div className="flex-1">
@@ -99,7 +96,6 @@ const page = () => {
                         title="Status note"
                         content={
                             <div className="gap-8 items-center flex flex-col">
-                               
                                 <StatusNote
                                     type={StatusEnum.Warning}
                                     description="Kế hoạch sản xuất: Có lỗi trong thông tin giao hàng."

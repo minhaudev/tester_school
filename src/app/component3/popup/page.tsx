@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import Popup from "@/components/molecules/Popup/Popup";
 import {usePopup} from "@/context/PopupContext";
 import {PopupEnum} from "@/enums/PopupEnum";
@@ -25,9 +25,9 @@ const PopupComponent = () => {
     return (
         <div>
             <Button variant="secondary" onClick={() => setShowPopup(true)}>
-                Show popup 
+                Show popup
             </Button>
-            {showPopup  && (
+            {showPopup && (
                 <Popup
                     isVisible={showPopup}
                     type={PopupEnum.Warning}

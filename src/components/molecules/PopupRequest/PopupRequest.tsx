@@ -4,7 +4,7 @@ import Warning from "@/assets/svgs/Warning_primary.svg";
 import Time from "@/assets/svgs/Time.svg";
 import Close from "@/assets/svgs/Close_round.svg";
 import React from "react";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import Attachment from "@/assets/svgs/Attachment.svg";
 import Image from "next/image";
 import ApproveOrderData from "@/faker/ApproveOrder";

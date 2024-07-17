@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import Toast from "@/components/molecules/Toasts/Toast";
 import {ToastPosition, ToastType} from "@/enums/ToastEnum";
 import React, {useState} from "react";

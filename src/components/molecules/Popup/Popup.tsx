@@ -3,7 +3,7 @@ import {PopupEnum} from "@/enums/PopupEnum";
 import Success from "@/assets/svgs/Success_toast.svg";
 import Warning from "@/assets/svgs/Warning_primary.svg";
 import Close from "@/assets/svgs/Close_round.svg";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 
 interface PopupValue {
     color: string;
