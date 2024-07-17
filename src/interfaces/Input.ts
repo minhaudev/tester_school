@@ -23,4 +23,5 @@ export interface PropsInput {
     setShowCalendar?: React.Dispatch<React.SetStateAction<boolean>>;
     selectedDate?: Date | null;
     handleDateChange?: (date: Date | null) => void;
+    handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }

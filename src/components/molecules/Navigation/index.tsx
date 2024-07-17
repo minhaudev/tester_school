@@ -2,18 +2,20 @@
 import Menu from "@/assets/svgs/Menu.svg";
 import Button from "@/components/atoms/Button/Button";
 import IconListItem from "@/components/atoms/IconListItem";
-import {navbarData} from "@/faker/navbar";
+import {navbarData} from "@/faker/NavbarData";
+
 import {NavbarProps, NavigationType} from "@/interfaces";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "../../../app/globals.css";
+import usePersistedState from "@/hook/saveLocalStorage";
 
 function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(1);
-    const [expand, setExpand] = useState(true);
+    const [expand, setExpand] = usePersistedState("expand", true);
     const handleExpand = () => {
-        setExpand(!expand);
+        setExpand((prev: boolean) => !prev);
         setShowFirstMenu(false);
     };
 
@@ -30,11 +32,11 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     return (
         <div
             className={` h-[100vh] overflow-y-auto ${
-                expand ? "w-full max-w-[255px]" : "min-w-[56px]"
+                expand ? "animate-expand" : "animate-collapse"
             } bg-primary pb-[13px]`}>
             <div
                 className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
-                    expand ? "w-full px-4" : "w-[56px] px-3"
+                    expand ? "px-4" : " px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
                     <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">

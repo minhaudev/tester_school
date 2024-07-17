@@ -2,10 +2,36 @@
 import React, {ReactNode} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {PropsInput} from "@/interfaces/Input";
-import Calendar from "@/assets/svgs/Calendar.svg";
+import {optionSelect} from "@/faker/OptionSelect";
 
-const Input = (props: PropsInput) => {
+interface PropsInput {
+    handleDateChange?: (date: Date | null) => void;
+    variant?: "input" | "textarea" | "select"; // Added "select" to variant type
+    require?: boolean;
+    value?: string;
+    placeholder?: string;
+    name?: string;
+    handleOnChange: (
+        e: React.ChangeEvent<
+            HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+        >
+    ) => void;
+    isDisabled?: boolean;
+    className?: string;
+    prefix?: ReactNode;
+    suffix?: ReactNode;
+    size?: "large" | "medium" | "small";
+    error?: boolean;
+    helperText?: string;
+    label?: string;
+    type?: string;
+    showCalendar?: boolean;
+    setShowCalendar?: (show: boolean) => void;
+    selectedDate?: Date | null;
+    handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void; // Added handleSelectChange
+}
+
+const Input: React.FC<PropsInput> = (props) => {
     const {
         handleDateChange,
         variant,
@@ -25,7 +51,8 @@ const Input = (props: PropsInput) => {
         type,
         showCalendar,
         setShowCalendar,
-        selectedDate
+        selectedDate,
+        handleSelectChange
     } = props;
 
     const getSizeClass = (size?: "large" | "medium" | "small") => {
@@ -42,10 +69,10 @@ const Input = (props: PropsInput) => {
     };
 
     const defaultClasses = `${
-        error
-            ? "text-warning border-warning focus:border-warning"
-            : "border-[#D9D9D9] text-[#000000D9]"
-    } flex items-center gap-1 px-3 relative bg-white rounded-sm !border text-[14px] !focus:outline-none !focus:border-[#40A9FF] !focus:shadow-md w-full ${getSizeClass(
+        error ?
+            "text-warning border-warning focus:border-warning"
+        :   "border-[#D9D9D9] text-[#000000D9]"
+    } flex items-center gap-1 relative bg-white rounded-sm border text-[14px] focus:!outline-none focus:!border-[#40A9FF] focus:!shadow-md w-full ${getSizeClass(
         size
     )}`;
     const combinedClasses = `${defaultClasses} ${className}`;
@@ -54,13 +81,13 @@ const Input = (props: PropsInput) => {
         <div>
             <label>
                 {label}
-                {require && <span className="text-warning">*</span>}{" "}
+                {require && <span className="text-warning"> &#160;*</span>}{" "}
             </label>
             <div className={`${combinedClasses}`} tabIndex={0}>
-                <span className="absolute">{prefix}</span>
-                {variant === "textarea" ? (
+                <div className="absolute">{prefix}</div>
+                {variant === "textarea" ?
                     <textarea
-                        className={`w-full min-h-[169px] max-h-[169px] py-2 border-none outline-none ${
+                        className={`w-full min-h-[169px] max-h-[169px] p-2 focus:!outline-secondary  ${
                             prefix ? "ml-6" : ""
                         }`}
                         placeholder={placeholder}
@@ -69,9 +96,26 @@ const Input = (props: PropsInput) => {
                         onChange={handleOnChange}
                         disabled={isDisabled}
                     />
-                ) : (
-                    <input
-                        className={`w-full py-2 border-none outline-none ${
+                : variant === "select" ?
+                    <select
+                        className={`w-full  focus:!outline-secondary   p-2 ${
+                            prefix ? "ml-6" : ""
+                        }`}
+                        name={name}
+                        value={value}
+                        onChange={handleSelectChange}
+                        disabled={isDisabled}>
+                        <option disabled value="">
+                            {placeholder}
+                        </option>
+                        {optionSelect.map((option, index) => (
+                            <option key={index} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </select>
+                :   <input
+                        className={`w-full focus:!outline-secondary   p-2  ${
                             prefix ? "ml-6" : ""
                         }`}
                         type={type}
@@ -81,7 +125,7 @@ const Input = (props: PropsInput) => {
                         onChange={handleOnChange}
                         disabled={isDisabled}
                     />
-                )}
+                }
                 <span
                     className="absolute right-0 mr-6 cursor-pointer"
                     onClick={() =>
@@ -92,7 +136,6 @@ const Input = (props: PropsInput) => {
             </div>
             {showCalendar && (
                 <div className="absolute right-60">
-                    {" "}
                     <DatePicker
                         className="absolute !right-0"
                         selected={selectedDate}
@@ -106,28 +149,6 @@ const Input = (props: PropsInput) => {
             </small>
         </div>
     );
-};
-
-Input.defaultProps = {
-    handleDateChange: () => {},
-    variant: "input",
-    require: false,
-    value: "",
-    placeholder: "",
-    name: "",
-    handleOnChange: () => {},
-    isDisabled: false,
-    className: "",
-    prefix: null,
-    suffix: <Calendar />,
-    size: "medium",
-    error: false,
-    helperText: "",
-    label: "",
-    type: "text",
-    showCalendar: false,
-    setShowCalendar: () => {},
-    selectedDate: null
 };
 
 export default Input;

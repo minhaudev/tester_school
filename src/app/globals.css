@@ -3,14 +3,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 body {
     margin: 0 auto;
 }
-@import url("https://fonts.googleapis.com/css2?family=Wendy+One&display=swap");
+::-webkit-scrollbar {
+    display: none;
+}
+@keyframes expandWidth {
+    from {
+        min-width: 56px;
+    }
+    to {
+        min-width: 255px;
+    }
+}
 
-/* .wendy-one-regular {
-    font-family: "Wendy One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-} */
+@keyframes collapseWidth {
+    from {
+        min-width: 255px;
+    }
+    to {
+        min-width: 56px;
+    }
+}
+
+.animate-expand {
+    animation: expandWidth 0.1s ease forwards;
+}
+
+.animate-collapse {
+    animation: collapseWidth 0.1s ease-in-out forwards;
+}
