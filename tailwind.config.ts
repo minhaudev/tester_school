@@ -123,7 +123,7 @@ const config: Config = {
         },
         fontFamily: {
             "sf-ui-display": ["SF UI Display", "sans-serif"],
-            wendy: ['"Wendy One"', "sans-serif"]
+            "wendy-one": ["Wendy One", "sans-serif"]
         }
     },
     plugins: []

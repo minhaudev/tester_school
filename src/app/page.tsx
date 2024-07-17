@@ -1,6 +1,5 @@
 "use client";
-import Button from "@/components/atoms/Button";
-import Header from "@/components/layouts/Header/Header";
+import Header from "@/components/layouts/Header";
 
 import Navigation from "@/components/molecules/Navigation";
 import TableFuture from "@/components/molecules/TableFuture";
