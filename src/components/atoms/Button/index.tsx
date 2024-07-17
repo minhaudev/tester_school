@@ -1,13 +1,13 @@
 "use client";
-import Frame from "@/assets/svgs/link_alt.svg";
-import Delete from "@/assets/svgs/Dell_duotone.svg";
+import Frame from "@/assets/images/Frame";
 import FileDock from "@/assets/svgs/File_dock_duotone.svg";
 import ImportLight from "@/assets/svgs/Import_light.svg";
 import Link from "next/link";
 import React, {
     ReactNode,
     ButtonHTMLAttributes,
-    AnchorHTMLAttributes
+    AnchorHTMLAttributes,
+    useState
 } from "react";
 
 interface FileDetail {
@@ -38,16 +38,6 @@ interface PropsBtn {
     setFileDetails?: React.Dispatch<React.SetStateAction<FileDetail[]>>;
     typeFile?: string;
 }
-
-Button.defaultProps = {
-    variant: "file",
-    size: "semi",
-    isDisabled: false,
-    isError: false,
-    isIcon: false,
-    className: "",
-    typeFile: ""
-};
 
 export default function Button(
     props: PropsBtn &
@@ -270,14 +260,18 @@ export default function Button(
         <button
             disabled={isDisabled}
             {...rest}
-            className={`flex justify-center items-center gap-[6px] text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition ${className} ${getVariantClass(
-                variant
-            )} ${getSizeClass(size)} ${getErrorClass(variant)} ${getOutline(
-                color
-            )} ${isDisabled ? "opacity-40 cursor-not-allowed" : ""}`}
+            className={`flex justify-center items-center gap-[6px]
+              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition disabled:bg-disable disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
+                  isIcon ? "!px-0 !border !border-white !text-white" : ""
+              } ${className} ${getVariantClass(variant)} ${getErrorClass(
+                  variant
+              )} ${getSizeClass(size)} ${getOutline(color)}`}
             style={{fontFamily: "inherit"}}>
             {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-            <span className={`${isIcon ? "[&_svg]:w-5 [&_svg]:h-5 " : ""}`}>
+            <span
+                className={`${
+                    isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""
+                }`}>
                 {children}
             </span>
         </button>

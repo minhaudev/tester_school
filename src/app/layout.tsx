@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${myFonts.className} bg-primary`}>
+            <body>
                 <PopupProvider>{children}</PopupProvider>
             </body>
         </html>

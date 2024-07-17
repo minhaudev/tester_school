@@ -39,7 +39,7 @@ function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
                     expand ? "px-4" : " px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
-                    <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">
+                    <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy-one">
                         Luna
                     </p>
                 )}
