@@ -33,11 +33,21 @@ interface PropsBtn {
     isError?: boolean;
     isIcon?: boolean;
     className?: string;
-
+    onDelete?: (index: number) => void;
     fileDetails?: FileDetail[];
     setFileDetails?: React.Dispatch<React.SetStateAction<FileDetail[]>>;
     typeFile?: string;
 }
+
+Button.defaultProps = {
+    variant: "file",
+    size: "semi",
+    isDisabled: false,
+    isError: false,
+    isIcon: false,
+    className: "",
+    typeFile: ""
+};
 
 export default function Button(
     props: PropsBtn &
@@ -45,6 +55,7 @@ export default function Button(
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
     const {
+        onDelete,
         isIcon,
         variant,
         size,
@@ -108,7 +119,6 @@ export default function Button(
                 case "text":
                     return "bg-[transparent] text-warning hover:text-warning-hover";
                 case "file":
-                    return "bg-[transparent] text-warning hover:text-warning-hover";
                 default:
                     return "";
             }
@@ -156,7 +166,6 @@ export default function Button(
 
         return (
             <Link
-                target="_blank"
                 {...anchorProps}
                 href={url || ""}
                 className={`inline-flex justify-center items-center gap-[6px]
@@ -184,18 +193,14 @@ export default function Button(
                     className={`inline-flex justify-center items-center gap-[6px]
                   text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
                       size
-                  )} ${getVariantClass(variant)} ${
-                      isDisabled ?
-                          "text-input cursor-not-allowed pointer-events-none"
-                      :   ""
-                  }  ${getErrorClass(variant)}`}>
+                  )}`}>
                     <input
-                        disabled={isDisabled}
                         type="file"
                         id="file-input"
                         hidden
                         onChange={handleFileChange}
                         multiple={true}
+                        accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.csv,.txt,.ppt,.pptx,.zip,.rar,.gif,.bmp,.tiff,.svg,.html,.htm,.xml,.json,.mp3,.wav,.mp4,.avi,.mov"
                     />
                     <span className="w-4 h-4">
                         <Frame />

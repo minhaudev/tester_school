@@ -26,7 +26,7 @@ export default function Header() {
     };
     return (
         <>
-            <div className="">
+            <div className="w-full">
                 <div className="h-14 w-full bg-white flex justify-between item-center px-6 border-b border-stroke">
                     <div className="flex items-center justify-center">
                         <Link href="/">
