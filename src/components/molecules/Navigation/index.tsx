@@ -1,6 +1,6 @@
 "use client";
 import Menu from "@/assets/svgs/menu.svg";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import IconListItem from "@/components/atoms/IconListItem";
 import {navbarData} from "@/faker/NavbarData";
 import {NavbarProps, NavigationType} from "@/interfaces";
@@ -54,9 +54,9 @@ function Navigation({
                     expand ? "px-4" : "px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
-                    <div className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy">
+                    <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy-one">
                         Luna
-                    </div>
+                    </p>
                 )}
                 <Button
                     isIcon

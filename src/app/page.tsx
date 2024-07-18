@@ -1,9 +1,7 @@
 "use client";
-import Footer from "@/components/layouts/Footer/Footer";
-import Header from "@/components/layouts/Header/Header";
+import Header from "@/components/layouts/Header";
 
 import Navigation from "@/components/molecules/Navigation";
-import TableFuture from "@/components/molecules/TableFuture";
 import {NavigationType} from "@/interfaces";
 import LayoutContainer from "./LayoutContainer";
 import {useEffect, useState} from "react";
