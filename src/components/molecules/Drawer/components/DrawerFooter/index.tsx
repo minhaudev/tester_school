@@ -13,7 +13,7 @@ export default function DrawerFooter(props: PropsFooter) {
             {props.isAction && (
                 <Button
                     className="w-full "
-                    variant="primary-light"
+                    variant="primary-dark"
                     size="semi"
                     color="white"
                     onClick={props.handleClick}>

@@ -8,12 +8,14 @@ import CreditCart from "@/components/atoms/CreditCart";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import LayoutContainer from "./LayoutContainer";
 import Standard from "@/components/molecules/Standard/Index";
+import Input from "@/components/atoms/Input";
 
 export default function Home() {
     return (
         <LayoutContainer>
             {/* <CustomerBalanceInfo /> */}
             <Standard />
+            <Input variant="select" optionSelect={["avc", "bc", "vc"]} />
         </LayoutContainer>
     );
 }

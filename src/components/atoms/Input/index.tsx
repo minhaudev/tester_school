@@ -2,10 +2,9 @@
 import React, {ReactNode} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {optionSelect} from "@/faker/OptionSelect";
-
+import Select from "@/assets/svgs/dropdown_select.svg";
 interface PropsInput {
-    optionSelect: [];
+    optionSelect?: string[];
     handleDateChange?: (date: Date | null) => void;
     variant?: "input" | "textarea" | "select"; // Added "select" to variant type
     require?: boolean;
@@ -35,6 +34,7 @@ interface PropsInput {
 
 const Input: React.FC<PropsInput> = (props) => {
     const {
+        optionSelect,
         handleDateChange,
         variant,
         require,
@@ -99,23 +99,29 @@ const Input: React.FC<PropsInput> = (props) => {
                         disabled={isDisabled}
                     />
                 : variant === "select" ?
-                    <select
-                        className={`w-full  focus:!outline-secondary   p-2 ${
-                            prefix ? "ml-6" : ""
-                        }`}
-                        name={name}
-                        value={value}
-                        onChange={handleSelectChange}
-                        disabled={isDisabled}>
-                        <option disabled value="">
-                            {placeholder}
-                        </option>
-                        {optionSelect.map((option, index) => (
-                            <option key={index} value={option}>
-                                {option}
+                    <div className="relative w-full">
+                        <select
+                            className={`w-full appearance-none 
+                             focus:!outline-secondary p-2 ${
+                                 prefix ? "ml-6" : ""
+                             }`}
+                            name={name}
+                            value={value}
+                            onChange={handleSelectChange}
+                            disabled={isDisabled}>
+                            <option disabled value="">
+                                {placeholder}
                             </option>
-                        ))}
-                    </select>
+                            {optionSelect?.map((option, index) => (
+                                <option key={index} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="absolute top-[35%] right-[10px] pointer-events-none">
+                            <Select />
+                        </div>
+                    </div>
                 :   <input
                         className={`w-full focus:!outline-secondary   p-2  ${
                             prefix ? "ml-6" : ""
