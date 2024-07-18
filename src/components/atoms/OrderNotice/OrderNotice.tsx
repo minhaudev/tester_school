@@ -37,10 +37,10 @@ export default function OrderNotice(props: PropsOrderNotice) {
                 ))}
                 <div className="text-center">
                     <Button
-                        className="text-[14px] font-medium leading-[16.71px] mt-4"
-                        target="_blank"
-                        url="https://www.youtube.com/watch?v=AJtDXIazrMo&list=PLPSCssPYXhWTTcpNZwYoEQWt8Wc8KO0NV&index=18"
-                        variant="link">
+                    className="text-[14px] font-medium leading-[16.71px] mt-4"
+                    target="_blank"
+                    url="https://www.youtube.com/watch?v=AJtDXIazrMo&list=PLPSCssPYXhWTTcpNZwYoEQWt8Wc8KO0NV&index=18"
+                    variant="link" size={"small"}>
                         See all
                     </Button>
                 </div>

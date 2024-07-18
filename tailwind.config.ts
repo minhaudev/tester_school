@@ -59,12 +59,13 @@ const config: Config = {
                 gray: "#BBBBBC",
                 red: "#D6292E",
                 "red-bold": "#ED1E24",
-                "red-light": "#FFFBEB",
                 error: "#FFFBEB",
-                green: "#F2FFEB",
                 normal: "#EDFAFF",
                 warning: "#FCE7E7",
-                success: "#D2E5F5"
+                success: "#D2E5F5",
+                "red-light": "#FFEEEE",
+                "yellow-light": "#FFFBEB",
+                "green-light": "#F2FFEB",
             },
             backgroundImage: {
                 "custom-gradient-cart":
@@ -120,7 +121,9 @@ const config: Config = {
             },
             animation: {
                 fadeIn: "fadeIn 300ms ease-out",
-                fadeOut: "fadeOut 300ms ease-out"
+                fadeOut: "fadeOut 300ms ease-out",
+                'spin-slow': 'spin 3s linear infinite',
+                wiggle: 'wiggle 1s ease-in-out infinite',
             }
         },
         fontFamily: {
