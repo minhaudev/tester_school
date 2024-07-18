@@ -32,7 +32,6 @@ export const navbarData: NavigationTypeData = {
                     id: 2.1,
                     leadingIcon: ChevronUp,
                     title: "Approved Orders",
-                    href: "/approve",
                     subMenu: [
                         {
                             id: 2.12,

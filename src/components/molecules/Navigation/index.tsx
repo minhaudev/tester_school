@@ -6,8 +6,8 @@ import {navbarData} from "@/faker/NavbarData";
 import {NavbarProps, NavigationType} from "@/interfaces";
 import React, {useEffect, useState} from "react";
 import "../../../app/globals.css";
-import usePersistedState from "@/hook/saveLocalStorage";
-
+import useSaveLocalStorage from "@/hooks/useSaveLocalStorage";
+const SPECIALlPATH = '/order/approve'
 function Navigation({
     type = NavigationType.CLIENT,
     routePath
@@ -17,33 +17,28 @@ function Navigation({
 }) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
-    const [active, setActive] = useState(1);
-    const [expand, setExpand] = usePersistedState("expand", true);
+    const [active, setActive] = useState(2.1);
+    const [expand, setExpand] = useSaveLocalStorage("expand", true);
 
     const handleExpand = () => {
-        setExpand(!expand);
-        setShowFirstMenu(false);
-        setShowSecondMenu(false);
+        if(!expand && routePath.includes('/order') ){
+            setExpand(!expand);
+            setShowSecondMenu(true);
+            return
+        }
+            setExpand(!expand);
+            setShowSecondMenu(false);
     };
-
-    const handleShowMenuFirst = () => {
-        setShowFirstMenu(!showFirstMenu);
-        setExpand(true);
-    };
-
     const handleShowMenuSecond = () => {
         setShowSecondMenu(!showSecondMenu);
         setExpand(true);
     };
-
-    useEffect(() => {
-        if (routePath.includes("/order")) {
-            setExpand(true);
-            setShowFirstMenu(true);
-            setShowSecondMenu(true);
+    useEffect(()=>{
+        if(routePath.includes(SPECIALlPATH)){
+            setShowSecondMenu(true)
         }
-    }, [routePath]);
-
+    },[])
+    
     return (
         <div
             className={`h-[100vh] overflow-y-auto transition-width duration-100 ${
@@ -72,14 +67,10 @@ function Navigation({
                     navbarData[type].map((item: NavbarProps, index: number) => (
                         <React.Fragment key={index}>
                             <div
-                                onClick={() => {
-                                    if (item.subMenu) {
-                                        handleShowMenuFirst();
-                                    }
-                                }}>
+                               >
                                 {item.href ?
                                     <IconListItem
-                                        active={item.href === routePath}
+                                        active={item.href === routePath || (routePath.includes(item.href) && !expand)}
                                         expand={expand}
                                         prefixIcon={item.prefixIcon}
                                         title={item.title}
@@ -93,7 +84,7 @@ function Navigation({
                                     />
                                 }
                             </div>
-                            {item.subMenu && showFirstMenu && (
+                            {item.subMenu && expand && routePath.includes(item.href || SPECIALlPATH) && (
                                 <div>
                                     {item.subMenu.map(
                                         (
@@ -111,9 +102,10 @@ function Navigation({
                                                         classCustom={
                                                             "pl-[56px]"
                                                         }
+                                                        onActive={()=>setActive(subItem.id)}
                                                         active={
                                                             subItem.href ===
-                                                            routePath
+                                                            routePath || (routePath.includes(SPECIALlPATH) && subItem.id === active && !showSecondMenu)
                                                         }
                                                         title={subItem.title}
                                                         href={subItem.href}
@@ -126,7 +118,7 @@ function Navigation({
                                                     />
                                                 </div>
                                                 {subItem.subMenu &&
-                                                    showFirstMenu &&
+                
                                                     showSecondMenu && (
                                                         <div>
                                                             {subItem.subMenu.map(

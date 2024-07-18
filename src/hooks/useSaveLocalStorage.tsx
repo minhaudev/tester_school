@@ -1,7 +1,7 @@
 "use client";
 import {useState, useEffect} from "react";
 
-const usePersistedState = (key: string, initialValue: boolean) => {
+const useSaveLocalStorage = (key: string, initialValue: boolean) => {
     const [state, setState] = useState(() => {
         if (typeof window !== "undefined") {
             const savedState = localStorage.getItem(key);
@@ -18,4 +18,4 @@ const usePersistedState = (key: string, initialValue: boolean) => {
     return [state, setState];
 };
 
-export default usePersistedState;
+export default useSaveLocalStorage;
