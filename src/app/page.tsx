@@ -1,5 +1,5 @@
 "use client";
-import TimeValidate from "@/components/atoms";
+import TimeValidate from "@/components/atoms/TimeValidate";
 import Header from "@/components/layouts/Header";
 
 import Navigation from "@/components/molecules/Navigation";
@@ -34,9 +34,9 @@ export default function Home() {
     return (
         <div className="flex w-full">
             <TimeValidate currentTime={timeAble} totalTime={diffHours} />
-            <div className="w-[90px] h-[5px] bg-green ">
+            <div className="w-[90px] h-[5px] bg-green rounded-md ">
                 <div
-                    className={`bg-red  h-[5px]`}
+                    className={`bg-red  h-[5px] rounded-md`}
                     style={{width: `${currentPercent}%`}}></div>
             </div>
             {/* <Navigation type={NavigationType.CLIENT} />
