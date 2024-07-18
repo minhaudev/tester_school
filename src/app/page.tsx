@@ -7,11 +7,13 @@ import {useState} from "react";
 import CreditCart from "@/components/atoms/CreditCart";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import LayoutContainer from "./LayoutContainer";
+import Standard from "@/components/molecules/Standard/Index";
 
 export default function Home() {
     return (
         <LayoutContainer>
-            <CustomerBalanceInfo />
+            {/* <CustomerBalanceInfo /> */}
+            <Standard />
         </LayoutContainer>
     );
 }

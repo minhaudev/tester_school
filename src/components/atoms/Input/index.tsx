@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {optionSelect} from "@/faker/OptionSelect";
 
 interface PropsInput {
+    optionSelect: [];
     handleDateChange?: (date: Date | null) => void;
     variant?: "input" | "textarea" | "select"; // Added "select" to variant type
     require?: boolean;
@@ -28,7 +29,8 @@ interface PropsInput {
     showCalendar?: boolean;
     setShowCalendar?: (show: boolean) => void;
     selectedDate?: Date | null;
-    handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void; // Added handleSelectChange
+    handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    // Added handleSelectChange
 }
 
 const Input: React.FC<PropsInput> = (props) => {
