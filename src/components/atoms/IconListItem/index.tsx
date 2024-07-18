@@ -64,7 +64,7 @@ const IconListItem: React.FC<IconListItemProps> = ({
             ) : (
                 <div
                     onClick={onActive}
-                    className={`group h-[60px] flex items-center justify-start w-full  px-4  text-white ${
+                    className={`cursor-pointer group h-[60px] flex items-center justify-start w-full  px-4  text-white ${
                         active ? "bg-secondary" : "bg-primary flex-row"
                     }  ${classCustom}`}>
                     {PrefixIcon && (

@@ -21,22 +21,40 @@ function Navigation({
     const [expand, setExpand] = useSaveLocalStorage("expand", true);
 
     const handleExpand = () => {
-        if(!expand && routePath.includes('/order') ){
+        if(!expand && routePath.includes(SPECIALlPATH) ){
             setExpand(!expand);
-            setShowSecondMenu(true);
+            // setShowSecondMenu(true);
+            setShowFirstMenu(true);
             return
         }
             setExpand(!expand);
             setShowSecondMenu(false);
+            setShowFirstMenu(false);
     };
     const handleShowMenuSecond = () => {
         setShowSecondMenu(!showSecondMenu);
         setExpand(true);
     };
-    useEffect(()=>{
+    const handleFirstMenuSecond = () => {
+        setShowFirstMenu(!showFirstMenu);
         if(routePath.includes(SPECIALlPATH)){
             setShowSecondMenu(true)
+           
         }
+        setExpand(true);
+    };
+    useEffect(()=>{
+        if(routePath.includes(SPECIALlPATH )&& !expand){
+            setShowSecondMenu(false)
+            setShowFirstMenu(false)
+            return
+        }
+        if(routePath.includes(SPECIALlPATH) && expand){
+            setShowSecondMenu(true)
+            setShowFirstMenu(true)
+            return
+        }
+
     },[])
     
     return (
@@ -76,15 +94,17 @@ function Navigation({
                                         title={item.title}
                                         href={item.href}
                                     />
-                                :   <IconListItem
-                                        active={active === item.id}
-                                        expand={expand}
-                                        prefixIcon={item.prefixIcon}
-                                        title={item.title}
-                                    />
+                                :   <div onClick={handleFirstMenuSecond}>
+                                    <IconListItem
+                                    active={active === item.id || (routePath.includes(SPECIALlPATH) && !expand)}
+                                    expand={expand}
+                                    prefixIcon={item.prefixIcon}
+                                    title={item.title}
+                                />
+                                </div>
                                 }
                             </div>
-                            {item.subMenu && expand && routePath.includes(item.href || SPECIALlPATH) && (
+                            {item.subMenu && showFirstMenu  && (
                                 <div>
                                     {item.subMenu.map(
                                         (
@@ -118,7 +138,7 @@ function Navigation({
                                                     />
                                                 </div>
                                                 {subItem.subMenu &&
-                
+                                                    showFirstMenu &&
                                                     showSecondMenu && (
                                                         <div>
                                                             {subItem.subMenu.map(

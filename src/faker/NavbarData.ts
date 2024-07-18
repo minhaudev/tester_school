@@ -26,7 +26,6 @@ export const navbarData: NavigationTypeData = {
             id: 2,
             prefixIcon: FileDocFill,
             title: "Sales Order Management",
-            href: "/order",
             subMenu: [
                 {
                     id: 2.1,
