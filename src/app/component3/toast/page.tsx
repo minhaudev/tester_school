@@ -17,9 +17,7 @@ const ToastComponent = () => {
     };
     return (
         <div>
-            <Button variant="secondary" onClick={handleShowToast}>
-                Show Toast
-            </Button>
+            <Button variant="secondary" onClick={handleShowToast}></Button>
             {toastVisible && (
                 <Toast
                     visible={toastVisible}

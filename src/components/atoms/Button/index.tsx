@@ -1,7 +1,7 @@
 "use client";
-import Frame from "@/assets/images/Frame";
+import Frame from "@/assets/svgs/frame_v2.svg";
 import FileDock from "@/assets/svgs/File_dock_duotone.svg";
-import ImportLight from "@/assets/svgs/Import_light.svg";
+import Close from "@/assets/svgs/close_square_light.svg";
 import Link from "next/link";
 import React, {
     ReactNode,
@@ -37,14 +37,19 @@ interface PropsBtn {
     fileDetails?: FileDetail[];
     setFileDetails?: React.Dispatch<React.SetStateAction<FileDetail[]>>;
     typeFile?: string;
+    warningFile?: ReactNode;
 }
+type RequiredProps = Required<Pick<PropsBtn, "typeFile">> &
+    Omit<PropsBtn, "typeFile">;
 
 export default function Button(
-    props: PropsBtn &
+    props: RequiredProps &
         ButtonHTMLAttributes<HTMLButtonElement> &
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
     const {
+        warningFile,
+        typeFile,
         onDelete,
         isIcon,
         variant,
@@ -60,18 +65,27 @@ export default function Button(
         setFileDetails,
         ...rest
     } = props;
-
+    const [isWarning, setIsWarning] = useState(false);
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && setFileDetails) {
             const files = Array.from(event.target.files).map((file) => ({
                 name: file.name,
                 size: file.size
             }));
-            if (files.length > 5) {
-                alert("Không được phép chọn quá 5 file.");
-                return;
+
+            if (files.length <= 5) {
+                setIsWarning(false);
+                setFileDetails(files);
+            } else {
+                setIsWarning(true);
             }
-            setFileDetails(files);
+        }
+    };
+
+    const handleClose = (index: number) => {
+        if (fileDetails && setFileDetails) {
+            const updatedFiles = fileDetails.filter((_, i) => i !== index);
+            setFileDetails(updatedFiles);
         }
     };
 
@@ -88,7 +102,7 @@ export default function Button(
             case "link":
                 return "bg-[transparent] text-primary hover:text-primary-5-hover";
             case "text":
-                return "bg-[transparent] text-text hover:bg-white";
+                return "bg-[transparent] hover:bg-white";
             case "file":
             default:
                 return "";
@@ -100,15 +114,16 @@ export default function Button(
             switch (variant) {
                 case "primary-light":
                 case "primary-dark":
-                    return "bg-warning hover:bg-warning-hover text-white";
+                    return "bg-red hover:bg-warning-hover text-white";
                 case "secondary":
-                    return "bg-white border border-warning hover:border-warning-hover hover:text-warning-hover text-warning";
+                    return "bg-white border border-red hover:border-warning-hover hover:text-warning-hover text-red";
                 case "dashed":
-                    return "bg-white border border-dashed border-warning hover:border-warning-hover hover:text-warning-hover text-warning";
+                    return "bg-white border border-dashed border-warning hover:border-warning-hover hover:text-warning-hover text-red";
                 case "link":
                 case "text":
-                    return "bg-[transparent] text-warning hover:text-warning-hover";
+                    return "bg-[transparent] text-red hover:text-warning-hover";
                 case "file":
+                    return "bg-[transparent] text-red hover:text-warning-hover";
                 default:
                     return "";
             }
@@ -190,45 +205,44 @@ export default function Button(
                         hidden
                         onChange={handleFileChange}
                         multiple={true}
-                        accept=".doc,.docx,.pdf,.jpg,.jpeg,.png,.xlsx,.xls,.csv,.txt,.ppt,.pptx,.zip,.rar,.gif,.bmp,.tiff,.svg,.html,.htm,.xml,.json,.mp3,.wav,.mp4,.avi,.mov"
+                        accept={typeFile}
                     />
-                    <span className="w-4 h-4">
+                    <span className="w-4 h-4 ">
                         <Frame />
                     </span>
                     <span>
                         {fileDetails && fileDetails.length === 1 ?
                             fileDetails[0].name
-                        : fileDetails && fileDetails.length > 1 ?
-                            `${fileDetails.length} multiple file`
+                        : (
+                            fileDetails &&
+                            fileDetails.length > 1 &&
+                            fileDetails.length <= 5
+                        ) ?
+                            `${fileDetails.length} multiple files`
                         :   children}
                     </span>
                 </label>
-                {fileDetails && fileDetails.length > 1 && (
-                    <div>
-                        <div className="flex-col mt-2 w-fit max-w-[620px] rounded-[5px] h-auto border border-stroke py-2 px-4">
-                            <ul className="flex gap-4 flex-wrap justify-between">
-                                {fileDetails
-                                    .slice(0, 10)
-                                    .map((fileDetail, index) => (
+                {isWarning && <div>{warningFile}</div>}
+                {fileDetails &&
+                    fileDetails.length >= 1 &&
+                    fileDetails.length <= 5 && (
+                        <div>
+                            <div className="flex-col mt-2 w-full max-w-[620px] rounded-[5px] h-auto border border-stroke py-2 px-4">
+                                <ul className="flex gap-4 flex-wrap justify-between">
+                                    {fileDetails.map((fileDetail, index) => (
                                         <li
                                             className="cursor-pointer"
                                             key={index}>
-                                            <div className="min-w-[200px] ">
-                                                <a
-                                                    className="flex justify-between max-w-[164px] items-center"
-                                                    href=""
-                                                    download>
+                                            <div className="w-full flex-col min-w-[200px] ">
+                                                <div className="flex justify-between max-w-[164px] items-center">
                                                     <FileDock className="w-[21.33px] h-[26.67px]" />
                                                     <div>
-                                                        <p className="text-[#4B5563] font-normal text-[12px] leading-[14.32px]">
+                                                        <p className="text-[#4B5563] font-normal text-[14px] leading-[14.32px] mb-1">
                                                             {(
                                                                 fileDetail.name
                                                                     .length > 10
                                                             ) ?
-                                                                `${fileDetail.name.slice(
-                                                                    0,
-                                                                    10
-                                                                )}...${fileDetail.name.slice(
+                                                                `${fileDetail.name.slice(0, 10)}...${fileDetail.name.slice(
                                                                     fileDetail.name.lastIndexOf(
                                                                         "."
                                                                     )
@@ -243,15 +257,20 @@ export default function Button(
                                                             MB
                                                         </p>
                                                     </div>
-                                                    <ImportLight className="text-primary w-4 h-4" />
-                                                </a>
+                                                    <Close
+                                                        onClick={() =>
+                                                            handleClose(index)
+                                                        }
+                                                        className="text-primary w-4 h-4"
+                                                    />
+                                                </div>
                                             </div>
                                         </li>
                                     ))}
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
             </div>
         );
     }
@@ -269,9 +288,7 @@ export default function Button(
             style={{fontFamily: "inherit"}}>
             {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
             <span
-                className={`${
-                    isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""
-                }`}>
+                className={`${isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""}`}>
                 {children}
             </span>
         </button>
