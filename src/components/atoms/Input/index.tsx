@@ -11,7 +11,7 @@ interface PropsInput {
     value?: string;
     placeholder?: string;
     name?: string;
-    handleOnChange: (
+    handleOnChange?: (
         e: React.ChangeEvent<
             HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
         >
@@ -143,7 +143,7 @@ const Input: React.FC<PropsInput> = (props) => {
                 </span>
             </div>
             {showCalendar && (
-                <div className="absolute right-60">
+                <div className="absolute right-0">
                     <DatePicker
                         className="absolute !right-0"
                         selected={selectedDate}
