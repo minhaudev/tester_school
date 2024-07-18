@@ -7,13 +7,13 @@ import {navbarData} from "@/faker/NavbarData";
 import {NavbarProps, NavigationType} from "@/interfaces";
 import React, {useState} from "react";
 import "../../../app/globals.css";
-import usePersistedState from "@/hook/saveLocalStorage";
+import useSaveLocalStorage from "@/hooks/useSaveLocalStorage";
 
 function Navigation({type = NavigationType.CLIENT}: {type: NavigationType}) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(1);
-    const [expand, setExpand] = usePersistedState("expand", true);
+    const [expand, setExpand] = useSaveLocalStorage("expand", true);
     const handleExpand = () => {
         setExpand((prev: boolean) => !prev);
         setShowFirstMenu(false);
