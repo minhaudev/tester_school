@@ -1,10 +1,10 @@
 "use client";
 import Footer from "@/components/layouts/Footer/Footer";
-import Header from "@/components/layouts/Header/Header";
+import Header from "@/components/layouts/Header";
 import Navigation from "@/components/molecules/Navigation";
 import {NavigationType} from "@/interfaces";
 import {usePathname} from "next/navigation";
-// import Header from '@/components/layouts/Header/Header'
+// import Header from '@/components/layouts/Header'
 
 export default function Order() {
     const pathCurrentPage = usePathname();
