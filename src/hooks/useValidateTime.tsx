@@ -8,21 +8,18 @@ function useValidateTime({endDate,startDate}:{endDate:Date,startDate:Date}) {
     const totalTime = endDate.getTime() - startDate.getTime();
     const [end,setEnd] = useState(false)
     const totalTimeHours = totalTime / (1000 * 60 * 60);
-    const timerRef = useRef(null)
     useEffect(() => {
         const intervalId = setInterval(() => {
             const timeAble = (endDate.getTime() - Date.now()) / (1000 * 60 * 60);
             const timeData = calculateDate({ endDate });
             setTimeValidity({ ...timeData });
-            console.log('check day ::: ', timeData);
             setTimeAble(() => timeAble);
             const currentPercent = (timeAble / totalTimeHours) * 100;
-            console.log('check');
             if (timeAble <= 0) {
                 setCurrentPercent(0);
                 setTimeValidity({day:0,hours:0,minutes:0,secondTime:0})
+                clearInterval(intervalId); 
                 setEnd(true)
-                clearInterval(intervalId); // Clear the interval
             } else {
                 setCurrentPercent(currentPercent);
             }
