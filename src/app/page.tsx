@@ -17,7 +17,6 @@ export default function Home() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
     const [inputValue, setInputValue] = useState("");
-    const [select, setSelect] = useState("");
     const [fileDetails, setFileDetails] = useState([]);
     const handleDateChange = (date: Date | null) => {
         setSelectedDate(date);
@@ -34,7 +33,7 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-07-19T13:28:00"));
+    const endDate = new Date(Date.parse("2024-07-19T17:28:00"));
     const startDate = new Date(Date.parse("2024-07-19T13:20:00"));
     const handleEndIn = ()=>{
         alert('end in')
