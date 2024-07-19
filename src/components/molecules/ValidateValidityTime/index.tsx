@@ -6,7 +6,9 @@ function ValidateValidityTime({endDate,startDate,onEnd}:{endDate:Date,startDate:
     const {timeValidity,currentPercent,end} = useValidateTime({endDate,startDate})
     useEffect(()=>{
        if(end){
-        return onEnd()
+        setTimeout(() => {
+            return onEnd()
+        }, 1000);
        }
     },[currentPercent])
     const bgColor = currentPercent >= 50  ? 'bg-green-bold' : (currentPercent >= 30  && currentPercent < 50) ?'bg-yellow' : "bg-red"

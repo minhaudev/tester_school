@@ -7,7 +7,7 @@ function ValidateServiceTime({endDate,startDate,onEnd}:{endDate:Date,startDate:D
     const {timeAble,totalTimeHours,timeValidity,currentPercent,end} = useValidateTime({endDate,startDate})
     useEffect(()=>{
        if(end){
-        return onEnd()
+        setTimeout(()=> onEnd(),1000)
        }
     },[currentPercent])
     return (
