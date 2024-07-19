@@ -37,51 +37,6 @@ export default function Standard() {
                         variant="select"
                         placeholder="Select"
                     />
-
-                    {valueSelect === "Galvalume" && (
-                        <div>
-                            <div className="flex gap-2 mb-4">
-                                <Input
-                                    placeholder="Select"
-                                    label="Surface coating"
-                                    variant="select"
-                                />
-
-                                <Input
-                                    placeholder="Select"
-                                    label="Alloy coating"
-                                    variant="select"
-                                />
-                            </div>
-                            <Input
-                                placeholder="Select"
-                                label="Specification"
-                                variant="select"
-                            />
-                        </div>
-                    )}
-                    {valueSelect === "Pre-painted galvanized" && (
-                        <div>
-                            <div className="flex gap-2 mb-4">
-                                <Input
-                                    placeholder="Select"
-                                    label="Surface coating"
-                                    variant="select"
-                                />
-
-                                <Input
-                                    placeholder="Select"
-                                    label="Alloy coating"
-                                    variant="select"
-                                />
-                            </div>
-                            <Input
-                                placeholder="Select"
-                                label="Specification"
-                                variant="select"
-                            />
-                        </div>
-                    )}
                 </DrawerContent>
                 <DrawerFooter
                     title="Add new"

@@ -71,6 +71,7 @@ function ProcessFlow() {
         </div>
         <div className="flex gap-4 mt-[50px]"> 
         <Button
+        typeFile={''}
         variant="secondary"
         size="medium"
             className={`${currentProcessIndex >= flows.length ?"disabled text-gray-4 cursor-not-allowed":""}`}
@@ -83,6 +84,7 @@ function ProcessFlow() {
                 next
             </Button>
             <Button
+            typeFile=""
               variant="secondary"
         size="medium"
              className={`${currentProcessIndex <=  1 ?"disabled text-gray-4 cursor-not-allowed":""}`}
