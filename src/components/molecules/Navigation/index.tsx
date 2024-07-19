@@ -23,7 +23,6 @@ function Navigation({
     const handleExpand = () => {
         if(!expand && routePath.includes(SPECIALlPATH) ){
             setExpand(!expand);
-            // setShowSecondMenu(true);
             setShowFirstMenu(true);
             return
         }

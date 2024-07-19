@@ -16,7 +16,7 @@ function ProcessFlowItem({
     };
     return (
         <div>
-            <div className="flex justify-start items-center gap-2">
+            <div className={`flex justify-start items-center gap-2 ${  stateProcess.NONE === state ? "disabled cursor-not-allowed" :''}`}>
                 {state !== stateProcess.DONE ? (
                     <div
                         className={`rounded-full w-[48px] h-[48px] flex items-center justify-center border-[0.5px] ${
@@ -44,6 +44,7 @@ function ProcessFlowItem({
                     <DonIcon
                     onClick = {(id:number)=> onChangeState && onChangeState(id)}
                         className="
+                    cursor-pointer
                     min-w-[48px]
                     min-h-[48px]
                    "

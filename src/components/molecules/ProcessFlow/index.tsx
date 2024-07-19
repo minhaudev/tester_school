@@ -1,11 +1,10 @@
 import Button from "@/components/atoms/Button";
 import ProcessFlowItem from "@/components/atoms/ProcessFlowItem";
 import { processFlowData } from "@/faker";
-import {ProcessFlowProps, stateProcess} from "@/interfaces";
 import { useState } from "react";
+import {ProcessFlowProps, stateProcess} from "@/interfaces";
 function ProcessFlow() {
     type ActionType = "back" | "next";
-    const [statusProcess, setStateProcess] = useState(stateProcess.NONE);
     const [flows, setFlow] = useState<ProcessFlowProps[]>(processFlowData);
     const [currentProcessIndex, setCurrentProcessIndex] = useState(
         processFlowData[0].id
@@ -70,8 +69,11 @@ function ProcessFlow() {
                 />
             ))}
         </div>
-        <div className="flex gap-4"> 
-        <button
+        <div className="flex gap-4 mt-[50px]"> 
+        <Button
+        variant="secondary"
+        size="medium"
+            className={`${currentProcessIndex >= flows.length ?"disabled text-gray-4 cursor-not-allowed":""}`}
                 onClick={() =>
                     handleProcessFlow({
                         type: "next",
@@ -79,8 +81,11 @@ function ProcessFlow() {
                     })
                 }>
                 next
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="secondary"
+        size="medium"
+             className={`${currentProcessIndex <=  1 ?"disabled text-gray-4 cursor-not-allowed":""}`}
                 onClick={() =>
                     handleProcessFlow({
                         type: "back",
@@ -88,7 +93,7 @@ function ProcessFlow() {
                     })
                 }>
                back
-            </button>
+            </Button>
         </div>
         </>
         
