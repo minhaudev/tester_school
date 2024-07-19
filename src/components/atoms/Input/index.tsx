@@ -1,12 +1,14 @@
 "use client";
-import React, {ReactNode} from "react";
+import React, {ReactNode, useEffect, useRef} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "@/assets/svgs/dropdown_select.svg";
+import IconCalendar from "@/assets/svgs/calendar_v2.svg";
+
 interface PropsInput {
     optionSelect?: string[];
     handleDateChange?: (date: Date | null) => void;
-    variant?: "input" | "textarea" | "select"; // Added "select" to variant type
+    variant?: "input" | "textarea" | "select";
     require?: boolean;
     value?: string;
     placeholder?: string;
@@ -19,6 +21,8 @@ interface PropsInput {
     isDisabled?: boolean;
     className?: string;
     prefix?: ReactNode;
+    isCalendarPrefix?: boolean;
+    isCalendarSuffix?: boolean;
     suffix?: ReactNode;
     size?: "large" | "medium" | "small";
     error?: boolean;
@@ -29,11 +33,12 @@ interface PropsInput {
     setShowCalendar?: (show: boolean) => void;
     selectedDate?: Date | null;
     handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    // Added handleSelectChange
 }
 
 const Input: React.FC<PropsInput> = (props) => {
     const {
+        isCalendarPrefix,
+        isCalendarSuffix,
         optionSelect,
         handleDateChange,
         variant,
@@ -56,6 +61,28 @@ const Input: React.FC<PropsInput> = (props) => {
         selectedDate,
         handleSelectChange
     } = props;
+
+    const inputRef = useRef<HTMLDivElement>(null);
+    const calendarRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                inputRef.current &&
+                !inputRef.current.contains(event.target as Node) &&
+                calendarRef.current &&
+                !calendarRef.current.contains(event.target as Node)
+            ) {
+                setShowCalendar && setShowCalendar(false);
+            }
+        };
+
+        window.addEventListener("click", handleClickOutside);
+
+        return () => {
+            window.removeEventListener("click", handleClickOutside);
+        };
+    }, [setShowCalendar]);
 
     const getSizeClass = (size?: "large" | "medium" | "small") => {
         switch (size) {
@@ -85,8 +112,17 @@ const Input: React.FC<PropsInput> = (props) => {
                 {label}
                 {require && <span className="text-warning"> &#160;*</span>}{" "}
             </label>
-            <div className={`${combinedClasses}`} tabIndex={0}>
-                <div className="absolute">{prefix}</div>
+            <div ref={inputRef} className={`${combinedClasses}`} tabIndex={0}>
+                {isCalendarPrefix ?
+                    <span
+                        className="absolute left-2 cursor-pointer"
+                        onClick={() =>
+                            setShowCalendar && setShowCalendar(!showCalendar)
+                        }>
+                        <IconCalendar className="w-full" />
+                    </span>
+                :   <div className="absolute">{prefix}</div>}
+
                 {variant === "textarea" ?
                     <textarea
                         className={`w-full min-h-[169px] max-h-[169px] p-2 focus:!outline-secondary  ${
@@ -123,35 +159,52 @@ const Input: React.FC<PropsInput> = (props) => {
                         </div>
                     </div>
                 :   <input
-                        className={`w-full focus:!outline-secondary   p-2  ${
-                            prefix ? "ml-6" : ""
-                        }`}
+                        className={`w-full focus:!outline-secondary p-2 ${
+                            prefix ? "pl-8" : ""
+                        } ${isCalendarPrefix && "pl-8"} ${
+                            suffix ? "pr-6" : ""
+                        } ${isCalendarSuffix && "pr-6"}`}
                         type={type}
                         placeholder={placeholder}
                         name={name}
                         value={value}
                         onChange={handleOnChange}
+                        onFocus={() => {
+                            if (
+                                (isCalendarPrefix || isCalendarSuffix) &&
+                                setShowCalendar
+                            ) {
+                                setShowCalendar(true);
+                            }
+                        }}
                         disabled={isDisabled}
                     />
                 }
-                <span
-                    className="absolute right-0 mr-6 cursor-pointer"
-                    onClick={() =>
-                        setShowCalendar && setShowCalendar(!showCalendar)
-                    }>
-                    {suffix}
-                </span>
+                {isCalendarSuffix ?
+                    <span
+                        className="absolute right-0 pr-6 cursor-pointer"
+                        onClick={() =>
+                            setShowCalendar && setShowCalendar(!showCalendar)
+                        }>
+                        <IconCalendar className="w-full" />
+                    </span>
+                :   <span>{suffix}</span>}
+                {showCalendar && (
+                    <div
+                        ref={calendarRef}
+                        className={`${
+                            isCalendarPrefix ? "left-0 " : "right-0 "
+                        } absolute z-50 top-[100%]`}>
+                        <DatePicker
+                            className="absolute !right-0 "
+                            selected={selectedDate}
+                            onChange={handleDateChange}
+                            inline
+                        />
+                    </div>
+                )}
             </div>
-            {showCalendar && (
-                <div className="absolute right-0">
-                    <DatePicker
-                        className="absolute !right-0"
-                        selected={selectedDate}
-                        onChange={handleDateChange}
-                        inline
-                    />
-                </div>
-            )}
+
             <small className={`${error ? "text-warning" : "text-unit"}`}>
                 {helperText}
             </small>
