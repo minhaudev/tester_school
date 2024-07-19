@@ -22,7 +22,7 @@ const myFonts = localFont({
 });
 
 import "./globals.css"; // Import global CSS styles
-import { PopupProvider } from "@/context/PopupContext";
+import {PopupProvider} from "@/context/PopupContext";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${myFonts.className} bg-primary`}>
+            <body>
                 <PopupProvider>{children}</PopupProvider>
             </body>
         </html>

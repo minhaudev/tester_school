@@ -66,13 +66,16 @@ export default function Header() {
                     </div>
                     <div className="flex gap-[16px] justify-center items-center">
                         <div className="relative" ref={noticeRef}>
-                            <span
-                                onClick={handleNotice}
-                                className="absolute cursor-pointer rounded-full ml-3 z-10 px-[4px] text-[8px] text-white bg-warning">
-                                {notifications.length > 10 ?
-                                    "9+"
-                                :   notifications.length}
-                            </span>
+                            {notifications.length !== 0 ?
+                                <span
+                                    onClick={handleNotice}
+                                    className="absolute cursor-pointer rounded-full ml-3 z-10 px-[4px] text-[8px] text-white bg-red">
+                                    {notifications.length > 10 ?
+                                        "9+"
+                                    :   notifications.length}
+                                </span>
+                            :   ""}
+
                             <span onClick={handleNotice}>
                                 <Bell className="w-6 h-6 cursor-pointer" />
                             </span>
