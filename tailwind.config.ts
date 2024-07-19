@@ -9,6 +9,10 @@ const config: Config = {
 
     theme: {
         colors: {
+            "secondary-hover": "#12BDFE",
+            "primary-5-hover": "#0376D7",
+            "warning-hover": "#F56569",
+            "border-warning-hover": "#ED1E24",
             text: "#3A3B3C",
             "text-light": "#4B5563",
             primary: "#01559B",

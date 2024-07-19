@@ -3,7 +3,7 @@ import Success from "@/assets/svgs/Success_toast.svg";
 import Warning from "@/assets/svgs/Warning_toast.svg";
 import Close from "@/assets/svgs/Close_round.svg";
 import React, {useEffect, useState} from "react";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 
 interface ToastValue {
     color: string;
@@ -95,7 +95,7 @@ const Toast = ({
                                 variant="dashed"
                                 size="medium"
                                 className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                                onClick={onClose}>
+                                onClick={onClose} typeFile={""}>
                                 <Close className="w-5 h-5 text-gray-10" />
                             </Button>
                         </div>

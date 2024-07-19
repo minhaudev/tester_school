@@ -13,6 +13,6 @@ export interface NavbarProps {
     prefixIcon?: any;
     leadingIcon?: any;
     title: string;
-    href: string;
+    href?: string;
     subMenu?: NavbarProps[];
 }

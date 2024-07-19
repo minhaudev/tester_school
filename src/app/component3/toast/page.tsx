@@ -14,12 +14,14 @@ const ToastComponent = () => {
     };
     return (
         <div>
-            <Button variant="secondary" onClick={handleShowToast} size={"large"}>
-                Show Toast
-            </Button>
+            <Button
+                variant="secondary"
+                onClick={handleShowToast}
+                typeFile={""}
+                size={"small"}></Button>
             {toastVisible && (
                 <Toast
-                time={1000}
+                    time={1000}
                     visible={toastVisible}
                     position={ToastPosition.Bottom_Left}
                     type={ToastType.Warning}

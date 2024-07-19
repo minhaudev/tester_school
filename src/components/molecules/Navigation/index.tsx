@@ -1,47 +1,68 @@
 "use client";
-import Menu from "@/assets/svgs/Menu.svg";
+import Menu from "@/assets/svgs/menu.svg";
 import Button from "@/components/atoms/Button";
 import IconListItem from "@/components/atoms/IconListItem";
 import {navbarData} from "@/faker/NavbarData";
-
 import {NavbarProps, NavigationType} from "@/interfaces";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../../../app/globals.css";
-import usePersistedState from "@/hook/saveLocalStorage";
-
+import useSaveLocalStorage from "@/hooks/useSaveLocalStorage";
+const SPECIALlPATH = '/order/approve'
 function Navigation({
-    type = NavigationType.CLIENT
+    type = NavigationType.CLIENT,
+    routePath
 }: {
     type: NavigationType;
     routePath: string;
 }) {
     const [showFirstMenu, setShowFirstMenu] = useState(false);
     const [showSecondMenu, setShowSecondMenu] = useState(false);
-    const [active, setActive] = useState(1);
-    const [expand, setExpand] = usePersistedState("expand", true);
+    const [active, setActive] = useState(2.1);
+    const [expand, setExpand] = useSaveLocalStorage("expand", true);
     const handleExpand = () => {
-        setExpand((prev: boolean) => !prev);
-        setShowFirstMenu(false);
+        if(!expand && routePath.includes(SPECIALlPATH) ){
+            setExpand(!expand);
+            setShowFirstMenu(true);
+            return
+        }
+            setExpand(!expand);
+            setShowSecondMenu(false);
+            setShowFirstMenu(false);
     };
-
-    const handleShowMenuFirst = () => {
-        setShowFirstMenu(!showFirstMenu);
-        setExpand(true);
-    };
-
     const handleShowMenuSecond = () => {
         setShowSecondMenu(!showSecondMenu);
         setExpand(true);
     };
+    const handleFirstMenuSecond = () => {
+        setShowFirstMenu(!showFirstMenu);
+        if(routePath.includes(SPECIALlPATH)){
+            setShowSecondMenu(true)
+           
+        }
+        setExpand(true);
+    };
+    useEffect(()=>{
+        if(routePath.includes(SPECIALlPATH )&& !expand){
+            setShowSecondMenu(false)
+            setShowFirstMenu(false)
+            return
+        }
+        if(routePath.includes(SPECIALlPATH) && expand){
+            setShowSecondMenu(true)
+            setShowFirstMenu(true)
+            return
+        }
 
+    },[])
+    
     return (
         <div
-            className={` h-[100vh] overflow-y-auto ${
-                expand ? "animate-expand" : "animate-collapse"
+            className={`h-[100vh] overflow-y-auto transition-width duration-100 ${
+                expand ? "min-w-[255px]" : "min-w-[56px]"
             } bg-primary pb-[13px]`}>
             <div
-                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px]  ${
-                    expand ? "px-4" : " px-3"
+                className={`sticky top-0 h-[56px] z-50 bg-primary flex items-center justify-between py-[13px] ${
+                    expand ? "px-4" : "px-3"
                 } font-[400] text-[32px]`}>
                 {expand && (
                     <p className="uppercase text-8 font-[400] leading-[34px] text-white font-wendy-one">
@@ -49,6 +70,7 @@ function Navigation({
                     </p>
                 )}
                 <Button
+                typeFile=""
                     isIcon
                     variant="primary-dark"
                     color="white"
@@ -62,21 +84,26 @@ function Navigation({
                     navbarData[type].map((item: NavbarProps, index: number) => (
                         <React.Fragment key={index}>
                             <div
-                                onClick={() => {
-                                    if (item.subMenu) {
-                                        handleShowMenuFirst();
-                                    }
-                                }}>
-                                <IconListItem
-                                    onActive={() => setActive(item.id)}
-                                    active={active === item.id}
+                               >
+                                {item.href ?
+                                    <IconListItem
+                                        active={item.href === routePath || (routePath.includes(item.href) && (!expand || !showFirstMenu))}
+                                        expand={expand}
+                                        prefixIcon={item.prefixIcon}
+                                        title={item.title}
+                                        href={item.href}
+                                    />
+                                :   <div onClick={handleFirstMenuSecond}>
+                                    <IconListItem
+                                    active={active === item.id || (routePath.includes(SPECIALlPATH) && (!expand || !showFirstMenu))}
                                     expand={expand}
                                     prefixIcon={item.prefixIcon}
                                     title={item.title}
-                                    href={item.href}
                                 />
+                                </div>
+                                }
                             </div>
-                            {item.subMenu && showFirstMenu && (
+                            {item.subMenu && showFirstMenu  && (
                                 <div>
                                     {item.subMenu.map(
                                         (
@@ -91,17 +118,13 @@ function Navigation({
                                                         }
                                                     }}>
                                                     <IconListItem
-                                                        onActive={() =>
-                                                            setActive(
-                                                                subItem.id
-                                                            )
-                                                        }
                                                         classCustom={
                                                             "pl-[56px]"
                                                         }
+                                                        onActive={()=>setActive(subItem.id)}
                                                         active={
-                                                            active ===
-                                                            subItem.id
+                                                            subItem.href ===
+                                                            routePath || (routePath.includes(SPECIALlPATH) && subItem.id === active && !showSecondMenu)
                                                         }
                                                         title={subItem.title}
                                                         href={subItem.href}
@@ -127,14 +150,9 @@ function Navigation({
                                                                             subSubIndex
                                                                         }
                                                                         classCustom="pl-[76px]"
-                                                                        onActive={() =>
-                                                                            setActive(
-                                                                                subSubItem.id
-                                                                            )
-                                                                        }
                                                                         active={
-                                                                            active ===
-                                                                            subSubItem.id
+                                                                            subSubItem.href ===
+                                                                            routePath
                                                                         }
                                                                         title={
                                                                             subSubItem.title

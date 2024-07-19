@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/atoms/Button";
 import Card from "@/components/molecules/Card";
 import Modal from "@/components/molecules/Modal";
 import {usePopup} from "@/context/PopupContext";
@@ -28,7 +28,7 @@ const ModalComp = () => {
                             <div className="gap-8 items-center flex flex-row justify-center">
                                 <Button
                                     variant="secondary"
-                                    onClick={() => setShowPopup(true)}>
+                                    onClick={() => setShowPopup(true)} size={"small"} typeFile={""}>
                                     Show Modal
                                 </Button>
                                 {showPopup && (

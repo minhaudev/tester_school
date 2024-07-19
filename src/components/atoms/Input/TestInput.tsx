@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Input from ".";
+
 import Calendar from "@/assets/svgs/Calendar.svg";
 const TestInput = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -32,23 +32,24 @@ const TestInput = () => {
     };
 
     return (
-        <Input
-            // suffix={<Calendar />}
-            error
-            helperText="this is a helppertext"
-            require
-            className="focus:border focus:!border-secondary"
-            variant="select"
-            label="Chọn Ngày:"
-            placeholder="Công ty TNHH Thép Thiên Phước"
-            value={inputValue}
-            showCalendar={showCalendar}
-            setShowCalendar={setShowCalendar}
-            selectedDate={selectedDate}
-            handleDateChange={handleDateChange}
-            handleOnChange={handleOnChange}
-            handleSelectChange={handleSelectChange}
-        />
+        <div className=""></div>
+        // <Input
+        //     // suffix={<Calendar />}
+        //     error
+        //     helperText="this is a helppertext"
+        //     require
+        //     className="focus:border focus:!border-secondary"
+        //     variant="select"
+        //     label="Chọn Ngày:"
+        //     placeholder="Công ty TNHH Thép Thiên Phước"
+        //     value={inputValue}
+        //     showCalendar={showCalendar}
+        //     setShowCalendar={setShowCalendar}
+        //     selectedDate={selectedDate}
+        //     handleDateChange={handleDateChange}
+        //     handleOnChange={handleOnChange}
+        //     handleSelectChange={handleSelectChange}
+        // />
     );
 };
 

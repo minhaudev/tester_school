@@ -1,16 +1,16 @@
-import ChartFill from "@/assets/svgs/Chart_fill.svg";
-import IconFilleDocAdd from "@/assets/svgs/File_dock_add_fill.svg";
-import FileDocFill from "@/assets/svgs/File_dock_fill.svg";
-import LineUp from "@/assets/svgs/Line_up.svg";
-import PaperFill from "@/assets/svgs/Paper_fill.svg";
-import UserCircle from "@/assets/svgs/User_cicrle.svg";
-import Database from "@/assets/svgs/Database_fill.svg";
-import TagPercent from "@/assets/svgs/Offer_Percent.svg";
-import FileCheck from "@/assets/svgs/File_Tick.svg";
+import ChartFill from "@/assets/svgs/chart_fill.svg";
+import IconFilleDocAdd from "@/assets/svgs/file_dock_add_fill.svg";
+import FileDocFill from "@/assets/svgs/file_dock_fill.svg";
+import LineUp from "@/assets/svgs/line_up.svg";
+import PaperFill from "@/assets/svgs/paper_fill.svg";
+import UserCircle from "@/assets/svgs/user_cicrle.svg";
+import Database from "@/assets/svgs/database_fill.svg";
+import TagPercent from "@/assets/svgs/offer_Percent.svg";
+import FileCheck from "@/assets/svgs/file_Tick.svg";
 import Box3d from "@/assets/svgs/3d_box.svg";
-import UserAdd from "@/assets/svgs/User_add_alt_fill.svg";
-import GroupUser from "@/assets/svgs/manage_user-group.svg";
-import ProductUser from "@/assets/svgs/Product_User.svg";
+import UserAdd from "@/assets/svgs/user_add_alt_fill.svg";
+import GroupUser from "@/assets/svgs/manage_user_group.svg";
+import ProductUser from "@/assets/svgs/product_User.svg";
 import ChevronDown from "@/assets/svgs/Expand_down.svg";
 interface NavbarProps {
     id: number;
@@ -31,27 +31,7 @@ const tableFuture: NavbarProps[] = [
         id: 2,
         prefixIcon: FileDocFill,
         title: "Sales Order Management",
-        href: "#",
-        subMenu: [
-            {
-                id: 2.1,
-                leadingIcon: ChevronDown,
-                title: "Approved Orders",
-                href: "#",
-                subMenu: [
-                    {
-                        id: 2.12,
-                        title: "Pending Delivery",
-                        href: "#"
-                    },
-                    {id: 2.13, title: "Works in progress", href: "#"},
-                    {id: 2.14, title: "Complete & Denied", href: "#"}
-                ]
-            },
-            {id: 2.2, title: "Pending Approvals", href: "#"},
-            {id: 2.3, title: "Drafts", href: "#"},
-            {id: 2.4, title: "Canceled & Denied", href: "#"}
-        ]
+        href: "#"
     },
     {
         id: 3,
