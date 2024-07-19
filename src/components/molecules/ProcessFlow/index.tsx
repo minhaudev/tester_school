@@ -3,7 +3,7 @@ import ProcessFlowItem from "@/components/atoms/ProcessFlowItem";
 import { processFlowData } from "@/faker";
 import {ProcessFlowProps, stateProcess} from "@/interfaces";
 import { useState } from "react";
-function ProcessFlow({dataFlow,onProcessActive}: {dataFlow: ProcessFlowProps[],onProcessActive:(id:number)=>void}) {
+function ProcessFlow() {
     type ActionType = "back" | "next";
     const [statusProcess, setStateProcess] = useState(stateProcess.NONE);
     const [flows, setFlow] = useState<ProcessFlowProps[]>(processFlowData);

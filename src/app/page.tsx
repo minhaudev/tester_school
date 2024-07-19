@@ -1,12 +1,14 @@
 "use client";
 
-import ProcessFlow from "@/components/molecules/ProcessFlow";
-import { processFlowData } from "@/faker";
+import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import LayoutContainer from "./LayoutContainer";
+import ProcessFlow from "@/components/molecules/ProcessFlow";
+
 export default function Home() {
-    const handleProcessActive = (id:number)=>{  
-    }
-    return <LayoutContainer>
-        <ProcessFlow onProcessActive={handleProcessActive}  dataFlow={processFlowData}/>
-    </LayoutContainer>;
+    return (
+        <LayoutContainer>
+            <CustomerBalanceInfo />
+            <ProcessFlow />
+        </LayoutContainer>
+    );
 }
