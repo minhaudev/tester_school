@@ -88,7 +88,7 @@ function Navigation({
                                >
                                 {item.href ?
                                     <IconListItem
-                                        active={item.href === routePath || (routePath.includes(item.href) && !expand)}
+                                        active={item.href === routePath || (routePath.includes(item.href) && (!expand || !showFirstMenu))}
                                         expand={expand}
                                         prefixIcon={item.prefixIcon}
                                         title={item.title}
@@ -96,7 +96,7 @@ function Navigation({
                                     />
                                 :   <div onClick={handleFirstMenuSecond}>
                                     <IconListItem
-                                    active={active === item.id || (routePath.includes(SPECIALlPATH) && !expand)}
+                                    active={active === item.id || (routePath.includes(SPECIALlPATH) && (!expand || !showFirstMenu))}
                                     expand={expand}
                                     prefixIcon={item.prefixIcon}
                                     title={item.title}
