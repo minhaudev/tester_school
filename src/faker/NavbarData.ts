@@ -20,39 +20,45 @@ export const navbarData: NavigationTypeData = {
             id: 1,
             prefixIcon: IconFilleDocAdd,
             title: "Create Sales Order",
-            href: "#"
+            href: "/home"
         },
         {
             id: 2,
             prefixIcon: FileDocFill,
             title: "Sales Order Management",
-            href: "#",
             subMenu: [
                 {
                     id: 2.1,
                     leadingIcon: ChevronUp,
                     title: "Approved Orders",
-                    href: "#",
                     subMenu: [
                         {
                             id: 2.12,
                             title: "Pending Delivery",
-                            href: "#"
+                            href: "/order/approve/delivery"
                         },
-                        {id: 2.13, title: "Works in progress", href: "#"},
-                        {id: 2.14, title: "Complete & Denied", href: "#"}
+                        {
+                            id: 2.13,
+                            title: "Works in progress",
+                            href: "/order/approve/progress"
+                        },
+                        {
+                            id: 2.14,
+                            title: "Complete & Denied",
+                            href: "/order/approve/denied"
+                        }
                     ]
                 },
-                {id: 2.2, title: "Pending Approvals", href: "#"},
-                {id: 2.3, title: "Drafts", href: "#"},
-                {id: 2.4, title: "Canceled & Denied", href: "#"}
+                {id: 2.2, title: "Pending Approvals", href: "/order/pending"},
+                {id: 2.3, title: "Drafts", href: "/order/draft"},
+                {id: 2.4, title: "Canceled & Denied", href: "/order/denied"}
             ]
         },
         {
             id: 3,
             prefixIcon: GroupUser,
             title: "Customer Management",
-            href: "#"
+            href: "/contact"
         }
     ],
     admin: [

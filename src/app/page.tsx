@@ -1,14 +1,16 @@
 "use client";
 
+
+import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
+import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Button from "@/components/atoms/Button";
+import Toast from "@/components/molecules/Toasts/Toast";
+import { ToastPosition, ToastType } from "@/enums/ToastEnum";
+import { useState } from "react";
+
 import Input from "@/components/atoms/Input";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import Standard from "@/components/molecules/Standard/Index";
-import Toast from "@/components/molecules/Toasts/Toast";
-import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
-import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
-import { ToastPosition, ToastType } from "@/enums/ToastEnum";
-import { useState } from "react";
 import LayoutContainer from "./LayoutContainer";
 export default function Home() {
  
@@ -64,6 +66,8 @@ export default function Home() {
             <Button
                 warningFile={
                     <Toast
+                    onClose={()=>{}}
+                    visible
                         type={ToastType.Warning}
                         position={ToastPosition.Top_Right}
                         description="vượt quá số file cho phép!"
