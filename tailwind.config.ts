@@ -67,6 +67,8 @@ const config: Config = {
                 success: "#D2E5F5"
             },
             backgroundImage: {
+                "custom-gradient-cart":
+                    "linear-gradient(56.43deg, #008ECF 0.8%, #0083C5 55.9%, #0088CA 72.63%, #0098D9 94.28%, #009DDE 99.2%)",
                 "custom-gradient":
                     "linear-gradient(90deg, #00ADEE 0%, #0087CA 15%, #006CAF 29%, #005CA0 41%, #00569A 50%, #005CA0 59%, #006CAF 71%, #0087CA 85%, #00AEEF 100%)"
             },

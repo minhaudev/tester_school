@@ -1,8 +1,9 @@
-import Footer from "@/components/layouts/Footer/Footer";
-// import Header from '@/components/layouts/Header'
+
+import Footer from "@/components/layouts/Footer";
+
 import React from "react";
 import LayoutContainer from "../LayoutContainer";
 
 export default function Home() {
-    return <LayoutContainer>dkfkafdk</LayoutContainer>;
+    return <LayoutContainer>This is Homepage 2</LayoutContainer>;
 }
