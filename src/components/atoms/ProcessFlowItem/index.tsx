@@ -6,7 +6,8 @@ function ProcessFlowItem({
     label = "",
     icon: IconComponent = HomeIcon,
     line = false,
-    state = stateProcess.ACTIVE
+    state = stateProcess.ACTIVE,
+    onChangeState,
 }: ProcessFlowProps) {
     const styleProcessItem = {
         [stateProcess.NONE]: {w: "w-0", bg: "bg-transparent"},
@@ -41,6 +42,7 @@ function ProcessFlowItem({
                     </div>
                 ) : (
                     <DonIcon
+                    onClick = {(id:number)=> onChangeState && onChangeState(id)}
                         className="
                     min-w-[48px]
                     min-h-[48px]
