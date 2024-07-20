@@ -39,11 +39,11 @@ interface PropsBtn {
     typeFile?: string;
     warningFile?: ReactNode;
 }
-type RequiredProps = Required<Pick<PropsBtn, "typeFile">> &
-    Omit<PropsBtn, "typeFile">;
+// type RequiredProps = Required<Pick<PropsBtn, "typeFile">> &
+//     Omit<PropsBtn, "typeFile">;
 
 export default function Button(
-    props: RequiredProps &
+    props: PropsBtn &
         ButtonHTMLAttributes<HTMLButtonElement> &
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
