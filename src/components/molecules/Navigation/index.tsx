@@ -41,23 +41,21 @@ function Navigation({
         }
         setExpand(true);
     };
-    useEffect(()=>{
-        if(routePath.includes(SPECIALlPATH )&& !expand){
-            setShowSecondMenu(false)
-            setShowFirstMenu(false)
-            return
+    useEffect(() => {
+        if (routePath.includes(SPECIALlPATH) && !expand) {
+            setShowSecondMenu(false);
+            setShowFirstMenu(false);
+            return;
         }
-        if(routePath.includes(SPECIALlPATH) && expand){
-            setShowSecondMenu(true)
-            setShowFirstMenu(true)
-            return
+        if (routePath.includes(SPECIALlPATH) && expand) {
+            setShowSecondMenu(true);
+            setShowFirstMenu(true);
+            return;
         }
-
-    },[])
-    
+    }, [routePath, expand]);
     return (
         <div
-            className={`h-[100vh] overflow-y-auto transition-width duration-100 ${
+            className={`min-h-[100vh] overflow-y-auto transition-width duration-100 ${
                 expand ? "min-w-[255px]" : "min-w-[56px]"
             } bg-primary pb-[13px]`}>
             <div

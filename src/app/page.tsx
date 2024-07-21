@@ -35,8 +35,8 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-07-19T17:28:00"));
-    const startDate = new Date(Date.parse("2024-07-19T13:20:00"));
+    const endDate = new Date(Date.parse("2024-07-21T21:27:00Z"));
+    const startDate = new Date(Date.parse("2024-07-21T21:26:00Z"));
     const handleEndIn = ()=>{
         alert('end in')
     }
@@ -60,7 +60,7 @@ export default function Home() {
                 optionSelect={["avc", "bc", "vc"]}
             />
             <CustomerBalanceInfo />
-          <div className=" flex flex-col items-start gap-8 p-[10px] m-[20px] bg-secondary">
+          <div className=" flex flex-col items-start gap-8 p-[10px] m-[20px] ">
           <ValidateServiceTime onEnd={handleEndIn} endDate = {endDate} startDate = {startDate}/>
           <ValidateValidityTime onEnd={handleEndIn} endDate = {endDate} startDate = {startDate}/>
           </div>

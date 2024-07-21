@@ -28,7 +28,7 @@ export default function LayoutContainer({
                     routePath={pathCurrentPage}
                 />
             )}
-            <div className="flex-1">
+            <div className="flex-1 max-h-[100vh] overflow-scroll">
                 {isHeader && <Header />}
                 <div className="text-primary mt-10 mb-10">{children}</div>
                 {isFooter && <Footer />}
