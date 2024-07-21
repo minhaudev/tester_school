@@ -5,9 +5,8 @@ import { useEffect } from 'react';
 
 function ValidateServiceTime({endDate,startDate,onEnd}:{endDate:Date,startDate:Date,onEnd:()=>void}) {
     const {timeAble,totalTimeHours,timeValidity,currentPercent,end} = useValidateTime({endDate,startDate})
-    console.log("time validity :::: ",timeValidity);
     useEffect(()=>{
-       if(end && currentPercent >=0 ){
+       if(end && currentPercent <=0 ){
         setTimeout(()=> onEnd(),1000)
        }
     },[])
