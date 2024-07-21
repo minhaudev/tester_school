@@ -1,10 +1,9 @@
 import {ProcessFlowProps, stateProcess} from "@/interfaces";
 import DonIcon from "@/assets/svgs/done_process.svg";
-import HomeIcon from "@/assets/svgs/Home.svg";
 function ProcessFlowItem({
     id = 1,
     label = "",
-    icon: IconComponent = HomeIcon,
+    icon: IconComponent,
     line = false,
     state = stateProcess.ACTIVE,
     onChangeState = () => {}
