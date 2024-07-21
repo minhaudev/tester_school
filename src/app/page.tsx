@@ -6,7 +6,7 @@ import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Button from "@/components/atoms/Button";
 
 import ProcessFlow from "@/components/molecules/ProcessFlow";
-import Toast from "@/components/molecules/Toasts/Toast";
+
 import { ToastPosition, ToastType } from "@/enums/ToastEnum";
 import { useState } from "react";
 
@@ -16,6 +16,7 @@ import Standard from "@/components/molecules/Standard/Index";
 import { processFlowData } from "@/faker";
 import LayoutContainer from "./LayoutContainer";
 import TableExample from "./TableExample";
+import Toast from "@/components/molecules/Toast";
 export default function Home() {
  
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -68,7 +69,8 @@ export default function Home() {
           </div>
             <Button
                 warningFile={
-                    <Toast
+                    <Toast 
+                    time={1000}
                     onClose={()=>{}}
                     visible
                         type={ToastType.Warning}
