@@ -13,7 +13,9 @@ import { useState } from "react";
 import Input from "@/components/atoms/Input";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import Standard from "@/components/molecules/Standard/Index";
+import { processFlowData } from "@/faker";
 import LayoutContainer from "./LayoutContainer";
+import TableExample from "./TableExample";
 export default function Home() {
  
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -82,7 +84,8 @@ export default function Home() {
                 setFileDetails={handleFileDetailsChange}>
                 Button
             </Button>
-            <ProcessFlow/>
+            <ProcessFlow processLabel={processFlowData}
+             processBody={[<TableExample/>,<TableExample/>,<TableExample/>,<TableExample/>,<TableExample/>]}/>
         </LayoutContainer>
     );
 }

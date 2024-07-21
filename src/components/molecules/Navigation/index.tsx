@@ -53,7 +53,7 @@ function Navigation({
             return
         }
 
-    },[])
+    },[expand,routePath])
     
     return (
         <div
