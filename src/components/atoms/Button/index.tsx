@@ -230,9 +230,7 @@ export default function Button(
                             <div className="flex-col mt-2 w-full max-w-[620px] rounded-[5px] h-auto border border-stroke py-2 px-4">
                                 <ul className="flex gap-4 flex-wrap justify-between">
                                     {fileDetails.map((fileDetail, index) => (
-                                        <li
-                                            className="cursor-pointer"
-                                            key={index}>
+                                        <li key={index}>
                                             <div className="w-full flex-col min-w-[200px] ">
                                                 <div className="flex justify-between max-w-[164px] items-center">
                                                     <FileDock className="w-[21.33px] h-[26.67px]" />
@@ -261,7 +259,7 @@ export default function Button(
                                                         onClick={() =>
                                                             handleClose(index)
                                                         }
-                                                        className="text-primary w-4 h-4"
+                                                        className=" cursor-pointer text-primary w-4 h-4"
                                                     />
                                                 </div>
                                             </div>
