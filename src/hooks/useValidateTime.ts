@@ -46,7 +46,8 @@ function useValidateTime({
         currentPercent,
         totalTimeHours,
         totalTime,
-        end
+        end,
+        setEnd
     };
 }
 

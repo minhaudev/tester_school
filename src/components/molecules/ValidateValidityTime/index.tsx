@@ -1,25 +1,37 @@
-import useValidateTime from '@/hooks/useValidateTime';
-import React, { useEffect } from 'react';
-import FormatTime from '../../atoms/FormatTime';
+import useValidateTime from "@/hooks/useValidateTime";
+import FormatTime from "../../atoms/FormatTime";
 
-function ValidateValidityTime({endDate,startDate,onEnd}:{endDate:Date,startDate:Date,onEnd:()=>void}) {
-    const {timeValidity,currentPercent,end} = useValidateTime({endDate,startDate})
-    useEffect(()=>{
-       if(end){
+function ValidateValidityTime({
+    endDate,
+    startDate,
+    onEnd
+}: {
+    endDate: Date;
+    startDate: Date;
+    onEnd?: () => void;
+}) {
+    const {timeValidity, currentPercent, end, setEnd} = useValidateTime({
+        endDate,
+        startDate
+    });
+    if (end && onEnd) {
         setTimeout(() => {
-            return onEnd()
+            onEnd();
+            setEnd(false);
         }, 1000);
-       }
-    },[currentPercent])
-    const bgColor = currentPercent >= 50  ? 'bg-green-bold' : (currentPercent >= 30  && currentPercent < 50) ?'bg-yellow' : "bg-red"
+    }
+    const bgColor =
+        currentPercent >= 50 ? "bg-green-bold"
+        : currentPercent >= 30 && currentPercent < 50 ? "bg-yellow"
+        : "bg-red";
     return (
         <div className=" text-[11px] font-[500]  font-sf-ui-display text-text">
-        <div className="w-[90px] h-1 bg-green rounded-md ">
-             <div
-                 className={`${bgColor} mb-[8px]  h-1 rounded-md`}
-                 style={{width: `${currentPercent}%`}}></div>
-                 <FormatTime date = {timeValidity}/>
-         </div>
+            <div className="w-[90px] h-1 bg-stroke rounded-md ">
+                <div
+                    className={`${bgColor} mb-[8px]  h-1 rounded-md`}
+                    style={{width: `${currentPercent}%`}}></div>
+                <FormatTime date={timeValidity} />
+            </div>
         </div>
     );
 }
