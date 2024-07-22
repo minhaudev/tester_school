@@ -1,5 +1,5 @@
 "use client";
-import Footer from "@/components/layouts/Footer/Footer";
+import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import Navigation from "@/components/molecules/Navigation";
 import {NavigationType} from "@/interfaces";
@@ -9,7 +9,5 @@ import LayoutContainer from "../LayoutContainer";
 
 export default function Order() {
     const pathCurrentPage = usePathname();
-    return (
-        <LayoutContainer>Order</LayoutContainer>
-    );
+    return <LayoutContainer>Order</LayoutContainer>;
 }

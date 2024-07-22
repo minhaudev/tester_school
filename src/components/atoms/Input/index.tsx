@@ -1,7 +1,6 @@
 "use client";
 import React, {ReactNode, useEffect, useRef} from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Select from "@/assets/svgs/dropdown_select.svg";
 import IconCalendar from "@/assets/svgs/calendar_v2.svg";
 

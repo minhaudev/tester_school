@@ -10,8 +10,8 @@ export function formatDate(dateString: string): string {
 }
 
 export function calculateDate({dateStart,endDate}:{dateStart?:any,endDate:any}){
-    const milliSecondTimeAble = endDate - Date.now();
-    const timeAble = (endDate - Date.now()) / (1000 * 60 * 60);
+    const milliSecondTimeAble = endDate - Date.now() - 7 *1000 * 60 * 60 ;
+    const timeAble = ((endDate - Date.now()) / (1000 * 60 * 60)) - 7;
     const day = Math.floor(milliSecondTimeAble / (1000 * 60 * 60 * 24));
     const hours = Math.floor(timeAble) - day*24;
     const minutes = Math.floor(milliSecondTimeAble/(1000*60)) -( hours * 60 + day * 24 * 60);

@@ -1,21 +1,18 @@
 "use client";
-
-
 import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
 import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Button from "@/components/atoms/Button";
-
 import ProcessFlow from "@/components/molecules/ProcessFlow";
 import Toast from "@/components/molecules/Toast";
 import { ToastPosition, ToastType } from "@/enums/ToastEnum";
 import { useState } from "react";
-
 import Input from "@/components/atoms/Input";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import Standard from "@/components/molecules/Standard/Index";
+import {processFlowData} from "@/faker";
 import LayoutContainer from "./LayoutContainer";
+import TableExample from "./TableExample";
 export default function Home() {
- 
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -35,12 +32,11 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-07-19T17:28:00"));
-    const startDate = new Date(Date.parse("2024-07-19T13:20:00"));
-    const handleEndIn = ()=>{
-        alert('end in')
-    }
-    console.log(inputValue);
+    const endDate = new Date(Date.parse("2024-07-24T10:48:00Z"));
+    const startDate = new Date(Date.parse("2024-07-15T10:40:00Z"));
+    const handleEndIn = () => {
+        alert("end in");
+    };
     return (
         <LayoutContainer>
             <Standard />
@@ -60,15 +56,24 @@ export default function Home() {
                 optionSelect={["avc", "bc", "vc"]}
             />
             <CustomerBalanceInfo />
-          <div className=" flex flex-col items-start gap-8 p-[10px] m-[20px] bg-secondary">
-          <ValidateServiceTime onEnd={handleEndIn} endDate = {endDate} startDate = {startDate}/>
-          <ValidateValidityTime onEnd={handleEndIn} endDate = {endDate} startDate = {startDate}/>
-          </div>
+            <div className=" flex flex-col items-start gap-8 p-[10px] m-[20px] ">
+                <ValidateServiceTime
+                    onEnd={handleEndIn}
+                    endDate={endDate}
+                    startDate={startDate}
+                />
+                <ValidateValidityTime
+                    onEnd={handleEndIn}
+                    endDate={endDate}
+                    startDate={startDate}
+                />
+            </div>
             <Button
                 warningFile={
                     <Toast
-                    onClose={()=>{}}
-                    visible
+                        time={1000}
+                        onClose={() => {}}
+                        visible
                         type={ToastType.Warning}
                         position={ToastPosition.Top_Right}
                         description="vượt quá số file cho phép!"
@@ -82,7 +87,17 @@ export default function Home() {
                 setFileDetails={handleFileDetailsChange}>
                 Button
             </Button>
-            <ProcessFlow/>
+
+            <ProcessFlow
+                processLabel={processFlowData}
+                processBody={[
+                    <TableExample label="STEP - 1" key={1} />,
+                    <TableExample label="STEP - 2" key={2} />,
+                    <TableExample label="STEP - 3" key={3} />,
+                    <TableExample label="STEP - 4" key={4} />,
+                    <TableExample label="STEP - 5" key={5} />
+                ]}
+            />
         </LayoutContainer>
     );
 }

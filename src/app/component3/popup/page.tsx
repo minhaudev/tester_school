@@ -26,7 +26,7 @@ const PopupComponent = () => {
 
     return (
         <div>
-            <Button variant="secondary" onClick={() => setShowPopup(true)}>
+            <Button  variant="secondary" onClick={() => setShowPopup(true)}>
                 Show popup
             </Button>
             {showPopup && (
