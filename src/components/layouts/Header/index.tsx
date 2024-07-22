@@ -51,9 +51,7 @@ export default function Header() {
                 setIsClicked(false);
             }
         };
-
         window.addEventListener("click", handleClickOutside);
-
         return () => {
             window.removeEventListener("click", handleClickOutside);
         };
