@@ -9,7 +9,7 @@ function ValidateServiceTime({
 }: {
     endDate: Date;
     startDate: Date;
-    onEnd: () => void;
+    onEnd?: () => void;
 }) {
     const {
         timeAble,
@@ -19,7 +19,7 @@ function ValidateServiceTime({
         end,
         setEnd
     } = useValidateTime({endDate, startDate});
-    if (end) {
+    if (end && onEnd) {
         setTimeout(() => {
             onEnd();
             setEnd(false);
