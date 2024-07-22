@@ -24,8 +24,6 @@ function useValidateTime({
             const timeAble =
                 (endDate.getTime() - Date.now()) / (1000 * 60 * 60);
             const timeData = calculateDate({endDate});
-            console.log(timeData);
-
             setTimeValidity({...timeData});
             setTimeAble(() => timeAble);
             const currentPercent = (timeAble / totalTimeHours) * 100;

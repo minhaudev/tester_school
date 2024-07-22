@@ -1,76 +1,128 @@
-export const TABLE_HEAD = [
-    {label: "No", span: null},
-    {label: "Type", span: null},
-    {label: "Specifications", span: null, isLarge: true},
-    {label: "Total coil", span: "(PCS)"},
-    {label: "Total weight", span: "(KG)"},
-    {label: "Prime", span: null},
-    {label: "Preferred tolerances", span: null},
-    {label: "Unit price", span: "(VND/KG)"},
-    {label: "Discounted price", span: "(VND/KG)"},
-    {label: "Rebate offer", span: "(VND/KG)"},
-    {label: "Final price", span: "(VND/KG)"},
-    {label: "Total price", span: "(VND)"},
-    {label: "Status", span: null}
-];
-export const TABLE_HEAD2 = [
-    {label: "Ticket ID"},
-    {label: "Status", isSort: true},
-    {label: "Customer"},
-    {label: "Properties", isSort: true},
-    {label: "Progresses", isSort: true},
-    {label: "Service time", isSort: true},
-    {label: "Validity time", isSort: true},
-    {label: "Created date", isSort: true},
-    {label: "Total tonnage", isSort: true}
-];
-export const TABLE_BODY2 = {
-    total: 3,
+export const TABLE_BODY = {
+    total: 2,
     data: [
         {
             id: "1",
-            icon: "",
-            tickedId: "019100101",
-            status: "PENDING",
-            customer: "Thép Thiên Phước",
-            properties: "NON-STANDARDS",
-            progresses: "Price & Policy",
-            serviceTime: "",
-            validityTime: "",
-            createdDate: "08:50",
-            totalTonnage: "40000",
-            circles: "text-green-light,text-violet,text-pink-light,text-blue",
-            isIcon: false
+            checkboxChecked: true,
+            validityTimes: [
+                {component: "ValidityTime1", className: "w-6 h-6"},
+                {component: "ValidityTime2", className: "w-6 h-6"},
+                {component: "ValidityTime3", className: "w-6 h-6"}
+            ],
+            itemId: "019100101",
+            circles: [
+                {className: "w-2 h-3 text-violet"},
+                {className: "w-2 h-3 text-blue"},
+            ],
+            propertieStatus: {
+                status: true,
+                isIcon: false,
+                title: "PENDING"
+            },
+            companyName: "Thép Thiên Phước",
+            propertieTitle: {
+                status: false,
+                isIcon: false,
+                title: "NON-STANDARDS"
+            },
+            pricePolicy: {
+                iconClassName: "mr-1 text-yellow",
+                text: "Price & Policy",
+                details: "See details"
+            },
+            validateServiceTime: {
+                onEnd: "handleEndIn",
+                endDate: "2024-07-21T00:00:00Z",
+                startDate: "2024-07-15T00:00:00Z"
+            },
+            validateValidityTime: {
+                onEnd: "handleEndIn",
+                endDate: "2024-07-21T00:00:00Z",
+                startDate: "2024-07-15T00:00:00Z"
+            },
+            time: "08:50",
+            price: 40000
         },
         {
             id: "2",
-            icon: "",
-            tickedId: "019100101",
-            status: "NOT ENOUGH INVENTORY",
-            customer: "Tôn Thép KOKORO",
-            properties: "NON-STANDARDS",
-            progresses: "Contents review",
-            serviceTime: "",
-            validityTime: "",
-            createdDate: "08:50",
-            totalTonnage: "40000",
-            circles: "green-light, violet, pink-light, blue",
-            isIcon: true
+            checkboxChecked: true,
+            validityTimes: [
+              
+            ],
+            itemId: "019100102",
+            circles: [
+                {className: "w-2 h-3 text-green"},
+                {className: "w-2 h-3 text-violet"},
+                {className: "w-2 h-3 text-red"},
+                {className: "w-2 h-3 text-blue"}
+            ],
+            propertieStatus: {
+                status: true,
+                isIcon: true,
+                title: "NOT ENOUGH INVENTORY"
+            },
+            companyName: "Thép Thiên Phước",
+            propertieTitle: {
+                status: false,
+                isIcon: false,
+                title: "STANDARDS"
+            },
+            pricePolicy: {
+                iconClassName: "mr-1 text-green",
+                text: "Price & Policy",
+                details: "See details"
+            },
+            validateServiceTime: {
+                onEnd: "handleEndIn",
+                endDate: "2024-07-21T00:00:00Z",
+                startDate: "2024-07-15T00:00:00Z"
+            },
+            validateValidityTime: {
+                onEnd: "handleEndIn",
+                endDate: "2024-07-21T00:00:00Z",
+                startDate: "2024-07-15T00:00:00Z"
+            },
+            time: "08:50",
+            price: 40000
         },
         {
             id: "3",
-            icon: "",
-            tickedId: "019100101",
-            status: "INVALID SCHEDULE",
-            customer: "Sắt Thép Thiên Phúc",
-            properties: "NON-STANDARDS",
-            progresses: "Production planning",
-            serviceTime: "",
-            validityTime: "",
-            createdDate: "08:50",
-            totalTonnage: "40000",
-            circles: "green-light, violet, pink-light, blue",
-            isIcon: true
+            checkboxChecked: true,
+            validityTimes: [
+              
+            ],
+            itemId: "019100102",
+            circles: [
+              
+            ],
+            propertieStatus: {
+                status: true,
+                isIcon: true,
+                title: "INVALID SCHEDULE"
+            },
+            companyName: "Thép Thiên Phước",
+            propertieTitle: {
+                status: false,
+                isIcon: false,
+                title: "PRE-ORDER STANDARDS"
+            },
+            pricePolicy: {
+                iconClassName: "mr-1 text-red",
+                text: "Price & Policy",
+                details: "See details"
+            },
+            validateServiceTime: {
+                onEnd: "handleEndIn",
+                endDate: "2024-07-21T00:00:00Z",
+                startDate: "2024-07-15T00:00:00Z"
+            },
+            validateValidityTime: {
+                onEnd: "handleEndIn",
+                endDate: "2024-07-21T00:00:00Z",
+                startDate: "2024-07-15T00:00:00Z"
+            },
+            time: "08:50",
+            price: 40000
         }
     ]
 };
