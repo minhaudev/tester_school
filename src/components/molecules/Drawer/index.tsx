@@ -1,6 +1,7 @@
 import React, {ReactNode} from "react";
 import Delete from "@/assets/svgs/Close_round_light.svg";
 import {twMerge} from "tailwind-merge";
+import "./style.css";
 
 interface Props {
     children?: ReactNode;
@@ -21,8 +22,8 @@ export default function Drawer({
         <div
             onClick={onClose}
             className={twMerge(
-                "w-full bg-[rgba(0,0,0,0.3)] transition duration-400 fixed inset-0",
-                isOpen ? "opacity-100 z-50" : "opacity-0 -z-50"
+                "drawer w-full bg-[rgba(0,0,0,0.3)] fixed inset-0 z-30  transition",
+                isOpen ? "show" : ""
             )}>
             <div
                 onClick={(e) => e.stopPropagation()}

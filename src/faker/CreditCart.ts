@@ -1,5 +1,5 @@
 export const infoCartList = {
-    id: 1,
+    id: "1",
     name: "Lê Duy Hùng",
     orderType: "Domestic - Prime sales",
     ticketNumber: "019100101",

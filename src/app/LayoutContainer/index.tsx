@@ -5,7 +5,7 @@ import Header from "@/components/layouts/Header";
 import Navigation from "@/components/molecules/Navigation";
 import {NavigationType} from "@/interfaces";
 import {usePathname} from "next/navigation";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 export default function LayoutContainer({
     isNav = true,
     isHeader = true,
@@ -19,7 +19,7 @@ export default function LayoutContainer({
             setIsLoading(false);
         }, 200);
     }, []);
-    if(isLoading) return null
+    if (isLoading) return null;
     return (
         <div className="flex ">
             {isNav && (
