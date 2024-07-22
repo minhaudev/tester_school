@@ -133,7 +133,7 @@ export default function Home() {
     ) => {
         setRecordsPerPage(parseInt(e.target.value));
 
-        setCurrentPage(1); 
+        setCurrentPage(1);
     };
 
     return (
@@ -150,7 +150,7 @@ export default function Home() {
                             <option value="5">5</option>
                             <option value="10">10</option>
                         </select>
-                       
+
                         <p> of {TABLE_BODY.total} result</p>
                         <Button
                             isIcon
@@ -164,7 +164,7 @@ export default function Home() {
                             :   <ExpandLeft />}
                             {/* <ExpandLeftLight className="w-5 h-5 text-gray-10" /> */}
                         </Button>
-                        <span className="mx-2">{currentPage}</span>
+                        <span className="mx-2 hidden">{currentPage}</span>
                         <Button
                             isIcon
                             variant="dashed"
