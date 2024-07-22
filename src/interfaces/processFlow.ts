@@ -1,7 +1,8 @@
 export enum stateProcess {
     NONE = "none",
     ACTIVE = "active",
-    DONE = "done"
+    DONE = "done",
+    PENDING = "pending"
 }
 
 export interface ProcessFlowProps {

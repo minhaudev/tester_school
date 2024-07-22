@@ -29,7 +29,7 @@ export const processFlowData: ProcessFlowProps[] = [
     },
     {
         id: 4,
-        label: "Delivery plan",
+        label: "Payment plan",
         icon: PaymentIcon,
         line: true,
         state: stateProcess.NONE

@@ -2,7 +2,6 @@
 import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
 import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Button from "@/components/atoms/Button";
-
 import ProcessFlow from "@/components/molecules/ProcessFlow";
 import {ToastPosition, ToastType} from "@/enums/ToastEnum";
 import {useState} from "react";
@@ -10,7 +9,9 @@ import {useState} from "react";
 import Input from "@/components/atoms/Input";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import Standard from "@/components/molecules/Standard/Index";
+import {processFlowData} from "@/faker";
 import LayoutContainer from "./LayoutContainer";
+import TableExample from "./TableExample";
 import Toast from "@/components/molecules/Toast";
 export default function Home() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -37,7 +38,6 @@ export default function Home() {
     const handleEndIn = () => {
         alert("end in");
     };
-    console.log(inputValue);
     return (
         <LayoutContainer>
             <Standard />
@@ -72,6 +72,7 @@ export default function Home() {
             <Button
                 warningFile={
                     <Toast
+                        time={1000}
                         onClose={() => {}}
                         visible
                         type={ToastType.Warning}
@@ -87,7 +88,17 @@ export default function Home() {
                 setFileDetails={handleFileDetailsChange}>
                 Button
             </Button>
-            <ProcessFlow />
+
+            <ProcessFlow
+                processLabel={processFlowData}
+                processBody={[
+                    <TableExample label="STEP - 1" key={1} />,
+                    <TableExample label="STEP - 2" key={2} />,
+                    <TableExample label="STEP - 3" key={3} />,
+                    <TableExample label="STEP - 4" key={4} />,
+                    <TableExample label="STEP - 5" key={5} />
+                ]}
+            />
         </LayoutContainer>
     );
 }
