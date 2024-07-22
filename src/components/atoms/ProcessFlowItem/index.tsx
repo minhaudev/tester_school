@@ -12,7 +12,10 @@ function ProcessFlowItem({
         [stateProcess.NONE]: {w: "w-0", bg: "bg-transparent"},
         [stateProcess.ACTIVE]: {w: "w-1/2", bg: "bg-secondary"},
         [stateProcess.DONE]: {w: "w-full", bg: "bg-violet"},
-        [stateProcess.PENDING]: {w: "w-0", bg: "bg-transparent border border-unit"}
+        [stateProcess.PENDING]: {
+            w: "w-0",
+            bg: "bg-transparent border border-unit"
+        }
     };
     return (
         <div className="flex flex-col items-center min-w-[113px] max-w-[133px]">

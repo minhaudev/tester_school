@@ -40,22 +40,25 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
         () => stepDone
     );
 
-      useEffect(() => {
+    useEffect(() => {
         initFlow(stepDone);
-      }, [stepDone]);    
-      const initFlow = (stepDone: number) => {
-        setFlow(prevFlows => 
-          prevFlows.map(flow => {
-            if (flow.id < stepDone) {
-              flow.state = stateProcess.DONE;
-            }
-            if (flow.id === stepDone) {
-              flow.state = stateProcess.ACTIVE;
-            }
-            return flow;
-          })
+    }, [stepDone]);
+    const initFlow = (stepDone: number) => {
+        setFlow((prevFlows) =>
+            prevFlows.map((flow) => {
+                if (flow.id < stepDone) {
+                    flow.state = stateProcess.DONE;
+                }
+                if (flow.id === stepDone) {
+                    flow.state = stateProcess.ACTIVE;
+                }
+                if (flow.id > stepDone) {
+                    flow.state = stateProcess.NONE;
+                }
+                return flow;
+            })
         );
-      };
+    };
     const onNext = () => {
         if (currentProcessIndex < flows.length) {
             let flowClone = [...flows];
@@ -76,7 +79,9 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
                 }
             }
             setFlow([...flowClone]);
-            setStateDone(currentProcessIndex + 1);
+            if (currentProcessIndex >= stepDone) {
+                setStateDone(currentProcessIndex + 1);
+            }
         }
     };
 
@@ -89,6 +94,8 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
 
     const onSubmit = () => {
         setStateDone(1);
+        setFlow(() => [...flowData]);
+        setCurrentProcessIndex(() => flowData[0].id);
     };
 
     const onActive = async (id: number) => {
