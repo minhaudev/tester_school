@@ -4,7 +4,7 @@ import Card from "@/components/molecules/Cards/Card";
 import ServiceTime from "@/components/molecules/ServiceTimes/ServiceTime";
 import Success from "@/assets/svgs/Success_toast.svg";
 import Warning from "@/assets/svgs/Warning_toast.svg";
-import Toast from "@/components/molecules/Toasts/Toast";
+import Toast from "@/components/molecules/Toast";
 import {ServiceTimeEnum} from "@/enums/ServiceTimeEum";
 import {StatusEnum} from "@/enums/StatusNum";
 import React, {useState} from "react";

@@ -19,11 +19,9 @@ function Navigation({
     const [showSecondMenu, setShowSecondMenu] = useState(false);
     const [active, setActive] = useState(2.1);
     const [expand, setExpand] = useSaveLocalStorage("expand", true);
-
     const handleExpand = () => {
         if(!expand && routePath.includes(SPECIALlPATH) ){
             setExpand(!expand);
-            // setShowSecondMenu(true);
             setShowFirstMenu(true);
             return
         }
@@ -72,6 +70,7 @@ function Navigation({
                     </p>
                 )}
                 <Button
+                typeFile=""
                     isIcon
                     variant="primary-dark"
                     color="white"

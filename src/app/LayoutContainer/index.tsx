@@ -6,7 +6,6 @@ import Navigation from "@/components/molecules/Navigation";
 import {NavigationType} from "@/interfaces";
 import {usePathname} from "next/navigation";
 import {useEffect, useState} from "react";
-
 export default function LayoutContainer({
     isNav = true,
     isHeader = true,
@@ -29,7 +28,7 @@ export default function LayoutContainer({
                     routePath={pathCurrentPage}
                 />
             )}
-            <div className="flex-1 h-[100vh] overflow-scroll">
+            <div className="flex-1 max-h-[100vh] overflow-scroll">
                 {isHeader && <Header />}
                 <div className="text-primary mt-10 mb-10">{children}</div>
                 {isFooter && <Footer />}

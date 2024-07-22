@@ -3,7 +3,8 @@ import Drawer from "../Drawer";
 import DrawerContent from "../Drawer/components/DrawerContent";
 import DrawerFooter from "../Drawer/components/DrawerFooter";
 import Input from "@/components/atoms/Input";
-export default function Standard() {
+interface Props {}
+export default function Standard(props: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const handleClose = () => {
         setIsOpen(false);
@@ -15,34 +16,10 @@ export default function Standard() {
     };
 
     return (
+        // fib bug slider hight drawer
         <>
             <button onClick={() => setIsOpen(true)}>Click me</button>
-            <Drawer
-                name="Header Name"
-                subName="Sub Name"
-                isOpen={isOpen}
-                onClose={handleClose}>
-                <DrawerContent>
-                    <Input
-                        className="mb-4"
-                        name="select-v1"
-                        value={valueSelect}
-                        handleSelectChange={handleSelect}
-                        optionSelect={[
-                            "Galvalume",
-                            "Pre-painted galvanized",
-                            "Specification"
-                        ]}
-                        label="Type"
-                        variant="select"
-                        placeholder="Select"
-                    />
-                </DrawerContent>
-                <DrawerFooter
-                    title="Add new"
-                    isAction
-                    handleClick={() => {}}></DrawerFooter>
-            </Drawer>
+            <Drawer isOpen={isOpen} onClose={handleClose}></Drawer>
         </>
     );
 }

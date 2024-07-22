@@ -11,6 +11,7 @@ import Box3d from "@/assets/svgs/3d_box.svg";
 import UserAdd from "@/assets/svgs/user_add_alt_fill.svg";
 import GroupUser from "@/assets/svgs/manage_user_group.svg";
 import ProductUser from "@/assets/svgs/product_User.svg";
+import ChevronDown from "@/assets/svgs/Expand_down.svg";
 interface NavbarProps {
     id: number;
     prefixIcon?: any;
