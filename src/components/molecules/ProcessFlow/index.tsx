@@ -13,7 +13,7 @@ interface ProcessFlowContainerProps {
 function ProcessFlow({processLabel,processBody}:ProcessFlowContainerProps) {
     return (
        <ProcessFlowProvider flowData={processLabel}>
-        <ProcessContainer processBody={processBody}/>
+        <ProcessContainer processBody={processBody} subTitle="Sales Order Management - Create Sales Order"/>
        </ProcessFlowProvider>
     );
 }

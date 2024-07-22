@@ -87,7 +87,7 @@ export default function Home() {
                 Button
             </Button>
             <ProcessFlow processLabel={processFlowData}
-             processBody={[<TableExample/>,<TableExample/>,<TableExample/>,<TableExample/>,<TableExample/>]}/>
+             processBody={[<TableExample key={1}/>,<TableExample key={2}/>,<TableExample key={3}/>,<TableExample key={4}/>,<TableExample key={5}/>]}/>
         </LayoutContainer>
     );
 }
