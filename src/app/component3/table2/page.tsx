@@ -1,11 +1,6 @@
 "use client";
 import {twMerge} from "tailwind-merge";
-import Header from "@/components/layouts/Header";
-import Navigation from "@/components/molecules/Navigation";
-import {NavigationType} from "@/interfaces";
 import {ChangeEvent, useEffect, useState} from "react";
-import CreditCart from "@/components/atoms/CreditCart";
-import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import LayoutContainer from "@/app/LayoutContainer";
 import {dataList} from "@/faker/AccountBalance";
 import {TABLE_BODY} from "@/faker/TableData";
@@ -22,14 +17,23 @@ import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Button from "@/components/atoms/Button";
 import ExpandLeftLight from "@/assets/svgs/Expand_left_light.svg";
 import ExpandRightLight from "@/assets/svgs/Expand_right_light.svg";
-import TriagleExClamation from "@/assets/svgs/Triangle_exclamation.svg";
-import Input from "@/components/atoms/Input";
+import Drawer from "@/components/molecules/Drawer";
+import DrawerContent from "@/components/molecules/Drawer/components/DrawerContent";
+import DrawerFooter from "@/components/molecules/Drawer/components/DrawerFooter";
+import ExpandLeft from "@/assets/svgs/Expand_left.svg";
+import ExpandRight from "@/assets/svgs/Expand_right.svg";
+type SortOrder = "asc" | "desc";
+type SortField = "pricePolicy" | "propertieStatus" | "propertieTitle" | string;
 
 export default function Home() {
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
     const [selectAll, setSelectAll] = useState(false);
-    const endDate = new Date(Date.parse("2024-07-19T17:01:00"));
+    const endDate = new Date(Date.parse("2024-07-22T17:01:00"));
     const startDate = new Date(Date.parse("2024-07-19T13:50:00"));
+    const [sortField, setSortField] = useState<string | null>(null);
+    const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage, setRecordsPerPage] = useState(2);
     const handleSelectAll = () => {
         if (selectAll) {
             setSelectedItems([]);
@@ -47,9 +51,49 @@ export default function Home() {
             setSelectedItems([...selectedItems, id]);
         }
     };
+    const handleSort = (field: string) => {
+        if (sortField === field) {
+            setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+        } else {
+            setSortField(field);
+            setSortOrder("asc");
+        }
+    };
+
+    const sortedData = [...TABLE_BODY.data].sort((a, b) => {
+        if (!sortField) return 0;
+        let aValue: any;
+        let bValue: any;
+
+        if (
+            sortField === "pricePolicy" ||
+            sortField === "propertieStatus" ||
+            sortField === "propertieTitle"
+        ) {
+            aValue = a[sortField]?.title;
+            bValue = b[sortField]?.title;
+        } else {
+            aValue = a[sortField as keyof typeof a];
+            bValue = b[sortField as keyof typeof b];
+        }
+
+        if (typeof aValue === "string" && typeof bValue === "string") {
+            if (aValue < bValue) {
+                return sortOrder === "asc" ? -1 : 1;
+            }
+            if (aValue > bValue) {
+                return sortOrder === "asc" ? 1 : -1;
+            }
+        }
+        return 0;
+    });
+
     useEffect(() => {
         if (selectedItems.length == 0) {
             setSelectAll(false);
+        }
+        if (selectedItems.length == TABLE_BODY.total) {
+            setSelectAll(true);
         }
     }, [selectedItems]);
     const handleEndIn = () => {
@@ -64,40 +108,83 @@ export default function Home() {
     const handleOnChange = () => {
         console.log("on change");
     };
+    const [isOpen, setIsOpen] = useState(false);
+    const handleClose = () => {
+        setIsOpen(false);
+        setValueSelect("");
+    };
+    const [valueSelect, setValueSelect] = useState("");
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setValueSelect(e.target.value);
+    };
+
+    const startIndex = (currentPage - 1) * recordsPerPage;
+    const endIndex = startIndex + recordsPerPage;
+    const paginatedData = sortedData.slice(startIndex, endIndex);
+
+    const handlePageChange = (newPage: number) => {
+        setCurrentPage(newPage);
+    };
+
+    const handleRecordsPerPageChange = (
+        e: ChangeEvent<
+            HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
+        >
+    ) => {
+        setRecordsPerPage(parseInt(e.target.value));
+
+        setCurrentPage(1); 
+    };
+
     return (
         <LayoutContainer>
             <div className="overflow-x-auto mt-4 mx-4">
                 <div className="flex flex-row justify-between ">
-                    <div className="flex flex-row justify-between gap-4">
-                        <Input
-                            placeholder="Search"
-                            handleOnChange={handleOnChange}></Input>
-                        {/* <Input
-                            showCalendar
-                            handleOnChange={handleOnChange}></Input> */}
-                        <Button variant={"dashed"} size={"small"}>
-                            Filter
-                        </Button>
-                    </div>
+                    <div className="flex flex-row justify-between gap-4"></div>
                     <div className="flex flex-row justify-between gap-x-2 items-center text-text text-xs font-normal">
                         <p>Display</p>
-                        <Input
-                            variant="select"
-                            handleOnChange={function (
-                                e: ChangeEvent<
-                                    | HTMLTextAreaElement
-                                    | HTMLInputElement
-                                    | HTMLSelectElement
-                                >
-                            ): void {
-                                throw new Error("Function not implemented.");
-                            }}></Input>
-                        <p> of ${TABLE_BODY.total} result</p>
-                        <Button isIcon variant="dashed" size="medium">
-                            <ExpandLeftLight className="w-5 h-5 text-gray-10" />
+                        <select
+                            className="peer h-full rounded-[7px] border border-[#D9D9D9] border-t-transparent bg-transparent p-2 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-[#40A9FF]   "
+                            onChange={handleRecordsPerPageChange}>
+                            <option value="2">2</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                       
+                        <p> of {TABLE_BODY.total} result</p>
+                        <Button
+                            isIcon
+                            variant="dashed"
+                            size="medium"
+                            onClick={() =>
+                                handlePageChange(Math.max(currentPage - 1, 1))
+                            }>
+                            {currentPage === 1 ?
+                                <ExpandLeftLight className="w-5 h-5 text-gray-10" />
+                            :   <ExpandLeft />}
+                            {/* <ExpandLeftLight className="w-5 h-5 text-gray-10" /> */}
                         </Button>
-                        <Button isIcon variant="dashed" size="medium">
-                            <ExpandRightLight className="w-5 h-5 text-gray-10" />
+                        <span className="mx-2">{currentPage}</span>
+                        <Button
+                            isIcon
+                            variant="dashed"
+                            size="medium"
+                            onClick={() =>
+                                handlePageChange(
+                                    Math.min(
+                                        currentPage + 1,
+                                        Math.ceil(
+                                            TABLE_BODY.total / recordsPerPage
+                                        )
+                                    )
+                                )
+                            }>
+                            {(
+                                currentPage ===
+                                Math.ceil(TABLE_BODY.total / recordsPerPage)
+                            ) ?
+                                <ExpandRightLight className="w-5 h-5 text-gray-10" />
+                            :   <ExpandRight />}
                         </Button>
                     </div>
                 </div>
@@ -105,7 +192,7 @@ export default function Home() {
             <div className="overflow-x-auto mt-4">
                 <table className="min-w-full text-xs table-fixed ">
                     <thead>
-                        <tr className="flex flex-row text-primary bg-white min-h-[48px] text-[12px] font-semibold">
+                        <tr className="flex flex-row text-primary min-h-[48px] text-[12px] font-semibold">
                             <th className={`w-[3%] ${theadClasses} flex-col`}>
                                 <Checkbox
                                     description={""}
@@ -121,39 +208,66 @@ export default function Home() {
                             </th>
                             <th className={`w-[15%]  ${theadClasses}`}>
                                 Status
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() =>
+                                        handleSort("propertieStatus")
+                                    }
+                                />
                             </th>
                             <th className={`w-[14%]  ${theadClasses}`}>
                                 Customer
                             </th>
                             <th className={`w-[15%] ${theadClasses}`}>
                                 Properties
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() => handleSort("propertieTitle")}
+                                />
                             </th>
                             <th className={`w-[11%] ${theadClasses}`}>
                                 Progresses
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() => handleSort("pricePolicy")}
+                                />
                             </th>
                             <th className={`w-[11%] ${theadClasses}`}>
                                 Service time
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() =>
+                                        handleSort("validateServiceTime")
+                                    }
+                                />
                             </th>
                             <th className={`w-[9%]  ${theadClasses}`}>
                                 Validity time
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() =>
+                                        handleSort("validateValidityTime")
+                                    }
+                                />
                             </th>
                             <th className={`w-[6%]  ${theadClasses} !px-2`}>
                                 <p className={`text-justify`}> Created date</p>
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() => handleSort("time")}
+                                />
                             </th>
                             <th className={`w-[6%] ${theadClasses} !px-2`}>
                                 <p className={`text-justify`}>Total tonnage</p>
-                                <Sort className={`w-4 h-4`} />
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                    onClick={() => handleSort("price")}
+                                />
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {TABLE_BODY.data.map((row, index) => (
+                        {paginatedData.map((row, index) => (
                             <tr
                                 key={row.id}
                                 className="flex flex-row font-normal w-full">
@@ -171,9 +285,9 @@ export default function Home() {
                                 </td>
                                 <td className={`w-[7%] ${thbodyClasses} px-0`}>
                                     <div className="flex flex-row justify-around w-full">
-                                        <ValidityTime1 className={`w-4 h-4`} />
-                                        <ValidityTime2 className={`w-4 h-4`} />
-                                        <ValidityTime3 className={`w-4 h-4`} />
+                                        <ValidityTime1 className={`size-4`} />
+                                        <ValidityTime2 className={`size-4`} />
+                                        <ValidityTime3 className={`size-4`} />
                                     </div>
                                 </td>
                                 <td
@@ -219,9 +333,11 @@ export default function Home() {
                                                 row.pricePolicy.iconClassName
                                             }
                                         />
-                                        {row.pricePolicy.text}
+                                        {row.pricePolicy.title}
                                     </div>
-                                    <p className="text-text-1">See details</p>
+                                    <a onClick={() => setIsOpen(true)}>
+                                        See details
+                                    </a>
                                 </td>
                                 <td className={`w-[11%] ${thbodyClasses}`}>
                                     <ValidateServiceTime
@@ -248,6 +364,14 @@ export default function Home() {
                     </tbody>
                 </table>
             </div>
+            <Drawer
+                name="Header Name"
+                subName="Sub Name"
+                isOpen={isOpen}
+                onClose={handleClose}>
+                <DrawerContent children={undefined}></DrawerContent>
+                <DrawerFooter handleClick={() => {}} title={""}></DrawerFooter>
+            </Drawer>
         </LayoutContainer>
     );
 }
