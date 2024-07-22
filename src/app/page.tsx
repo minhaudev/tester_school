@@ -6,7 +6,7 @@ import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Button from "@/components/atoms/Button";
 
 import ProcessFlow from "@/components/molecules/ProcessFlow";
-import Toast from "@/components/molecules/Toasts/Toast";
+import Toast from "@/components/molecules/Toast";
 import { ToastPosition, ToastType } from "@/enums/ToastEnum";
 import { useState } from "react";
 

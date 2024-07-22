@@ -7,13 +7,14 @@ import Button from "@/components/atoms/Button";
 
 interface ModalProps {
     isVisible: boolean;
-    title: string;
+    title?: string;
     onClose: () => void;
     onCancel?: () => void;
     onSave?: () => void;
     onConfirm?: () => void;
     children?: React.ReactNode;
     extraButton?: React.ReactNode;
+    footer?: React.ReactNode;
     isConfirm?: boolean;
 }
 
@@ -24,6 +25,7 @@ const Modal = ({
     onCancel,
     onSave,
     children,
+    footer,
     extraButton,
     isConfirm,
     onConfirm
@@ -83,13 +85,14 @@ const Modal = ({
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <div className="flex items-center justify-between p-4  rounded-t dark:border-gray-600">
                             <h3 className="text-base !text-text font-medium ">
-                                Modal title
+                                {title}
                             </h3>
                             <Button
                                 isIcon
                                 variant="dashed"
                                 size="medium"
-                                onClick={onClose}>
+                                onClick={onClose}
+                                typeFile={""}>
                                 <Close className="w-5 h-5 text-gray-10" />
                             </Button>
                         </div>
@@ -97,32 +100,7 @@ const Modal = ({
 
                         <div
                             className={`flex items-center justify-end gap-x-2 p-4 md:p-5 rounded-b dark:border-gray-600`}>
-                            {extraButton && (
-                                <div className="mr-auto">{extraButton}</div>
-                            )}
-                            <Button
-                                className="w-[81px]"
-                                size="semi"
-                                variant="secondary"
-                                onClick={onCancel}>
-                                Cancel
-                            </Button>
-                            {isConfirm ?
-                                <Button
-                                    className="w-[107px] bg-red"
-                                    size="semi"
-                                    variant="primary-dark"
-                                    onClick={onConfirm}>
-                                    Confirm
-                                </Button>
-                            :   <Button
-                                    className="w-[81px]"
-                                    size="semi"
-                                    variant="primary-dark"
-                                    onClick={onSave}>
-                                    Save
-                                </Button>
-                            }
+                            {footer}
                         </div>
                     </div>
                 </div>

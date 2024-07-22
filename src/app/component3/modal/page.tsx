@@ -28,13 +28,14 @@ const ModalComp = () => {
                             <div className="gap-8 items-center flex flex-row justify-center">
                                 <Button
                                     variant="secondary"
-                                    onClick={() => setShowPopup(true)} size={"small"} typeFile={""}>
+                                    onClick={() => setShowPopup(true)}
+                                    size={"small"}
+                                    typeFile={""}>
                                     Show Modal
                                 </Button>
                                 {showPopup && (
                                     <Modal
                                         isVisible={true}
-                                        title={"This is title modal"}
                                         onClose={() => setShowPopup(false)}
                                         onCancel={handleCancel}></Modal>
                                 )}
