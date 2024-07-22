@@ -16,7 +16,7 @@ interface FileDetail {
 }
 
 interface PropsBtn {
-    variant:
+    variant?:
         | "file"
         | "primary-light"
         | "primary-dark"
@@ -24,7 +24,7 @@ interface PropsBtn {
         | "dashed"
         | "link"
         | "text";
-    size: "2xl" | "large" | "semi" | "medium" | "small";
+    size?: "2xl" | "large" | "semi" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
     isDisabled?: boolean;
     children?: ReactNode;
@@ -52,8 +52,8 @@ export default function Button(
         typeFile,
         onDelete,
         isIcon,
-        variant,
-        size,
+        variant = "primary-dark",
+        size = "large",
         isDisabled,
         isError,
         prefixIcon,

@@ -65,7 +65,7 @@ export default function Header() {
 
     return (
         <>
-            <div className="w-full">
+            <div className="w-full sticky top-0 z-50">
                 <div className="h-14 w-full bg-white flex justify-between items-center px-6 border-b border-stroke">
                     <div className="flex items-center justify-center">
                         <Link href="/">
