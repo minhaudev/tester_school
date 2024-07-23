@@ -33,8 +33,8 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-07-24T10:48:00Z"));
-    const startDate = new Date(Date.parse("2024-07-15T10:40:00Z"));
+    const endDate = new Date(Date.parse("2024-07-31T13:40:00Z"));
+    const startDate = new Date(Date.parse("2024-07-20T13:54:00Z"));
     const handleEndIn = () => {
         alert("end in");
     };
@@ -42,7 +42,6 @@ export default function Home() {
         <LayoutContainer>
             <Standard />
             <Input
-                // isCalendarPrefix
                 isCalendarSuffix
                 // suffix={<IconPassword />}
                 placeholder="MM/DD/YY"
@@ -90,6 +89,27 @@ export default function Home() {
             </Button>
 
             <ProcessFlow
+                subTitle="Sales Order Management - Create Sales Order"
+                leftHeader={
+                    <>
+                        <Button
+                            isIcon
+                            className="!bg-secondary !text-text"
+                            prefixIcon=""
+                            variant="secondary"
+                            size="medium"
+                            typeFile="">
+                            Save draft
+                        </Button>
+                        <Button
+                            className="!bg-secondary !text-text"
+                            variant="secondary"
+                            size="medium"
+                            typeFile="">
+                            Add product
+                        </Button>
+                    </>
+                }
                 processLabel={processFlowData}
                 processBody={[
                     <TableExample label="STEP - 1" key={1} />,

@@ -1,26 +1,32 @@
 import Button from "@/components/atoms/Button";
 import ProcessFlowItem from "@/components/atoms/ProcessFlowItem";
-import { useProcessFlow } from "@/context/FlowContext";
-import { ProcessFlowProps } from "@/interfaces";
-import { ReactNode } from "react";
+import {useProcessFlow} from "@/context/FlowContext";
+import {ProcessFlowProps} from "@/interfaces";
+import {ReactNode} from "react";
 
 interface ProcessHeaderProps {
     flowData: ProcessFlowProps[];
-    handleProcessActive: (id: number) => void; 
-    subTitle?:string;
-    children:ReactNode
+    handleProcessActive: (id: number) => void;
+    subTitle?: string;
+    children: ReactNode;
 }
 
-const ProcessHeader: React.FC<ProcessHeaderProps> = ({ flowData, handleProcessActive,subTitle,children }) => {
-    const {currentProcessIndex} = useProcessFlow()
+const ProcessHeader: React.FC<ProcessHeaderProps> = ({
+    flowData,
+    handleProcessActive,
+    subTitle,
+    children
+}) => {
+    const {currentProcessIndex} = useProcessFlow();
     return (
         <div className="flex justify-between items-center h-[112px]">
             <div>
                 <p className="capitalize text-[16px] font-sf-ui-display font-[500] text-primary leading-[20px]">
-                    {flowData[currentProcessIndex - 1].label}
+                    {flowData[currentProcessIndex - 1] &&
+                        flowData[currentProcessIndex - 1].label}
                 </p>
                 <p className="text-[13px] pt-1 font-sf-ui-display font-[400] leading-[16px] text-text">
-                    {subTitle ? subTitle : ''}
+                    {subTitle ? subTitle : ""}
                 </p>
             </div>
             <div className="flex justify-start items-center gap-[13px]">
@@ -36,7 +42,7 @@ const ProcessHeader: React.FC<ProcessHeaderProps> = ({ flowData, handleProcessAc
                     />
                 ))}
             </div>
-           { children}
+            {children}
         </div>
     );
 };

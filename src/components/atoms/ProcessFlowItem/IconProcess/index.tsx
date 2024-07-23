@@ -1,12 +1,18 @@
-import {ProcessFlowProps, stateProcess} from "@/interfaces";
 import DonIcon from "@/assets/svgs/done_process.svg";
+import {stateProcess} from "@/interfaces";
+import {ReactNode} from "react";
+interface IconProcessProp {
+    id: number;
+    icon: any;
+    state: stateProcess;
+    onChangeState: (id: number) => void;
+}
 function IconProcess({
     id = 1,
     icon: IconComponent,
-    line = false,
     state = stateProcess.ACTIVE,
     onChangeState = () => {}
-}: ProcessFlowProps) {
+}: IconProcessProp) {
     const styleProcessItem = {
         [stateProcess.NONE]: {w: "w-0", bg: "bg-transparent"},
         [stateProcess.ACTIVE]: {w: "w-1/2", bg: "bg-secondary"},
@@ -51,12 +57,6 @@ function IconProcess({
    "
                 />
             }
-            {line && (
-                <div className="h-[2px] w-[60px] bg-unit rounded-sm overflow-hidden absolute left-[56px] top-[50%] translate-y-[-50%]  ">
-                    <div
-                        className={`${styleProcessItem[state].w} ${state === stateProcess.ACTIVE ? "bg-secondary" : "bg-primary-5-hover"} rounded-sm  h-full`}></div>
-                </div>
-            )}
         </div>
     );
 }

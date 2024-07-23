@@ -6,8 +6,13 @@ import Button from "@/components/atoms/Button";
 interface ProcessFlowContainerProps {
     processBody: ReactNode[];
     subTitle?: string;
+    leftHeader?: ReactNode;
 }
-function ProcessContainer({processBody, subTitle}: ProcessFlowContainerProps) {
+function ProcessContainer({
+    processBody,
+    subTitle,
+    leftHeader
+}: ProcessFlowContainerProps) {
     const {flows, currentProcessIndex, onActive} = useProcessFlow();
     return (
         <div className="p-4">
@@ -15,26 +20,7 @@ function ProcessContainer({processBody, subTitle}: ProcessFlowContainerProps) {
                 subTitle={subTitle}
                 flowData={flows}
                 handleProcessActive={onActive}>
-                <div className="flex gap-4 ">
-                    <Button
-                        isIcon
-                        className="!bg-secondary !text-text"
-                        prefixIcon=""
-                        variant="secondary"
-                        size="medium"
-                        typeFile="">
-                        Save draft
-                    </Button>
-                    <Button
-                        className="!bg-secondary !text-text"
-                        isIcon
-                        prefixIcon={<Add />}
-                        variant="secondary"
-                        size="medium"
-                        typeFile="">
-                        Add product
-                    </Button>
-                </div>
+                <div className="flex gap-4 ">{leftHeader && leftHeader}</div>
             </ProcessHeader>
             <div className="pt-4 w-full">
                 {processBody && processBody[currentProcessIndex - 1]}

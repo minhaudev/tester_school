@@ -1,11 +1,6 @@
-
-export const now = new Date();
-export const utcDate = new Date(
-  now.getUTCFullYear(),
-  now.getUTCMonth(),
-  now.getUTCDate(),
-  now.getUTCHours(),
-  now.getUTCMinutes(),
-  now.getUTCSeconds()
-);
-export const VIETNAMZONE = 7;
+export const initValidityTime = {
+    day: 0,
+    hours: 0,
+    minutes: 0,
+    secondTime: 0
+};

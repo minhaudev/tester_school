@@ -2,11 +2,11 @@
 "use client";
 import React, {useEffect, useState} from "react";
 import Card from "@/components/molecules/Card";
-import ServiceTime from "@/components/molecules/ServiceTime";
-import ValidityTime from "@/components/molecules/ValidityTime";
+import ServiceTime from "@/components/atoms/ServiceTime";
 import {StatusTimeEnum} from "@/enums/StatusTimeEnum";
 import {timeToTimestamp} from "@/utils/CurrentDate";
 import FormatTime from "@/utils/FormatTime";
+import ValidityTime from "@/components/atoms/ValidityTime";
 
 const ServiceTimeLayout = () => {
     const endTime = timeToTimestamp("18:00:00");

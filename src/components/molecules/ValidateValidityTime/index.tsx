@@ -1,5 +1,6 @@
 import useValidateTime from "@/hooks/useValidateTime";
 import FormatTime from "../../atoms/FormatTime";
+import {useEffect} from "react";
 
 function ValidateValidityTime({
     endDate,
@@ -10,16 +11,19 @@ function ValidateValidityTime({
     startDate: Date;
     onEnd?: () => void;
 }) {
-    const {timeValidity, currentPercent, end, setEnd} = useValidateTime({
-        endDate,
-        startDate
-    });
-    if (end && onEnd) {
-        setTimeout(() => {
-            onEnd();
-            setEnd(false);
-        }, 1000);
-    }
+    const {timeValidity, currentPercent, timeAble, end, setEnd} =
+        useValidateTime({
+            endDate,
+            startDate
+        });
+    useEffect(() => {
+        if (end && onEnd && timeAble >= 0) {
+            setTimeout(() => {
+                onEnd();
+                setEnd(false);
+            }, 1000);
+        }
+    }, [end, onEnd, setEnd, timeAble]);
     const bgColor =
         currentPercent >= 50 ? "bg-green-bold"
         : currentPercent >= 30 && currentPercent < 50 ? "bg-yellow"
