@@ -13,6 +13,7 @@ const config: Config = {
             "primary-5-hover": "#0376D7",
             "warning-hover": "#F56569",
             "border-warning-hover": "#ED1E24",
+            "text-1":"#87898D",
             text: "#3A3B3C",
             "text-light": "#4B5563",
             primary: "#01559B",
@@ -70,6 +71,7 @@ const config: Config = {
                 "red-light": "#FFEEEE",
                 "yellow-light": "#FFFBEB",
                 "green-light": "#F2FFEB",
+                "gray-light": "#E9E9E9"
             },
             backgroundImage: {
                 "custom-gradient-cart":

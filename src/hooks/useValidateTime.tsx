@@ -1,5 +1,5 @@
 import {initValidityTime} from "@/const";
-import {calculateDate, convertToTimeStamp} from "@/utils/FormatDate";
+import {calculateDate, convertToTimeStamp} from "@/utils";
 import React, {useEffect, useState} from "react";
 
 function useValidateTime({

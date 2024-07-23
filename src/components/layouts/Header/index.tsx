@@ -6,7 +6,7 @@ import DropsDown from "@/components/atoms/Dropdown";
 import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";
 import {dataOrderNotice} from "@/faker/OrderNotice";
 import {Notice} from "@/interfaces/notice";
-import {formatNotice} from "@/utils/formatNotice";
+import {formatNotice} from "@/utils";
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import "../../../app/globals.css";
