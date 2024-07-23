@@ -29,7 +29,7 @@ const ProcessHeader: React.FC<ProcessHeaderProps> = ({
                     {subTitle ? subTitle : ""}
                 </p>
             </div>
-            <div className="flex justify-start items-center gap-[13px]">
+            <div className="flex justify-start items-center gap-[11px]">
                 {flowData.map((flow) => (
                     <ProcessFlowItem
                         key={flow.id}

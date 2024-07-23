@@ -1,4 +1,4 @@
-import {initValidityTime} from "@/const";
+import {initValidityTime} from "@/consts";
 import {calculateDate, convertToTimeStamp} from "@/utils";
 import React, {useEffect, useState} from "react";
 

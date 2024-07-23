@@ -1,23 +1,6 @@
 "use client";
-import {twMerge} from "tailwind-merge";
-import Header from "@/components/layouts/Header";
-import Navigation from "@/components/molecules/Navigation";
-import {NavigationType} from "@/interfaces";
-import {useState} from "react";
-import CreditCart from "@/components/atoms/CreditCart";
-import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import LayoutContainer from "@/app/LayoutContainer";
-import {dataList} from "@/faker/AccountBalance";
-import Sort from "@/assets/svgs/Sort_arrow.svg";
-import Checkbox from "@/components/atoms/Checkbox";
-import Propertie from "@/components/atoms/Properties/Propertie";
-import Circle from "@/assets/svgs/Circle.svg";
-import TimeFill from "@/assets/svgs/TimeFill.svg";
-import ValidityTime1 from "@/assets/svgs/validity_time_1.svg";
-import ValidityTime2 from "@/assets/svgs/validity_time_2.svg";
-import ValidityTime3 from "@/assets/svgs/validity_time_3.svg";
-import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
-import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
+import {twMerge} from "tailwind-merge";
 export default function Home() {
     const theadClasses = twMerge(
         "min-h-[56px] px-4 py-2 flex justify-center items-center border-stroke border-y border-l"
