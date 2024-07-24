@@ -1,5 +1,5 @@
 "use client";
-import React, {ReactNode, useEffect, useRef} from "react";
+import React, {ReactNode, useEffect, useRef, useState} from "react";
 import DatePicker from "react-datepicker";
 import Select from "@/assets/svgs/dropdown_select.svg";
 import IconCalendar from "@/assets/svgs/calendar_v2.svg";
@@ -61,6 +61,8 @@ const Input: React.FC<PropsInput> = (props) => {
         handleSelectChange
     } = props;
 
+    const [isOptionSelected, setIsOptionSelected] = useState(false);
+
     const inputRef = useRef<HTMLDivElement>(null);
     const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -105,13 +107,19 @@ const Input: React.FC<PropsInput> = (props) => {
     )}`;
     const combinedClasses = `${defaultClasses} ${className}`;
 
+    useEffect(() => {
+        if (value) {
+            setIsOptionSelected(true);
+        }
+    }, [value]);
+
     return (
         <div>
             <label>
                 {label}
                 {require && <span className="text-warning"> &#160;*</span>}{" "}
             </label>
-            <div ref={inputRef} className={`${combinedClasses}`} tabIndex={0}>
+            <div ref={inputRef} className={combinedClasses} tabIndex={0}>
                 {isCalendarPrefix ?
                     <span
                         className="absolute left-2 cursor-pointer"
@@ -136,23 +144,28 @@ const Input: React.FC<PropsInput> = (props) => {
                 : variant === "select" ?
                     <div className="relative w-full">
                         <select
-                            className={`w-full appearance-none 
-                             focus:!outline-secondary p-2 ${
-                                 prefix ? "ml-6" : ""
-                             }`}
+                            className={`w-full appearance-none focus:!outline-secondary p-2 ${prefix ? "ml-6" : ""}`}
                             name={name}
                             value={value}
-                            onChange={handleSelectChange}
+                            onChange={(e) => {
+                                handleSelectChange && handleSelectChange(e);
+                                setIsOptionSelected(true);
+                            }}
                             disabled={isDisabled}>
-                            <option disabled value="">
-                                {placeholder}
-                            </option>
-                            {optionSelect?.map((option, index) => (
-                                <option key={index} value={option}>
-                                    {option}
+                            {!isOptionSelected && (
+                                <option value="" disabled>
+                                    Select
                                 </option>
-                            ))}
+                            )}
+                            {optionSelect
+                                ?.filter((option) => option !== "")
+                                .map((option, index) => (
+                                    <option key={index} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
                         </select>
+
                         <div className="absolute top-[35%] right-[10px] pointer-events-none">
                             <Select />
                         </div>

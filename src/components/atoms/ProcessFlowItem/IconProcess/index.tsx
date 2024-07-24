@@ -81,7 +81,7 @@ function IconProcess({
             </div>
             {label && (
                 <p
-                    className={`text-[12px] pointer-events-none font-[500] font-sf-ui-display ${styleProcessItem[state].text} leading-[14.32px] mt-2`}>
+                    className={`text-[12px] select-none pointer-events-none font-[500] font-sf-ui-display ${styleProcessItem[state].text} leading-[14.32px] mt-2`}>
                     {label}
                 </p>
             )}

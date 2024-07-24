@@ -1,7 +1,7 @@
 "use client";
-import DropDown from "@/assets/svgs/Arrow_drop_down.svg";
+import DropDown from "@/assets/svgs/dropdown_config.svg";
 import Bell from "@/assets/svgs/Bell.svg";
-import User from "@/assets/svgs/User_alt_light.svg";
+import User from "@/assets/svgs/user_1.svg";
 import DropsDown from "@/components/atoms/Dropdown";
 import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";
 import {dataOrderNotice} from "@/faker/OrderNotice";
@@ -10,6 +10,7 @@ import {formatNotice} from "@/utils";
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import "../../../app/globals.css";
+import Image from "next/image";
 
 interface NoticeResponse {
     total?: number;
@@ -77,14 +78,16 @@ export default function Header() {
                             {notices?.data?.length !== 0 ?
                                 <span
                                     onClick={handleNotice}
-                                    className="absolute cursor-pointer rounded-full ml-3 z-10 px-[4px] text-[8px] text-white bg-red">
+                                    className="absolute select-none cursor-pointer rounded-full ml-3 z-10 px-[4px] text-[8px] text-white bg-red">
                                     {formatNotice(notices?.total ?? 0)}
                                 </span>
                             :   ""}
 
-                            <span onClick={handleNotice}>
-                                <Bell className="w-6 h-6 cursor-pointer" />
-                            </span>
+                            <Bell
+                                className="w-6 h-6 cursor-pointer select-none"
+                                onClick={handleNotice}
+                            />
+
                             {isNotice && (
                                 <OrderNotice
                                     total={notices?.total}
@@ -95,7 +98,7 @@ export default function Header() {
 
                         <div className="w-6 text-center">
                             <p
-                                className="cursor-pointer transition text-[13px] font-normal leading-[15.51px] text-text duration-300 ease-in-out transform"
+                                className="cursor-pointer transition text-[13px] font-normal leading-[15.51px] text-text select-none duration-300 ease-in-out transform"
                                 onClick={handleLanguage}>
                                 {language}
                             </p>
@@ -105,7 +108,8 @@ export default function Header() {
                         <div
                             className="flex gap-[9px] items-center"
                             ref={dropdownRef}>
-                            <User className="w-8 h-8" />
+                            <User className="w-8 h-8 rounded-full" />
+
                             <div>
                                 <p className="text-text text-[13px] leading-4">
                                     Nguyễn Văn A
@@ -117,7 +121,7 @@ export default function Header() {
                             <div
                                 className="relative"
                                 onClick={handleClickDropDown}>
-                                <DropDown className="w-6 h-5 cursor-pointer relative" />
+                                <DropDown className="w-3 h-2 cursor-pointer relative" />
                                 {isClicked && <DropsDown />}
                             </div>
                         </div>
