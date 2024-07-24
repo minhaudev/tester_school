@@ -1,6 +1,6 @@
 "use client";
 import SaveDraftIcon from "@/assets/svgs/save_draft.svg";
-import AddIcon from "@/assets/svgs/add_light.svg";
+import AddIcon from "@/assets/svgs/add_light_larger.svg";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
 import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
@@ -34,8 +34,8 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-08-33T15:13:00Z"));
-    const startDate = new Date(Date.parse("2024-07-23T15:12:00Z"));
+    const endDate = new Date(Date.parse("2024-08-24T15:13:00Z"));
+    const startDate = new Date(Date.parse("2015-01-24T08:26:00Z"));
     const handleEndIn = () => {
         alert("end in");
     };
@@ -108,7 +108,7 @@ export default function Home() {
                         <Button
                             className="!px-2 !py-[10px]"
                             typeFile=""
-                            variant="secondary"
+                            variant="primary-dark"
                             size="medium"
                             prefixIcon={<AddIcon className="min-w-4 min-h-4" />}
                             onClick={() => {}}>

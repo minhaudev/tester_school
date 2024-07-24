@@ -67,30 +67,30 @@ function TableExample({label}: any) {
                     </tr>
                 </tbody>
             </table>
-            <div className="flex gap-4 mt-[50px]">
+            <div className="flex w-full justify-end gap-4 mt-[50px]">
                 <Button
                     typeFile=""
-                    variant="secondary"
+                    variant={`${currentProcessIndex > 1 ? "primary-dark" : "secondary"}`}
                     size="medium"
                     className={`${currentProcessIndex <= 1 ? "disabled text-gray-4 cursor-not-allowed" : ""}`}
                     onClick={() => onBack()}>
-                    back
+                    Back
                 </Button>
                 {currentProcessIndex >= flows.length ?
                     <Button
                         typeFile={""}
-                        variant="secondary"
+                        variant="primary-dark"
                         size="medium"
                         onClick={() => onSubmit()}>
-                        submit
+                        Submit
                     </Button>
                 :   <Button
                         typeFile={""}
-                        variant="secondary"
+                        variant={`${currentProcessIndex < flows.length ? "primary-dark" : "secondary"}`}
                         size="medium"
                         className={`${currentProcessIndex >= flows.length ? "disabled text-gray-4 cursor-not-allowed" : ""}`}
                         onClick={() => onNext()}>
-                        next
+                        Next
                     </Button>
                 }
             </div>

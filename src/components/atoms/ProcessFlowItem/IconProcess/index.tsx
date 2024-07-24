@@ -40,7 +40,7 @@ function IconProcess({
     };
     return (
         <div className="flex flex-col items-center">
-            <div className="relative ">
+            <div className={`relative`}>
                 {state !== stateProcess.DONE ?
                     <div
                         onClick={() => {
@@ -48,7 +48,7 @@ function IconProcess({
                                 return onChangeState(id);
                             }
                         }}
-                        className={`rounded-full ${state !== stateProcess.NONE ? "cursor-pointer" : ""} w-[48px] h-[48px] flex items-center justify-center border-[0.5px] ${
+                        className={`rounded-full  ${stateProcess.NONE === state ? "disabled cursor-not-allowed" : "cursor-pointer"} w-[48px] h-[48px] flex items-center justify-center border-[0.5px] ${
                             stateProcess.ACTIVE === state ?
                                 "border-secondary"
                             :   "border-unit"
@@ -81,7 +81,7 @@ function IconProcess({
             </div>
             {label && (
                 <p
-                    className={`text-[12px] font-[500] font-sf-ui-display ${styleProcessItem[state].text} leading-[14.32px] mt-2`}>
+                    className={`text-[12px] pointer-events-none font-[500] font-sf-ui-display ${styleProcessItem[state].text} leading-[14.32px] mt-2`}>
                     {label}
                 </p>
             )}

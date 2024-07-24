@@ -10,8 +10,7 @@ function ProcessFlowItem({
 }: ProcessFlowProps) {
     return (
         <div className="flex flex-col items-center min-w-[113px] max-w-[133px]">
-            <div
-                className={`flex justify-start items-center ${stateProcess.NONE === state ? "disabled cursor-not-allowed" : ""}`}>
+            <div className={`flex justify-start items-center`}>
                 <div>
                     <IconProcess
                         label={label}
