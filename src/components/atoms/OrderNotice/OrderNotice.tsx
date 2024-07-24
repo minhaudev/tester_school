@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import {formatDate} from "@/utils/FormatDate";
-import {Notice} from "@/interfaces/notice";
+import {Notice} from "@/interfaces/Notice";
 
 interface PropsOrderNotice {
     total?: number;

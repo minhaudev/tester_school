@@ -11,5 +11,5 @@ export interface ProcessFlowProps {
     icon: any;
     line?: boolean;
     state: stateProcess;
-    onChangeState?:(id:number)=>void
+    onChangeState?: (id: number) => void;
 }
