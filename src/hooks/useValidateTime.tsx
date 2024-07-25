@@ -4,7 +4,8 @@ import React, {useEffect, useState} from "react";
 
 function useValidateTime({
     endDate,
-    startDate
+    startDate,
+    onEnd
 }: {
     endDate: Date;
     startDate: Date;
@@ -36,7 +37,7 @@ function useValidateTime({
                 const timeAble = Math.floor(
                     (convertToTimeStamp(endDate) - Date.now()) / 1000
                 );
-                const timeData = calculateDate({endDate});
+                const timeData = calculateDate({endDate, startDate});
                 const timeAbleHours = timeAble / (60 * 60);
                 const currentPercent = (timeAbleHours / totalTimeHours) * 100;
                 if (timeAble <= 0) {
@@ -48,8 +49,13 @@ function useValidateTime({
                 }
                 if (convertToTimeStamp(startDate) <= Date.now()) {
                     setTimeValidity({...timeData});
-                    setTimeAble(() => Math.floor(timeAble / 1000));
+                    setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(() => currentPercent);
+                }
+                if (convertToTimeStamp(startDate) > Date.now()) {
+                    setTimeValidity({...timeData});
+                    setTimeAble(() => Math.floor(timeAble));
+                    setCurrentPercent(100);
                 }
             } catch (error) {
                 return;
@@ -57,7 +63,6 @@ function useValidateTime({
         }, 1000);
         return () => clearInterval(intervalId);
     }, [timeAble, endDate, startDate, totalTimeHours, totalTime]);
-
     return {
         timeAble,
         timeValidity,

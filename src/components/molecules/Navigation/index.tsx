@@ -67,7 +67,6 @@ function Navigation({
                     </p>
                 )}
                 <Button
-                    typeFile=""
                     isIcon
                     variant="primary-dark"
                     color="white"

@@ -19,7 +19,7 @@ const ProcessHeader: React.FC<ProcessHeaderProps> = ({
 }) => {
     const {currentProcessIndex} = useProcessFlow();
     return (
-        <div className="flex justify-between items-center h-[112px]">
+        <div className="flex justify-between items-center h-[112px] px-4">
             <div>
                 <p className="capitalize text-[16px] font-sf-ui-display font-[500] text-primary leading-[20px]">
                     {flowData[currentProcessIndex - 1] &&

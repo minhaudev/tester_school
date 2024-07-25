@@ -12,10 +12,14 @@ export function calculateDate({
     startDate,
     endDate
 }: {
-    startDate?: Date;
+    startDate: Date;
     endDate: Date;
 }) {
-    const milliSecondTimeAble = convertToTimeStamp(endDate) - Date.now();
+    let milliSecondTimeAble = convertToTimeStamp(endDate) - Date.now();
+    if (convertToTimeStamp(startDate) > Date.now()) {
+        milliSecondTimeAble =
+            convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
+    }
     const timeAble = milliSecondTimeAble / (1000 * 60 * 60);
     const day = Math.floor(timeAble / 24);
     const hours = Math.floor(timeAble) - day * 24;

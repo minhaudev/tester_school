@@ -34,17 +34,16 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-08-24T15:13:00Z"));
-    const startDate = new Date(Date.parse("2015-01-24T08:26:00Z"));
+    const endDate = new Date(Date.parse("2024-07-27T08:33:00Z"));
+    const startDate = new Date(Date.parse("2024-07-25T09:13:00Z"));
     const handleEndIn = () => {
-        alert("end in");
+        console.log("end");
     };
     return (
         <LayoutContainer>
             <Standard />
             <Input
                 isCalendarSuffix
-                // suffix={<IconPassword />}
                 placeholder="MM/DD/YY"
                 handleOnChange={handleOnChange}
                 value={inputValue}
@@ -57,7 +56,7 @@ export default function Home() {
                 optionSelect={["avc", "bc", "vc"]}
             />
             <CustomerBalanceInfo />
-            <div className=" flex flex-col items-start gap-8 p-[10px] m-[20px] ">
+            <div className=" flex  flex-row items-start gap-8 p-[10px] m-[20px] ">
                 <ValidateServiceTime
                     onEnd={handleEndIn}
                     endDate={endDate}
@@ -91,11 +90,10 @@ export default function Home() {
 
             <ProcessFlow
                 subTitle="Sales Order Management - Create Sales Order"
-                leftHeader={
+                rightHeader={
                     <>
                         <Button
                             className="!px-2 !py-[10px]"
-                            typeFile=""
                             variant="secondary"
                             prefixIcon={
                                 <SaveDraftIcon className="min-w-4 min-h-4" />
@@ -107,7 +105,6 @@ export default function Home() {
 
                         <Button
                             className="!px-2 !py-[10px]"
-                            typeFile=""
                             variant="primary-dark"
                             size="medium"
                             prefixIcon={<AddIcon className="min-w-4 min-h-4" />}

@@ -4,46 +4,56 @@ function FormatTime({date}: {date: any}) {
     return (
         <>
             {date ?
-                <div className=" flex items-center text-[11px] font-sf-ui-display font-[500] leading-[16px] text-text tracking-[0.5px] ">
-                    {date.day > 0 && <p className="pr-1">{date.day}D </p>}
-                    <p>
+                <div className=" flex items-center text-[11px] font-sf-ui-display font-[500] leading-[16px] text-text tracking-[0.5px] min-w-[56px] ">
+                    {date.day > 0 && (
+                        <p className="mr-[2px] min-w-4 max-w-4 flex justify-center items-center">
+                            {date.day}D{" "}
+                        </p>
+                    )}
+                    <p className="min-w-4 max-w-4 flex justify-center items-center">
                         {date.hours >= 0 && date.hours < 10 ?
-                            <p>{`${date.hours.toString().padStart(2, "0")}`}</p>
-                        :   <p>{`${date.hours}`}</p>}
+                            date.hours.toString().padStart(2, "0")
+                        :   `${date.hours}`}
                     </p>
-                    <div className="flex flex-col gap-[2.5px] px-[0.5px]">
+                    <div className="flex flex-col gap-[2.5px] items-center justify-center min-w-[3px]">
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                     </div>
-                    <p>
+                    <p className="min-w-4 max-w-4 flex justify-center items-center">
                         {" "}
                         {date.minutes >= 0 && date.minutes < 10 ?
-                            <p>{`${date.minutes.toString().padStart(2, "0")}`}</p>
-                        :   <p>{`${date.minutes}`}</p>}
+                            date.minutes.toString().padStart(2, "0")
+                        :   date.minutes}
                     </p>
-                    <div className="flex flex-col gap-[2.5px] px-[0.5px]">
+                    <div className="flex flex-col gap-[2.5px] items-center justify-center min-w-[3px]">
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                     </div>
-                    <p>
+                    <p className="min-w-4 max-w-4 flex justify-center items-center">
                         {" "}
                         {date.secondTime >= 0 && date.secondTime < 10 ?
-                            <p>{`${date.secondTime.toString().padStart(2, "0")}`}</p>
-                        :   <p>{`${date.secondTime}`}</p>}
+                            date.secondTime.toString().padStart(2, "0")
+                        :   date.secondTime}
                     </p>
                 </div>
             :   <div className="text-[11px] font-sf-ui-display font-[500] leading-[16px] text-text">
-                    <p>00</p>{" "}
-                    <div className="flex flex-col gap-[2.5px] px-[0.5px]">
+                    <p className="min-w-4 max-w-4 flex justify-center items-center">
+                        00
+                    </p>{" "}
+                    <div className="flex flex-col gap-[2.5px] items-center justify-center min-w-[3px]">
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                     </div>{" "}
-                    <p>00</p>{" "}
-                    <div className="flex flex-col gap-[2.5px] px-[0.5px]">
+                    <p className="min-w-4 max-w-4 flex justify-center items-center">
+                        00
+                    </p>{" "}
+                    <div className="flex flex-col gap-[2.5px] items-center justify-center min-w-[3px]">
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                         <div className="w-[1.3px] h-[1.3px] rounded-full bg-[#000]"></div>{" "}
                     </div>{" "}
-                    <p>00</p>
+                    <p className="min-w-4 max-w-4 flex justify-center items-center">
+                        00
+                    </p>
                 </div>
             }
         </>

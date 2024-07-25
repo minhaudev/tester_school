@@ -9,21 +9,21 @@ import ProcessContainer from "./ProccessContainer";
 interface ProcessFlowContainerProps {
     processLabel: ProcessFlowProps[];
     processBody: ReactNode[];
-    leftHeader?: ReactNode;
+    rightHeader?: ReactNode;
     subTitle: string;
 }
 function ProcessFlow({
     processLabel,
     processBody,
     subTitle,
-    leftHeader
+    rightHeader
 }: ProcessFlowContainerProps) {
     return (
         <ProcessFlowProvider flowData={processLabel}>
             <ProcessContainer
                 processBody={processBody}
                 subTitle={subTitle}
-                leftHeader={leftHeader}
+                rightHeader={rightHeader}
             />
         </ProcessFlowProvider>
     );

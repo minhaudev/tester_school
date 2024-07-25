@@ -69,7 +69,6 @@ function TableExample({label}: any) {
             </table>
             <div className="flex w-full justify-end gap-4 mt-[50px]">
                 <Button
-                    typeFile=""
                     variant={`${currentProcessIndex > 1 ? "primary-dark" : "secondary"}`}
                     size="medium"
                     className={`${currentProcessIndex <= 1 ? "disabled text-gray-4 cursor-not-allowed" : ""}`}

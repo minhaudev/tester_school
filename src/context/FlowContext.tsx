@@ -32,27 +32,34 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
     flowData
 }) => {
     const [flows, setFlow] = useState<ProcessFlowProps[]>(flowData);
-    const [stepDone, setStateDone] = useSaveLocalStorage(
-        "stepDone",
+    const [stepPending, setStateDone] = useSaveLocalStorage(
+        "stepPending",
+        flowData[0].id
+    );
+    const [currentStep, setCurrentStep] = useSaveLocalStorage(
+        "currentStep",
         flowData[0].id
     );
     const [currentProcessIndex, setCurrentProcessIndex] = useState<number>(
-        () => stepDone
+        () => currentStep
     );
 
     useEffect(() => {
-        initFlow(stepDone);
-    }, [stepDone]);
-    const initFlow = (stepDone: number) => {
+        initFlow(stepPending, currentStep);
+    }, [stepPending, currentStep]);
+    const initFlow = (stepPending: number, currentStep: number) => {
         setFlow((prevFlows) =>
             prevFlows.map((flow) => {
-                if (flow.id < stepDone) {
+                if (flow.id < stepPending) {
                     flow.state = stateProcess.DONE;
                 }
-                if (flow.id === stepDone) {
+                if (flow.id === currentStep || flow.id === stepPending) {
                     flow.state = stateProcess.ACTIVE;
                 }
-                if (flow.id > stepDone) {
+                if (flow.id === stepPending && flow.id !== currentStep) {
+                    flow.state = stateProcess.PENDING;
+                }
+                if (flow.id > stepPending) {
                     flow.state = stateProcess.NONE;
                 }
                 return flow;
@@ -79,8 +86,11 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
                 }
             }
             setFlow([...flowClone]);
-            if (currentProcessIndex >= stepDone) {
+            if (currentProcessIndex >= stepPending) {
                 setStateDone(currentProcessIndex + 1);
+            }
+            if (currentProcessIndex >= currentStep) {
+                setCurrentStep(currentProcessIndex + 1);
             }
         }
     };
@@ -89,11 +99,13 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
         if (currentProcessIndex > 1) {
             setCurrentProcessIndex(currentProcessIndex - 1);
             onActive(currentProcessIndex - 1);
+            setCurrentStep(currentProcessIndex - 1);
         }
     };
 
     const onSubmit = () => {
         setStateDone(1);
+        setCurrentStep(1);
         setFlow(() => [...flowData]);
         setCurrentProcessIndex(() => flowData[0].id);
     };
@@ -108,11 +120,12 @@ export const ProcessFlowProvider: React.FC<ProcessFlowProviderProps> = ({
             if (flow.id === currentProcessIndex) {
                 flow.state = stateProcess.PENDING;
             }
-            if (flow.id < stepDone && flow.id !== id) {
+            if (flow.id < stepPending && flow.id !== id) {
                 flow.state = stateProcess.DONE;
             }
             return flow;
         });
+        setCurrentStep(() => id);
         setFlow([...updateFlow]);
     };
 
