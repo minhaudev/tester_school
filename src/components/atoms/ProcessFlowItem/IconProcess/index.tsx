@@ -1,45 +1,29 @@
 import DonIcon from "@/assets/svgs/done_process.svg";
+import {styleProcessItem} from "@/consts";
 import {stateProcess} from "@/interfaces";
+import {ReactNode} from "react";
 interface IconProcessProp {
     id: number;
-    label?: string;
     icon: any;
     line: boolean;
     state: stateProcess;
     onChangeState: (id: number) => void;
+    col?: boolean;
+    children?: ReactNode;
 }
 function IconProcess({
     id = 1,
     icon: IconComponent,
     line = false,
-    label = "",
+    col = true,
     state = stateProcess.ACTIVE,
-    onChangeState = () => {}
+    onChangeState = () => {},
+    children
 }: IconProcessProp) {
-    const styleProcessItem = {
-        [stateProcess.NONE]: {
-            w: "w-0",
-            bg: "bg-transparent",
-            text: "text-unit"
-        },
-        [stateProcess.ACTIVE]: {
-            w: "w-1/2",
-            bg: "bg-secondary",
-            text: "text-secondary"
-        },
-        [stateProcess.DONE]: {
-            w: "w-full",
-            bg: "bg-primary",
-            text: "text-primary"
-        },
-        [stateProcess.PENDING]: {
-            w: "w-0",
-            bg: "bg-transparent border border-unit",
-            text: "text-unit"
-        }
-    };
+    const styleProcessItems = styleProcessItem(state);
     return (
-        <div className="flex flex-col items-center">
+        <div
+            className={`flex flex-col ${!col && "!flex-row-reverse gap-[11px]"} items-center`}>
             <div className={`relative`}>
                 {state !== stateProcess.DONE ?
                     <div
@@ -54,7 +38,7 @@ function IconProcess({
                             :   "border-unit"
                         }`}>
                         <div
-                            className={`w-[39px] h-[39px] rounded-full  ${styleProcessItem[state].bg} 
+                            className={`w-[39px] h-[39px] rounded-full  ${styleProcessItems.bg} 
           flex items-center justify-center
           `}>
                             <IconComponent
@@ -72,19 +56,14 @@ function IconProcess({
                         className="cursor-pointer min-w-[48px] min-h-[48px]   "
                     />
                 }
-                {line && (
+                {line && col && (
                     <div className="h-[2px] w-[60px] bg-unit rounded-sm overflow-hidden absolute left-[56px] top-[50%] translate-y-[-50%]  ">
                         <div
-                            className={`${styleProcessItem[state].w} ${state === stateProcess.ACTIVE ? "bg-secondary" : "bg-primary-5-hover"} rounded-sm  h-full`}></div>
+                            className={`${styleProcessItems.w} ${state === stateProcess.ACTIVE ? "bg-secondary" : "bg-primary-5-hover"} rounded-sm  h-full`}></div>
                     </div>
                 )}
             </div>
-            {label && (
-                <p
-                    className={`text-[12px] select-none pointer-events-none font-[500] font-sf-ui-display ${styleProcessItem[state].text} leading-[14.32px] mt-2`}>
-                    {label}
-                </p>
-            )}
+            {children && children}
         </div>
     );
 }
