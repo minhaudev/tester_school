@@ -34,8 +34,9 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    const endDate = new Date(Date.parse("2024-07-27T08:33:00Z"));
-    const startDate = new Date(Date.parse("2024-07-25T09:13:00Z"));
+    const endDate = new Date(Date.parse("2024-09-28T03:55:08.605Z"));
+    const startDate = new Date("2024-02-28T03:55:08.605Z");
+    console.log("check start Date :::: ", startDate);
     const handleEndIn = () => {
         console.log("end");
     };

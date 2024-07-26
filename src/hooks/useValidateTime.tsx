@@ -12,7 +12,10 @@ function useValidateTime({
     onEnd?: () => void;
 }) {
     const [timeAble, setTimeAble] = useState(() => {
-        return convertToTimeStamp(endDate) - Date.now();
+        return (
+            convertToTimeStamp(endDate) -
+            convertToTimeStamp(new Date(Date.now()))
+        );
     });
     const [timeValidity, setTimeValidity] = useState(initValidityTime);
     const [currentPercent, setCurrentPercent] = useState(0);
@@ -35,7 +38,9 @@ function useValidateTime({
                     return;
                 }
                 const timeAble = Math.floor(
-                    (convertToTimeStamp(endDate) - Date.now()) / 1000
+                    (convertToTimeStamp(endDate) -
+                        convertToTimeStamp(new Date(Date.now()))) /
+                        1000
                 );
                 const timeData = calculateDate({endDate, startDate});
                 const timeAbleHours = timeAble / (60 * 60);
@@ -47,12 +52,18 @@ function useValidateTime({
                     setEnd(true);
                     return;
                 }
-                if (convertToTimeStamp(startDate) <= Date.now()) {
+                if (
+                    convertToTimeStamp(startDate) <=
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
                     setTimeValidity({...timeData});
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(() => currentPercent);
                 }
-                if (convertToTimeStamp(startDate) > Date.now()) {
+                if (
+                    convertToTimeStamp(startDate) >
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
                     setTimeValidity({...timeData});
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(100);

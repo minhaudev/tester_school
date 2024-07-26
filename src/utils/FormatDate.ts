@@ -15,8 +15,11 @@ export function calculateDate({
     startDate: Date;
     endDate: Date;
 }) {
-    let milliSecondTimeAble = convertToTimeStamp(endDate) - Date.now();
-    if (convertToTimeStamp(startDate) > Date.now()) {
+    let milliSecondTimeAble =
+        convertToTimeStamp(endDate) - convertToTimeStamp(new Date(Date.now()));
+    if (
+        convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now()))
+    ) {
         milliSecondTimeAble =
             convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
     }
