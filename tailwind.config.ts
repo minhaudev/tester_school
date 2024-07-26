@@ -1,4 +1,4 @@
-import type {Config} from "tailwindcss";
+import type { Config } from "tailwindcss";
 
 const config: Config = {
     content: [
@@ -13,7 +13,7 @@ const config: Config = {
             "primary-5-hover": "#0376D7",
             "warning-hover": "#F56569",
             "border-warning-hover": "#ED1E24",
-            "text-1":"#87898D",
+            "text-1": "#87898D",
             text: "#3A3B3C",
             "text-light": "#4B5563",
             primary: "#01559B",
@@ -60,6 +60,7 @@ const config: Config = {
         },
         extend: {
             backgroundColor: {
+                black: "#3A3B3C",
                 "green-bold": "#69AA43",
                 gray: "#BBBBBC",
                 red: "#D6292E",
@@ -117,12 +118,12 @@ const config: Config = {
             },
             keyframes: {
                 fadeIn: {
-                    "0%": {opacity: "0", transform: "translateY(-20px)"},
-                    "100%": {opacity: "0.5", transform: "translateY(0)"}
+                    "0%": { opacity: "0", transform: "translateY(-20px)" },
+                    "100%": { opacity: "0.5", transform: "translateY(0)" }
                 },
                 fadeOut: {
-                    "0%": {opacity: "0.5", transform: "translateY(0)"},
-                    "100%": {opacity: "0", transform: "translateY(-20px)"}
+                    "0%": { opacity: "0.5", transform: "translateY(0)" },
+                    "100%": { opacity: "0", transform: "translateY(-20px)" }
                 }
             },
             animation: {
