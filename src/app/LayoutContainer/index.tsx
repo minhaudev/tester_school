@@ -21,7 +21,7 @@ export default function LayoutContainer({
     }, []);
     if (isLoading) return null;
     return (
-        <div className="flex ">
+        <div className="flex">
             {isNav && (
                 <Navigation
                     type={NavigationType.CLIENT}

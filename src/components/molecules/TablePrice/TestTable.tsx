@@ -4,7 +4,7 @@ import React from "react";
 
 import {twMerge} from "tailwind-merge";
 
-const Home = () => {
+const TestTable = () => {
     const tableClasses = twMerge(
         "min-h-[56px] flex justify-center items-center border-stroke border-b border-l"
     );
@@ -18,8 +18,8 @@ const Home = () => {
     );
 
     return (
-        <LayoutContainer>
-            <DataTable className="w-full" tableId={""}>
+        <>
+            <DataTable className="w-full bg-white  " tableId={""}>
                 <table className="w-full table-fixed">
                     <thead>
                         <tr className="flex flex-row  ">
@@ -30,7 +30,7 @@ const Home = () => {
                             <th className={`${thClasses} min-w-[56px]`}>
                                 Type
                             </th>
-                            <th className={`${thClasses} flex-1 min-w-[150px]`}>
+                            <th className={`${thClasses} flex-1 px-4`}>
                                 Specifications
                             </th>
                             <th
@@ -60,7 +60,7 @@ const Home = () => {
                                 <span className="text-unit">(PCS)</span>
                             </th>
                             <th
-                                className={`${thClasses} min-w-[80px] flex-col`}>
+                                className={`${thClasses} min-w-[78px] flex-col border-r-[1px]`}>
                                 Rebate offer
                                 <span className="text-unit">(VND)</span>
                             </th>
@@ -74,7 +74,7 @@ const Home = () => {
                             </td>
                             <td className={`${tdClasses} min-w-[56px]`}></td>
                             <td
-                                className={`${tdClasses} flex-1 min-w-[150px]`}></td>
+                                className={`${tdClasses} flex-1 min-w-[107px] `}></td>
                             <td
                                 className={`${tdClasses} min-w-[175px] `}
                                 colSpan={2}></td>
@@ -82,13 +82,14 @@ const Home = () => {
                             <td className={`${tdClasses} min-w-[145px]`}></td>
                             <td className={`${tdClasses} min-w-[80px] `}></td>
                             <td className={`${tdClasses} min-w-[104px] `}></td>
-                            <td className={`${tdClasses} min-w-[80px]`}></td>
+                            <td
+                                className={`${tdClasses} min-w-[78px] border-r-[1px]`}></td>
                         </tr>
                     </tbody>
                 </table>
             </DataTable>
-        </LayoutContainer>
+        </>
     );
 };
 
-export default Home;
+export default TestTable;
