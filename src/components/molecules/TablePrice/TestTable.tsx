@@ -1,8 +1,9 @@
 import LayoutContainer from "@/app/LayoutContainer";
 import DataTable from "@/components/atoms/Datatable";
-import React from "react";
-
+import React, {useEffect, useRef} from "react";
+import "./styles.css";
 import {twMerge} from "tailwind-merge";
+import Input from "@/components/atoms/Input";
 
 const TestTable = () => {
     const tableClasses = twMerge(
@@ -17,78 +18,236 @@ const TestTable = () => {
         "text-text text-[13px] font-normal"
     );
 
+    // Tạo mảng refs cho các container và thead
+    const containerRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    const synchronizeScroll = (index: number) => {
+        const scrollLeft = containerRefs.current[index]?.scrollLeft || 0;
+        containerRefs.current.forEach((container, idx) => {
+            if (container && idx !== index) {
+                container.scrollLeft = scrollLeft;
+            }
+        });
+    };
+
+    useEffect(() => {
+        const handleScroll = (index: number) => () => synchronizeScroll(index);
+
+        containerRefs.current.forEach((container, index) => {
+            if (container) {
+                container.addEventListener("scroll", handleScroll(index));
+            }
+        });
+
+        return () => {
+            containerRefs.current.forEach((container, index) => {
+                if (container) {
+                    container.removeEventListener(
+                        "scroll",
+                        handleScroll(index)
+                    );
+                }
+            });
+        };
+    }, []);
+
     return (
-        <>
-            <DataTable className="w-full bg-white  " tableId={""}>
-                <table className="w-full table-fixed">
-                    <thead>
-                        <tr className="flex flex-row  ">
+        <div className="w-full overflow-x-hidden">
+            <div className="w-full">
+                <div
+                    ref={(el) => (containerRefs.current[0] = el)}
+                    className={`flex w-full overflow-scroll`}>
+                    <div className="sticky left-0 bg-white">
+                        <div className="flex">
                             <th
-                                className={`${thClasses} min-w-[56px] border-l-0`}>
+                                className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[56px] w-full flex-center `}>
                                 No
                             </th>
-                            <th className={`${thClasses} min-w-[56px]`}>
+                            <th
+                                className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[55PX] w-full flex-center `}>
                                 Type
                             </th>
-                            <th className={`${thClasses} flex-1 px-4`}>
+                            <th
+                                className={`${thClasses} min-w-[140px] px-1 2xl:min-w-[199px] w-full flex-center `}>
                                 Specifications
                             </th>
                             <th
-                                className={`${thClasses} min-w-[81px] flex-col`}>
+                                className={`${thClasses} min-w-[70px] px-1 2xl:min-w-[81px] w-full flex-col `}>
                                 Total coil
                                 <span className="text-unit">(PCS)</span>
                             </th>
                             <th
-                                className={`${thClasses} min-w-[94px] flex-col`}>
+                                className={`${thClasses} min-w-[90px] px-1 2xl:min-w-[94px] w-full flex-col `}>
                                 Total weight
                                 <span className="text-unit">(KG)</span>
                             </th>
-                            <th className={`${thClasses} min-w-[98px]`}>
+                            <th
+                                className={`${thClasses} min-w-[90px] px-1 2xl:min-w-[98px] w-full flex-center `}>
                                 Prime
                             </th>
-                            <th className={`${thClasses} min-w-[145px]`}>
+                            <th
+                                className={`${thClasses} min-w-[140px] px-1 2xl:min-w-[145px] w-full flex-center `}>
                                 Preferred tolerances
                             </th>
                             <th
-                                className={`${thClasses} min-w-[80px] flex-col`}>
+                                className={`${thClasses} min-w-[75px] 2xl:min-w-[80px] w-full flex-col `}>
                                 Unit price
                                 <span className="text-unit">(PCS)</span>
                             </th>
                             <th
-                                className={`${thClasses} min-w-[104px] flex-col`}>
+                                className={`${thClasses} min-w-[104px] 2xl:min-w-[104px] w-full flex-col `}>
                                 Discounted price
                                 <span className="text-unit">(PCS)</span>
                             </th>
                             <th
-                                className={`${thClasses} min-w-[78px] flex-col border-r-[1px]`}>
+                                className={`${thClasses} min-w-[78px] 2xl:min-w-[78px] w-full flex-col border-r `}>
                                 Rebate offer
                                 <span className="text-unit">(VND)</span>
                             </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="flex flex-row odd:bg-highlight even:bg-white">
-                            <td
-                                className={`${tdClasses} min-w-[56px] border-l-0`}>
-                                01
-                            </td>
-                            <td className={`${tdClasses} min-w-[56px]`}></td>
-                            <td
-                                className={`${tdClasses} flex-1 min-w-[107px] `}></td>
-                            <td
-                                className={`${tdClasses} min-w-[175px] `}
-                                colSpan={2}></td>
-                            <td className={`${tdClasses} min-w-[98px]`}></td>
-                            <td className={`${tdClasses} min-w-[145px]`}></td>
-                            <td className={`${tdClasses} min-w-[80px] `}></td>
-                            <td className={`${tdClasses} min-w-[104px] `}></td>
-                            <td
-                                className={`${tdClasses} min-w-[78px] border-r-[1px]`}></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </DataTable>
-        </>
+                        </div>
+                    </div>
+                    <div className="w-full">
+                        <div className="flex">
+                            <th
+                                className={`${thClasses} min-w-[264px] !p-0 min-h-[56px] max-h-[56px] border-l-0 flex flex-col justify-start`}>
+                                <div className="min-w-[264px] max-h-[28px] min-h-[28px] flex-center border-b border-stroke">
+                                    Special discount price
+                                </div>
+                                <div className="min-w-[264px] min-h-[28px] max-h-[28px] flex">
+                                    <div className="flex-center text-unit min-w-[88px] border-r border-stroke">
+                                        VND/KG
+                                    </div>
+                                    <div className="flex-center text-unit min-w-[88px] border-r border-stroke">
+                                        %
+                                    </div>
+                                    <div className="flex-center text-unit min-w-[88px]">
+                                        VND
+                                    </div>
+                                </div>
+                            </th>
+                            <th
+                                className={`${thClasses} min-w-[264px] !p-0 min-h-[56px] max-h-[56px] border-l border-stroke flex flex-col justify-start`}>
+                                <div className="min-w-[264px] max-h-[28px] min-h-[28px] flex-center border-b border-stroke">
+                                    Special rebate offer
+                                </div>
+                                <div className="min-w-[264px] min-h-[28px] max-h-[28px] flex">
+                                    <div className="flex-center text-unit min-w-[88px] border-x border-stroke">
+                                        VND/KG
+                                    </div>
+                                    <div className="flex-center text-unit min-w-[88px] border-r border-stroke">
+                                        %
+                                    </div>
+                                    <div className="flex-center text-unit min-w-[88px]">
+                                        VND
+                                    </div>
+                                </div>
+                            </th>
+                            <th className={`${thClasses} min-w-[133px]`}>
+                                Fulfillment
+                            </th>
+                            <th
+                                className={`${thClasses} flex flex-col min-w-[157px] w-full`}>
+                                Final price
+                                <span className="text-unit">(VND)</span>
+                            </th>
+                            <th
+                                className={`${thClasses} flex flex-col min-w-[156px] w-full`}>
+                                Total price
+                                <span className="text-unit">(VND)</span>
+                            </th>
+                            <th className={`${thClasses} min-w-[126px] w-full`}>
+                                Status
+                            </th>
+                            <th className={`${thClasses} min-w-[126px] w-full`}>
+                                Action
+                            </th>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Thêm các container khác với refs tương ứng */}
+                {[0, 1, 2, 3].map((item) => (
+                    <div
+                        key={item}
+                        ref={(el) => (containerRefs.current[item + 1] = el)}
+                        className={`flex w-full overflow-scroll bg-green`}>
+                        <div className="sticky left-0 z-50">
+                            <div
+                                className={`flex ${(item + 1) % 2 ? " bg-highlight" : "bg-white"}`}>
+                                <th
+                                    className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[56px] w-full flex-center`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[55PX] w-full flex-center`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[140px] px-1 2xl:min-w-[199px] w-full flex-center`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[70px] px-1 2xl:min-w-[81px] w-full flex-col`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[90px] px-1 2xl:min-w-[94px] w-full flex-col`}></th>
+
+                                <th
+                                    className={`${thClasses} min-w-[90px] px-1 2xl:min-w-[98px] w-full flex-center`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[140px] px-1 2xl:min-w-[145px] w-full flex-center`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[75px] 2xl:min-w-[80px] w-full flex-col`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[104px] 2xl:min-w-[104px] w-full flex-col`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[78px] 2xl:min-w-[78px] w-full flex-col border-r`}></th>
+                            </div>
+                        </div>
+                        <div
+                            className={`w-full ${(item + 1) % 2 ? " bg-highlight" : "bg-white"}`}>
+                            <div className="flex">
+                                <th
+                                    className={`${thClasses} min-w-[264px] !p-0 min-h-[56px] max-h-[56px] border-l-0 flex  justify-start`}>
+                                    <div className="min-w-[88px] border-l-0 h-full flex-center  py-[10px] px-[8px]  border-stroke">
+                                        <Input placeholder="Enter" />
+                                    </div>
+                                    <div className="min-w-[88px] border-l-0 h-full flex-center py-[10px] px-[8px]  border-stroke">
+                                        <Input placeholder="Enter" />
+                                    </div>
+                                    <div className="min-w-[88px] border-l-0 h-full flex-center py-[10px] px-[8px]  border-stroke">
+                                        <Input placeholder="Enter" />
+                                    </div>
+                                </th>
+                                <th
+                                    className={`${thClasses} min-w-[264px] !p-0 min-h-[56px] max-h-[56px] border-l border-stroke flex  justify-start`}>
+                                    <div className="min-w-[88px] border-l h-full flex-center py-[10px] px-[8px]  border-stroke">
+                                        {" "}
+                                        <Input placeholder="Enter" />
+                                    </div>
+                                    <div className="min-w-[88px] border-l h-full flex-center py-[10px] px-[8px]  border-stroke">
+                                        {" "}
+                                        <Input placeholder="Enter" />
+                                    </div>
+                                    <div className="min-w-[88px] border-l h-full flex-center py-[10px] px-[8px]  border-stroke">
+                                        {" "}
+                                        <Input placeholder="Enter" />
+                                    </div>
+                                </th>
+                                <th
+                                    className={`${thClasses} min-w-[133px]`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[157px] w-full`}>
+                                    {(312000).toLocaleString("vi-VN", {
+                                        style: "currency",
+                                        currency: "VND"
+                                    })}
+                                </th>
+                                <th
+                                    className={`${thClasses} min-w-[156px] w-full`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[126px] w-full`}></th>
+                                <th
+                                    className={`${thClasses} min-w-[126px] w-full`}></th>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };
 
