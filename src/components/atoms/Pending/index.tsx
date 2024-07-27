@@ -19,7 +19,7 @@ export const PendingValues: Record<PendingEnum, PendingValue> = {
     },
     [PendingEnum.Expired]: {
         color: "text-text",
-        background: "bg-primary"
+        background: "bg-gray-light"
     },
     [PendingEnum.Approve]: {
         color: "text-white",
@@ -35,7 +35,7 @@ export const PendingValues: Record<PendingEnum, PendingValue> = {
     },
     [PendingEnum.Draft]: {
         color: "text-text",
-        background: "bg-primary"
+        background: "bg-gray-light"
     }
 };
 
@@ -44,7 +44,7 @@ const Pending = ({type, description}: PendingProps) => {
 
     return (
         <div
-            className={`flex justify-center items-center p-4 ${background} rounded-sm h-[25px]`}>
+            className={`flex justify-center items-center px-2 py-1 ${background} rounded-[3px]  `}>
             <p
                 className={`${color} text-[11px] font-semibold text-center px-2 py-1`}>
                 {description}

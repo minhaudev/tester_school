@@ -10,27 +10,45 @@ export function formatDate(dateString: string): string {
 
 export function calculateDate({
     startDate,
-    endDate
+    endDate,
+    isTotal = false,
+    isTimeUse = false,
+    hasDay = true,
 }: {
     startDate: Date;
     endDate: Date;
+    isTotal?: boolean;
+    isTimeUse?: boolean;
+    hasDay?: boolean;
 }) {
-    let milliSecondTimeAble = convertToTimeStamp(endDate) - Date.now();
-    if (convertToTimeStamp(startDate) > Date.now()) {
+    if (isNaN(endDate.getTime()) ||
+        isNaN(startDate.getTime())) {
+
+        return { day: 0, hours: 0, minutes: 0, secondTime: 0 };
+    }
+    let milliSecondTimeAble = 0
+
+    if (convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now())) || isTotal || isTimeUse) {
         milliSecondTimeAble =
             convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
+    } else {
+        milliSecondTimeAble = convertToTimeStamp(endDate) - convertToTimeStamp(new Date(Date.now()))
     }
     const timeAble = milliSecondTimeAble / (1000 * 60 * 60);
     const day = Math.floor(timeAble / 24);
-    const hours = Math.floor(timeAble) - day * 24;
+    let hours = Math.floor(timeAble) - day * 24;
     const minutes =
         Math.floor(milliSecondTimeAble / (1000 * 60)) -
         (hours * 60 + day * 24 * 60);
     const secondTime = Math.floor(
         milliSecondTimeAble / 1000 -
-            (minutes * 60 + hours * 60 * 60 + day * 24 * 60 * 60)
+        (minutes * 60 + hours * 60 * 60 + day * 24 * 60 * 60)
     );
-    return {day, hours, minutes, secondTime};
+    if (!hasDay) {
+        hours = day * 24 + hours
+        return { day: 0, hours, minutes, secondTime };
+    }
+    return { day, hours, minutes, secondTime };
 }
 
 export const convertToTimeStamp = (date: Date) => {
