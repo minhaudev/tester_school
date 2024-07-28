@@ -8,7 +8,7 @@ interface CheckboxProps {
     id: string;
     disable?: boolean;
     className?: string;
-    checked?: boolean;
+    checked?: boolean | Record<string, boolean>;
     onChange?: (id: string) => void;
 }
 
@@ -21,7 +21,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     onChange
 }) => {
     const handleClick = () => {
-        
+
         if (!disable && onChange) {
             onChange(id); // Pass id to parent component to handle the change
         }

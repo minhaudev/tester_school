@@ -1,5 +1,5 @@
 "use client";
-import React, {ReactNode, useEffect, useRef, useState} from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from "@/assets/svgs/dropdown_select.svg";
 import IconCalendar from "@/assets/svgs/calendar_v2.svg";
@@ -17,7 +17,7 @@ interface PropsInput {
             HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
         >
     ) => void;
-    isDisabled?: boolean;
+    isDisabled?: boolean | Record<string, boolean>;
     className?: string;
     prefix?: ReactNode;
     isCalendarPrefix?: boolean;
@@ -28,6 +28,7 @@ interface PropsInput {
     helperText?: string;
     label?: string;
     type?: string;
+    isTextCenter?: boolean;
     showCalendar?: boolean;
     setShowCalendar?: (show: boolean) => void;
     selectedDate?: Date | null;
@@ -55,6 +56,7 @@ const Input: React.FC<PropsInput> = (props) => {
         helperText,
         label,
         type,
+        isTextCenter,
         showCalendar,
         setShowCalendar,
         selectedDate,
@@ -98,13 +100,12 @@ const Input: React.FC<PropsInput> = (props) => {
         }
     };
 
-    const defaultClasses = `${
-        error ?
-            "text-warning border-warning focus:border-warning"
-        :   "border-[#D9D9D9] text-[#000000D9]"
-    } flex items-center gap-1 relative bg-white rounded-sm border text-[14px] focus:!outline-none focus:!border-[#40A9FF] focus:!shadow-md w-full ${getSizeClass(
-        size
-    )}`;
+    const defaultClasses = `${error ?
+        "text-warning border-warning focus:border-warning"
+        : "border-[#D9D9D9] text-[#000000D9]"
+        } flex items-center gap-1 relative bg-white rounded-sm border text-[14px] focus:!outline-none focus:!border-[#40A9FF] focus:!shadow-md w-full ${getSizeClass(
+            size
+        )}`;
     const combinedClasses = `${defaultClasses} ${className}`;
 
     useEffect(() => {
@@ -112,7 +113,8 @@ const Input: React.FC<PropsInput> = (props) => {
             setIsOptionSelected(true);
         }
     }, [value]);
-
+    const normalizedDisabled = typeof isDisabled === 'boolean' ? isDisabled :
+        Object.values(isDisabled || {}).some(disabled => disabled);
     return (
         <div>
             <label>
@@ -128,69 +130,66 @@ const Input: React.FC<PropsInput> = (props) => {
                         }>
                         <IconCalendar className="w-full" />
                     </span>
-                :   <div className="absolute">{prefix}</div>}
+                    : <div className="absolute">{prefix}</div>}
 
                 {variant === "textarea" ?
                     <textarea
-                        className={`w-full min-h-[169px] max-h-[169px] p-2 focus:!outline-secondary  ${
-                            prefix ? "ml-6" : ""
-                        }`}
+                        className={`w-full min-h-[169px] max-h-[169px] p-2 focus:!outline-secondary  ${prefix ? "ml-6" : ""
+                            }`}
                         placeholder={placeholder}
                         name={name}
                         value={value as string}
                         onChange={handleOnChange}
-                        disabled={isDisabled}
+                        disabled={normalizedDisabled}
                     />
-                : variant === "select" ?
-                    <div className="relative w-full">
-                        <select
-                            className={`w-full appearance-none focus:!outline-secondary p-2 ${prefix ? "ml-6" : ""}`}
+                    : variant === "select" ?
+                        <div className="relative w-full">
+                            <select
+                                className={`w-full appearance-none focus:!outline-secondary p-2 ${prefix ? "ml-6" : ""}`}
+                                name={name}
+                                value={value}
+                                onChange={(e) => {
+                                    handleSelectChange && handleSelectChange(e);
+                                    setIsOptionSelected(true);
+                                }}
+                                disabled={normalizedDisabled}>
+                                {!isOptionSelected && (
+                                    <option value="" disabled>
+                                        Select
+                                    </option>
+                                )}
+                                {optionSelect
+                                    ?.filter((option) => option !== "")
+                                    .map((option, index) => (
+                                        <option key={index} value={option}>
+                                            {option}
+                                        </option>
+                                    ))}
+                            </select>
+
+                            <div className="absolute top-[35%] right-[10px] pointer-events-none">
+                                <Select />
+                            </div>
+                        </div>
+                        : <input
+                            className={`w-full ${isTextCenter && "text-center"}  focus:!outline-secondary p-2 ${prefix ? "pl-8" : ""
+                                } ${isCalendarPrefix && "pl-8"} ${suffix ? "pr-6" : ""
+                                } ${isCalendarSuffix && "pr-6"}`}
+                            type={type}
+                            placeholder={placeholder}
                             name={name}
                             value={value}
-                            onChange={(e) => {
-                                handleSelectChange && handleSelectChange(e);
-                                setIsOptionSelected(true);
+                            onChange={handleOnChange}
+                            onFocus={() => {
+                                if (
+                                    (isCalendarPrefix || isCalendarSuffix) &&
+                                    setShowCalendar
+                                ) {
+                                    setShowCalendar(true);
+                                }
                             }}
-                            disabled={isDisabled}>
-                            {!isOptionSelected && (
-                                <option value="" disabled>
-                                    Select
-                                </option>
-                            )}
-                            {optionSelect
-                                ?.filter((option) => option !== "")
-                                .map((option, index) => (
-                                    <option key={index} value={option}>
-                                        {option}
-                                    </option>
-                                ))}
-                        </select>
-
-                        <div className="absolute top-[35%] right-[10px] pointer-events-none">
-                            <Select />
-                        </div>
-                    </div>
-                :   <input
-                        className={`w-full focus:!outline-secondary p-2 ${
-                            prefix ? "pl-8" : ""
-                        } ${isCalendarPrefix && "pl-8"} ${
-                            suffix ? "pr-6" : ""
-                        } ${isCalendarSuffix && "pr-6"}`}
-                        type={type}
-                        placeholder={placeholder}
-                        name={name}
-                        value={value}
-                        onChange={handleOnChange}
-                        onFocus={() => {
-                            if (
-                                (isCalendarPrefix || isCalendarSuffix) &&
-                                setShowCalendar
-                            ) {
-                                setShowCalendar(true);
-                            }
-                        }}
-                        disabled={isDisabled}
-                    />
+                            disabled={normalizedDisabled}
+                        />
                 }
                 {isCalendarSuffix ?
                     <span
@@ -200,13 +199,12 @@ const Input: React.FC<PropsInput> = (props) => {
                         }>
                         <IconCalendar className="w-full" />
                     </span>
-                :   <span>{suffix}</span>}
+                    : <span>{suffix}</span>}
                 {showCalendar && (
                     <div
                         ref={calendarRef}
-                        className={`${
-                            isCalendarPrefix ? "left-0 " : "right-0 "
-                        } absolute z-50 top-[100%]`}>
+                        className={`${isCalendarPrefix ? "left-0 " : "right-0 "
+                            } absolute z-50 top-[100%]`}>
                         <DatePicker
                             className="absolute !right-0 "
                             selected={selectedDate}
