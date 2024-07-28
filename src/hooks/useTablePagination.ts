@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const getStoredPaginationState = (tableId: string) => {
     const stored = localStorage.getItem(`paginationState-${tableId}`);
@@ -43,12 +43,37 @@ const useTablePagination = (tables: { [key: string]: { totalRecords: number, ini
         return Math.ceil(totalRecords / recordsPerPage);
     };
 
+    const handlePreviousPage = useCallback((tableId: string) => {
+        setPaginationStates(prev => {
+            const { currentPage } = prev[tableId];
+            const newPage = Math.max(1, currentPage - 1);
+            handlePageChange(tableId, newPage);
+            return prev;
+        });
+    }, [handlePageChange]);
+
+    const handleNextPage = useCallback((tableId: string) => {
+        setPaginationStates(prev => {
+            const { currentPage } = prev[tableId];
+            const newPage = Math.min(totalPages(tableId), currentPage + 1);
+            handlePageChange(tableId, newPage);
+            return prev;
+        });
+    }, [handlePageChange, totalPages]);
+
+    const handleRecordsPerPage = useCallback((tableId: string, event: React.ChangeEvent<HTMLSelectElement>) => {
+        handleRecordsPerPageChange(tableId, Number(event.target.value));
+    }, [handleRecordsPerPageChange]);
+
     return {
         paginationStates,
         totalPages,
         handlePageChange,
         handleRecordsPerPageChange,
-        paginatedData
+        paginatedData,
+        handlePreviousPage,
+        handleNextPage,
+        handleRecordsPerPage
     };
 };
 

@@ -3,16 +3,15 @@ export const TABLE_BODY = {
     data: [
         {
             id: "1",
-            checkboxChecked: true,
             validityTimes: [
-                {component: "ValidityTime1", className: "w-6 h-6"},
-                {component: "ValidityTime2", className: "w-6 h-6"},
-                {component: "ValidityTime3", className: "w-6 h-6"}
+                { component: "ValidityTime1", className: "w-6 h-6" },
+                { component: "ValidityTime2", className: "w-6 h-6" },
+                { component: "ValidityTime3", className: "w-6 h-6" }
             ],
             itemId: "019100101",
             circles: [
-                {className: "w-2 h-3 text-violet"},
-                {className: "w-2 h-3 text-blue"},
+                { className: "w-2 h-3 text-violet" },
+                { className: "w-2 h-3 text-blue" },
             ],
             propertieStatus: {
                 status: true,
@@ -45,16 +44,15 @@ export const TABLE_BODY = {
         },
         {
             id: "2",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-                {className: "w-2 h-3 text-green"},
-                {className: "w-2 h-3 text-violet"},
-                {className: "w-2 h-3 text-red"},
-                {className: "w-2 h-3 text-blue"}
+                { className: "w-2 h-3 text-green" },
+                { className: "w-2 h-3 text-violet" },
+                { className: "w-2 h-3 text-red" },
+                { className: "w-2 h-3 text-blue" }
             ],
             propertieStatus: {
                 status: true,
@@ -87,13 +85,12 @@ export const TABLE_BODY = {
         },
         {
             id: "3",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-              
+
             ],
             propertieStatus: {
                 status: true,
@@ -126,16 +123,15 @@ export const TABLE_BODY = {
         },
         {
             id: "4",
-            checkboxChecked: true,
             validityTimes: [
-                {component: "ValidityTime1", className: "w-6 h-6"},
-                {component: "ValidityTime2", className: "w-6 h-6"},
-                {component: "ValidityTime3", className: "w-6 h-6"}
+                { component: "ValidityTime1", className: "w-6 h-6" },
+                { component: "ValidityTime2", className: "w-6 h-6" },
+                { component: "ValidityTime3", className: "w-6 h-6" }
             ],
             itemId: "019100101",
             circles: [
-                {className: "w-2 h-3 text-violet"},
-                {className: "w-2 h-3 text-blue"},
+                { className: "w-2 h-3 text-violet" },
+                { className: "w-2 h-3 text-blue" },
             ],
             propertieStatus: {
                 status: true,
@@ -168,16 +164,15 @@ export const TABLE_BODY = {
         },
         {
             id: "5",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-                {className: "w-2 h-3 text-green"},
-                {className: "w-2 h-3 text-violet"},
-                {className: "w-2 h-3 text-red"},
-                {className: "w-2 h-3 text-blue"}
+                { className: "w-2 h-3 text-green" },
+                { className: "w-2 h-3 text-violet" },
+                { className: "w-2 h-3 text-red" },
+                { className: "w-2 h-3 text-blue" }
             ],
             propertieStatus: {
                 status: true,
@@ -210,13 +205,12 @@ export const TABLE_BODY = {
         },
         {
             id: "6",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-              
+
             ],
             propertieStatus: {
                 status: true,
@@ -249,16 +243,15 @@ export const TABLE_BODY = {
         },
         {
             id: "7",
-            checkboxChecked: true,
             validityTimes: [
-                {component: "ValidityTime1", className: "w-6 h-6"},
-                {component: "ValidityTime2", className: "w-6 h-6"},
-                {component: "ValidityTime3", className: "w-6 h-6"}
+                { component: "ValidityTime1", className: "w-6 h-6" },
+                { component: "ValidityTime2", className: "w-6 h-6" },
+                { component: "ValidityTime3", className: "w-6 h-6" }
             ],
             itemId: "019100101",
             circles: [
-                {className: "w-2 h-3 text-violet"},
-                {className: "w-2 h-3 text-blue"},
+                { className: "w-2 h-3 text-violet" },
+                { className: "w-2 h-3 text-blue" },
             ],
             propertieStatus: {
                 status: true,
@@ -291,16 +284,15 @@ export const TABLE_BODY = {
         },
         {
             id: "8",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-                {className: "w-2 h-3 text-green"},
-                {className: "w-2 h-3 text-violet"},
-                {className: "w-2 h-3 text-red"},
-                {className: "w-2 h-3 text-blue"}
+                { className: "w-2 h-3 text-green" },
+                { className: "w-2 h-3 text-violet" },
+                { className: "w-2 h-3 text-red" },
+                { className: "w-2 h-3 text-blue" }
             ],
             propertieStatus: {
                 status: true,
@@ -333,13 +325,12 @@ export const TABLE_BODY = {
         },
         {
             id: "9",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-              
+
             ],
             propertieStatus: {
                 status: true,
@@ -372,13 +363,12 @@ export const TABLE_BODY = {
         },
         {
             id: "10",
-            checkboxChecked: true,
             validityTimes: [
-              
+
             ],
             itemId: "019100102",
             circles: [
-              
+
             ],
             propertieStatus: {
                 status: true,
