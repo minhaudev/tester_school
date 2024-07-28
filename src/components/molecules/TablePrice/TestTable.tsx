@@ -155,10 +155,10 @@ const TestTable = () => {
                                 Total price
                                 <span className="text-unit">(VND)</span>
                             </th>
-                            <th className={`${thClasses} min-w-[126px] w-full`}>
+                            <th className={`${thClasses} min-w-[56px] w-full`}>
                                 Status
                             </th>
-                            <th className={`${thClasses} min-w-[126px] w-full`}>
+                            <th className={`${thClasses} min-w-[56px] w-full`}>
                                 Action
                             </th>
                         </div>
@@ -241,10 +241,10 @@ const TestTable = () => {
                                     {formatPrice(247275000)}
                                 </th>
                                 <th
-                                    className={`${thClasses} min-w-[126px] w-full`}></th>
+                                    className={`${thClasses} min-w-[56px] w-full`}></th>
                                 <th
-                                    className={`${thClasses} min-w-[126px] w-full`}>
-                                    <TrashBinIcon />
+                                    className={`${thClasses} min-w-[56px] w-full`}>
+                                    <TrashBinIcon className="min-w-[24px] min-h-[24px]" />
                                 </th>
                             </div>
                         </div>

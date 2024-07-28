@@ -103,6 +103,7 @@ export default function Home() {
             setSelectedItems([...selectedItems, id]);
         }
     };
+
     return (
         <LayoutContainer>
             <Standard />

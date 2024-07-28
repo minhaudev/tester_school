@@ -12,7 +12,9 @@ const DataTable: React.FC<DataTableProps> = ({
     className
 }) => {
     return (
-        <table id={tableId} className={` text-xs table-fixed  ${className}`}>
+        <table
+            id={tableId}
+            className={` text-xs table-fixed mt-4 ${className}`}>
             {children}
         </table>
     );
