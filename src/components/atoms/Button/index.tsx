@@ -1,4 +1,5 @@
 "use client";
+import "./style.css";
 import Frame from "@/assets/svgs/frame_v2.svg";
 import FileDock from "@/assets/svgs/File_dock_duotone.svg";
 import Close from "@/assets/svgs/close_square_light.svg";
@@ -16,6 +17,7 @@ interface FileDetail {
 }
 
 interface PropsBtn {
+    maxFile?: number;
     variant?:
         | "file"
         | "primary-light"
@@ -48,6 +50,7 @@ export default function Button(
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
     const {
+        maxFile = 1,
         warningFile,
         typeFile,
         onDelete,
@@ -73,7 +76,7 @@ export default function Button(
                 size: file.size
             }));
 
-            if (files.length <= 5) {
+            if (files.length <= maxFile) {
                 setIsWarning(false);
                 setFileDetails(files);
             } else {
@@ -82,6 +85,19 @@ export default function Button(
         }
     };
 
+    const formatFileName = (fileName: string, maxLength: number = 10) => {
+        const extension = fileName.slice(fileName.lastIndexOf("."));
+        const nameWithoutExtension = fileName.slice(
+            0,
+            fileName.lastIndexOf(".")
+        );
+
+        if (nameWithoutExtension.length > maxLength) {
+            return `${nameWithoutExtension.slice(0, maxLength)}...${extension}`;
+        }
+
+        return fileName;
+    };
     const handleClose = (index: number) => {
         if (fileDetails && setFileDetails) {
             const updatedFiles = fileDetails.filter((_, i) => i !== index);
@@ -196,9 +212,9 @@ export default function Button(
                 <label
                     htmlFor="file-input"
                     className={`inline-flex justify-center items-center gap-[6px]
-                  text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover ${isIcon} ${className} ${getSizeClass(
+                  text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover   ${isIcon} ${className} ${getSizeClass(
                       size
-                  )}`}>
+                  )} ${isDisabled ? "!text-input !cursor-not-allowed  pointer-events-none" : ""} ${isError ? "border !border-red text-red !cursor-not-allowed pointer-events-none" : ""}`}>
                     <input
                         type="file"
                         id="file-input"
@@ -207,16 +223,16 @@ export default function Button(
                         multiple={true}
                         accept={typeFile}
                     />
-                    <span className="w-4 h-4 ">
-                        <Frame />
+                    <span className="w-4 h-4  ">
+                        <Frame className="!text-red" />
                     </span>
                     <span>
                         {fileDetails && fileDetails.length === 1 ?
-                            fileDetails[0].name
+                            formatFileName(fileDetails[0].name)
                         : (
                             fileDetails &&
                             fileDetails.length > 1 &&
-                            fileDetails.length <= 5
+                            fileDetails.length <= maxFile
                         ) ?
                             `${fileDetails.length} multiple files`
                         :   children}
@@ -225,7 +241,7 @@ export default function Button(
                 {isWarning && <div>{warningFile}</div>}
                 {fileDetails &&
                     fileDetails.length >= 1 &&
-                    fileDetails.length <= 5 && (
+                    fileDetails.length <= maxFile && (
                         <div>
                             <div className="flex-col mt-2 w-full max-w-[620px] rounded-[5px] h-auto border border-stroke py-2 px-4">
                                 <ul className="flex gap-4 flex-wrap justify-between">
@@ -278,7 +294,7 @@ export default function Button(
             disabled={isDisabled}
             {...rest}
             className={`flex justify-center items-center gap-[6px]
-              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition disabled:bg-disable disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
+              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition  disabled:bg-[#F7F7F7] disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
                   isIcon ? "!px-0 !border !border-white !text-white" : ""
               } ${className} ${getVariantClass(variant)} ${getErrorClass(
                   variant

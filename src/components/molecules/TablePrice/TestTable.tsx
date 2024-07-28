@@ -1,9 +1,9 @@
-import LayoutContainer from "@/app/LayoutContainer";
-import DataTable from "@/components/atoms/Datatable";
-import React, {useEffect, useRef} from "react";
-import "./styles.css";
-import {twMerge} from "tailwind-merge";
 import Input from "@/components/atoms/Input";
+import {useEffect, useRef} from "react";
+import TrashBinIcon from "@/assets/svgs/trash_bin.svg";
+import {twMerge} from "tailwind-merge";
+import "./styles.css";
+import {formatPrice} from "@/utils";
 
 const TestTable = () => {
     const tableClasses = twMerge(
@@ -203,7 +203,10 @@ const TestTable = () => {
                                 <th
                                     className={`${thClasses} min-w-[264px] !p-0 min-h-[56px] max-h-[56px] border-l-0 flex  justify-start`}>
                                     <div className="min-w-[88px] border-l-0 h-full flex-center  py-[10px] px-[8px]  border-stroke">
-                                        <Input placeholder="Enter" />
+                                        <Input
+                                            placeholder="Enter"
+                                            className="flex items-center justify-center"
+                                        />
                                     </div>
                                     <div className="min-w-[88px] border-l-0 h-full flex-center py-[10px] px-[8px]  border-stroke">
                                         <Input placeholder="Enter" />
@@ -231,17 +234,18 @@ const TestTable = () => {
                                     className={`${thClasses} min-w-[133px]`}></th>
                                 <th
                                     className={`${thClasses} min-w-[157px] w-full`}>
-                                    {(312000).toLocaleString("vi-VN", {
-                                        style: "currency",
-                                        currency: "VND"
-                                    })}
+                                    {formatPrice(312000)}
                                 </th>
                                 <th
-                                    className={`${thClasses} min-w-[156px] w-full`}></th>
+                                    className={`${thClasses} min-w-[156px] w-full`}>
+                                    {formatPrice(247275000)}
+                                </th>
                                 <th
                                     className={`${thClasses} min-w-[126px] w-full`}></th>
                                 <th
-                                    className={`${thClasses} min-w-[126px] w-full`}></th>
+                                    className={`${thClasses} min-w-[126px] w-full`}>
+                                    <TrashBinIcon />
+                                </th>
                             </div>
                         </div>
                     </div>

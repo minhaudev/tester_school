@@ -1,5 +1,5 @@
 export const dataOrderNotice = {
-    total: 5,
+    total: 9999,
     data: [
         {
             id: "1",
