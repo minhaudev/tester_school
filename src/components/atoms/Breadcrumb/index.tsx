@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, {ReactNode} from "react";
-
+import Separator from "@/assets/svgs/sperator.svg";
 interface IBreadcrumbItem {
     url: string;
     label: string;
@@ -12,7 +12,7 @@ interface Props {
     breadcrumbs: IBreadcrumbItem[];
 }
 
-const Breadcrumb = ({breadcrumbs, separator = ">"}: Props) => {
+const Breadcrumb = ({breadcrumbs, separator = ""}: Props) => {
     const renderBreadcrumbs = () => {
         const length = breadcrumbs.length;
         if (length <= 4) {
@@ -27,9 +27,12 @@ const Breadcrumb = ({breadcrumbs, separator = ">"}: Props) => {
                     <span className="pointer-events-none text-input">
                         .....
                     </span>
-                    {separator}
+                    {separator ?
+                        separator
+                    :   <Separator className="w-[16px] h-[16px] text-[#929292]" />
+                    }
                     {BreadcrumbItem(breadcrumbs[length - 2], length - 2)}
-                    <span className="text-primary font-semibold">
+                    <span className="text-primary font-semibold text-[16px] leading-[22px]">
                         {breadcrumbs[length - 1].prefixIcon &&
                             breadcrumbs[length - 1].prefixIcon}
                         {breadcrumbs[length - 1].label}
@@ -40,56 +43,31 @@ const Breadcrumb = ({breadcrumbs, separator = ">"}: Props) => {
     };
 
     const BreadcrumbItem = (breadcrumb: IBreadcrumbItem, index: number) => (
-        <span className="inline-flex items-center " key={index}>
+        <span
+            className="inline-flex items-center text-[#929292] font-normal leading-[22px] text-[16px] "
+            key={index}>
             {breadcrumb.prefixIcon && breadcrumb.prefixIcon}
-            {index !== breadcrumbs.length - 1 ? (
+            {index !== breadcrumbs.length - 1 ?
                 <>
                     <Link href={breadcrumb.url}>
                         <span className="px-1 text-[16px] text-input">
                             {breadcrumb.label}
                         </span>
                     </Link>
-                    {separator}
+
+                    {separator ?
+                        separator
+                    :   <Separator className="w-[16px] h-[16px] text-[#929292]" />
+                    }
                 </>
-            ) : (
-                <span className="text-primary font-semibold">
+            :   <span className="text-primary font-semibold">
                     {breadcrumb.label}
                 </span>
-            )}
+            }
         </span>
     );
 
     return <nav className="flex items-center">{renderBreadcrumbs()}</nav>;
-};
-
-Breadcrumb.defaultProps = {
-    separator: ">",
-    breadcrumbs: [
-        {
-            url: "/",
-            label: "Home"
-        },
-        {
-            url: "/about",
-            label: "About"
-        },
-        {
-            url: "/select",
-            label: "Select"
-        },
-        {
-            url: "/detailuser",
-            label: "abc"
-        },
-        {
-            url: "/as",
-            label: "as"
-        },
-        {
-            url: "/abc",
-            label: "detailUser"
-        }
-    ]
 };
 
 export default Breadcrumb;

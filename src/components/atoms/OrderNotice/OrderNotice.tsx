@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "../Button";
 import {formatDate} from "@/utils/FormatDate";
-import {Notice} from "@/interfaces/Notice";
+import {Notice} from "@/interfaces/notice";
+import Link from "next/link";
 
 interface PropsOrderNotice {
     total?: number;
@@ -19,7 +20,9 @@ export default function OrderNotice(props: PropsOrderNotice) {
                     Notifications
                 </div>
                 {latestNotices?.map((item) => (
-                    <div key={item.id}>
+                    <Link
+                        href="https://nextui.org/docs/components/date-picker"
+                        key={item.id}>
                         <div className="py-[12px] cursor-pointer border-t border-b border-stroke hover:bg-highlight hover:text-primary">
                             <p className="w-full px-4 mb-1 text-[13px] font-medium leading-[18.2px]">
                                 {item.content}
@@ -28,7 +31,7 @@ export default function OrderNotice(props: PropsOrderNotice) {
                                 {formatDate(item.timestamp)}
                             </p>
                         </div>
-                    </div>
+                    </Link>
                 ))}
                 {(total ?? 0) > 5 && (
                     <div className="text-center pb-4">

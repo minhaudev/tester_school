@@ -1,7 +1,8 @@
-import type { Config } from "tailwindcss";
+import type {Config} from "tailwindcss";
 
 const config: Config = {
     content: [
+        "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
         "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
@@ -118,19 +119,19 @@ const config: Config = {
             },
             keyframes: {
                 fadeIn: {
-                    "0%": { opacity: "0", transform: "translateY(-20px)" },
-                    "100%": { opacity: "0.5", transform: "translateY(0)" }
+                    "0%": {opacity: "0", transform: "translateY(-20px)"},
+                    "100%": {opacity: "0.5", transform: "translateY(0)"}
                 },
                 fadeOut: {
-                    "0%": { opacity: "0.5", transform: "translateY(0)" },
-                    "100%": { opacity: "0", transform: "translateY(-20px)" }
+                    "0%": {opacity: "0.5", transform: "translateY(0)"},
+                    "100%": {opacity: "0", transform: "translateY(-20px)"}
                 }
             },
             animation: {
                 fadeIn: "fadeIn 300ms ease-out",
                 fadeOut: "fadeOut 300ms ease-out",
-                'spin-slow': 'spin 3s linear infinite',
-                wiggle: 'wiggle 1s ease-in-out infinite',
+                "spin-slow": "spin 3s linear infinite",
+                wiggle: "wiggle 1s ease-in-out infinite"
             }
         },
         fontFamily: {

@@ -9,24 +9,24 @@ import Standard from "@/components/molecules/Standard/Index";
 import Toast from "@/components/molecules/Toast";
 import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
 import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
-import { ToastPosition, ToastType } from "@/enums/ToastEnum";
-import { processFlowData } from "@/faker";
-import { useState } from "react";
+import {ToastPosition, ToastType} from "@/enums/ToastEnum";
+import {processFlowData} from "@/faker";
+import {useState} from "react";
 import LayoutContainer from "./LayoutContainer";
 import TableExample from "./TableExample";
 import ServiceTime from "@/components/atoms/ServiceTime";
-import { dataList } from "@/faker/AccountBalance";
-import { isValidDate } from "@/hooks/useValidDate";
-import { usePopup } from "@/context/PopupContext";
+import {dataList} from "@/faker/AccountBalance";
+import {isValidDate} from "@/hooks/useValidDate";
+import {usePopup} from "@/context/PopupContext";
 import Modal from "@/components/molecules/Modal";
 import Drawer from "@/components/molecules/Drawer";
 import StatusNote from "@/components/molecules/StatusNote";
-import { StatusEnum } from "@/enums/StatusNum";
+import {StatusEnum} from "@/enums/StatusNum";
 import RadioButton from "@/components/atoms/RadioButton/RadioButton";
 import Paginator from "@/components/molecules/Pagination";
 import Checkbox from "@/components/atoms/Checkbox";
 import Propertie from "@/components/atoms/Properties";
-import { PendingEnum } from "@/enums/PendingEnum";
+import {PendingEnum} from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
 import Tooltip from "@/components/atoms/Tooltip";
 export default function Home() {
@@ -48,19 +48,18 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-    let startDate = new Date()
-    let endDate = new Date()
-    const start = "2024-07-26T06:58:19.516Z"
-    const end = "2024-07-26T11:33:58.936Z"
+    let startDate = new Date();
+    let endDate = new Date();
+    const start = "2024-07-26T06:58:19.516Z";
+    const end = "2024-07-26T11:33:58.936Z";
     if (isValidDate(start) && isValidDate(end)) {
         startDate = new Date(Date.parse(start));
         endDate = new Date(Date.parse(end));
     } else {
         console.log("false");
     }
-    const handleEndIn = () => {
-    };
-    const { showPopup, setShowPopup } = usePopup();
+    const handleEndIn = () => {};
+    const {showPopup, setShowPopup} = usePopup();
     const handleCancel = () => {
         setShowPopup(false);
         console.log("cancel");
@@ -134,18 +133,22 @@ export default function Home() {
                 <ServiceTime
                     onEnd={handleEndIn}
                     endDate={endDate}
-                    startDate={startDate} isValidity={false} />
+                    startDate={startDate}
+                    isValidity={false}
+                />
                 <ServiceTime
                     onEnd={handleEndIn}
                     endDate={endDate}
-                    startDate={startDate} isValidity />
+                    startDate={startDate}
+                    isValidity
+                />
             </div>
             <div className="flex flex-row gap-5 mb-5">
                 <Button
                     warningFile={
                         <Toast
                             time={1000}
-                            onClose={() => { }}
+                            onClose={() => {}}
                             isOpen
                             type={ToastType.Warning}
                             position={ToastPosition.Top_Right}
@@ -183,14 +186,11 @@ export default function Home() {
                     onClose={handleCloseToast}
                     description="Recommened products cannot exceed the selected number of rollsRecommened products cannot exceed the selected number of rolls"
                 />
-                <Tooltip message={"Change to 0.45mm"} >
-                    <Button>
-                        Show Tooltip
-                    </Button>
+                <Tooltip message={"Change to 0.45mm"}>
+                    <Button>Show Tooltip</Button>
                 </Tooltip>
             </div>
             <div className="flex flex-col gap-5 justify-center items-center mb-5">
-
                 <StatusNote
                     type={StatusEnum.Normal}
                     description="Kế hoạch sản xuất: Có lỗi trong thông tin giao hàng."
@@ -205,9 +205,7 @@ export default function Home() {
                 />
             </div>
             <div className="flex flex-row mb-5 gap-5 justify-center">
-                <div className="flex flex-row items-start">
-
-                </div>
+                <div className="flex flex-row items-start"></div>
 
                 <div className="flex flex-row items-start">
                     <RadioButton
@@ -245,30 +243,24 @@ export default function Home() {
                     <Paginator
                         length={totalPages}
                         currentPage={currentPage}
-                        onPageChange={handlePageChange} />
+                        onPageChange={handlePageChange}
+                    />
                 </div>
                 <div className="flex flex-row items-start">
-
                     <Checkbox
                         id="1"
                         checked={selectedItems.includes("1")}
-                        onChange={() =>
-                            handleCheckboxChange("1")
-                        }
+                        onChange={() => handleCheckboxChange("1")}
                     />
                     <Checkbox
                         id="2"
                         checked={selectedItems.includes("2")}
-                        onChange={() =>
-                            handleCheckboxChange("2")
-                        }
+                        onChange={() => handleCheckboxChange("2")}
                     />
                     <Checkbox
                         id="3"
                         checked={selectedItems.includes("3")}
-                        onChange={() =>
-                            handleCheckboxChange("3")
-                        }
+                        onChange={() => handleCheckboxChange("3")}
                     />
 
                     <Checkbox
@@ -290,53 +282,24 @@ export default function Home() {
                         type={PendingEnum.Approve}
                         description={"APPROVE"}
                     />
-                    <Pending
-                        type={PendingEnum.Denied}
-                        description={"DENIED"}
-                    />
+                    <Pending type={PendingEnum.Denied} description={"DENIED"} />
                     <Pending
                         type={PendingEnum.Pending}
                         description={"PENDING"}
                     />
-                    <Pending
-                        type={PendingEnum.Draft}
-                        description={"DRAFT"}
-                    />
+                    <Pending type={PendingEnum.Draft} description={"DRAFT"} />
                 </div>
                 <div className="flex flex-col gap-5">
-                    <Propertie
-                        title="PENDING"
-                    />
-                    <Propertie
-                        title="PRICE POLICY CHANGED"
-                    />
-                    <Propertie
-                        title="ACTIONS REQUIRED"
-                    />
-                    <Propertie
-                        title="PRICE POLICY CHANGED"
-                    />
+                    <Propertie title="PENDING" />
+                    <Propertie title="PRICE POLICY CHANGED" />
+                    <Propertie title="ACTIONS REQUIRED" />
+                    <Propertie title="PRICE POLICY CHANGED" />
                 </div>
                 <div className="flex flex-col gap-5">
-                    <Propertie
-                        status
-                        title="PENDING"
-                    />
-                    <Propertie
-                        status
-                        isIcon
-                        title="PRICE POLICY CHANGED"
-                    />
-                    <Propertie
-                        status
-                        isIcon
-                        title="ACTIONS REQUIRED"
-                    />
-                    <Propertie
-                        status
-                        isIcon
-                        title="PRICE POLICY CHANGED"
-                    />
+                    <Propertie status title="PENDING" />
+                    <Propertie status isIcon title="PRICE POLICY CHANGED" />
+                    <Propertie status isIcon title="ACTIONS REQUIRED" />
+                    <Propertie status isIcon title="PRICE POLICY CHANGED" />
                 </div>
             </div>
 
@@ -351,7 +314,7 @@ export default function Home() {
                                 <SaveDraftIcon className="min-w-4 min-h-4" />
                             }
                             size="medium"
-                            onClick={() => { }}>
+                            onClick={() => {}}>
                             Save Draft
                         </Button>
 
@@ -360,7 +323,7 @@ export default function Home() {
                             variant="primary-dark"
                             size="medium"
                             prefixIcon={<AddIcon className="min-w-4 min-h-4" />}
-                            onClick={() => { }}>
+                            onClick={() => {}}>
                             Add product
                         </Button>
                     </>
@@ -374,6 +337,6 @@ export default function Home() {
                     <TableExample label="STEP - 5" key={5} />
                 ]}
             />
-        </LayoutContainer >
+        </LayoutContainer>
     );
 }
