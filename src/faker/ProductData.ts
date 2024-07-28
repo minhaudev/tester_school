@@ -1,45 +1,59 @@
-export const ProductData =  [
-        {
-            "id": "1",
-            "No": "01",
-            "Type": "",
-            "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
-            "TotalCoil": "2",
-            "TotalWeight": "7850",
-            "Prime": {
-                "value": ["1B", "1A", "1", "3"],
-                "isDisabled": true
-            },
-            "PreferredTolerances": {
-                "kg": [3700, 4300],
-                "m": [1209, 1405]
-            },
-            "UnitPrice": 31500,
-            "TotalPrice": 247275000,
-            "Status": "text-red",
-            "Action": ["delete"]
+export const ProductData = [
+    {
+        "id": "1",
+        "No": "01",
+        "Type": "",
+        "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        "TotalCoil": "2",
+        "TotalWeight": "7850",
+        "Prime": {
+            "value": ["1B", "1A", "1", "3"],
+            "isDisabled": true
         },
-        {
-            "id": "2",
-            "No": "02",
-            "Type": "",
-            "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
-            "TotalCoil": "2",
-            "TotalWeight": "7850",
-            "Prime": {
-                "value": ["1B", "1A", "1", "3"],
-                "isDisabled": false
+        "PreferredTolerances": [
+            {
+                "key": "kg",
+                "value": [3700, 4300]
             },
-            "PreferredTolerances": {
-                "kg": [3700, 4300],
-                "m": [1209, 1405]
+            {
+                "key": "m",
+                "value": [1209, 1405]
+
+            }
+        ],
+        "UnitPrice": 31500,
+        "TotalPrice": 247275000,
+        "Status": "text-red",
+        "Action": ["delete"]
+    },
+    {
+        "id": "2",
+        "No": "02",
+        "Type": "",
+        "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        "TotalCoil": "2",
+        "TotalWeight": "7850",
+        "Prime": {
+            "value": ["1B", "1A", "1", "3"],
+            "isDisabled": false
+        },
+        "PreferredTolerances": [
+            {
+                "key": "kg",
+                "value": [3700, 4300]
             },
-            "UnitPrice": 31500,
-            "TotalPrice": 247275000,
-            "Status": "text-green",
-            "Action": ["delete", "edit"]
-        }
-    ]
+            {
+                "key": "m",
+                "value": [1209, 1405]
+
+            }
+        ],
+        "UnitPrice": 31500,
+        "TotalPrice": 247275000,
+        "Status": "text-green",
+        "Action": ["delete", "edit"]
+    }
+]
 export const ProductApprovalsData = [
     {
         id: "1",
@@ -437,7 +451,7 @@ export const ProductApprovalsData = [
 export const ProductApprovalsData2 = [
     {
         id: "1",
-       
+
         circles: [
 
         ],
@@ -472,7 +486,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "2",
-        
+
         circles: [
             { className: "size-2 text-green" },
             { className: "size-2 text-red" },
@@ -509,7 +523,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "3",
-        
+
         circles: [
 
         ],
@@ -584,7 +598,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "5",
-        
+
         circles: [
             { className: "size-2 text-green" },
             { className: "size-2 text-red" },
@@ -621,7 +635,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "6",
-        
+
         circles: [
 
         ],
@@ -696,7 +710,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "8",
-        
+
         circles: [
             { className: "size-2 text-green" },
             { className: "size-2 text-red" },
@@ -733,7 +747,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "9",
-        
+
         circles: [
 
         ],
@@ -768,7 +782,7 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "10",
-        
+
         circles: [
 
         ],

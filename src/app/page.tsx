@@ -29,8 +29,6 @@ import Propertie from "@/components/atoms/Properties";
 import { PendingEnum } from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
 import Tooltip from "@/components/atoms/Tooltip";
-import DataTable from "@/components/atoms/Datatable";
-import { twMerge } from "tailwind-merge";
 export default function Home() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
@@ -53,7 +51,7 @@ export default function Home() {
     let startDate = new Date()
     let endDate = new Date()
     const start = "2024-07-26T06:58:19.516Z"
-    const end = "2024-07-26T11:33:58.936Z"
+    const end = "2024-07-29T11:33:58.936Z"
     if (isValidDate(start) && isValidDate(end)) {
         startDate = new Date(Date.parse(start));
         endDate = new Date(Date.parse(end));
@@ -106,7 +104,7 @@ export default function Home() {
         }
     };
 
-   
+
     return (
         <LayoutContainer>
             <Standard />
@@ -378,7 +376,7 @@ export default function Home() {
                     <TableExample label="STEP - 5" key={5} />
                 ]}
             />
-           
+
         </LayoutContainer >
     );
 }

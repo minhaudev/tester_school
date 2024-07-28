@@ -10,7 +10,6 @@ import Trash from "@/assets/svgs/Trash_big.svg"
 import CartReport from "@/assets/svgs/Cart_report.svg"
 import Wrench from "@/assets/svgs/Wrench.svg"
 import Inventory from "@/assets/svgs/Inventory.svg"
-import Button from "@/components/atoms/Button";
 import { formatNumber } from "@/utils/FormatNumber";
 import PaginationSelect from "@/components/molecules/Pagination/Select";
 import Checkbox from "@/components/atoms/Checkbox";
@@ -31,6 +30,8 @@ import DataTable from "@/components/atoms/Datatable";
 import useTableSelection from "@/hooks/useTableSelection";
 import { useTableSorting } from "@/hooks/useTableSort";
 import useTablePagination from "@/hooks/useTablePagination";
+import GroupInput from "@/components/molecules/GroupInput/GroupInput";
+import { FormatTolerances } from "@/utils/FormatTolerances";
 const tables = {
     "table1": {
         "id": "926fa0f3-674e-4838-b4be-fb5d69e2b2c6",
@@ -56,11 +57,13 @@ const tables = {
 };
 
 const Product = () => {
-
-
-    const { selectedItems, selectAll, isAllSelected, handleSelectAll, handleCheckboxChange } = useTableSelection(tables);
+    const {
+        selectedItems,
+        isAllSelected,
+        handleSelectAll,
+        handleCheckboxChange
+    } = useTableSelection(tables);
     const { sortConfig, handleSort, getSortedData } = useTableSorting();
-    console.log(selectedItems['table2']?.includes('1'))
     const {
         paginationStates,
         totalPages,
@@ -109,13 +112,12 @@ const Product = () => {
     const handlePageChangeWrapper = (tableId: string, newPage: number) => {
         handlePageChange(tableId, newPage);
     };
-
-    // Wrapper function for handleRecordsPerPageChange
     const handleRecordsPerPageChangeWrapper = (tableId: string, newRecordsPerPage: number) => {
         handleRecordsPerPageChange(tableId, newRecordsPerPage);
     };
     return (
         <LayoutContainer>
+
             <div className="flex flex-row m-4">
                 <div className="flex flex-col gap-1">
                     <h1 className="text-primary text-base font-medium">Product</h1>
@@ -195,7 +197,7 @@ const Product = () => {
                                         <td className={`${tdClasses} min-w-[113px]`}>
                                             <select
                                                 disabled={!item.Prime.isDisabled}
-                                                className="text-center min-w-[97px] rounded-[7px] border border-[#D9D9D9] border-t-transparent bg-transparent p-2 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-[#40A9FF]   "
+                                                className="text-center min-w-[97px] rounded-[7px] border border-[#D9D9D9] border-t-transparent bg-transparent p-2 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-[#40A9FF]"
 
                                             >
                                                 {
@@ -209,6 +211,7 @@ const Product = () => {
 
                                         </td>
                                         <td className={`${tdClasses} min-w-[158px]`}>
+                                            <textarea className=" max-h-[36px] h-full min-h-[36px]    border-[#D9D9D9] text-[#000000D9] gap-1 relative bg-white rounded-sm border  focus:!outline-none focus:!border-[#40A9FF] focus:!shadow-md text-center w-full max-w-[138px] text-[12px] " name="" id="" value={FormatTolerances(item.PreferredTolerances)}></textarea>
 
                                         </td>
                                         <td className={`${tdClasses} min-w-[120px] `}>
@@ -236,7 +239,6 @@ const Product = () => {
                     </tbody>
                 </DataTable>
             </div>
-            
             <div className="flex flex-row m-4">
                 <div className="flex flex-col gap-1">
                     <h1 className="text-primary text-base font-medium">Product Approvals</h1>
@@ -336,7 +338,6 @@ const Product = () => {
                     <tbody>
                         {getSortedData("table2", paginatedData("table2", tables.table2.data)).map((row) => {
                             const isSelected = selectedItems["table2"]?.includes(row.id);
-                            console.log(isSelected)
                             return (
                                 <tr
                                     key={row.id}
@@ -347,8 +348,8 @@ const Product = () => {
                                             description=""
                                             id={row.id}
                                             className="h-5 w-5"
-                                            checked={selectedItems["table3"]?.includes(row.id) || false}
-                                            onChange={() => handleCheckboxChange("table3", row.id)}
+                                            checked={selectedItems["table2"]?.includes(row.id) || false}
+                                            onChange={() => handleCheckboxChange("table2", row.id)}
                                         />
                                     </td>
                                     <td className={`w-[7%] ${td2Classes} px-0`}>
