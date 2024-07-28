@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ProductApprovalsData, ProductApprovalsData2, ProductData } from "@/faker/ProductData";
 import Input from "@/components/atoms/Input";
-import Arrow from "@/assets/svgs/Arrow_left_right.svg"
+import Arrow from "@/assets/svgs/Arrow_switch.svg"
 import Trash from "@/assets/svgs/Trash_big.svg"
 import CartReport from "@/assets/svgs/Cart_report.svg"
 import Wrench from "@/assets/svgs/Wrench.svg"
