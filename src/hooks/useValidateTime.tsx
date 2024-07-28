@@ -1,6 +1,6 @@
-import { initValidityTime } from "@/consts";
-import { calculateDate, convertToTimeStamp } from "@/utils";
-import React, { useEffect, useState } from "react";
+import {initValidityTime} from "@/consts";
+import {calculateDate, convertToTimeStamp} from "@/utils";
+import React, {useEffect, useState} from "react";
 
 function useValidateTime({
     endDate,
@@ -12,7 +12,10 @@ function useValidateTime({
     onEnd?: () => void;
 }) {
     const [timeAble, setTimeAble] = useState(() => {
-        return convertToTimeStamp(endDate) - Date.now();
+        return (
+            convertToTimeStamp(endDate) -
+            convertToTimeStamp(new Date(Date.now()))
+        );
     });
     const [timeValidity, setTimeValidity] = useState(initValidityTime);
     const [timeUsed, setTimeUsed] = useState(initValidityTime);
@@ -27,7 +30,10 @@ function useValidateTime({
         const intervalId = setInterval(() => {
             try {
                 const timeAble = Math.floor(
-                    (convertToTimeStamp(endDate) - convertToTimeStamp(new Date(Date.now()))) / 1000);
+                    (convertToTimeStamp(endDate) -
+                        convertToTimeStamp(new Date(Date.now()))) /
+                        1000
+                );
                 if (
                     totalTime <= 0 ||
                     isNaN(endDate.getTime()) ||
@@ -39,9 +45,11 @@ function useValidateTime({
                     return;
                 }
                 const currentAble = Math.floor(
-                    (convertToTimeStamp(new Date(Date.now())) - convertToTimeStamp(startDate)) / 1000
+                    (convertToTimeStamp(new Date(Date.now())) -
+                        convertToTimeStamp(startDate)) /
+                        1000
                 );
-                const timeData = calculateDate({ endDate, startDate });
+                const timeData = calculateDate({endDate, startDate});
                 const timeAbleHours = timeAble / (60 * 60);
                 const currentPercent = (timeAbleHours / totalTimeHours) * 100;
                 if (timeAble <= 0) {
@@ -51,20 +59,29 @@ function useValidateTime({
                     setEnd(true);
                     return;
                 }
-                if (convertToTimeStamp(startDate) <= convertToTimeStamp(new Date(Date.now()))) {
-                    setTimeValidity({ ...timeData });
+                if (
+                    convertToTimeStamp(startDate) <=
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
+                    setTimeValidity({...timeData});
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(() => currentPercent);
-                    const timeUse = calculateDate({ startDate, endDate: new Date(Date.now()), hasDay: false, isTimeUse: true })
+                    const timeUse = calculateDate({
+                        startDate,
+                        endDate: new Date(Date.now()),
+                        hasDay: false,
+                        isTimeUse: true
+                    });
                     setTimeUsed(() => timeUse);
                 }
-                if (convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now()))) {
-                    //chưa tới FROM == TOTAL 
-                    setTimeValidity({ ...timeData });
+                if (
+                    convertToTimeStamp(startDate) >
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
+                    setTimeValidity({...timeData});
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(100);
                 }
-                
             } catch (error) {
                 return;
             }
@@ -77,7 +94,7 @@ function useValidateTime({
         timeValidity,
         currentPercent,
         totalTimeHours,
-        totalTime: calculateDate({ endDate, startDate, isTotal: true }),
+        totalTime: calculateDate({endDate, startDate, isTotal: true}),
         setEnd,
         end,
         timeUsed

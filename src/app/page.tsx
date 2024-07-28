@@ -48,6 +48,7 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
+<<<<<<< HEAD
     let startDate = new Date()
     let endDate = new Date()
     const start = "2024-07-26T06:58:19.516Z"
@@ -58,6 +59,11 @@ export default function Home() {
     } else {
         console.log("false");
     }
+=======
+    const endDate = new Date(Date.parse("2024-09-28T03:55:08.605Z"));
+    const startDate = new Date("2024-02-28T03:55:08.605Z");
+    console.log("check start Date :::: ", startDate);
+>>>>>>> 37e88ea5f7f08311a12c563f31d0cf66f81c8622
     const handleEndIn = () => {
     };
     const { showPopup, setShowPopup } = usePopup();
