@@ -29,6 +29,7 @@ import Propertie from "@/components/atoms/Properties";
 import {PendingEnum} from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
 import Tooltip from "@/components/atoms/Tooltip";
+import TablePrice from "@/components/molecules/TablePrice";
 export default function Home() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
@@ -337,6 +338,7 @@ export default function Home() {
                     <TableExample label="STEP - 5" key={5} />
                 ]}
             />
+            <TablePrice />
         </LayoutContainer>
     );
 }
