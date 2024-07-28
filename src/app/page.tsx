@@ -29,6 +29,8 @@ import Propertie from "@/components/atoms/Properties";
 import { PendingEnum } from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
 import Tooltip from "@/components/atoms/Tooltip";
+import DataTable from "@/components/atoms/Datatable";
+import { twMerge } from "tailwind-merge";
 export default function Home() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
@@ -103,6 +105,8 @@ export default function Home() {
             setSelectedItems([...selectedItems, id]);
         }
     };
+
+   
     return (
         <LayoutContainer>
             <Standard />
@@ -374,6 +378,7 @@ export default function Home() {
                     <TableExample label="STEP - 5" key={5} />
                 ]}
             />
+           
         </LayoutContainer >
     );
 }
