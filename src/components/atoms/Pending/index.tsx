@@ -44,7 +44,7 @@ const Pending = ({type, description}: PendingProps) => {
 
     return (
         <div
-            className={`flex justify-center items-center px-2 py-1 ${background} rounded-[3px]  `}>
+            className={` w-fit flex justify-center items-center px-2 py-1 ${background} rounded-[3px]  `}>
             <p
                 className={`${color} text-[11px] font-semibold text-center px-2 py-1`}>
                 {description}

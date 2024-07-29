@@ -185,7 +185,7 @@ export default function Home() {
                     onClose={handleCloseToast}
                     description="Recommened products cannot exceed the selected number of rollsRecommened products cannot exceed the selected number of rolls"
                 />
-                <Tooltip message={"Change to 0.45mm"} >
+                <Tooltip message={"Change to 0.45mm Change to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mm"} >
                     <Button>
                         Show Tooltip
                     </Button>
