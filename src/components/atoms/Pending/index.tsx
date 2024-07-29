@@ -46,7 +46,7 @@ const Pending = ({type, description}: PendingProps) => {
         <div
             className={` w-fit flex justify-center items-center px-2 py-1 ${background} rounded-[3px]  `}>
             <p
-                className={`${color} text-[11px] font-semibold text-center px-2 py-1`}>
+                className={`${color} text-[11px] font-semibold text-center leading-[16.5px]`}>
                 {description}
             </p>
         </div>

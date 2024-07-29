@@ -1,7 +1,6 @@
 export const ProductData = [
     {
         "id": "1",
-        "No": "01",
         "Type": "",
         "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
         "TotalCoil": "2",
@@ -84,16 +83,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-19T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "2",
@@ -124,16 +123,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-20T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "3",
@@ -162,16 +161,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-08T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "4",
@@ -202,16 +201,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-07T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "5",
@@ -242,16 +241,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "6",
@@ -280,16 +279,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "7",
@@ -320,16 +319,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "8",
@@ -360,16 +359,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "9",
@@ -398,16 +397,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "10",
@@ -436,16 +435,16 @@ export const ProductApprovalsData = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
 ]
 export const ProductApprovalsData2 = [
@@ -473,16 +472,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "2",
@@ -510,16 +509,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "3",
@@ -545,16 +544,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "4",
@@ -585,16 +584,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "5",
@@ -622,16 +621,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "6",
@@ -657,16 +656,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "7",
@@ -697,16 +696,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "8",
@@ -734,16 +733,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "9",
@@ -769,16 +768,16 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "10",
@@ -804,15 +803,15 @@ export const ProductApprovalsData2 = [
         },
         validateServiceTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
         validateValidityTime: {
             onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 80000
     },
 ]

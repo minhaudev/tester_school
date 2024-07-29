@@ -9,26 +9,27 @@ import Standard from "@/components/molecules/Standard/Index";
 import Toast from "@/components/molecules/Toast";
 import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
 import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
-import {ToastPosition, ToastType} from "@/enums/ToastEnum";
-import {processFlowData} from "@/faker";
-import {useState} from "react";
+import { ToastPosition, ToastType } from "@/enums/ToastEnum";
+import { processFlowData } from "@/faker";
+import { useState } from "react";
 import LayoutContainer from "./LayoutContainer";
 import TableExample from "./TableExample";
 import ServiceTime from "@/components/atoms/ServiceTime";
-import {dataList} from "@/faker/AccountBalance";
-import {isValidDate} from "@/hooks/useValidDate";
-import {usePopup} from "@/context/PopupContext";
+import { dataList } from "@/faker/AccountBalance";
+import { isValidDate } from "@/hooks/useValidDate";
+import { usePopup } from "@/context/PopupContext";
 import Modal from "@/components/molecules/Modal";
 import Drawer from "@/components/molecules/Drawer";
 import StatusNote from "@/components/molecules/StatusNote";
-import {StatusEnum} from "@/enums/StatusNum";
+import { StatusEnum } from "@/enums/StatusNum";
 import RadioButton from "@/components/atoms/RadioButton/RadioButton";
 import Paginator from "@/components/molecules/Pagination";
 import Checkbox from "@/components/atoms/Checkbox";
 import Propertie from "@/components/atoms/Properties";
-import {PendingEnum} from "@/enums/PendingEnum";
+import { PendingEnum } from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
 import Tooltip from "@/components/atoms/Tooltip";
+import { Position } from "@/enums/PositionEnum";
 export default function Home() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
@@ -48,36 +49,21 @@ export default function Home() {
     const handleOnChange = (e: any) => {
         setInputValue(e.target.value);
     };
-<<<<<<< HEAD
-<<<<<<< HEAD
-    let startDate = new Date()
-    let endDate = new Date()
-    const start = "2024-07-26T06:58:19.516Z"
-    const end = "2024-07-29T11:33:58.936Z"
-=======
     let startDate = new Date();
     let endDate = new Date();
     const start = "2024-07-26T06:58:19.516Z";
     const end = "2024-07-26T11:33:58.936Z";
->>>>>>> 7dff75f (fix conflict branch button)
     if (isValidDate(start) && isValidDate(end)) {
         startDate = new Date(Date.parse(start));
         endDate = new Date(Date.parse(end));
     } else {
         console.log("false");
     }
-    const handleEndIn = () => {};
-    const {showPopup, setShowPopup} = usePopup();
+    const handleEndIn = () => { };
+    const { showPopup, setShowPopup } = usePopup();
     const handleCancel = () => {
         setShowPopup(false);
         console.log("cancel");
-=======
-    const endDate = new Date(Date.parse("2024-09-28T03:55:08.605Z"));
-    const startDate = new Date("2024-02-28T03:55:08.605Z");
-    console.log("check start Date :::: ", startDate);
-    const handleEndIn = () => {
-        console.log("end");
->>>>>>> 37e88ea (update validate time)
     };
     const handleSave = () => {
         console.log("save");
@@ -122,20 +108,8 @@ export default function Home() {
     return (
         <LayoutContainer>
             <Standard />
-            <Input
-                isCalendarSuffix
-                placeholder="MM/DD/YY"
-                handleOnChange={handleOnChange}
-                value={inputValue}
-                showCalendar={showCalendar}
-                setShowCalendar={setShowCalendar}
-                selectedDate={selectedDate}
-                handleDateChange={handleDateChange}
-                size="large"
-                variant="input"
-                optionSelect={["avc", "bc", "vc"]}
-            />
-            <CustomerBalanceInfo />
+
+
             <div className=" flex  flex-row items-start gap-8 p-[10px] m-[20px] ">
                 <ValidateServiceTime
                     onEnd={handleEndIn}
@@ -165,7 +139,7 @@ export default function Home() {
                     warningFile={
                         <Toast
                             time={1000}
-                            onClose={() => {}}
+                            onClose={() => { }}
                             isOpen
                             type={ToastType.Warning}
                             position={ToastPosition.Top_Right}
@@ -203,16 +177,20 @@ export default function Home() {
                     onClose={handleCloseToast}
                     description="Recommened products cannot exceed the selected number of rollsRecommened products cannot exceed the selected number of rolls"
                 />
-<<<<<<< HEAD
-                <Tooltip message={"Change to 0.45mm Change to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mmChange to 0.45mm"} >
+                <Tooltip
+                position={Position.Top}
+                    message={"Change to 0.45mm"} >
                     <Button>
                         Show Tooltip
                     </Button>
-=======
-                <Tooltip message={"Change to 0.45mm"}>
-                    <Button>Show Tooltip</Button>
->>>>>>> 7dff75f (fix conflict branch button)
                 </Tooltip>
+                 <Button
+                    variant="primary-dark"
+                    onClick={() => setIsOpenToast(true)}
+                    typeFile={""}
+                    size={"small"}>
+                    Show Toast
+                </Button>
             </div>
             <div className="flex flex-col gap-5 justify-center items-center mb-5">
                 <StatusNote
@@ -338,7 +316,7 @@ export default function Home() {
                                 <SaveDraftIcon className="min-w-4 min-h-4" />
                             }
                             size="medium"
-                            onClick={() => {}}>
+                            onClick={() => { }}>
                             Save Draft
                         </Button>
 
@@ -347,7 +325,7 @@ export default function Home() {
                             variant="primary-dark"
                             size="medium"
                             prefixIcon={<AddIcon className="min-w-4 min-h-4" />}
-                            onClick={() => {}}>
+                            onClick={() => { }}>
                             Add product
                         </Button>
                     </>
@@ -361,11 +339,8 @@ export default function Home() {
                     <TableExample label="STEP - 5" key={5} />
                 ]}
             />
-<<<<<<< HEAD
 
         </LayoutContainer >
-=======
-        </LayoutContainer>
->>>>>>> 7dff75f (fix conflict branch button)
+
     );
 }

@@ -76,7 +76,7 @@ const Product = () => {
     let startDate = new Date()
     let endDate = new Date()
     const start = "2024-07-26T06:58:19.516Z"
-    const end = "2024-07-28T11:33:58.936Z"
+    const end = "2024-07-30T11:33:58.936Z"
     if (isValidDate(start) && isValidDate(end)) {
         startDate = new Date(Date.parse(start));
         endDate = new Date(Date.parse(end));
@@ -88,7 +88,7 @@ const Product = () => {
         "min-h-[56px] flex justify-center items-center border-stroke border-b border-l"
     );
     const thClasses = twMerge(
-        tableClasses, "border-t text-[12px] font-semibold"
+        tableClasses, "border-t text-[12px] font-semibold text-primary"
     )
     const tdClasses = twMerge(
         tableClasses, "text-text text-[13px] font-normal leading-[15.51px] px-2"
@@ -115,7 +115,9 @@ const Product = () => {
     const handleRecordsPerPageChangeWrapper = (tableId: string, newRecordsPerPage: number) => {
         handleRecordsPerPageChange(tableId, newRecordsPerPage);
     };
+   
     return (
+
         <LayoutContainer>
 
             <div className="flex flex-row m-4">
@@ -127,7 +129,7 @@ const Product = () => {
             <div className="bg-highlight py-4">
                 <DataTable className="w-full" tableId={""} >
                     <thead className="bg-white">
-                        <tr className="flex flex-row  ">
+                        <tr className="">
                             <th className={`${thClasses} min-w-[55px] border-l-0 px`}>
                                 No
                             </th>
@@ -169,12 +171,13 @@ const Product = () => {
                     </thead>
                     <tbody>
                         {
-                            tables.table1.data.map((item) => {
-
+                            tables.table1.data.map((item, index) => {
+                                index += 1
+                                const No = `${index < 10 ? '0' : ''}${index}`
                                 return (
                                     <tr key={item.id} className="flex flex-row odd:bg-highlight even:bg-white  ">
                                         <td className={`${tdClasses} min-w-[55px] border-l-0`}>
-                                            {item.No}
+                                            {No}
                                         </td>
                                         <td className={`${tdClasses} min-w-[55px]`}>
                                             <CartReport className="size-6" />
@@ -184,13 +187,13 @@ const Product = () => {
                                         </td>
                                         <td className={`${tdClasses} min-w-[212px] !px-0`} colSpan={2}>
                                             <div className="flex flex-row gap-x-[9px]">
-                                                <Input isTextCenter isDisabled={isInputDisabled[item.id]} value={item.TotalCoil} className="max-w-[74px] w-full flex flex-row justify-center">
+                                                <Input isDisabled={isInputDisabled[item.id]} value={item.TotalCoil} className="max-w-[74px] w-full flex flex-row justify-center" isContentCenter>
                                                 </Input>
                                                 <div className="flex flex-row justify-center items-center">
                                                     <Arrow className="w-4 h-4 text-gray-10 hover:cursor-pointer hover:opacity-80"
                                                         onClick={() => changeInputDisabled(item.id)} />
                                                 </div>
-                                                <Input isTextCenter isDisabled={!isInputDisabled[item.id]} value={formatNumber(Number(item.TotalWeight))} className="max-w-[74px] w-full flex flex-row justify-center">
+                                                <Input isDisabled={!isInputDisabled[item.id]} value={formatNumber(Number(item.TotalWeight))} className="max-w-[74px] w-full flex flex-row justify-center" isContentCenter>
                                                 </Input>
                                             </div>
                                         </td>
@@ -337,6 +340,14 @@ const Product = () => {
                     </thead>
                     <tbody>
                         {getSortedData("table2", paginatedData("table2", tables.table2.data)).map((row) => {
+                            let startDate = new Date()
+                            let endDate = new Date()
+                            if (isValidDate(row.validateServiceTime.startDate) && isValidDate(row.validateServiceTime.endDate)) {
+                                startDate = new Date(Date.parse(row.validateServiceTime.startDate));
+                                endDate = new Date(Date.parse(row.validateServiceTime.endDate));
+                            } else {
+                                console.log("false");
+                            }
                             const isSelected = selectedItems["table2"]?.includes(row.id);
                             return (
                                 <tr
@@ -417,10 +428,10 @@ const Product = () => {
                                         />
                                     </td>
                                     <td className={`w-[6%] ${td2Classes}`}>
-                                        {row.time}
+                                        {row.createdDate}
                                     </td>
                                     <td className={`w-[6%] ${td2Classes}`}>
-                                        {row.price.toLocaleString()}
+                                        {row.totalTonnage.toLocaleString()}
                                     </td>
                                 </tr>
                             )
@@ -433,7 +444,7 @@ const Product = () => {
                     <h1 className="text-primary text-base font-medium">Product Approvals 2</h1>
                 </div>
             </div>
-            <div className="flex flex-row my-4 bg-highlight p-4 items-center justify-between">
+            {/* <div className="flex flex-row my-4 bg-highlight p-4 items-center justify-between">
                 <div className="flex flex-col gap-1">
                 </div>
                 <div className="flex flex-col gap-1">
@@ -448,8 +459,8 @@ const Product = () => {
                     />
 
                 </div>
-            </div>
-            <div className=" py-4">
+            </div> */}
+            {/* <div className=" py-4">
                 <DataTable className="w-full" tableId={tables.table3.id} >
                     <thead className="bg-white">
                         <tr className="flex flex-row text-primary min-h-[48px] text-[12px] font-semibold">
@@ -580,16 +591,16 @@ const Product = () => {
                                     />
                                 </td>
                                 <td className={`w-[6%] ${td2Classes}`}>
-                                    {row.time}
+                                    {row.createdDate}
                                 </td>
                                 <td className={`w-[6%] ${td2Classes}`}>
-                                    {row.price.toLocaleString()}
+                                    {row.totalTonnage.toLocaleString()}
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </DataTable>
-            </div>
+            </div> */}
             <Drawer
                 name="Header Name"
                 subName="Sub Name"

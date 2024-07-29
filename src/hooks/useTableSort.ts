@@ -1,4 +1,6 @@
+import { convertToTimeStamp } from '@/utils/FormatDate';
 import { useState, useEffect, useCallback } from 'react';
+import useValidateTime from './useValidateTime';
 
 // Define types for sort configuration and sort directions
 type SortDirection = 'asc' | 'desc';
@@ -88,23 +90,41 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
     // Function to get sorted data based on the sort configuration
     const getSortedData = (tableId: string, data: any[]) => {
         const sorts = sortConfig[tableId] || [];
-
         return [...data].sort((a, b) => {
             for (const { key, direction } of sorts) {
-
                 let aValue = a[key];
                 let bValue = b[key];
-
+                let aTimeAble = 0;
+                let bTimeAble = 0;
                 if (typeof aValue === 'object' && aValue !== null && 'title' in aValue) {
                     aValue = aValue.title;
                 }
                 if (typeof bValue === 'object' && bValue !== null && 'title' in bValue) {
                     bValue = bValue.title;
                 }
+                if (typeof aValue === 'object' && aValue !== null && 'endDate' && 'startDate' in aValue) {
+                    const startDate = new Date(Date.parse(aValue.startDate))
+                    const endDate = new Date(Date.parse(aValue.endDate))
+                    const {
+                        timeAble,
+                    } = useValidateTime({ startDate, endDate });
+                    aTimeAble = timeAble
+                    console.log("a" + aTimeAble)
+                }
+                if (typeof bValue === 'object' && aValue !== null && 'endDate' && 'startDate' in bValue) {
+                    // const startDate = new Date(Date.parse(bValue.startDate))
+                    // const endDate = new Date(Date.parse(bValue.endDate))
+                    // const {
+                    //     timeAble,
+                    // } = useValidateTime({ startDate, endDate });
+                    // bTimeAble = timeAble
+                    // console.log("b" + bTimeAble)
+                }
+                console.log("a" + aTimeAble)
+                console.log("b" + bTimeAble)
 
                 if (aValue === undefined) aValue = '';
                 if (bValue === undefined) bValue = '';
-
                 if (typeof aValue === "string" && typeof bValue === "string") {
                     const comparison = direction === 'asc'
                         ? aValue.localeCompare(bValue)
@@ -118,7 +138,6 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
                     if (comparison !== 0) return comparison;
                 }
             }
-
             return 0;
         });
     };
