@@ -106,7 +106,7 @@ export default function Home() {
 
     return (
         <LayoutContainer>
-            <Standard />
+            {/* <Standard />
             <Input
                 isCalendarSuffix
                 placeholder="MM/DD/YY"
@@ -338,7 +338,7 @@ export default function Home() {
                     <TableExample label="STEP - 4" key={4} />,
                     <TableExample label="STEP - 5" key={5} />
                 ]}
-            />
+            /> */}
             <TablePrice />
         </LayoutContainer>
     );

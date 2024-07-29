@@ -2,7 +2,7 @@ interface TooltipProps {
     message: string;
     children: React.ReactNode;
 }
-export default function Tooltip({ message, children }: TooltipProps) {
+export default function Tooltip({message, children}: TooltipProps) {
     return (
         <div className="group relative flex justify-center gap-2">
             {children}
@@ -10,5 +10,5 @@ export default function Tooltip({ message, children }: TooltipProps) {
                 {message}
             </span>
         </div>
-    )
+    );
 }

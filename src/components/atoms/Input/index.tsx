@@ -5,6 +5,7 @@ import Select from "@/assets/svgs/dropdown_select.svg";
 import IconCalendar from "@/assets/svgs/calendar_v2.svg";
 
 interface PropsInput {
+    isContentCenter: boolean;
     optionSelect?: string[];
     variant?: "input" | "textarea" | "select";
     require?: boolean;
@@ -26,6 +27,7 @@ interface PropsInput {
     label?: string;
     type?: string;
     selectedDate?: Date | null;
+
     handleSelectChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -47,7 +49,8 @@ const Input: React.FC<PropsInput> = (props) => {
         helperText,
         label,
         type,
-        handleSelectChange
+        handleSelectChange,
+        isContentCenter
     } = props;
 
     const [isOptionSelected, setIsOptionSelected] = useState(false);
@@ -130,7 +133,7 @@ const Input: React.FC<PropsInput> = (props) => {
                         </div>
                     </div>
                 :   <input
-                        className={`w-full focus:!outline-secondary p-2 ${isDisabled ? "focus:!outline-stroke" : ""} ${
+                        className={`w-full focus:!outline-secondary p-2 ${isDisabled ? "focus:!outline-stroke" : ""} ${isContentCenter ? "text-center text-[13px] font-[400] font-sf-ui-display leading-[15.5px]  " : ""} ${
                             prefix ? " pl-6" : ""
                         }  ${suffix ? "pr-6 " : ""} `}
                         type={type}

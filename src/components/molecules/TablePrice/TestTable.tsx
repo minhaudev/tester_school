@@ -1,9 +1,9 @@
-import Input from "@/components/atoms/Input";
-import {useEffect, useRef} from "react";
-import TrashBinIcon from "@/assets/svgs/trash_bin.svg";
-import {twMerge} from "tailwind-merge";
+import LayoutContainer from "@/app/LayoutContainer";
+import DataTable from "@/components/atoms/Datatable";
+import React, {useEffect, useRef} from "react";
 import "./styles.css";
-import {formatPrice} from "@/utils";
+import {twMerge} from "tailwind-merge";
+import Input from "@/components/atoms/Input";
 
 const TestTable = () => {
     const tableClasses = twMerge(
@@ -30,33 +30,31 @@ const TestTable = () => {
         });
     };
 
-    useEffect(() => {
-        const handleScroll = (index: number) => () => synchronizeScroll(index);
+    // useEffect(() => {
+    //     const handleScroll = (index: number) => () => synchronizeScroll(index);
 
-        containerRefs.current.forEach((container, index) => {
-            if (container) {
-                container.addEventListener("scroll", handleScroll(index));
-            }
-        });
+    //     containerRefs.current.forEach((container, index) => {
+    //         if (container) {
+    //             container.addEventListener("scroll", handleScroll(index));
+    //         }
+    //     });
 
-        return () => {
-            containerRefs.current.forEach((container, index) => {
-                if (container) {
-                    container.removeEventListener(
-                        "scroll",
-                        handleScroll(index)
-                    );
-                }
-            });
-        };
-    }, []);
+    //     return () => {
+    //         containerRefs.current.forEach((container, index) => {
+    //             if (container) {
+    //                 container.removeEventListener(
+    //                     "scroll",
+    //                     handleScroll(index)
+    //                 );
+    //             }
+    //         });
+    //     };
+    // }, []);
 
     return (
-        <div className="w-full overflow-x-hidden">
-            <div className="w-full">
-                <div
-                    ref={(el) => (containerRefs.current[0] = el)}
-                    className={`flex w-full overflow-scroll`}>
+        <div className="w-full overflow-x-hidden maw-w-[1200px]">
+            <div className="w-full  overflow-scroll ">
+                <div className={`flex w-full`}>
                     <div className="sticky left-0 bg-white">
                         <div className="flex">
                             <th
@@ -155,10 +153,10 @@ const TestTable = () => {
                                 Total price
                                 <span className="text-unit">(VND)</span>
                             </th>
-                            <th className={`${thClasses} min-w-[56px] w-full`}>
+                            <th className={`${thClasses} min-w-[126px] w-full`}>
                                 Status
                             </th>
-                            <th className={`${thClasses} min-w-[56px] w-full`}>
+                            <th className={`${thClasses} min-w-[126px] w-full`}>
                                 Action
                             </th>
                         </div>
@@ -167,15 +165,14 @@ const TestTable = () => {
 
                 {/* Thêm các container khác với refs tương ứng */}
                 {[0, 1, 2, 3].map((item) => (
-                    <div
-                        key={item}
-                        ref={(el) => (containerRefs.current[item + 1] = el)}
-                        className={`flex w-full overflow-scroll bg-green`}>
+                    <div key={item} className={`flex w-full bg-green`}>
                         <div className="sticky left-0 z-50">
                             <div
                                 className={`flex ${(item + 1) % 2 ? " bg-highlight" : "bg-white"}`}>
                                 <th
-                                    className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[56px] w-full flex-center`}></th>
+                                    className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[56px] w-full flex-center`}>
+                                    01
+                                </th>
                                 <th
                                     className={`${thClasses} min-w-[50px] px-1 2xl:min-w-[55PX] w-full flex-center`}></th>
                                 <th
@@ -203,10 +200,7 @@ const TestTable = () => {
                                 <th
                                     className={`${thClasses} min-w-[264px] !p-0 min-h-[56px] max-h-[56px] border-l-0 flex  justify-start`}>
                                     <div className="min-w-[88px] border-l-0 h-full flex-center  py-[10px] px-[8px]  border-stroke">
-                                        <Input
-                                            placeholder="Enter"
-                                            className="flex items-center justify-center"
-                                        />
+                                        <Input placeholder="Enter" />
                                     </div>
                                     <div className="min-w-[88px] border-l-0 h-full flex-center py-[10px] px-[8px]  border-stroke">
                                         <Input placeholder="Enter" />
@@ -234,18 +228,17 @@ const TestTable = () => {
                                     className={`${thClasses} min-w-[133px]`}></th>
                                 <th
                                     className={`${thClasses} min-w-[157px] w-full`}>
-                                    {formatPrice(312000)}
+                                    {(312000).toLocaleString("vi-VN", {
+                                        style: "currency",
+                                        currency: "VND"
+                                    })}
                                 </th>
                                 <th
-                                    className={`${thClasses} min-w-[156px] w-full`}>
-                                    {formatPrice(247275000)}
-                                </th>
+                                    className={`${thClasses} min-w-[156px] w-full`}></th>
                                 <th
-                                    className={`${thClasses} min-w-[56px] w-full`}></th>
+                                    className={`${thClasses} min-w-[126px] w-full`}></th>
                                 <th
-                                    className={`${thClasses} min-w-[56px] w-full`}>
-                                    <TrashBinIcon className="min-w-[24px] min-h-[24px]" />
-                                </th>
+                                    className={`${thClasses} min-w-[126px] w-full`}></th>
                             </div>
                         </div>
                     </div>

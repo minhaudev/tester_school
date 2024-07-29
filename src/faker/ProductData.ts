@@ -1,57 +1,62 @@
-export const ProductData =  [
-        {
-            "id": "1",
-            "No": "01",
-            "Type": "",
-            "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
-            "TotalCoil": "2",
-            "TotalWeight": "7850",
-            "Prime": {
-                "value": ["1B", "1A", "1", "3"],
-                "isDisabled": true
-            },
-            "PreferredTolerances": {
-                "kg": [3700, 4300],
-                "m": [1209, 1405]
-            },
-            "UnitPrice": 31500,
-            "TotalPrice": 247275000,
-            "Status": "text-red",
-            "Action": ["delete"]
+export const ProductData = [
+    {
+        id: "1",
+        No: "01",
+        Type: "",
+        Specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        TotalCoil: "2",
+        TotalWeight: "7850",
+        Prime: {
+            value: ["1B", "1A", "1", "3"],
+            isDisabled: true
         },
-        {
-            "id": "2",
-            "No": "02",
-            "Type": "",
-            "Specifications": "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
-            "TotalCoil": "2",
-            "TotalWeight": "7850",
-            "Prime": {
-                "value": ["1B", "1A", "1", "3"],
-                "isDisabled": false
-            },
-            "PreferredTolerances": {
-                "kg": [3700, 4300],
-                "m": [1209, 1405]
-            },
-            "UnitPrice": 31500,
-            "TotalPrice": 247275000,
-            "Status": "text-green",
-            "Action": ["delete", "edit"]
-        }
-    ]
+        PreferredTolerances: {
+            kg: [3700, 4300],
+            m: [1209, 1405]
+        },
+        UnitPrice: 31500,
+        TotalPrice: 247275000,
+        discountPrice: 2000,
+        rebatePrice: 3000,
+        Status: "text-red",
+        finalPrice: 2000000,
+        Action: ["delete"]
+    },
+    {
+        id: "2",
+        No: "02",
+        Type: "",
+        Specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        TotalCoil: "2",
+        TotalWeight: "7850",
+        Prime: {
+            value: ["1B", "1A", "1", "3"],
+            isDisabled: false
+        },
+        PreferredTolerances: {
+            kg: [3700, 4300],
+            m: [1209, 1405]
+        },
+        UnitPrice: 31500,
+        TotalPrice: 247275000,
+        discountPrice: 2000,
+        rebatePrice: 3000,
+        Status: "text-green",
+        finalPrice: 2000000,
+        Action: ["delete", "edit"]
+    }
+];
+
 export const ProductApprovalsData = [
     {
         id: "1",
         validityTimes: [
-            { component: "ValidityTime1", className: "w-6 h-6" },
-            { component: "ValidityTime2", className: "w-6 h-6" },
-            { component: "ValidityTime3", className: "w-6 h-6" }
+            {component: "ValidityTime1", className: "w-6 h-6"},
+            {component: "ValidityTime2", className: "w-6 h-6"},
+            {component: "ValidityTime3", className: "w-6 h-6"}
         ],
         itemId: "019100101",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: false,
@@ -83,14 +88,11 @@ export const ProductApprovalsData = [
     },
     {
         id: "2",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
         circles: [
-            { className: "size-2 text-green" },
-            { className: "size-2 text-red" },
-
+            {className: "size-2 text-green"},
+            {className: "size-2 text-red"}
         ],
         propertieStatus: {
             status: true,
@@ -123,13 +125,9 @@ export const ProductApprovalsData = [
     },
     {
         id: "3",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -162,14 +160,12 @@ export const ProductApprovalsData = [
     {
         id: "4",
         validityTimes: [
-            { component: "ValidityTime1", className: "w-6 h-6" },
-            { component: "ValidityTime2", className: "w-6 h-6" },
-            { component: "ValidityTime3", className: "w-6 h-6" }
+            {component: "ValidityTime1", className: "w-6 h-6"},
+            {component: "ValidityTime2", className: "w-6 h-6"},
+            {component: "ValidityTime3", className: "w-6 h-6"}
         ],
         itemId: "019100101",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: false,
@@ -201,14 +197,11 @@ export const ProductApprovalsData = [
     },
     {
         id: "5",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
         circles: [
-            { className: "size-2 text-green" },
-            { className: "size-2 text-red" },
-
+            {className: "size-2 text-green"},
+            {className: "size-2 text-red"}
         ],
         propertieStatus: {
             status: true,
@@ -241,13 +234,9 @@ export const ProductApprovalsData = [
     },
     {
         id: "6",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -280,14 +269,12 @@ export const ProductApprovalsData = [
     {
         id: "7",
         validityTimes: [
-            { component: "ValidityTime1", className: "w-6 h-6" },
-            { component: "ValidityTime2", className: "w-6 h-6" },
-            { component: "ValidityTime3", className: "w-6 h-6" }
+            {component: "ValidityTime1", className: "w-6 h-6"},
+            {component: "ValidityTime2", className: "w-6 h-6"},
+            {component: "ValidityTime3", className: "w-6 h-6"}
         ],
         itemId: "019100101",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: false,
@@ -319,14 +306,11 @@ export const ProductApprovalsData = [
     },
     {
         id: "8",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
         circles: [
-            { className: "size-2 text-green" },
-            { className: "size-2 text-red" },
-
+            {className: "size-2 text-green"},
+            {className: "size-2 text-red"}
         ],
         propertieStatus: {
             status: true,
@@ -359,13 +343,9 @@ export const ProductApprovalsData = [
     },
     {
         id: "9",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -397,13 +377,9 @@ export const ProductApprovalsData = [
     },
     {
         id: "10",
-        validityTimes: [
-
-        ],
+        validityTimes: [],
         itemId: "019100102",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -432,15 +408,13 @@ export const ProductApprovalsData = [
         },
         time: "18:00",
         price: 80000
-    },
-]
+    }
+];
 export const ProductApprovalsData2 = [
     {
         id: "1",
-       
-        circles: [
 
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: false,
@@ -472,11 +446,10 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "2",
-        
-        circles: [
-            { className: "size-2 text-green" },
-            { className: "size-2 text-red" },
 
+        circles: [
+            {className: "size-2 text-green"},
+            {className: "size-2 text-red"}
         ],
         propertieStatus: {
             status: true,
@@ -509,10 +482,8 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "3",
-        
-        circles: [
 
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -545,14 +516,12 @@ export const ProductApprovalsData2 = [
     {
         id: "4",
         validityTimes: [
-            { component: "ValidityTime1", className: "w-6 h-6" },
-            { component: "ValidityTime2", className: "w-6 h-6" },
-            { component: "ValidityTime3", className: "w-6 h-6" }
+            {component: "ValidityTime1", className: "w-6 h-6"},
+            {component: "ValidityTime2", className: "w-6 h-6"},
+            {component: "ValidityTime3", className: "w-6 h-6"}
         ],
         itemId: "019100101",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: false,
@@ -584,11 +553,10 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "5",
-        
-        circles: [
-            { className: "size-2 text-green" },
-            { className: "size-2 text-red" },
 
+        circles: [
+            {className: "size-2 text-green"},
+            {className: "size-2 text-red"}
         ],
         propertieStatus: {
             status: true,
@@ -621,10 +589,8 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "6",
-        
-        circles: [
 
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -657,14 +623,12 @@ export const ProductApprovalsData2 = [
     {
         id: "7",
         validityTimes: [
-            { component: "ValidityTime1", className: "w-6 h-6" },
-            { component: "ValidityTime2", className: "w-6 h-6" },
-            { component: "ValidityTime3", className: "w-6 h-6" }
+            {component: "ValidityTime1", className: "w-6 h-6"},
+            {component: "ValidityTime2", className: "w-6 h-6"},
+            {component: "ValidityTime3", className: "w-6 h-6"}
         ],
         itemId: "019100101",
-        circles: [
-
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: false,
@@ -696,11 +660,10 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "8",
-        
-        circles: [
-            { className: "size-2 text-green" },
-            { className: "size-2 text-red" },
 
+        circles: [
+            {className: "size-2 text-green"},
+            {className: "size-2 text-red"}
         ],
         propertieStatus: {
             status: true,
@@ -733,10 +696,8 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "9",
-        
-        circles: [
 
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -768,10 +729,8 @@ export const ProductApprovalsData2 = [
     },
     {
         id: "10",
-        
-        circles: [
 
-        ],
+        circles: [],
         propertieStatus: {
             status: true,
             isIcon: true,
@@ -799,6 +758,8 @@ export const ProductApprovalsData2 = [
             startDate: "2024-07-15T00:00:00Z"
         },
         time: "18:00",
-        price: 80000
-    },
-]
+        price: 80000,
+        discountPrice: 2000,
+        rebatePrice: 3000
+    }
+];
