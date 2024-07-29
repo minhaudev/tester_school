@@ -4,7 +4,7 @@ import CustomerBalanceInfo from "@/components/atoms/AccountBalance";
 import {infoCartList} from "@/faker/CreditCart";
 import {dataList} from "@/faker/AccountBalance";
 
-export default function index() {
+export default function Index() {
     return (
         <div>
             <div className="px-[16.5px] w-full gap-4 flex justify-between">
