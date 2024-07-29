@@ -49,6 +49,7 @@ export default function Home() {
         setInputValue(e.target.value);
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
     let startDate = new Date()
     let endDate = new Date()
     const start = "2024-07-26T06:58:19.516Z"
@@ -70,6 +71,13 @@ export default function Home() {
     const handleCancel = () => {
         setShowPopup(false);
         console.log("cancel");
+=======
+    const endDate = new Date(Date.parse("2024-09-28T03:55:08.605Z"));
+    const startDate = new Date("2024-02-28T03:55:08.605Z");
+    console.log("check start Date :::: ", startDate);
+    const handleEndIn = () => {
+        console.log("end");
+>>>>>>> 37e88ea (update validate time)
     };
     const handleSave = () => {
         console.log("save");

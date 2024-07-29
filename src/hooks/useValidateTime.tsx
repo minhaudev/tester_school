@@ -12,7 +12,10 @@ function useValidateTime({
     onEnd?: () => void;
 }) {
     const [timeAble, setTimeAble] = useState(() => {
-        return convertToTimeStamp(endDate) - Date.now();
+        return (
+            convertToTimeStamp(endDate) -
+            convertToTimeStamp(new Date(Date.now()))
+        );
     });
     const [timeValidity, setTimeValidity] = useState(initValidityTime);
     const [timeUsed, setTimeUsed] = useState(initValidityTime);
@@ -38,8 +41,15 @@ function useValidateTime({
                     setTimeAble(0);
                     return;
                 }
+<<<<<<< HEAD
                 const currentAble = Math.floor(
                     (convertToTimeStamp(new Date(Date.now())) - convertToTimeStamp(startDate)) / 1000
+=======
+                const timeAble = Math.floor(
+                    (convertToTimeStamp(endDate) -
+                        convertToTimeStamp(new Date(Date.now()))) /
+                        1000
+>>>>>>> 37e88ea (update validate time)
                 );
                 const timeData = calculateDate({ endDate, startDate });
                 const timeAbleHours = timeAble / (60 * 60);
@@ -51,16 +61,32 @@ function useValidateTime({
                     setEnd(true);
                     return;
                 }
+<<<<<<< HEAD
                 if (convertToTimeStamp(startDate) <= convertToTimeStamp(new Date(Date.now()))) {
                     setTimeValidity({ ...timeData });
+=======
+                if (
+                    convertToTimeStamp(startDate) <=
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
+                    setTimeValidity({...timeData});
+>>>>>>> 37e88ea (update validate time)
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(() => currentPercent);
                     const timeUse = calculateDate({ startDate, endDate: new Date(Date.now()), hasDay: false, isTimeUse: true })
                     setTimeUsed(() => timeUse);
                 }
+<<<<<<< HEAD
                 if (convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now()))) {
                     //chưa tới FROM == TOTAL 
                     setTimeValidity({ ...timeData });
+=======
+                if (
+                    convertToTimeStamp(startDate) >
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
+                    setTimeValidity({...timeData});
+>>>>>>> 37e88ea (update validate time)
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(100);
                 }

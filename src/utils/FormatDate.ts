@@ -21,6 +21,7 @@ export function calculateDate({
     isTimeUse?: boolean;
     hasDay?: boolean;
 }) {
+<<<<<<< HEAD
     if (isNaN(endDate.getTime()) ||
         isNaN(startDate.getTime())) {
 
@@ -29,6 +30,13 @@ export function calculateDate({
     let milliSecondTimeAble = 0
 
     if (convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now())) || isTotal || isTimeUse) {
+=======
+    let milliSecondTimeAble =
+        convertToTimeStamp(endDate) - convertToTimeStamp(new Date(Date.now()));
+    if (
+        convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now()))
+    ) {
+>>>>>>> 37e88ea (update validate time)
         milliSecondTimeAble =
             convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
     } else {
