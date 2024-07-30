@@ -67,6 +67,12 @@ export const FormatTime = (time: number) => {
 
     return `${hours}:${minutes}:${seconds}`;
 };
+export const FormatTimeHours = (time: number) => {
+    const date = new Date(time);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+};
 
 export function timeToTimestamp(time: string) {
     const [hours, minutes, seconds] = time.split(":").map(Number);

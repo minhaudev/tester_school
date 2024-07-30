@@ -94,35 +94,12 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
             for (const { key, direction } of sorts) {
                 let aValue = a[key];
                 let bValue = b[key];
-                let aTimeAble = 0;
-                let bTimeAble = 0;
                 if (typeof aValue === 'object' && aValue !== null && 'title' in aValue) {
                     aValue = aValue.title;
                 }
                 if (typeof bValue === 'object' && bValue !== null && 'title' in bValue) {
                     bValue = bValue.title;
                 }
-                if (typeof aValue === 'object' && aValue !== null && 'endDate' && 'startDate' in aValue) {
-                    const startDate = new Date(Date.parse(aValue.startDate))
-                    const endDate = new Date(Date.parse(aValue.endDate))
-                    const {
-                        timeAble,
-                    } = useValidateTime({ startDate, endDate });
-                    aTimeAble = timeAble
-                    console.log("a" + aTimeAble)
-                }
-                if (typeof bValue === 'object' && aValue !== null && 'endDate' && 'startDate' in bValue) {
-                    // const startDate = new Date(Date.parse(bValue.startDate))
-                    // const endDate = new Date(Date.parse(bValue.endDate))
-                    // const {
-                    //     timeAble,
-                    // } = useValidateTime({ startDate, endDate });
-                    // bTimeAble = timeAble
-                    // console.log("b" + bTimeAble)
-                }
-                console.log("a" + aTimeAble)
-                console.log("b" + bTimeAble)
-
                 if (aValue === undefined) aValue = '';
                 if (bValue === undefined) bValue = '';
                 if (typeof aValue === "string" && typeof bValue === "string") {

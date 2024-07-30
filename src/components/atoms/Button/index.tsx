@@ -1,5 +1,4 @@
 "use client";
-import "./style.css";
 import Frame from "@/assets/svgs/frame_v2.svg";
 import FileDock from "@/assets/svgs/File_dock_duotone.svg";
 import Close from "@/assets/svgs/close_square_light.svg";
@@ -19,13 +18,13 @@ interface FileDetail {
 interface PropsBtn {
     maxFile?: number;
     variant?:
-        | "file"
-        | "primary-light"
-        | "primary-dark"
-        | "secondary"
-        | "dashed"
-        | "link"
-        | "text";
+    | "file"
+    | "primary-light"
+    | "primary-dark"
+    | "secondary"
+    | "dashed"
+    | "link"
+    | "text";
     size?: "2xl" | "large" | "semi" | "medium" | "small";
     color?: "white" | "blue" | "blue-dark";
     isDisabled?: boolean;
@@ -179,7 +178,6 @@ export default function Button(
                 return "";
         }
     };
-
     if (variant === "link") {
         const anchorProps = {
             ...rest
@@ -192,12 +190,11 @@ export default function Button(
                 className={`inline-flex justify-center items-center gap-[6px]
                 text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition op ${className} ${getVariantClass(
                     variant
-                )} ${
-                    isDisabled ?
-                        "text-input cursor-not-allowed pointer-events-none"
-                    :   ""
-                }  ${getErrorClass(variant)}`}
-                style={{fontFamily: "inherit"}}>
+                )} ${isDisabled ?
+                    "text-input cursor-not-allowed pointer-events-none"
+                    : ""
+                    }  ${getErrorClass(variant)}`}
+                style={{ fontFamily: "inherit" }}>
                 {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
                 <span className={`${isIcon ? "[&_svg]:w-5 [&_svg]:h-5 " : ""}`}>
                     {children}
@@ -213,8 +210,8 @@ export default function Button(
                     htmlFor="file-input"
                     className={`inline-flex justify-center items-center gap-[6px]
                   text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition cursor-pointer bg-white text-primary border border-stroke hover:bg-highlight hover:border-primary-5-hover   ${isIcon} ${className} ${getSizeClass(
-                      size
-                  )} ${isDisabled ? "!text-input !cursor-not-allowed  pointer-events-none" : ""} ${isError ? "border !border-red text-red !cursor-not-allowed pointer-events-none" : ""}`}>
+                        size
+                    )} ${isDisabled ? "!text-input !cursor-not-allowed  pointer-events-none" : ""} ${isError ? "border !border-red text-red !cursor-not-allowed pointer-events-none" : ""}`}>
                     <input
                         type="file"
                         id="file-input"
@@ -229,13 +226,13 @@ export default function Button(
                     <span>
                         {fileDetails && fileDetails.length === 1 ?
                             formatFileName(fileDetails[0].name)
-                        : (
-                            fileDetails &&
-                            fileDetails.length > 1 &&
-                            fileDetails.length <= maxFile
-                        ) ?
-                            `${fileDetails.length} multiple files`
-                        :   children}
+                            : (
+                                fileDetails &&
+                                fileDetails.length > 1 &&
+                                fileDetails.length <= maxFile
+                            ) ?
+                                `${fileDetails.length} multiple files`
+                                : children}
                     </span>
                 </label>
                 {isWarning && <div>{warningFile}</div>}
@@ -261,7 +258,7 @@ export default function Button(
                                                                         "."
                                                                     )
                                                                 )}`
-                                                            :   fileDetail.name}
+                                                                : fileDetail.name}
                                                         </p>
                                                         <p className="font-normal text-[11px] text-input leading-[13.13px]">
                                                             {(
@@ -294,12 +291,11 @@ export default function Button(
             disabled={isDisabled}
             {...rest}
             className={`flex justify-center items-center gap-[6px]
-              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition  disabled:bg-[#F7F7F7] disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
-                  isIcon ? "!px-0 !border !border-white !text-white" : ""
-              } ${className} ${getVariantClass(variant)} ${getErrorClass(
-                  variant
-              )} ${getSizeClass(size)} ${getOutline(color)}`}
-            style={{fontFamily: "inherit"}}>
+              text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition  disabled:bg-[#F7F7F7] disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${isIcon ? "!px-0 !border !border-white !text-white" : ""
+                } ${className} ${getVariantClass(variant)} ${getErrorClass(
+                    variant
+                )} ${getSizeClass(size)} ${getOutline(color)}`}
+            style={{ fontFamily: "inherit" }}>
             {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
             <span
                 className={`${isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""}`}>

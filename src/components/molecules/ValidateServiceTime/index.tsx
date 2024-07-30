@@ -29,7 +29,6 @@ function ValidateServiceTime({
         }, 1000);
         return () => clearTimeout(timeOutId);
     }, [end, onEnd, setEnd, timeAble]);
-
     return (
         <div className="flex items-center gap-2 text-[11px] font-[500] text-center font-sf-ui-display text-text">
             <TimeValidate

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ExpandLeft from "@/assets/svgs/Expand_left.svg";
-import ExpandRight from "@/assets/svgs/Expand_right.svg";
+import ExpandLeft from "@/assets/svgs/expand_left.svg";
+import ExpandRight from "@/assets/svgs/expand_right.svg";
 
 interface PaginationProps {
     tableId: string;
@@ -54,6 +54,7 @@ const PaginationSelect: React.FC<PaginationProps> = ({
 
     const handleRecordsPerPageChangeInternal = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newRecordsPerPage = Number(e.target.value);
+        currentPage = 1
         setLocalRecordsPerPage(newRecordsPerPage);
         handleRecordsPerPageChange(tableId, newRecordsPerPage);
     };
@@ -89,7 +90,3 @@ const PaginationSelect: React.FC<PaginationProps> = ({
 };
 
 export default PaginationSelect;
-function useCallback(arg0: () => void, arg1: (boolean | (() => void))[]) {
-    throw new Error("Function not implemented.");
-}
-

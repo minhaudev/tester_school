@@ -25,12 +25,19 @@ import { StatusEnum } from "@/enums/StatusNum";
 import RadioButton from "@/components/atoms/RadioButton/RadioButton";
 import Paginator from "@/components/molecules/Pagination";
 import Checkbox from "@/components/atoms/Checkbox";
-import Propertie from "@/components/atoms/Properties";
 import { PendingEnum } from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
-import Tooltip from "@/components/atoms/Tooltip";
 import { Position } from "@/enums/PositionEnum";
+import { useRouter } from 'next/navigation';
+import PropertyPending from "@/components/atoms/PropertyPending";
+import StatusPending from "@/components/atoms/StatusPending";
+import TooltipCustom from "@/components/atoms/TooltipCustom";
+import { Tooltip } from "@nextui-org/tooltip";
+
+
 export default function Home() {
+    const router = useRouter();
+
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [showCalendar, setShowCalendar] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -51,8 +58,8 @@ export default function Home() {
     };
     let startDate = new Date();
     let endDate = new Date();
-    const start = "2024-07-26T06:58:19.516Z";
-    const end = "2024-07-26T11:33:58.936Z";
+    const start = "2024-07-29T06:58:19.516Z";
+    const end = "2024-07-30T11:33:58.936Z";
     if (isValidDate(start) && isValidDate(end)) {
         startDate = new Date(Date.parse(start));
         endDate = new Date(Date.parse(end));
@@ -87,11 +94,15 @@ export default function Home() {
     const [selected, setSelected] = useState("option1");
 
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 20;
+
+    const totalPages = 10;
+
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
         }
+        router.push(`/page?page=${page}`);
+
     };
 
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -107,8 +118,13 @@ export default function Home() {
 
     return (
         <LayoutContainer>
-            <Standard />
 
+            <Standard />
+            <Paginator
+                length={totalPages}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+            />
 
             <div className=" flex  flex-row items-start gap-8 p-[10px] m-[20px] ">
                 <ValidateServiceTime
@@ -162,35 +178,29 @@ export default function Home() {
                     Show Modal
                 </Button>
                 <Modal isOpen={isOpenModal} onClose={handleCloseModal}></Modal>
-                <Button
-                    variant="primary-dark"
-                    onClick={() => setIsOpenToast(true)}
-                    typeFile={""}
-                    size={"small"}>
-                    Show Toast
-                </Button>
+
                 <Toast
                     time={5000}
                     isOpen={isOpenToast}
-                    position={ToastPosition.Top_Right}
+                    position={ToastPosition.Bottom_Right}
                     type={ToastType.Warning}
                     onClose={handleCloseToast}
                     description="Recommened products cannot exceed the selected number of rollsRecommened products cannot exceed the selected number of rolls"
                 />
                 <Tooltip
-                position={Position.Top}
-                    message={"Change to 0.45mm"} >
-                    <Button>
-                        Show Tooltip
-                    </Button>
+                    content="hello world"
+                >
+                    <div>
+                        <Button
+                            variant="primary-dark"
+                            onClick={() => setIsOpenToast(true)}
+                            typeFile={""}
+                            size={"small"}>
+                            Show Toast
+                        </Button>
+                    </div>
                 </Tooltip>
-                 <Button
-                    variant="primary-dark"
-                    onClick={() => setIsOpenToast(true)}
-                    typeFile={""}
-                    size={"small"}>
-                    Show Toast
-                </Button>
+
             </div>
             <div className="flex flex-col gap-5 justify-center items-center mb-5">
                 <StatusNote
@@ -230,23 +240,8 @@ export default function Home() {
                     />
                 </div>
                 <div className="flex flex-col gap-5">
-                    <Paginator
-                        length={totalPages}
-                        currentPage={currentPage}
-                        buttonDouble
-                        onPageChange={handlePageChange}
-                    />
-                    <Paginator
-                        length={5}
-                        currentPage={currentPage}
-                        buttonDouble
-                        onPageChange={handlePageChange}
-                    />
-                    <Paginator
-                        length={totalPages}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
+
+
                 </div>
                 <div className="flex flex-row items-start">
                     <Checkbox
@@ -292,16 +287,16 @@ export default function Home() {
                     <Pending type={PendingEnum.Draft} description={"DRAFT"} />
                 </div>
                 <div className="flex flex-col gap-5">
-                    <Propertie title="PENDING" />
-                    <Propertie title="PRICE POLICY CHANGED" />
-                    <Propertie title="ACTIONS REQUIRED" />
-                    <Propertie title="PRICE POLICY CHANGED" />
+                    <PropertyPending title="PENDING" />
+                    <PropertyPending title="PRICE POLICY CHANGED" />
+                    <PropertyPending title="ACTIONS REQUIRED" />
+                    <PropertyPending title="PRICE POLICY CHANGED" />
                 </div>
                 <div className="flex flex-col gap-5">
-                    <Propertie status title="PENDING" />
-                    <Propertie status isIcon title="PRICE POLICY CHANGED" />
-                    <Propertie status isIcon title="ACTIONS REQUIRED" />
-                    <Propertie status isIcon title="PRICE POLICY CHANGED" />
+                    <StatusPending title="PENDING" />
+                    <StatusPending title="PRICE POLICY CHANGED" />
+                    <StatusPending title="ACTIONS REQUIRED" />
+                    <StatusPending title="PRICE POLICY CHANGED" />
                 </div>
             </div>
 
