@@ -3,7 +3,7 @@ import Select from "@/assets/svgs/dropdown_select.svg";
 import React, {ReactNode, useEffect, useState} from "react";
 
 interface PropsInput {
-    isContentCenter: boolean;
+    isContentCenter?: boolean;
     optionSelect?: string[];
     variant?: "input" | "textarea" | "select";
     require?: boolean;
