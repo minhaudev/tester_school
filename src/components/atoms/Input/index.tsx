@@ -131,7 +131,7 @@ const Input: React.FC<PropsInput> = (props) => {
                         </div>
                     </div>
                 :   <input
-                        className={`w-full  border-none outline-none p-2 ${isDisabled ? "focus:!outline-stroke" : ""} ${isContentCenter ? "text-center" : ""} ${
+                        className={`w-full  border-none outline-none p-2 ${className} ${isDisabled ? "focus:!outline-stroke" : ""} ${isContentCenter ? "text-center" : ""} ${
                             prefix ? " pl-6" : ""
                         }  ${suffix ? "pr-6 " : ""} `}
                         type={type}
