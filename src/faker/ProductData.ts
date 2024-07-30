@@ -14,7 +14,7 @@ export const ProductData = [
             kg: [3700, 4300],
             m: [1209, 1405]
         },
-        UnitPrice: 31500,
+        UnitPrice: 3150,
         TotalPrice: 247275000,
         discountPrice: 2000,
         rebatePrice: 3000,
@@ -42,7 +42,7 @@ export const ProductData = [
         discountPrice: 2000,
         rebatePrice: 3000,
         Status: "text-green",
-        finalPrice: 2000000,
+        finalPrice: 20000000,
         Action: ["delete", "edit"]
     }
 ];

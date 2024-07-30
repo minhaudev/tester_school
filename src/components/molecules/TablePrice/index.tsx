@@ -7,7 +7,7 @@ import Inventory from "@/assets/svgs/inventory.svg";
 import {ProductData} from "@/faker/ProductData";
 import "./styles.css";
 import Input from "@/components/atoms/Input";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {formatPrice} from "@/utils";
 import Tooltip from "@/components/atoms/Tooltip";
 import GroupInput from "../GroupInput/GroupInput";
@@ -15,6 +15,21 @@ const TablePrice = () => {
     const [isInputDisabled, setInputDisabled] = useState<
         Record<string, boolean>
     >({});
+    const tdRefs = useRef<(HTMLTableCellElement | null)[]>([]);
+
+    // useEffect(() => {
+    //     tdRefs.current.forEach((td) => {
+    //         if (td) {
+    //             const tdHeight = td.offsetHeight;
+    //             const divs = td.querySelectorAll<HTMLDivElement>(".col-left");
+    //             divs.forEach((div) => {
+    //                 const divHeight = div.offsetHeight;
+    //                 const maxHeight = Math.max(tdHeight, divHeight);
+    //                 div.style.height = `${maxHeight}px`;
+    //             });
+    //         }
+    //     });
+    // }, []);
     const changeInputDisabled = (rowId: string) => {
         setInputDisabled((prevState) => ({
             ...prevState,
@@ -22,117 +37,134 @@ const TablePrice = () => {
         }));
     };
     return (
-        <div className="tableContainer">
-            <div className="  w-full border border-stroke   h-auto overflow-x-auto ">
-                <table className="">
-                    <tr>
-                        <td className="sticky left-0 flex ">
-                            <div className="flex col-title">
-                                <div className="w-[56px] border-r border-stroke bg-white">
-                                    No
+        <div className=" w-full max-w-[100vw]  overflow-x-auto ">
+            <table className="w-full">
+                <tr className="col-title">
+                    <th className={`bg-white sticky left-0 z-10 `}>
+                        <div
+                            className="grid max-h-[56px] col-title "
+                            style={{
+                                gridTemplateColumns:
+                                    "56px 56px auto 83px 93px 98px 145px 80px 104px 78px"
+                            }}>
+                            <div className="min-w-[56px]  max-w-[56px] !border-l-0 bg-white">
+                                No
+                            </div>
+                            <div className="min-w-[56px] max-w-[56px]">
+                                Type
+                            </div>
+                            <div className="min-w-[199px] ">Specifications</div>
+                            <div className="flex-col min-w-[83px]">
+                                <p>Total coil</p>
+                                <p className="col-subTitle">(PCS)</p>
+                            </div>
+                            <div className="flex-col min-w-[93px]">
+                                <p>Total coil</p>
+                                <p className="col-subTitle">(KG)</p>
+                            </div>
+                            <div className="w-[98px]">Prime</div>
+                            <div className="w-[145px]">
+                                Preferred tolerances
+                            </div>
+                            <div className="flex-col w-[80px]">
+                                <p>Unit price</p>
+                                <p className="col-subTitle">(PCS)</p>
+                            </div>
+                            <div className="flex-col w-[104px]">
+                                <p>Discounted price</p>
+                                <p className="col-subTitle">(PCS)</p>
+                            </div>
+                            <div className="flex-col w-[78px]">
+                                <p>Rebate offer</p>
+                                <p className="col-subTitle">(PCS)</p>
+                            </div>
+                        </div>
+                    </th>
+                    <th colSpan={3} className="border-r border-stroke">
+                        <div className="flex flex-col w-[264px]  ">
+                            <div className=" w-full h-[28px] border-b border-stroke  flex-center text-center">
+                                Special rebate offer
+                            </div>
+                            <div className="flex max-w-[264px] flex-center h-[28px]">
+                                <div className="col-subTitle w-[88px] flex-center  h-full  border-r border-stroke  ">
+                                    (VND/KG)
                                 </div>
-                                <div className="w-[55px]">Type</div>
-                                <div className=" flex-1 min-w-[199px] 2xl:min-w-[450px] 2xl:max-w-[450]">
-                                    Specifications
+                                <div className="col-subTitle w-[88px] flex-center  h-full  border-r border-stroke  ">
+                                    (%)
                                 </div>
-                                <div className="flex-col w-[81px]">
-                                    <p>Total coil</p>
-                                    <p className="col-subTitle">(PCS)</p>
-                                </div>
-                                <div className="flex-col w-[94px]">
-                                    <p>Total coil</p>
-                                    <p className="col-subTitle">(KG)</p>
-                                </div>
-                                <div className="w-[98px]">Prime</div>
-                                <div className="w-[145px]">
-                                    Preferred tolerances
-                                </div>
-                                <div className="flex-col w-[80px]">
-                                    <p>Unit price</p>
-                                    <p className="col-subTitle">(PCS)</p>
-                                </div>
-                                <div className="flex-col w-[104px]">
-                                    <p>Discounted price</p>
-                                    <p className="col-subTitle">(PCS)</p>
-                                </div>
-                                <div className="flex-col w-[78px]">
-                                    <p>Rebate offer</p>
-                                    <p className="col-subTitle">(PCS)</p>
+                                <div className="col-subTitle w-[88px] flex-center  h-full    ">
+                                    (VND/KG)
                                 </div>
                             </div>
-                        </td>
-                        <td>
-                            <div className=" flex col-title">
-                                <div className="flex flex-col">
-                                    <div className="w-[264px] h-[28px] border-b border-r border-stroke flex-center">
-                                        Special discount price
-                                    </div>
-                                    <div className="flex flex-center h-[28px]">
-                                        <p className="col-subTitle w-[88px] flex-center border-r h-full border-stroke">
-                                            (VND/KG)
-                                        </p>
-                                        <p className="col-subTitle w-[88px] flex-center border-r h-full border-stroke">
-                                            (%)
-                                        </p>
-                                        <p className="col-subTitle w-[88px] flex-center border-r h-full border-stroke">
-                                            (VND/KG)
-                                        </p>
-                                    </div>
+                        </div>
+                    </th>
+                    <th colSpan={3} className="border-r border-stroke">
+                        <div className="flex flex-col w-[264px]  ">
+                            <div className=" w-full h-[28px]  flex-center text-center border-b border-stroke">
+                                Special rebate offer
+                            </div>
+                            <div className="flex max-w-[264px] flex-center h-[28px]">
+                                <div className="col-subTitle w-[88px] flex-center  h-full border-r border-stroke">
+                                    (VND/KG)
                                 </div>
-                                <div className="flex flex-col !border-r-0">
-                                    <div className="w-[264px] h-[28px] border-b border-r border-stroke flex-center">
-                                        Special rebate offer
-                                    </div>
-                                    <div className="flex flex-center h-[28px]">
-                                        <p className="col-subTitle w-[88px] flex-center border-r h-full border-stroke">
-                                            (VND/KG)
-                                        </p>
-                                        <p className="col-subTitle w-[88px] flex-center border-r h-full border-stroke">
-                                            (%)
-                                        </p>
-                                        <p className="col-subTitle w-[88px] flex-center border-r h-full border-stroke">
-                                            (VND/KG)
-                                        </p>
-                                    </div>
+                                <div className="col-subTitle w-[88px] flex-center  h-full border-r border-stroke">
+                                    (%)
                                 </div>
-                                <div className="flex-col w-[133px] !border-l-0">
-                                    <p>Fullfillment</p>
-                                </div>
-                                <div className="flex-col w-[156px]">
-                                    <p> Final price</p>
-                                    <p className="col-subTitle">(VND)</p>
-                                </div>
-                                <div className="flex-col w-[156px]">
-                                    <p> Total price</p>
-                                    <p className="col-subTitle">(PCS)</p>
-                                </div>
-                                <div className="w-[64px]">Status</div>
-                                <div
-                                    className={`min-w-[115px]  max-w-[115px] !border-r-0`}>
-                                    Action
+                                <div className="col-subTitle w-[88px] flex-center  h-full ">
+                                    (VND/KG)
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </th>
+                    <th className="border-r border-stroke">
+                        {" "}
+                        <div className=" w-[133px] ">
+                            <p>Fullfillment</p>
+                        </div>
+                    </th>
 
-                    {ProductData.map((item, index) => (
-                        <tr
-                            key={index}
-                            className={`${index % 2 ? "bg-white" : "bg-highlight"}`}>
-                            <td
-                                className={`sticky left-0 z-50  flex ${index % 2 ? "bg-white" : "bg-highlight"} `}>
-                                <div className="flex col-body">
-                                    <div className={` w-[56px] border-l-0`}>
+                    <th className="border-r border-stroke">
+                        {" "}
+                        <div>
+                            <p> Final price</p>
+                            <p className="col-subTitle">(VND)</p>
+                        </div>
+                    </th>
+                    <th className="border-r border-stroke">
+                        <div className="flex-col">
+                            <p> Total price</p>
+                            <p className="col-subTitle">(PCS)</p>
+                        </div>
+                    </th>
+                    <th className="border-r border-stroke">
+                        <div>Status</div>
+                    </th>
+                    <th className="border-r border-stroke">
+                        <div>Action</div>
+                    </th>
+                </tr>
+                {ProductData.map((item, index) => (
+                    <tr key={index}>
+                        <td
+                            ref={(el) => (tdRefs.current[index] = el)}
+                            className={` sticky left-0 z-10 col p-0 ${index % 2 ? "bg-white" : "bg-highlight"} `}>
+                            <div className="absolute w-full h-full top-0 left-0">
+                                <div
+                                    className=" h-full grid col-left pr-[1.5px] border-r border-stroke"
+                                    style={{
+                                        gridTemplateColumns:
+                                            "56px 56px auto 175px 98px 145px 80px 104px 76px"
+                                    }}>
+                                    <div className="min-w-[56px] max-w-[56px]">
                                         {item.No}
                                     </div>
-                                    <div className={`w-[55px]`}>
+                                    <div className="min-w-[56px] max-w-[56px]">
                                         <CartReport className="size-6" />
                                     </div>
-                                    <div
-                                        className={`flex-1 min-w-[199px] 2xl:min-w-[450px] 2xl:max-w-[450] !justify-start`}>
+                                    <div className="min-w-[199px] border-r border-stroke   ">
                                         {item.Specifications}
                                     </div>
-                                    <div className={`w-[175px] !px-0`}>
+                                    <div className="min-w-[175px] max-w-[175px] !border-0">
                                         <div className="flex flex-row gap-x-[9px] py-[10px] !px-2">
                                             <Input
                                                 isContentCenter
@@ -140,7 +172,8 @@ const TablePrice = () => {
                                                     isInputDisabled[item.id]
                                                 }
                                                 value={item.TotalCoil}
-                                                className="max-w-[74px] w-full flex flex-row justify-center"></Input>
+                                                className="max-w-[74px] w-full flex flex-row justify-center"
+                                            />
                                             <div className="flex flex-row justify-center items-center">
                                                 <Arrow
                                                     className="w-4 h-4 text-gray-10 hover:cursor-pointer hover:opacity-80"
@@ -159,14 +192,14 @@ const TablePrice = () => {
                                                 value={formatPrice(
                                                     Number(item.TotalWeight)
                                                 )}
-                                                className="max-w-[74px] w-full flex flex-row justify-center"></Input>
+                                                className="max-w-[74px] w-full flex flex-row justify-center"
+                                            />
                                         </div>
                                     </div>
-                                    <div
-                                        className={`w-[98px] py-[10px] !px-2 `}>
+                                    <div className="w-[98px] py-[10px] border-l border-stroke border-r translate-x-[1px]">
                                         <select
                                             disabled={!item.Prime.isDisabled}
-                                            className="text-center  w-full rounded-[7px] border border-[#D9D9D9] border-t-transparent bg-transparent p-2 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-[#40A9FF]   ">
+                                            className="text-center w-full rounded-[7px] bg-transparent p-2 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:bg-gray-200 focus:outline-blue-500">
                                             {item.Prime.value.map(
                                                 (primeItem, index) => (
                                                     <option
@@ -178,99 +211,83 @@ const TablePrice = () => {
                                             )}
                                         </select>
                                     </div>
-                                    <div className={`w-[145px]`}>
-                                        <GroupInput />
+                                    <div className="w-[145px] py-[10px] px-2 !border-r-0">
+                                        {/* <GroupInput /> */}
                                     </div>
-                                    <div
-                                        className={`w-[80px] relative group z-10 `}>
+                                    <div className="w-[80px] break-all !border-r-0 border-l border-stroke ">
                                         {formatPrice(item.UnitPrice)}
-                                        <div className=" group-hover:opacity-100 z-50 opacity-0 absolute bottom-0  left-[-20px] bg-black h-[20px] rounded-md text-white p-1 flex items-center justify-center whitespace-nowrap">
-                                            old information price
-                                        </div>
                                     </div>
-                                    <div className={`w-[104px] `}>
+                                    <div className="w-[104px] border-l border-stroke !border-r-0">
                                         {formatPrice(item.discountPrice)}
                                     </div>
-                                    <div className={`w-[78px]`}>
+                                    <div className="w-[76px] !border-r-0 border-l border-stroke">
                                         {formatPrice(item.rebatePrice)}
                                     </div>
                                 </div>
-                            </td>
-                            <td>
-                                <div className={` flex col-body`}>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[88px] py-[10px] px-2  border-r border-stroke flex-center`}>
-                                        <Input
-                                            isContentCenter
-                                            placeholder="Enter"
-                                        />
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[88px] py-[10px] px-2  border-r border-stroke flex-center`}>
-                                        <Input
-                                            isContentCenter
-                                            placeholder="Enter"
-                                        />
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[88px] py-[10px] px-2  border-r border-stroke flex-center`}>
-                                        <Input
-                                            isContentCenter
-                                            placeholder="Enter"
-                                        />
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[88px] py-[10px] px-2  border-r border-stroke flex-center`}>
-                                        <Input
-                                            isContentCenter
-                                            placeholder="Enter"
-                                        />
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[88px] py-[10px] px-2  border-r border-stroke flex-center`}>
-                                        <Input
-                                            isContentCenter
-                                            placeholder="Enter"
-                                        />
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[88px] py-[10px] px-2  border-r border-stroke flex-center`}>
-                                        <Input
-                                            isContentCenter
-                                            placeholder="Enter"
-                                        />
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[133px] py-[10px] px-2  border-r border-stroke flex-center   `}></div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"}  w-[156px] py-[10px] px-2  border-r border-stroke flex-center !font-sf-ui-display !font-[400] !text-[13px] leading-[15.5px] !text-text  `}>
-                                        {formatPrice(item.finalPrice)}
-                                    </div>
-                                    <div
-                                        className={` ${index % 2 ? "bg-white" : "!bg-highlight"} w-[156px] py-[10px] px-2  border-r border-stroke flex-center !font-sf-ui-display !font-[400] !text-[13px] leading-[15.5px] !text-text   `}>
-                                        {formatPrice(item.TotalPrice)}
-                                    </div>
-                                    <div
-                                        className={`w-[64px]  ${index % 2 ? "bg-white" : "!bg-highlight"}`}>
-                                        <Inventory
-                                            className={`size-6 ${item.Status}`}
-                                        />
-                                    </div>
-                                    <div
-                                        className={`w-[115px] gap-2  ${index % 2 ? "bg-white" : "!bg-highlight"} !border-r-0`}>
-                                        {item.Action.includes("delete") && (
-                                            <Trash className="size-6" />
-                                        )}
-                                        {item.Action.includes("edit") && (
-                                            <Wrench className="size-6" />
-                                        )}
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </div>
+                            </div>
+                        </td>
+                        <td className="w-[88px] body-border ">
+                            <Input isContentCenter placeholder="Enter" />
+                        </td>
+                        <td className="w-[88px] body-border">
+                            {" "}
+                            <Input isContentCenter placeholder="Enter" />
+                        </td>
+                        <td className="w-[88px] body-border">
+                            {" "}
+                            <Input isContentCenter placeholder="Enter" />
+                        </td>
+                        <td className="w-[88px] body-border">
+                            {" "}
+                            <Input isContentCenter placeholder="Enter" />
+                        </td>
+                        <td className="w-[88px] body-border">
+                            {" "}
+                            <Input isContentCenter placeholder="Enter" />
+                        </td>
+                        <td className="w-[88px] body-border">
+                            {" "}
+                            <Input isContentCenter placeholder="Enter" />
+                        </td>
+                        <td className=" body-border"></td>
+                        <td className="w-[133px] body-border">
+                            {" "}
+                            {formatPrice(item.finalPrice)}
+                        </td>
+                        <td className="w-[156px] body-border">
+                            {" "}
+                            {formatPrice(item.TotalPrice)}
+                        </td>
+                        <td className="min-w-[66px] body-border">
+                            <div className="flex justify-center items-center border-0">
+                                <Inventory
+                                    className={`size-5 ${item.Status}`}
+                                />
+                            </div>
+                        </td>
+                        <td className="w-[115px] body-border ">
+                            <div className=" flex items-center justify-center gap-2 border-0 cursor-pointer">
+                                {item.Action.includes("delete") && (
+                                    <Trash
+                                        className="size-6"
+                                        onClick={() => {
+                                            alert("Delete");
+                                        }}
+                                    />
+                                )}
+                                {item.Action.includes("edit") && (
+                                    <Wrench
+                                        className="size-6"
+                                        onClick={() => {
+                                            alert("Edit");
+                                        }}
+                                    />
+                                )}
+                            </div>
+                        </td>
+                    </tr>
+                ))}
+            </table>
         </div>
     );
 };

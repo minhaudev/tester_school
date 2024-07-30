@@ -84,7 +84,7 @@ const Input: React.FC<PropsInput> = (props) => {
     }, [value]);
 
     return (
-        <div>
+        <div className="border-r-0">
             <label>
                 {label}
                 {require && <span className="text-warning"> &#160;*</span>}{" "}
