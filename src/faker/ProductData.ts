@@ -1,765 +1,406 @@
+import {TypeStatus} from "@/enums/TypeStatusEnum";
+
 export const ProductData = [
     {
         id: "1",
-        No: "01",
-        Type: "",
-        Specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
-        TotalCoil: "2",
-        TotalWeight: "7850",
-        Prime: {
+        type: TypeStatus.SALE,
+        specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        totalCoil: "2",
+        totalWeight: "7850",
+        prime: {
             value: ["1B", "1A", "1", "3"],
             isDisabled: true
         },
-        PreferredTolerances: {
-            kg: [3700, 4300],
-            m: [1209, 1405]
-        },
-        UnitPrice: 3150,
-        TotalPrice: 247275000,
-        discountPrice: 2000,
-        rebatePrice: 3000,
-        Status: "text-red",
-        finalPrice: 2000000,
-        Action: ["delete"]
+        preferredTolerances: [
+            {
+                key: "kg",
+                value: [3700, 4300]
+            },
+            {
+                key: "m",
+                value: [1209, 1405]
+            }
+        ],
+        unitPrice: 31500,
+        totalPrice: 247275000,
+        rebatePrice: 323203203,
+        discountPrice: 0,
+        status: "warning",
+        action: ["delete"]
     },
     {
         id: "2",
-        No: "02",
-        Type: "",
-        Specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
-        TotalCoil: "2",
-        TotalWeight: "7850",
-        Prime: {
-            value: ["1B", "1A", "1", "3"],
-            isDisabled: false
-        },
-        PreferredTolerances: {
-            kg: [3700, 4300],
-            m: [1209, 1405]
-        },
-        UnitPrice: 31500,
-        TotalPrice: 247275000,
-        discountPrice: 2000,
-        rebatePrice: 3000,
-        Status: "text-green",
-        finalPrice: 20000000,
-        Action: ["delete", "edit"]
-    }
-];
-
-export const ProductApprovalsData = [
-    {
-        id: "1",
-        validityTimes: [
-            {component: "ValidityTime1", className: "w-6 h-6"},
-            {component: "ValidityTime2", className: "w-6 h-6"},
-            {component: "ValidityTime3", className: "w-6 h-6"}
+        type: TypeStatus.ORIGINAL,
+        specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        totalCoil: "2",
+        totalWeight: "7850",
+        prime: "1B",
+        preferredTolerances: [
+            {
+                key: "kg",
+                value: [3700, 4300]
+            },
+            {
+                key: "m",
+                value: [1209, 1405]
+            }
         ],
-        itemId: "019100101",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: false,
-            title: "PENDING"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "NON-STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-yellow",
-            title: "Price & Policy",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "08:50",
-        price: 100000
-    },
-    {
-        id: "2",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [
-            {className: "size-2 text-green"},
-            {className: "size-2 text-red"}
-        ],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "NOT ENOUGH INVENTORY"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-green",
-            title: "Contents review",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "08:30",
-        price: 40000
+        unitPrice: 31500,
+        totalPrice: 247275000,
+        status: "success",
+        rebatePrice: 323203203,
+        discountPrice: 23023023,
+        action: ["delete"]
     },
     {
         id: "3",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "18:00",
-        price: 80000
+        type: TypeStatus.ORIGINAL,
+        specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        totalCoil: "2",
+        totalWeight: "7850",
+        prime: "1B",
+        preferredTolerances: [
+            {
+                key: "kg",
+                value: [3700, 4300]
+            },
+            {
+                key: "m",
+                value: [1209, 1405]
+            }
+        ],
+        unitPrice: 31500,
+        totalPrice: 247275000,
+        rebatePrice: 323203203,
+        discountPrice: 23023023,
+        status: "error",
+        action: ["delete", "edit"]
     },
     {
         id: "4",
-        validityTimes: [
-            {component: "ValidityTime1", className: "w-6 h-6"},
-            {component: "ValidityTime2", className: "w-6 h-6"},
-            {component: "ValidityTime3", className: "w-6 h-6"}
+        specifications: "Tôn lạnh màu xanh ngọc AZ070 Phủ AF: 0.41mmx1200mm",
+        totalCoil: "2",
+        type: TypeStatus.SALE,
+        totalWeight: "7850",
+        prime: "1B",
+        preferredTolerances: [
+            {
+                key: "kg",
+                value: [3700, 4300]
+            },
+            {
+                key: "m",
+                value: [1209, 1405]
+            }
         ],
-        itemId: "019100101",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: false,
-            title: "PENDING"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "NON-STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-yellow",
-            title: "Price & Policy",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "08:50",
-        price: 100000
-    },
-    {
-        id: "5",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [
-            {className: "size-2 text-green"},
-            {className: "size-2 text-red"}
-        ],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "NOT ENOUGH INVENTORY"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-green",
-            title: "Contents review",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "08:30",
-        price: 40000
-    },
-    {
-        id: "6",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "18:00",
-        price: 80000
-    },
-    {
-        id: "7",
-        validityTimes: [
-            {component: "ValidityTime1", className: "w-6 h-6"},
-            {component: "ValidityTime2", className: "w-6 h-6"},
-            {component: "ValidityTime3", className: "w-6 h-6"}
-        ],
-        itemId: "019100101",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: false,
-            title: "PENDING"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "NON-STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-yellow",
-            title: "Price & Policy",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "08:50",
-        price: 100000
-    },
-    {
-        id: "8",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [
-            {className: "size-2 text-green"},
-            {className: "size-2 text-red"}
-        ],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "NOT ENOUGH INVENTORY"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-green",
-            title: "Contents review",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "08:30",
-        price: 40000
-    },
-    {
-        id: "9",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "18:00",
-        price: 80000
-    },
-    {
-        id: "10",
-        validityTimes: [],
-        itemId: "019100102",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "18:00",
-        price: 80000
+        unitPrice: 31500,
+        totalPrice: 247275000,
+        status: "success",
+        rebatePrice: 323203203,
+        discountPrice: 23023023,
+        action: ["delete", "edit"]
     }
 ];
+
 export const ProductApprovalsData2 = [
     {
         id: "1",
-
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: false,
-            title: "PENDING"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "NON-STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-yellow",
-            title: "Price & Policy",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        itemId: "019100101",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "error",
+        serviceTime: {
+            endDate: "2024-08-19T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "2",
-
-        circles: [
-            {className: "size-2 text-green"},
-            {className: "size-2 text-red"}
-        ],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "NOT ENOUGH INVENTORY"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-green",
-            title: "Contents review",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        itemId: "019100102",
+        status: "not enough inventor",
+        customer: "Thép Thiên Phước",
+        property: "standards",
+        progresses: "Contents review",
+        statusProgress: "error",
+        serviceTime: {
+            endDate: "2024-08-20T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-15T00:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "3",
+        itemId: "019100102",
+        status: "invalid schedule",
+        customer: "Thép Thiên Phước",
 
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        property: "pre-order standards",
+        progresses: "Production planning",
+        statusProgress: "error",
+
+        serviceTime: {
+            endDate: "2024-08-08T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-30T15:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "4",
-        validityTimes: [
-            {component: "ValidityTime1", className: "w-6 h-6"},
-            {component: "ValidityTime2", className: "w-6 h-6"},
-            {component: "ValidityTime3", className: "w-6 h-6"}
-        ],
         itemId: "019100101",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: false,
-            title: "PENDING"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "NON-STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-yellow",
-            title: "Price & Policy",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "error",
+
+        serviceTime: {
+            endDate: "2024-08-07T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-30T15:00:00Z",
+        totalTonnage: 100000
     },
     {
         id: "5",
+        itemId: "019100102",
+        status: "not enough inventor",
+        customer: "Thép Thiên Phước",
+        property: "standards",
+        progresses: "Contents review",
+        statusProgress: "warning",
 
-        circles: [
-            {className: "size-2 text-green"},
-            {className: "size-2 text-red"}
-        ],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "NOT ENOUGH INVENTORY"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-green",
-            title: "Contents review",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
+        createdDate: "2024-07-30T15:00:00Z",
+        totalTonnage: 40000
     },
     {
         id: "6",
+        itemId: "019100102",
+        status: "invalid schedule",
+        customer: "Thép Thiên Phước",
+        property: "pre-order standards",
+        progresses: "Production planning",
+        statusProgress: "warning",
 
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "18:00",
-        price: 80000
+        createdDate: "2024-07-30T15:00:00Z",
+        totalTonnage: 80000
     },
     {
         id: "7",
-        validityTimes: [
-            {component: "ValidityTime1", className: "w-6 h-6"},
-            {component: "ValidityTime2", className: "w-6 h-6"},
-            {component: "ValidityTime3", className: "w-6 h-6"}
-        ],
         itemId: "019100101",
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: false,
-            title: "PENDING"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "NON-STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-yellow",
-            title: "Price & Policy",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "warning",
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:50",
-        price: 100000
+        createdDate: "2024-07-30T15:00:00Z",
+        totalTonnage: 100000
+    }
+];
+
+export const ProductApprovalsData3 = [
+    {
+        id: "1",
+        itemId: "019100101",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "warning",
+
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 100000
+    },
+    {
+        id: "2",
+        itemId: "019100102",
+        status: "not enough inventor",
+        customer: "Thép Thiên Phước",
+        property: "standards",
+        progresses: "Contents review",
+        statusProgress: "warning",
+
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 40000
+    },
+    {
+        id: "3",
+        itemId: "019100102",
+        status: "invalid schedule",
+        customer: "Thép Thiên Phước",
+        property: "pre-order standards",
+        progresses: "Production planning",
+        statusProgress: "warning",
+
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 80000
+    },
+    {
+        id: "4",
+        itemId: "019100101",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "error",
+
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 100000
+    },
+    {
+        id: "5",
+        itemId: "019100102",
+        status: "not enough inventor",
+        customer: "Thép Thiên Phước",
+        property: "standards",
+        progresses: "Contents review",
+        statusProgress: "error",
+
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 40000
+    },
+    {
+        id: "6",
+        itemId: "019100102",
+        status: "invalid schedule",
+        customer: "Thép Thiên Phước",
+        property: "pre-order standards",
+        progresses: "Production planning",
+        statusProgress: "error",
+
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 80000
+    },
+    {
+        id: "7",
+        itemId: "019100101",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "error",
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
+            startDate: "2024-07-15T00:00:00Z"
+        },
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 100000
     },
     {
         id: "8",
+        itemId: "019100101",
+        status: "pending",
+        customer: "Thép Thiên Phước",
+        property: "non-standars",
+        progresses: "Price & Policy",
+        statusProgress: "error",
 
-        circles: [
-            {className: "size-2 text-green"},
-            {className: "size-2 text-red"}
-        ],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "NOT ENOUGH INVENTORY"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-green",
-            title: "Contents review",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        serviceTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
+        validityTime: {
+            endDate: "2024-08-10T00:00:00Z",
             startDate: "2024-07-15T00:00:00Z"
         },
-        time: "08:30",
-        price: 40000
-    },
-    {
-        id: "9",
-
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "18:00",
-        price: 80000
-    },
-    {
-        id: "10",
-
-        circles: [],
-        propertieStatus: {
-            status: true,
-            isIcon: true,
-            title: "INVALID SCHEDULE"
-        },
-        companyName: "Thép Thiên Phước",
-        propertieTitle: {
-            status: false,
-            isIcon: false,
-            title: "PRE-ORDER STANDARDS"
-        },
-        pricePolicy: {
-            iconClassName: "mr-1 text-red",
-            title: "Production planning",
-            details: "See details"
-        },
-        validateServiceTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        validateValidityTime: {
-            onEnd: "handleEndIn",
-            endDate: "2024-07-21T00:00:00Z",
-            startDate: "2024-07-15T00:00:00Z"
-        },
-        time: "18:00",
-        price: 80000,
-        discountPrice: 2000,
-        rebatePrice: 3000
+        createdDate: "2024-07-30T18:30:00Z",
+        totalTonnage: 100000
     }
 ];

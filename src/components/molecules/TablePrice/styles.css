@@ -1,22 +1,102 @@
 th,
 td {
-    border-right: 1px solid blue;
+    border-right: 1px solid #e4e4e4;
 }
 th > div {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #e4e4e4;
     height: 56px;
+    color: #01559b;
 }
 td > div {
     overflow: unset !important;
     white-space: wrap !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 8px;
+    word-break: break-all;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15.5px;
+    color: #3a3b3c;
 }
+[data-c-tooltip]:after {
+    z-index: 1000;
+    padding: 8px;
+    width: 160px;
+    background-color: #000;
+    background-color: rgba(51, 51, 51, 0.9);
+    color: #fff;
+    content: attr(data-c-tooltip);
+    font-size: 14px;
+    line-height: 1.2;
+}
+[data-c-tooltip]:before {
+    z-index: 1001;
+    border: 6px solid transparent;
+    background: transparent;
+    content: "";
+    margin-left: -6px;
+    margin-bottom: -12px;
+    border-top-color: rgba(51, 51, 51, 0.9);
+}
+
 .flex-col {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a2a5a9;
+}
+.col-subTitle {
+    color: #a2a5a9;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.css-1xc17u0-Table {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+tbody > tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.special-col-1 {
+    left: calc(112px + 15% + 6% + 7%) !important;
+}
+.special-col-1 > div > div {
+    width: 100%;
+}
+.special-col-2 > div > div {
+    width: 100%;
+}
+.special-col-2 {
+    left: calc(112px + 15% + 6% + 7% + 8%) !important;
+    z-index: -9;
+}
+.special-col-3 {
+    left: calc(112px + 15% + 6% + 7% + 8% + 11%) !important;
+    z-index: -9;
+}
+.special-col-4 {
+    left: calc(112px + 15% + 6% + 7% + 8% + 11% + 6%) !important;
+    z-index: -9;
+}
+.special-col-5 {
+    left: calc(112px + 15% + 6% + 7% + 8% + 11% + 6% + 8%) !important;
+    z-index: -9;
+}
+.col-action {
+    display: flex;
+    gap: 12px;
 }

@@ -16,7 +16,6 @@ const TablePrice = () => {
     const [isInputDisabled, setInputDisabled] = useState<
         Record<string, boolean>
     >({});
-    const tdRefs = useRef<(HTMLTableCellElement | null)[]>([]);
 
     const changeInputDisabled = (rowId: string) => {
         setInputDisabled((prevState) => ({
