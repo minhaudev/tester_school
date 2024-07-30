@@ -1,34 +1,104 @@
-import { calculateDate } from '@/utils/FormatDate';
-import React, { useEffect, useState } from 'react';
+import {initValidityTime} from "@/consts";
+import {calculateDate, convertToTimeStamp} from "@/utils";
+import React, {useEffect, useState} from "react";
 
-function useValidateTime({endDate,startDate}:{endDate:Date,startDate:Date}) {
-    const [timeAble, setTimeAble] = useState(0);
-    const [timeValidity,setTimeValidity] = useState({day:0,hours:0,minutes:0,secondTime:0})
+function useValidateTime({
+    endDate,
+    startDate,
+    onEnd
+}: {
+    endDate: Date;
+    startDate: Date;
+    onEnd?: () => void;
+}) {
+    const [timeAble, setTimeAble] = useState(() => {
+        return (
+            convertToTimeStamp(endDate) -
+            convertToTimeStamp(new Date(Date.now()))
+        );
+    });
+    const [timeValidity, setTimeValidity] = useState(initValidityTime);
+    const [timeUsed, setTimeUsed] = useState(initValidityTime);
     const [currentPercent, setCurrentPercent] = useState(0);
-    const totalTime = endDate.getTime() - startDate.getTime();
-    const [end,setEnd] = useState(false)
+    const [timeCurrent, setTimeCurrent] = useState(initValidityTime);
+    const [end, setEnd] = useState(false);
+    const totalTime =
+        convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
     const totalTimeHours = totalTime / (1000 * 60 * 60);
     useEffect(() => {
+        setEnd(false);
         const intervalId = setInterval(() => {
-            const timeAble = (endDate.getTime() - Date.now()) / (1000 * 60 * 60);
-            const timeData = calculateDate({ endDate });
-            setTimeValidity({ ...timeData });
-            setTimeAble(() => timeAble);
-            const currentPercent = (timeAble / totalTimeHours) * 100;
-            if (timeAble <= 0) {
-                setCurrentPercent(0);
-                setTimeValidity({day:0,hours:0,minutes:0,secondTime:0})
-                clearInterval(intervalId); 
-                setEnd(true)
-            } else {
-                setCurrentPercent(currentPercent);
+            try {
+                const timeAble = Math.floor(
+                    (convertToTimeStamp(endDate) -
+                        convertToTimeStamp(new Date(Date.now()))) /
+                        1000
+                );
+                if (
+                    totalTime <= 0 ||
+                    isNaN(endDate.getTime()) ||
+                    isNaN(startDate.getTime())
+                ) {
+                    setTimeValidity(initValidityTime);
+                    setCurrentPercent(0);
+                    setTimeAble(0);
+                    return;
+                }
+                const currentAble = Math.floor(
+                    (convertToTimeStamp(new Date(Date.now())) -
+                        convertToTimeStamp(startDate)) /
+                        1000
+                );
+                const timeData = calculateDate({endDate, startDate});
+                const timeAbleHours = timeAble / (60 * 60);
+                const currentPercent = (timeAbleHours / totalTimeHours) * 100;
+                if (timeAble <= 0) {
+                    clearInterval(intervalId);
+                    setCurrentPercent(() => 0);
+                    setTimeValidity(initValidityTime);
+                    setEnd(true);
+                    return;
+                }
+                if (
+                    convertToTimeStamp(startDate) <=
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
+                    setTimeValidity({...timeData});
+                    setTimeAble(() => Math.floor(timeAble));
+                    setCurrentPercent(() => currentPercent);
+                    const timeUse = calculateDate({
+                        startDate,
+                        endDate: new Date(Date.now()),
+                        hasDay: false,
+                        isTimeUse: true
+                    });
+                    setTimeUsed(() => timeUse);
+                }
+                if (
+                    convertToTimeStamp(startDate) >
+                    convertToTimeStamp(new Date(Date.now()))
+                ) {
+                    setTimeValidity({...timeData});
+                    setTimeAble(() => Math.floor(timeAble));
+                    setCurrentPercent(100);
+                }
+            } catch (error) {
+                return;
             }
         }, 1000);
-    
-        return () => clearInterval(intervalId); // Clear the interval when the component unmounts
-    }, []);
-    
-    return {timeAble,timeValidity,currentPercent,totalTimeHours,totalTime,end}
+        return () => clearInterval(intervalId);
+    }, [timeAble, endDate, startDate, totalTimeHours, totalTime]);
+
+    return {
+        timeAble,
+        timeValidity,
+        currentPercent,
+        totalTimeHours,
+        totalTime: calculateDate({endDate, startDate, isTotal: true}),
+        setEnd,
+        end,
+        timeUsed
+    };
 }
 
 export default useValidateTime;

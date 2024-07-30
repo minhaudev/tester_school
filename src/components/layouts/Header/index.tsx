@@ -5,8 +5,8 @@ import User from "@/assets/svgs/user_1.svg";
 import DropsDown from "@/components/atoms/Dropdown";
 import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";
 import {dataOrderNotice} from "@/faker/OrderNotice";
-import {Notice} from "@/interfaces/notice";
-import {formatNotice} from "@/utils/formatNotice";
+import {Notice} from "@/interfaces/Notice";
+import {formatNotice} from "@/utils";
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import "../../../app/globals.css";
@@ -63,9 +63,7 @@ export default function Header() {
                 setIsClicked(false);
             }
         };
-
         window.addEventListener("click", handleClickOutside);
-
         return () => {
             window.removeEventListener("click", handleClickOutside);
         };

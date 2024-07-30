@@ -1,7 +1,8 @@
 export enum stateProcess {
     NONE = "none",
     ACTIVE = "active",
-    DONE = "done"
+    DONE = "done",
+    PENDING = "pending"
 }
 
 export interface ProcessFlowProps {
@@ -10,5 +11,5 @@ export interface ProcessFlowProps {
     icon: any;
     line?: boolean;
     state: stateProcess;
-    onChangeState?:(id:number)=>void
+    onChangeState?: (id: number) => void;
 }

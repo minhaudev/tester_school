@@ -25,9 +25,6 @@ const Paginator = ({
     buttonDouble,
     onPageChange
 }: PaginatorProps) => {
-    useEffect(() => {
-        console.log(currentPage);
-    }, [currentPage]);
 
     const pageNumbers = Array.from({length}, (_, i) => i + 1);
     const count = 3;

@@ -7,7 +7,7 @@ import {NavbarProps, NavigationType} from "@/interfaces";
 import React, {useEffect, useState} from "react";
 import "../../../app/globals.css";
 import useSaveLocalStorage from "@/hooks/useSaveLocalStorage";
-const SPECIALlPATH = '/order/approve'
+const SPECIALlPATH = "/order/approve";
 function Navigation({
     type = NavigationType.CLIENT,
     routePath
@@ -20,14 +20,14 @@ function Navigation({
     const [active, setActive] = useState(2.1);
     const [expand, setExpand] = useSaveLocalStorage("expand", true);
     const handleExpand = () => {
-        if(!expand && routePath.includes(SPECIALlPATH) ){
+        if (!expand && routePath.includes(SPECIALlPATH)) {
             setExpand(!expand);
             setShowFirstMenu(true);
-            return
+            return;
         }
-            setExpand(!expand);
-            setShowSecondMenu(false);
-            setShowFirstMenu(false);
+        setExpand(!expand);
+        setShowSecondMenu(false);
+        setShowFirstMenu(false);
     };
     const handleShowMenuSecond = () => {
         setShowSecondMenu(!showSecondMenu);
@@ -35,29 +35,26 @@ function Navigation({
     };
     const handleFirstMenuSecond = () => {
         setShowFirstMenu(!showFirstMenu);
-        if(routePath.includes(SPECIALlPATH)){
-            setShowSecondMenu(true)
-           
+        if (routePath.includes(SPECIALlPATH)) {
+            setShowSecondMenu(true);
         }
         setExpand(true);
     };
-    useEffect(()=>{
-        if(routePath.includes(SPECIALlPATH )&& !expand){
-            setShowSecondMenu(false)
-            setShowFirstMenu(false)
-            return
+    useEffect(() => {
+        if (routePath.includes(SPECIALlPATH) && !expand) {
+            setShowSecondMenu(false);
+            setShowFirstMenu(false);
+            return;
         }
-        if(routePath.includes(SPECIALlPATH) && expand){
-            setShowSecondMenu(true)
-            setShowFirstMenu(true)
-            return
+        if (routePath.includes(SPECIALlPATH) && expand) {
+            setShowSecondMenu(true);
+            setShowFirstMenu(true);
+            return;
         }
-
-    },[])
-    
+    }, [expand, routePath]);
     return (
         <div
-            className={`h-[100vh] overflow-y-auto transition-width duration-100 ${
+            className={`min-h-[100vh] overflow-y-auto transition-width duration-100 ${
                 expand ? "min-w-[255px]" : "min-w-[56px]"
             } bg-primary pb-[13px]`}>
             <div
@@ -70,7 +67,6 @@ function Navigation({
                     </p>
                 )}
                 <Button
-                typeFile=""
                     isIcon
                     variant="primary-dark"
                     color="white"
@@ -83,27 +79,36 @@ function Navigation({
                 {navbarData &&
                     navbarData[type].map((item: NavbarProps, index: number) => (
                         <React.Fragment key={index}>
-                            <div
-                               >
+                            <div>
                                 {item.href ?
                                     <IconListItem
-                                        active={item.href === routePath || (routePath.includes(item.href) && (!expand || !showFirstMenu))}
+                                        active={
+                                            item.href === routePath ||
+                                            (routePath.includes(item.href) &&
+                                                (!expand || !showFirstMenu))
+                                        }
                                         expand={expand}
                                         prefixIcon={item.prefixIcon}
                                         title={item.title}
                                         href={item.href}
                                     />
                                 :   <div onClick={handleFirstMenuSecond}>
-                                    <IconListItem
-                                    active={active === item.id || (routePath.includes(SPECIALlPATH) && (!expand || !showFirstMenu))}
-                                    expand={expand}
-                                    prefixIcon={item.prefixIcon}
-                                    title={item.title}
-                                />
-                                </div>
+                                        <IconListItem
+                                            active={
+                                                active === item.id ||
+                                                (routePath.includes(
+                                                    SPECIALlPATH
+                                                ) &&
+                                                    (!expand || !showFirstMenu))
+                                            }
+                                            expand={expand}
+                                            prefixIcon={item.prefixIcon}
+                                            title={item.title}
+                                        />
+                                    </div>
                                 }
                             </div>
-                            {item.subMenu && showFirstMenu  && (
+                            {item.subMenu && showFirstMenu && (
                                 <div>
                                     {item.subMenu.map(
                                         (
@@ -121,10 +126,20 @@ function Navigation({
                                                         classCustom={
                                                             "pl-[56px]"
                                                         }
-                                                        onActive={()=>setActive(subItem.id)}
+                                                        onActive={() =>
+                                                            setActive(
+                                                                subItem.id
+                                                            )
+                                                        }
                                                         active={
                                                             subItem.href ===
-                                                            routePath || (routePath.includes(SPECIALlPATH) && subItem.id === active && !showSecondMenu)
+                                                                routePath ||
+                                                            (routePath.includes(
+                                                                SPECIALlPATH
+                                                            ) &&
+                                                                subItem.id ===
+                                                                    active &&
+                                                                !showSecondMenu)
                                                         }
                                                         title={subItem.title}
                                                         href={subItem.href}

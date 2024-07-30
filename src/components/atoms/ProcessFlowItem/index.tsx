@@ -1,61 +1,31 @@
 import {ProcessFlowProps, stateProcess} from "@/interfaces";
-import DonIcon from "@/assets/svgs/done_process.svg";
-import HomeIcon from "@/assets/svgs/Home.svg";
+import IconProcess from "./IconProcess";
+import {styleProcessItem} from "@/consts";
 function ProcessFlowItem({
     id = 1,
     label = "",
-    icon: IconComponent = HomeIcon,
+    icon: IconComponent,
     line = false,
     state = stateProcess.ACTIVE,
-    onChangeState,
+    onChangeState = () => {}
 }: ProcessFlowProps) {
-    const styleProcessItem = {
-        [stateProcess.NONE]: {w: "w-0", bg: "bg-transparent"},
-        [stateProcess.ACTIVE]: {w: "w-1/2", bg: "bg-secondary"},
-        [stateProcess.DONE]: {w: "w-full", bg: "bg-violet"}
-    };
+    const styleProcessItems = styleProcessItem(state);
     return (
-        <div>
-            <div className={`flex justify-start items-center gap-2 ${  stateProcess.NONE === state ? "disabled cursor-not-allowed" :''}`}>
-                {state !== stateProcess.DONE ? (
-                    <div
-                        className={`rounded-full w-[48px] h-[48px] flex items-center justify-center border-[0.5px] ${
-                            stateProcess.ACTIVE === state
-                                ? "border-secondary"
-                                : "border-unit"
-                        }`}>
-                        <div
-                            className={`w-[39px] h-[39px] rounded-full ${styleProcessItem[state].bg} 
-                          flex items-center justify-center
-                          `}>
-                            <IconComponent
-                                className={`
-                                min-w-[29px]
-                                min-h-[29px]
-                                ${
-                                    stateProcess.ACTIVE === state
-                                        ? "text-white"
-                                        : "text-unit"
-                                }`}
-                            />
-                        </div>
-                    </div>
-                ) : (
-                    <DonIcon
-                    onClick = {(id:number)=> onChangeState && onChangeState(id)}
-                        className="
-                    cursor-pointer
-                    min-w-[48px]
-                    min-h-[48px]
-                   "
-                    />
-                )}
-                {line && (
-                    <div className="h-[2px] w-[60px] bg-unit rounded-sm overflow-hidden ">
-                        <div
-                            className={`${styleProcessItem[state].w} rounded-sm bg-primary h-full`}></div>
-                    </div>
-                )}
+        <div className="flex flex-col items-center min-w-[113px] max-w-[133px]">
+            <div className={`flex justify-start items-center`}>
+                <div>
+                    <IconProcess
+                        icon={IconComponent}
+                        id={id}
+                        line={line}
+                        state={state}
+                        onChangeState={(id) => onChangeState(id)}>
+                        <p
+                            className={`text-[12px] select-none pointer-events-none font-[500] font-sf-ui-display ${styleProcessItems.text} leading-[14.32px] mt-2`}>
+                            {label}
+                        </p>
+                    </IconProcess>
+                </div>
             </div>
         </div>
     );

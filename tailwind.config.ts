@@ -14,6 +14,7 @@ const config: Config = {
             "primary-5-hover": "#0376D7",
             "warning-hover": "#F56569",
             "border-warning-hover": "#ED1E24",
+            "text-1": "#87898D",
             text: "#3A3B3C",
             "text-light": "#4B5563",
             primary: "#01559B",
@@ -60,6 +61,7 @@ const config: Config = {
         },
         extend: {
             backgroundColor: {
+                black: "#3A3B3C",
                 "green-bold": "#69AA43",
                 gray: "#BBBBBC",
                 red: "#D6292E",
