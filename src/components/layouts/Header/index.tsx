@@ -25,8 +25,19 @@ export default function Header() {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [notices, setNotices] = useState<NoticeResponse>();
 
+    useEffect(() => {
+        const savedLanguage = localStorage.getItem("language");
+        if (savedLanguage) {
+            setLanguage(savedLanguage);
+        }
+    }, []);
+
     const handleLanguage = () => {
-        setLanguage((prevLanguage) => (prevLanguage === "ENG" ? "VI" : "ENG"));
+        setLanguage((prevLanguage) => {
+            const newLanguage = prevLanguage === "ENG" ? "VI" : "ENG";
+            localStorage.setItem("language", newLanguage);
+            return newLanguage;
+        });
     };
 
     const handleNotice = () => {
@@ -108,7 +119,8 @@ export default function Header() {
 
                         <div className="h-[32px] w-[1px] bg-stroke"></div>
                         <div
-                            className="flex gap-[9px] items-center"
+                            onClick={handleClickDropDown}
+                            className="flex gap-[9px] items-center cursor-pointer"
                             ref={dropdownRef}>
                             <User className="w-8 h-8 rounded-full" />
 
@@ -120,9 +132,7 @@ export default function Header() {
                                     Chuyên viên kinh doanh
                                 </p>
                             </div>
-                            <div
-                                className="relative"
-                                onClick={handleClickDropDown}>
+                            <div className="relative">
                                 <DropDown className="w-3 h-2 cursor-pointer relative" />
                                 {isClicked && <DropsDown />}
                             </div>

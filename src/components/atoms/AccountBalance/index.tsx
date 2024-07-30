@@ -10,7 +10,7 @@ interface Props {
 export default function AccountBalance(props: Props) {
     const {dataList} = props;
     return (
-        <div className="w-[100%] h-full bg-white py-[32px] px-[24px] shadow-[0px_4px_11px_0px_rgba(0,0,0,0.1)]">
+        <div className="w-[100%] h-full bg-white py-[32px] px-[24px] ">
             <div className="flex justify-between">
                 <p className="text-[16px] text-text leading-[19.09px] font-medium">
                     Customer account balance
