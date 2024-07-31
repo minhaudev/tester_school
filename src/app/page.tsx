@@ -187,19 +187,17 @@ export default function Home() {
                     onClose={handleCloseToast}
                     description="Recommened products cannot exceed the selected number of rollsRecommened products cannot exceed the selected number of rolls"
                 />
-                <Tooltip
-                    content="hello world"
+                <TooltipCustom
+                    message="Hello world"
                 >
-                    <div>
-                        <Button
-                            variant="primary-dark"
-                            onClick={() => setIsOpenToast(true)}
-                            typeFile={""}
-                            size={"small"}>
-                            Show Toast
-                        </Button>
-                    </div>
-                </Tooltip>
+                    <Button
+                        variant="primary-dark"
+                        onClick={() => setIsOpenToast(true)}
+                        typeFile={""}
+                        size={"small"}>
+                        Show Toast
+                    </Button>
+                </TooltipCustom>
 
             </div>
             <div className="flex flex-col gap-5 justify-center items-center mb-5">

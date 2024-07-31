@@ -1,28 +1,34 @@
-import { Position } from "@/enums/PositionEnum";
 import { Tooltip } from "@nextui-org/tooltip";
 
 interface TooltipProps {
-    message: string;
+    message: React.ReactNode;
+    children: React.ReactNode | string;
+    placement?: "top" | "bottom" | "left" | "right";
+    isCustom?: boolean;
     className?: string;
-    children: React.ReactNode;
 }
-export default function TooltipCustom({
-    message,
-    children,
-    className,
-}: TooltipProps) {
-
+export default function TooltipCustom({ message, children, placement = "top", isCustom = false, className }: TooltipProps) {
     return (
-
-
-        <Tooltip
-            placement={"top"}
-            content={
-                <div className="text-[13px] font-medium absolute bg-black text-white px-2.5 py-1.5 text-xs rounded top-[-2.5rem] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity flex justify-center whitespace-nowrap">{message}</div>
-            }
+        isCustom ? (<Tooltip
+            placement={placement}
+            className={className}
+            content={message}
         >
-            {children}
+            <div className="w-fit h-fit">
+                {children}
+            </div>
         </Tooltip>
-
+        ) : (
+            <Tooltip
+                placement={placement}
+                delay={100}
+                closeDelay={100}
+                className={'bg-black rounded-[2.4px] p-[5px] text-white text-[13px]'}
+                content={
+                    message
+                }>
+                <div className="w-fit h-fit"> {children}</div>
+            </Tooltip>
+        )
     )
 }
