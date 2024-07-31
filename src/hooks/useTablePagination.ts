@@ -24,7 +24,6 @@ const getStoredPaginationState = (tableId: string, tables: { [key: string]: Tabl
 };
 
 const useTablePagination = (tables: { [key: string]: TableConfig }) => {
-    // Create an array of unique recordsPerPage values from all tables
     const arrRecordsPerPage = Array.from(
         new Set(
             Object.values(tables)
@@ -32,7 +31,6 @@ const useTablePagination = (tables: { [key: string]: TableConfig }) => {
         )
     );
 
-    // Initialize state with stored pagination state or default values
     const [paginationStates, setPaginationStates] = useState<{ [key: string]: PaginationState }>(
         Object.fromEntries(
             Object.keys(tables).map(tableId => [tableId, getStoredPaginationState(tableId, tables, arrRecordsPerPage)])

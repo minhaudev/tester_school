@@ -11,7 +11,6 @@ export function isValidDate(time: string) {
     let y = Number(dateSplit[0])
     let m = Number(dateSplit[1])
     let d = Number(dateSplit[2])
-    // are not in given range 
     if (y > MAX_VALID_YR ||
         y < MIN_VALID_YR)
         return false;
@@ -21,8 +20,6 @@ export function isValidDate(time: string) {
     if (d < 1 || d > 31)
         return false;
 
-    // Handle February month  
-    // with leap year 
     if (m == 2) {
         if (isLeap(y))
             return (d <= 29);

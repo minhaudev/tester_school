@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import useValidateTime from './useValidateTime';
 
-// Utility functions
 const isValidDate = (dateString: string): boolean => {
     const date = new Date(dateString);
     return !isNaN(date.getTime());
@@ -23,7 +22,6 @@ const useProcessedData = () => {
             console.log("Invalid date");
         }
 
-        // Call useValidateTime with actual arguments
         const validateService = useValidateTime({ endDate, startDate });
 
         return {

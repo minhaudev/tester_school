@@ -57,7 +57,6 @@ const PaginationSelect: React.FC<PaginationProps> = ({
         setLocalRecordsPerPage(newRecordsPerPage);
         handleRecordsPerPageChange(tableId, newRecordsPerPage);
     };
-    console.log(isFirstPage)
     return (
         <div className="flex flex-row justify-between items-center gap-x-2 text-text text-xs font-normal">
             <p>Display</p>
