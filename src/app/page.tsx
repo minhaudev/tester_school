@@ -138,7 +138,7 @@ export default function Home() {
                         />
                     }
                     typeFile="image/*"
-                    size="semi"
+                    
                     variant="file"
                     color="blue"
                     fileDetails={fileDetails}
