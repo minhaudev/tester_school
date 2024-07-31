@@ -45,7 +45,7 @@ export default function LayoutContainer({
                     <div className="flex-1 overflow-scroll mt-10">
                         {children}
                     </div>
-                   
+                    {isFooter && <Footer>{footerChildren}</Footer>}
                 </div>
             </div>
         </>

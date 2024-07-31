@@ -16,6 +16,10 @@ function useValidateTime({
             convertToTimeStamp(endDate) -
             convertToTimeStamp(new Date(Date.now()))
         );
+        return (
+            convertToTimeStamp(endDate) -
+            convertToTimeStamp(new Date(Date.now()))
+        );
     });
     const [timeValidity, setTimeValidity] = useState(initValidityTime);
     const [timeUsed, setTimeUsed] = useState(initValidityTime);
@@ -66,6 +70,12 @@ function useValidateTime({
                     setTimeValidity({ ...timeData });
                     setTimeAble(() => Math.floor(timeAble));
                     setCurrentPercent(() => currentPercent);
+                    const timeUse = calculateDate({
+                        startDate,
+                        endDate: new Date(Date.now()),
+                        hasDay: false,
+                        isTimeUse: true
+                    });
                     const timeUse = calculateDate({
                         startDate,
                         endDate: new Date(Date.now()),
