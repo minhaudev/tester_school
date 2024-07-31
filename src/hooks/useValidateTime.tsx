@@ -95,7 +95,6 @@ function useValidateTime({
         }, 1000);
         return () => clearInterval(intervalId);
     }, [timeAble, endDate, startDate, totalTimeHours, totalTime]);
-    console.log("time able ::: ", timeAble);
     return {
         timeAble,
         timeValidity,

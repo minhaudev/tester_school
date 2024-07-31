@@ -1,8 +1,6 @@
 "use client";
-import React, {ReactNode, useEffect, useRef, useState} from "react";
-import DatePicker from "react-datepicker";
 import Select from "@/assets/svgs/dropdown_select.svg";
-import IconCalendar from "@/assets/svgs/calendar_v2.svg";
+import React, {ReactNode, useEffect, useState} from "react";
 
 interface PropsInput {
     isContentCenter: boolean;

@@ -100,3 +100,28 @@ tbody > tr:nth-child(even) {
     display: flex;
     gap: 12px;
 }
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-container[data-tooltip-id]::after {
+    content: attr(data-tooltip-content);
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.tooltip-container:hover::after {
+    opacity: 1;
+}

@@ -4,11 +4,15 @@ import {enGB} from "date-fns/locale";
 import DatePicker from "react-datepicker";
 import "./style.css";
 interface Props {
+    minDate?: Date | undefined;
+    maxDate?: Date | undefined;
+
     selectsRange?: boolean;
     startDate?: Date | undefined;
     selectedDate?: Date | undefined;
     endDate?: Date | undefined;
     placeholder?: string;
+
     formatDate?: "dd/MM/yyyy" | "MM/dd/yyyy" | "yyyy/MM/dd";
     isShowIcon?: boolean;
     isShowIconRight?: boolean;
@@ -18,13 +22,15 @@ export default function Calendar(props: Props) {
     const {
         selectedDate,
         placeholder,
+        minDate,
+        maxDate,
         isShowIcon,
         formatDate,
         isShowIconRight,
         startDate,
         endDate,
         onChange,
-        selectsRange
+        selectsRange = false
     } = props;
     const customLocale = {
         ...enGB,
@@ -41,17 +47,18 @@ export default function Calendar(props: Props) {
 
     registerLocale("custom", customLocale as any);
     return (
-        <div className={`${isShowIconRight && "icon-right"} w-full`}>
+        <div
+            className={`${isShowIconRight ? "icon-right" : "icon-left"} w-full`}>
             <DatePicker
+                minDate={minDate}
+                maxDate={maxDate}
                 selected={selectedDate}
                 showIcon={isShowIcon}
-                selected={selectedDate}
                 onChange={onChange}
                 startDate={startDate}
                 endDate={endDate}
-                selectsRange={selectsRange}
+                selectsRange={selectsRange as true}
                 dateFormat={formatDate}
-                placeholder={placeholder}
                 locale="custom"
                 renderDayContents={(day, date) => (
                     <div className="react-datepicker__inside-day">{day}</div>

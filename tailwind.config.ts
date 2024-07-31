@@ -72,8 +72,7 @@ const config: Config = {
                 success: "#D2E5F5",
                 "red-light": "#FFEEEE",
                 "yellow-light": "#FFFBEB",
-                "green-light": "#F2FFEB",
-                "gray-light": "#E9E9E9"
+                "green-light": "#F2FFEB"
             },
             backgroundImage: {
                 "custom-gradient-cart":

@@ -26,7 +26,8 @@ export const ProductData = [
         rebatePrice: 323203203,
         discountPrice: 0,
         status: "warning",
-        action: ["delete"]
+        action: ["delete"],
+        nodes: []
     },
     {
         id: "2",
@@ -50,7 +51,8 @@ export const ProductData = [
         status: "success",
         rebatePrice: 323203203,
         discountPrice: 23023023,
-        action: ["delete"]
+        action: ["delete"],
+        nodes: []
     },
     {
         id: "3",
@@ -74,7 +76,8 @@ export const ProductData = [
         rebatePrice: 323203203,
         discountPrice: 23023023,
         status: "error",
-        action: ["delete", "edit"]
+        action: ["delete", "edit"],
+        nodes: []
     },
     {
         id: "4",
@@ -98,7 +101,8 @@ export const ProductData = [
         status: "success",
         rebatePrice: 323203203,
         discountPrice: 23023023,
-        action: ["delete", "edit"]
+        action: ["delete", "edit"],
+        nodes: []
     }
 ];
 

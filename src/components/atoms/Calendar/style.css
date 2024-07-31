@@ -204,10 +204,19 @@
     pointer-events: none;
 }
 
+.react-datepicker__view-calendar-icon input {
+    padding: 6px 10px 5px 5px !important;
+}
 .icon-right .react-datepicker__view-calendar-icon::before {
-    right: 0;
+    right: 5px;
 }
 
+.icon-right .react-datepicker__view-calendar-icon input {
+    padding: 5px 10px 5px 5px !important;
+}
+.icon-left .react-datepicker__view-calendar-icon input {
+    padding: 5px 10px 5px 25px !important;
+}
 .react-datepicker-wrapper {
     width: 100%;
 }
