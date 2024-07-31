@@ -1,44 +1,72 @@
 "use client";
-import React, {useState} from "react";
-import GroupInput from "@/components/molecules/GroupInput/GroupInput";
+import {useState} from "react";
 import LayoutContainer from "./LayoutContainer";
-import {Tooltip} from "@nextui-org/tooltip";
-import TooltipCustom from "@/components/atoms/Tooltip";
+import Input from "@/components/atoms/Input";
+import Icon from "@/assets/svgs/search.svg";
+import Calendar from "@/components/atoms/Calendar/Index";
+import Breadcrumb from "@/components/atoms/Breadcrumb";
 import Button from "@/components/atoms/Button";
+import Standard from "@/components/molecules/Standard/Index";
+import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
+import GroupInput from "@/components/molecules/GroupInput/GroupInput";
 
 export default function Home() {
-    const [values, setValues] = useState({
-        input1: "",
-        input2: ""
-    });
-
-    const handleOnChange = (
-        event: React.ChangeEvent<
-            HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
-        >
-    ) => {
-        const {name, value} = event.target;
-        setValues({
-            ...values,
-            [name]: value
-        });
+    const [fileDetails, setFileDetails] = useState([]);
+    const handleFileDetailsChange = (details: any) => {
+        setFileDetails(details);
     };
-    console.log("value1", values);
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+    // const onChange = (date: Date | null) => {
+    //     setSelectedDate(date);
+    // };
+    const [startDate, setStartDate] = useState<Date | undefined>(new Date());
+    const [endDate, setEndDate] = useState<Date | undefined>();
+    const onChange = (dates: any) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    };
 
     return (
-        <LayoutContainer>
-            <TooltipCustom placement="left" message="this is a tooltip">
-                <Button>tooltip</Button>
-            </TooltipCustom>
-            <GroupInput
-                onChange={handleOnChange}
-                value1={values.input1}
-                value2={values.input2}
-                name1="input1"
-                name2="input2"
-                placeholder1="content 1"
-                placeholder2="content 2"
+        <LayoutContainer
+            footerChildren={
+                <div className="flex justify-between ">
+                    <Button variant="primary-dark">Button</Button>
+                    <Button variant="primary-dark" isError>
+                        primary
+                    </Button>
+                </div>
+            }>
+            <Calendar
+                minDate="2024/07/25"
+                maxDate="2024/08/25"
+                endDate={endDate}
+                startDate={startDate}
+                // selectedDate={selectedDate}
+                formatDate="yyyy/MM/dd"
+                onChange={onChange}
+                isShowIcon={true}
+                selectsRange={true}
+                // isShowIconRight
             />
+            <Input variant="input" placeholder="nhập input" suffix={<Icon />} />
+
+            <div className="ml-2">
+                <Button
+                    // isError
+                    maxFile={5}
+                    typeFile="image/*"
+                    fileDetails={fileDetails}
+                    setFileDetails={setFileDetails}
+                    warningFile="123"
+                    variant="file">
+                    Button
+                </Button>
+                <Standard />
+                <CustomerBalanceInfo />
+            </div>
+            <GroupInput />
         </LayoutContainer>
     );
 }

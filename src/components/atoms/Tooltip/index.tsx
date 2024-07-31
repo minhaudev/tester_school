@@ -22,7 +22,6 @@ export default function TooltipCustom({
                 <div className="w-fit h-fit">{children}</div>
             </Tooltip>
         :   <Tooltip
-                shouldFlip={true}
                 placement={placement}
                 delay={100}
                 closeDelay={100}
