@@ -3,7 +3,7 @@ import Select from "@/assets/svgs/dropdown_select.svg";
 import React, {ReactNode, useEffect, useState} from "react";
 
 interface PropsInput {
-    isContentCenter: boolean;
+    isContentCenter?: boolean;
     optionSelect?: string[];
     variant?: "input" | "textarea" | "select";
     require?: boolean;
@@ -69,7 +69,7 @@ const Input: React.FC<PropsInput> = (props) => {
     const defaultClasses = ` ${
         isError ?
             "text-warning border-warning focus:border-warning"
-        :   "border-[#D9D9D9] text-[#000000D9]"
+        :   "border-stroke text-[#000000D9]"
     } flex items-center gap-1 relative bg-white disabled: rounded-sm border text-[14px] focus:!outline-none  focus:!shadow-md w-full ${getSizeClass(
         size
     )}`;
@@ -82,7 +82,7 @@ const Input: React.FC<PropsInput> = (props) => {
     }, [value]);
 
     return (
-        <div className="border-r-0">
+        <div className="w-full">
             <label>
                 {label}
                 {require && <span className="text-warning"> &#160;*</span>}{" "}
@@ -131,7 +131,7 @@ const Input: React.FC<PropsInput> = (props) => {
                         </div>
                     </div>
                 :   <input
-                        className={`w-full focus:!outline-secondary p-2 ${isDisabled ? "focus:!outline-stroke" : ""} ${isContentCenter ? "text-center text-[13px] font-[400] font-sf-ui-display leading-[15.5px]  " : ""} ${
+                        className={`w-full  border-none outline-none p-2 ${className} ${isDisabled ? "focus:!outline-stroke" : ""} ${isContentCenter ? "text-center" : ""} ${
                             prefix ? " pl-6" : ""
                         }  ${suffix ? "pr-6 " : ""} `}
                         type={type}

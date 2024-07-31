@@ -10,7 +10,6 @@ import Input from "@/components/atoms/Input";
 import {formatColumns, tableColumns} from "@/consts";
 import {ProductData} from "@/faker/ProductData";
 import {formatPrice, FormatTolerances} from "@/utils";
-import {Tooltip} from "react-tooltip";
 
 import {TypeStatus} from "@/enums/TypeStatusEnum";
 import {
@@ -26,8 +25,11 @@ import {useTheme} from "@table-library/react-table-library/theme";
 import {useState} from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import GroupInput from "../GroupInput/GroupInput";
-import {nodes} from "./data";
+import {nodes} from "@/faker/ProductData";
 import "./styles.css";
+import TooltipCustom from "@/components/atoms/Tooltip";
+import {StatusEnum} from "@/enums/StatusNum";
+import {colorStatus} from "@/hooks/useColorStatus";
 
 const TablePrice = () => {
     const data = {nodes};
@@ -41,19 +43,44 @@ const TablePrice = () => {
             [rowId]: !prevState[rowId]
         }));
     };
+    const arrColumn = [
+        "56px",
+        "56px",
+        "15%",
+        "13%",
+        "8%",
+        "11%",
+        "6%",
+        "8%",
+        "6%",
+        "264px",
+        "264px",
+        "8%",
+        "8%",
+        "8%",
+        "100px",
+        "100px"
+    ];
+    const numberOfColumnFixed = 6;
     const theme = useTheme({
-        Table: tableColumns,
-        BaseCell: formatColumns()
+        Table: tableColumns(arrColumn),
+        BaseCell: formatColumns(arrColumn, numberOfColumnFixed)
     });
+    const [products, setProduct] = useState(() => ProductData);
+    const onChangePrice = ({id, key, value}: any) => {
+        const productDataClone = {...products};
+        const findProductById = productDataClone.findIndex(
+            (item: any) => item.id === id
+        );
+    };
     return (
         <>
-            <Tooltip id="my" />
             <Table
                 data={data}
-                className="border border-stroke"
+                className="border border-stroke font-sf-ui-display"
                 theme={theme}
                 layout={{custom: true}}>
-                {() => (
+                {(listData: any) => (
                     <>
                         <Header>
                             <HeaderRow>
@@ -75,22 +102,20 @@ const TablePrice = () => {
                                     className="border-r border-stroke">
                                     Specifications
                                 </HeaderCell>
+
                                 <HeaderCell
                                     resize
                                     pinLeft
                                     className="border-r border-stroke">
-                                    <div className="flex-col min-w-[83px]">
-                                        <p>Total coil</p>
-                                        <p className="col-subTitle">(PCS)</p>
-                                    </div>
-                                </HeaderCell>
-                                <HeaderCell
-                                    resize
-                                    pinLeft
-                                    className="border-r border-stroke">
-                                    <div className="flex-col min-w-[93px]">
-                                        <p>Total coil</p>
-                                        <p className="col-subTitle">(KG)</p>
+                                    <div className="flex h-[56px] w-full">
+                                        <div className="flex-col  w-[83%] flex items-center justify-center  border-r border-stroke">
+                                            <p>Total coil</p>
+                                            <p className="col-subTitle">(KG)</p>
+                                        </div>
+                                        <div className="flex-col  w-full flex items-center justify-center">
+                                            <p>Total coil</p>
+                                            <p className="col-subTitle">(KG)</p>
+                                        </div>
                                     </div>
                                 </HeaderCell>
                                 <HeaderCell
@@ -139,13 +164,13 @@ const TablePrice = () => {
                                 <HeaderCell
                                     resize
                                     stiff
-                                    className="border-r border-stroke r-start-1 col-span-3 ">
+                                    className="border-r border-stroke  ">
                                     <div className="flex flex-col w-[264px]  ">
                                         <div className=" w-full h-[28px] border-b border-stroke !text-primary  flex-center">
                                             Special rebate offer
                                         </div>
                                         <div className="flex max-w-[264px] col-subTitle h-[28px]">
-                                            <div className="col-subTitle w-[88px] col-subTitle  h-full  border-l border-stroke  ">
+                                            <div className="col-subTitle w-[88px] col-subTitle  h-full   border-stroke  ">
                                                 (VND/KG)
                                             </div>
                                             <div className="col-subTitle w-[88px] col-subTitle  h-full  border-l border-stroke  ">
@@ -160,27 +185,25 @@ const TablePrice = () => {
                                 <HeaderCell
                                     resize
                                     stiff
-                                    className="border-r border-stroke  col-span-3 ">
+                                    className="border-r border-stroke   ">
                                     <div className="flex flex-col w-[264px]  ">
-                                        <div
-                                            className=" w-full h-[28px] border-b border-stroke !text-primary  flex-center"
-                                            data-tooltip-class-name="my"
-                                            data-tooltip-content={"dfksj"}>
-                                            Special rebate offer
+                                        <div className=" w-full h-[28px] border-b border-stroke !text-primary  flex-center">
+                                            Special discount price
                                         </div>
                                         <div className="flex max-w-[264px] col-subTitle h-[28px]">
-                                            <div className="col-subTitle w-[88px] col-subTitle  h-full  border-l border-stroke  ">
+                                            <div className="col-subTitle w-[88px] col-subTitle  h-full   border-stroke  ">
                                                 (VND/KG)
                                             </div>
                                             <div className="col-subTitle w-[88px] col-subTitle  h-full  border-l border-stroke  ">
                                                 (%)
                                             </div>
-                                            <div className="col-subTitle w-[88px] col-subTitle border-l border-stroke  h-full    ">
+                                            <div className="col-subTitle w-[88px] col-subTitle  border-l border-stroke h-full    ">
                                                 (VND/KG)
                                             </div>
                                         </div>
                                     </div>
                                 </HeaderCell>
+
                                 <HeaderCell>Fullfillment</HeaderCell>
                                 <HeaderCell>
                                     <div>
@@ -200,11 +223,11 @@ const TablePrice = () => {
                         </Header>
 
                         <Body>
-                            {ProductData.map((item, index) => {
+                            {listData.map((item: any, index: any) => {
                                 index += 1;
                                 const no = `${index < 10 ? "0" : ""}${index}`;
-                                // const statusClass =
-                                //     colorStatus[item.status as StatusEnum];
+                                const statusClass =
+                                    colorStatus[item.status as StatusEnum];
                                 const {value1, value2} = FormatTolerances(
                                     item.preferredTolerances
                                 );
@@ -228,9 +251,9 @@ const TablePrice = () => {
                                             {item.specifications}
                                         </Cell>
 
-                                        <Cell pinLeft className="col-span-2">
+                                        <Cell pinLeft className="">
                                             <div className="flex flex-row gap-x-[9px] w-full justify-evenly ">
-                                                <div className="w-[30%]">
+                                                <div className="w-[30%] border border-stroke rounded-[3px] overflow-auto">
                                                     <Input
                                                         isDisabled={
                                                             isInputDisabled[
@@ -251,7 +274,9 @@ const TablePrice = () => {
                                                         }
                                                     />
                                                 </div>
-                                                <div className="w-[40%]">
+                                                <div
+                                                    className="w-[40%] border border-stroke rounded-[3px] overflow-hidden"
+                                                    w-full>
                                                     <Input
                                                         isDisabled={
                                                             !isInputDisabled[
@@ -271,91 +296,123 @@ const TablePrice = () => {
 
                                         <Cell pinLeft className="special-col-1">
                                             {" "}
-                                            <Input
-                                                variant="select"
-                                                optionSelect={[
-                                                    "B1",
-                                                    "A1",
-                                                    "A2"
-                                                ]}
-                                                isContentCenter={false}
-                                                className="w-full"></Input>
+                                            <div className="border border-stroke rounded-[3px] overflow-hidden  w-full">
+                                                <Input
+                                                    variant="select"
+                                                    optionSelect={[
+                                                        "B1",
+                                                        "A1",
+                                                        "A2"
+                                                    ]}
+                                                    isContentCenter={false}
+                                                    className="w-full"></Input>
+                                            </div>
                                         </Cell>
                                         <Cell pinLeft className="special-col-2">
                                             {" "}
-                                            <GroupInput
-                                                value1={item.totalPrice}
-                                                value2={
-                                                    item.totalPrice
-                                                }></GroupInput>
+                                            <div
+                                                className="border border-stroke rounded-[3px] overflow-hidden 
+                                                w-full">
+                                                <GroupInput
+                                                    value1={value1}
+                                                    value2={
+                                                        value2
+                                                    }></GroupInput>
+                                            </div>
                                         </Cell>
                                         <Cell
                                             pinLeft
                                             className=" special-col-3 ">
-                                            <div
-                                                className={`flex items-center gap-1 " ${item.discountPrice ? "text-secondary" : ""} `}>
-                                                {item.discountPrice > 0 && (
-                                                    <WarningPrice className="size-4" />
-                                                )}
-                                                {formatPrice(item.unitPrice)}
-                                            </div>
+                                            <TooltipCustom
+                                                message={`Old price information ${formatPrice(item.oldPrice)}VND`}
+                                                placement="bottom">
+                                                <div
+                                                    className={`flex items-center gap-1 " ${item.discountPrice ? "text-secondary" : ""} `}>
+                                                    {item.discountPrice > 0 && (
+                                                        <WarningPrice className="size-4" />
+                                                    )}
+                                                    {formatPrice(
+                                                        item.unitPrice
+                                                    )}
+                                                </div>
+                                            </TooltipCustom>
                                         </Cell>
                                         <Cell pinLeft className="special-col-4">
                                             {" "}
-                                            {formatPrice(item.discountPrice)}
+                                            <TooltipCustom
+                                                message="discount price"
+                                                placement="bottom">
+                                                {formatPrice(
+                                                    item.discountPrice
+                                                )}
+                                            </TooltipCustom>
                                         </Cell>
                                         <Cell pinLeft className="special-col-5">
                                             {formatPrice(item.rebatePrice)}
                                         </Cell>
-                                        <Cell>
+
+                                        <Cell pinLeft>
                                             {
-                                                <Input
-                                                    isContentCenter
-                                                    placeholder="Enter"
-                                                />
+                                                <div className=" h-full flex items-center justify-center  ">
+                                                    <div className="min-w-[88px] h-full px-2 flex items-center border-r border-stroke  ">
+                                                        <div className="border border-stroke rounded-[3px] overflow-hidden">
+                                                            <Input
+                                                                isContentCenter
+                                                                placeholder="Enter"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="min-w-[88px] border-r border-stroke h-full px-2 flex items-center ">
+                                                        <div className="border border-stroke rounded-[3px] overflow-hidden">
+                                                            <Input
+                                                                isContentCenter
+                                                                placeholder="Enter"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="min-w-[88px] h-full px-2 flex items-center ">
+                                                        <div className="border border-stroke rounded-[3px] overflow-hidden">
+                                                            <Input
+                                                                isContentCenter
+                                                                placeholder="Enter"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             }
                                         </Cell>
-                                        <Cell>
+                                        <Cell pinLeft>
                                             {
-                                                <Input
-                                                    isContentCenter
-                                                    placeholder="Enter"
-                                                />
+                                                <div className=" h-full flex items-center justify-center ">
+                                                    <div className="min-w-[88px] h-full px-2 flex items-center border-r border-stroke ">
+                                                        <div className="border border-stroke rounded-[3px] overflow-hidden">
+                                                            <Input
+                                                                isContentCenter
+                                                                placeholder="Enter"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="min-w-[88px] border-r border-stroke h-full px-2 flex items-center ">
+                                                        <div className="border border-stroke rounded-[3px] overflow-hidden">
+                                                            <Input
+                                                                isContentCenter
+                                                                placeholder="Enter"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="min-w-[88px] h-full px-2 flex items-center ">
+                                                        <div className="border border-stroke rounded-[3px] overflow-hidden">
+                                                            <Input
+                                                                isContentCenter
+                                                                placeholder="Enter"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             }
                                         </Cell>
-                                        <Cell>
-                                            {
-                                                <Input
-                                                    isContentCenter
-                                                    placeholder="Enter"
-                                                />
-                                            }
-                                        </Cell>
-                                        <Cell>
-                                            {
-                                                <Input
-                                                    isContentCenter
-                                                    placeholder="Enter"
-                                                />
-                                            }
-                                        </Cell>
-                                        <Cell>
-                                            {
-                                                <Input
-                                                    isContentCenter
-                                                    placeholder="Enter"
-                                                />
-                                            }
-                                        </Cell>
-                                        <Cell>
-                                            {
-                                                <Input
-                                                    isContentCenter
-                                                    placeholder="Enter"
-                                                />
-                                            }
-                                        </Cell>
-                                        <Cell>
+
+                                        <Cell pinLeft>
                                             <div
                                                 className=""
                                                 data-tooltip-id="fulfill"
@@ -365,23 +422,18 @@ const TablePrice = () => {
                                                 hello
                                             </div>
                                         </Cell>
-                                        <Cell>
+                                        <Cell pinLeft>
                                             {formatPrice(item.totalPrice)}
                                         </Cell>
-                                        <Cell>
+                                        <Cell pinLeft>
                                             {formatPrice(item.totalPrice)}
                                         </Cell>
-                                        <Cell>
-                                            <div
-                                                className=""
-                                                data-tooltip-place="top"
-                                                data-tooltip-id="my"
-                                                data-tooltip-content={"kkkkkk"}>
-                                                uuuuu
-                                            </div>
-                                            <Inventory className="size-6" />
+                                        <Cell pinLeft>
+                                            <Inventory
+                                                className={`size-6 ${statusClass}`}
+                                            />
                                         </Cell>
-                                        <Cell className="col-action">
+                                        <Cell pinLeft className="col-action">
                                             {" "}
                                             {item.action.includes("delete") && (
                                                 <Trash
@@ -407,7 +459,6 @@ const TablePrice = () => {
                     </>
                 )}
             </Table>
-            <Tooltip id="fulfill" />
         </>
     );
 };

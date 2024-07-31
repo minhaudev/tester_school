@@ -42,4 +42,15 @@ const formatColumns = () => {
     }
     return columnFixed;
 };
-console.log(tableColumns);
+const formatHeader = () => {
+    let columnFixed = `th:nth-of-type(1) {
+left: 0px;
+}`;
+    for (var i = 2; i < 2; i++) {
+        columnFixed += `th:nth-of-type(${i}) {
+      left: calc(${calculateFix(i)});
+    }`;
+    }
+    return columnFixed;
+};
+console.log(formatHeader());

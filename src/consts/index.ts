@@ -6,46 +6,27 @@ export const initValidityTime = {
     minutes: 0,
     secondTime: 0
 };
-const arr = [
-    "56px",
-    "56px",
-    "15%",
-    "6%",
-    "7%",
-    "8%",
-    "11%",
-    "6%",
-    "8%",
-    "6%",
-    "88px",
-    "88px",
-    "88px",
-    "88px",
-    "88px",
-    "88px",
-    "8%",
-    "8%",
-    "8%",
-    "100px",
-    "100px"
-];
-export const tableColumns = `
-          --data-table-library_grid-template-columns: ${arr.join(" ")};
+
+export const tableColumns = (arrColumns: string[]) => `
+          --data-table-library_grid-template-columns: ${arrColumns.join(" ")};
         `;
-const calculateFix = (numberOf: number) => {
+const calculateFix = (arrColumns: string[], numberOf: number) => {
     let calcString = "";
     for (var i = 0; i < numberOf - 1; i++) {
-        calcString += ` ${arr[i]} +`;
+        calcString += ` ${arrColumns[i]} +`;
     }
     return calcString.slice(0, -2);
 };
-export const formatColumns = () => {
+export const formatColumns = (arrColumns: string[], fixColumns: number) => {
+    if (!fixColumns) return;
     let columnFixed = `&:nth-of-type(1) {
+    z-index:10;
   left: 0px;
 }`;
-    for (var i = 2; i < 11; i++) {
+    for (var i = 2; i <= fixColumns; i++) {
         columnFixed += `&:nth-of-type(${i}) {
-        left: calc(${calculateFix(i)});
+        z-index: 10 ;
+        left: calc(${calculateFix(arrColumns, i)});
       }`;
     }
     return columnFixed;

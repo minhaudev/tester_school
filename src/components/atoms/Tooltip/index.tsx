@@ -1,31 +1,35 @@
-import {Position} from "@/interfaces/Pending";
-import {useState} from "react";
+import {Tooltip} from "@nextui-org/tooltip";
 
 interface TooltipProps {
-    message: string;
-    position?: Position;
-    children: React.ReactNode;
+    message: React.ReactNode;
+    children: React.ReactNode | string;
+    placement?: "top" | "bottom" | "left" | "right";
+    isCustom?: boolean;
+    className?: string;
 }
-const positionClasses: Record<Position, string> = {
-    [Position.Top]: "top-[-2.5rem]",
-    [Position.Bottom]: "bottom-[-2.5rem]"
-};
-
-export default function Tooltip({
+export default function TooltipCustom({
     message,
-    position = Position.Bottom,
-    children
+    children,
+    placement = "top",
+    isCustom = false,
+    className
 }: TooltipProps) {
-    const positionClass = positionClasses[position] || "";
-
-    return (
-        <div className="relative  flex justify-center group  z-50">
-            {children}
-            <span
-                className={`truncate max-w-[300px] absolute z-50 w-fit break-words text-[13px] font-medium rounded-[2.4px]  text-center m-0 bg-black text-white px-2.5 py-1.5 text-xs  ${positionClass}  whitespace-nowrap
-            `}>
-                {message}
-            </span>
-        </div>
-    );
+    return isCustom ?
+            <Tooltip
+                placement={placement}
+                className={className}
+                content={message}>
+                <div className="w-fit h-fit">{children}</div>
+            </Tooltip>
+        :   <Tooltip
+                shouldFlip={true}
+                placement={placement}
+                delay={100}
+                closeDelay={100}
+                className={
+                    "bg-black rounded-[2.4px] p-[5px] text-white text-[13px]"
+                }
+                content={message}>
+                <div className="w-fit h-fit"> {children}</div>
+            </Tooltip>;
 }

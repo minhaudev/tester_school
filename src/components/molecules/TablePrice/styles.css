@@ -25,26 +25,6 @@ td > div {
     line-height: 15.5px;
     color: #3a3b3c;
 }
-[data-c-tooltip]:after {
-    z-index: 1000;
-    padding: 8px;
-    width: 160px;
-    background-color: #000;
-    background-color: rgba(51, 51, 51, 0.9);
-    color: #fff;
-    content: attr(data-c-tooltip);
-    font-size: 14px;
-    line-height: 1.2;
-}
-[data-c-tooltip]:before {
-    z-index: 1001;
-    border: 6px solid transparent;
-    background: transparent;
-    content: "";
-    margin-left: -6px;
-    margin-bottom: -12px;
-    border-top-color: rgba(51, 51, 51, 0.9);
-}
 
 .flex-col {
     display: flex;
@@ -68,60 +48,16 @@ td > div {
     overflow-x: auto !important;
     overflow-y: hidden !important;
 }
-tbody > tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-.special-col-1 {
-    left: calc(112px + 15% + 6% + 7%) !important;
-}
-.special-col-1 > div > div {
-    width: 100%;
-}
-.special-col-2 > div > div {
-    width: 100%;
-}
-.special-col-2 {
-    left: calc(112px + 15% + 6% + 7% + 8%) !important;
-    z-index: -9;
-}
-.special-col-3 {
-    left: calc(112px + 15% + 6% + 7% + 8% + 11%) !important;
-    z-index: -9;
-}
-.special-col-4 {
-    left: calc(112px + 15% + 6% + 7% + 8% + 11% + 6%) !important;
-    z-index: -9;
-}
-.special-col-5 {
-    left: calc(112px + 15% + 6% + 7% + 8% + 11% + 6% + 8%) !important;
-    z-index: -9;
-}
-.col-action {
+.col-action > div {
     display: flex;
-    gap: 12px;
+    gap: 8px;
 }
 
-.tooltip-container {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip-container[data-tooltip-id]::after {
-    content: attr(data-tooltip-content);
-    position: absolute;
-    top: -100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 3px;
-    white-space: nowrap;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.tooltip-container:hover::after {
-    opacity: 1;
+.td:nth-of-type(10) > div,
+.td:nth-of-type(11) > div {
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100% !important;
 }
