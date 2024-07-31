@@ -5,6 +5,7 @@ import "./style.css";
 import Button from "@/components/atoms/Button";
 
 interface Props {
+    className?:  string,
     children?: ReactNode;
     isOpen?: boolean;
     name?: string;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export default function Modal({
+    className,
     children,
     isOpen,
     name,
@@ -33,10 +35,10 @@ export default function Modal({
                 onClick={(e) => e.stopPropagation()}
                 className={twMerge(
                     "modal-content max-w-2xl w-full bg-white rounded-xl",
-                    isOpen ? "show" : ""
+                    isOpen ? "show" : "" , className
                 )}
             >
-                <div className="py-5 px-4 flex justify-between items-center flex-col">
+                <div className={twMerge("py-5 px-4 flex justify-between items-center flex-col")}>
                     <div className="flex items-center justify-between rounded-t dark:border-gray-600 w-full">
                         <h3 className="text-base !text-text font-medium">
                             {name}

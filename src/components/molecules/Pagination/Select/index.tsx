@@ -31,7 +31,6 @@ const PaginationSelect: React.FC<PaginationProps> = ({
     useEffect(() => {
         setLocalRecordsPerPage(recordsPerPage);
     }, [recordsPerPage]);
-
     const totalPages = Math.ceil(totalRecords / localRecordsPerPage);
     const isFirstPage = localCurrentPage === 1;
     const isLastPage = localCurrentPage === totalPages;
@@ -58,8 +57,7 @@ const PaginationSelect: React.FC<PaginationProps> = ({
         setLocalRecordsPerPage(newRecordsPerPage);
         handleRecordsPerPageChange(tableId, newRecordsPerPage);
     };
-
-
+    console.log(isFirstPage)
     return (
         <div className="flex flex-row justify-between items-center gap-x-2 text-text text-xs font-normal">
             <p>Display</p>
@@ -77,12 +75,12 @@ const PaginationSelect: React.FC<PaginationProps> = ({
             </select>
             <p>of {totalRecords} results</p>
             <ExpandLeft
-                className={`w-5 h-5 ${isFirstPage ? "text-gray" : "text-text"} hover:cursor-pointer`}
+                className={`size-5 ${isFirstPage ? "text-gray" : "text-text"} hover:cursor-pointer`}
                 onClick={handlePageChangePrevious}
             />
             <span className="mx-2">{currentPage}</span>
             <ExpandRight
-                className={`w-5 h-5 ${isLastPage ? "text-gray" : "text-text"} hover:cursor-pointer`}
+                className={`size-5 ${isLastPage ? "text-gray" : "text-text"} hover:cursor-pointer`}
                 onClick={handlePageChangeNext}
             />
         </div>

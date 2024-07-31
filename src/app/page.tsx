@@ -2,8 +2,6 @@
 import SaveDraftIcon from "@/assets/svgs/save_draft.svg";
 import AddIcon from "@/assets/svgs/add_light_larger.svg";
 import Button from "@/components/atoms/Button";
-import Input from "@/components/atoms/Input";
-import CustomerBalanceInfo from "@/components/molecules/CustomerBalanceInfo";
 import ProcessFlow from "@/components/molecules/ProcessFlow";
 import Standard from "@/components/molecules/Standard/Index";
 import Toast from "@/components/molecules/Toast";
@@ -15,11 +13,9 @@ import { useState } from "react";
 import LayoutContainer from "./LayoutContainer";
 import TableExample from "./TableExample";
 import ServiceTime from "@/components/atoms/ServiceTime";
-import { dataList } from "@/faker/AccountBalance";
 import { isValidDate } from "@/hooks/useValidDate";
 import { usePopup } from "@/context/PopupContext";
 import Modal from "@/components/molecules/Modal";
-import Drawer from "@/components/molecules/Drawer";
 import StatusNote from "@/components/molecules/StatusNote";
 import { StatusEnum } from "@/enums/StatusNum";
 import RadioButton from "@/components/atoms/RadioButton/RadioButton";
@@ -27,11 +23,11 @@ import Paginator from "@/components/molecules/Pagination";
 import Checkbox from "@/components/atoms/Checkbox";
 import { PendingEnum } from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
-import { Position } from "@/enums/PositionEnum";
 import { useRouter } from 'next/navigation';
 import PropertyPending from "@/components/atoms/PropertyPending";
 import StatusPending from "@/components/atoms/StatusPending";
 import TooltipCustom from "@/components/atoms/Tooltip";
+import { usePagination } from "@/hooks/usePagination";
 
 
 export default function Home() {
@@ -58,7 +54,7 @@ export default function Home() {
     let startDate = new Date();
     let endDate = new Date();
     const start = "2024-07-29T06:58:19.516Z";
-    const end = "2024-07-30T11:33:58.936Z";
+    const end = "2024-07-31T11:33:58.936Z";
     if (isValidDate(start) && isValidDate(end)) {
         startDate = new Date(Date.parse(start));
         endDate = new Date(Date.parse(end));
@@ -66,18 +62,8 @@ export default function Home() {
         console.log("false");
     }
     const handleEndIn = () => { };
-    const { showPopup, setShowPopup } = usePopup();
-    const handleCancel = () => {
-        setShowPopup(false);
-        console.log("cancel");
-    };
-    const handleSave = () => {
-        console.log("save");
-        setShowPopup(false);
-    };
-    const handleConfirm = () => {
-        console.log("confirm");
-    };
+
+
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [isOpenToast, setIsOpenToast] = useState(false);
     const handleCloseModal = () => {
@@ -91,19 +77,9 @@ export default function Home() {
         setValueSelect(e.target.value);
     };
     const [selected, setSelected] = useState("option1");
-
-    const [currentPage, setCurrentPage] = useState(1);
-
     const totalPages = 10;
 
-    const handlePageChange = (page: number) => {
-        if (page >= 1 && page <= totalPages) {
-            setCurrentPage(page);
-        }
-        router.push(`/page?page=${page}`);
-
-    };
-
+    const { currentPage, handlePageChange } = usePagination({ totalPages });
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
     const handleCheckboxChange = (id: string) => {
@@ -176,27 +152,24 @@ export default function Home() {
                     typeFile={""}>
                     Show Modal
                 </Button>
-                <Modal isOpen={isOpenModal} onClose={handleCloseModal}></Modal>
+                <Modal isOpen={isOpenModal} className="max-w-[1000px]" onClose={handleCloseModal}></Modal>
 
                 <Toast
-                    time={5000}
+                    time={50000000}
+                    className="max-w-[700px]"
                     isOpen={isOpenToast}
-                    position={ToastPosition.Bottom_Right}
+                    position={ToastPosition.Top_Left}
                     type={ToastType.Warning}
                     onClose={handleCloseToast}
                     description="Recommened products cannot exceed the selected number of rollsRecommened products cannot exceed the selected number of rolls"
                 />
-                <TooltipCustom
-                    message="Hello world"
-                >
-                    <Button
-                        variant="primary-dark"
-                        onClick={() => setIsOpenToast(true)}
-                        typeFile={""}
-                        size={"small"}>
-                        Show Toast
-                    </Button>
-                </TooltipCustom>
+                <Button
+                    variant="primary-dark"
+                    onClick={() => setIsOpenToast(true)}
+                    typeFile={""}
+                    size={"small"}>
+                    Show Toast
+                </Button>
 
             </div>
             <div className="flex flex-col gap-5 justify-center items-center mb-5">

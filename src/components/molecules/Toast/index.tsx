@@ -20,6 +20,7 @@ interface ToastValue {
 }
 
 interface ToastProps {
+    
     time: number;
     type: ToastType;
     description: string;
@@ -54,6 +55,7 @@ const positionClasses: Record<ToastPosition, string> = {
 };
 
 export default function Toast({
+    className,
     time = 3000,
     type,
     description,
@@ -77,13 +79,13 @@ export default function Toast({
             className={
                 twMerge(
                     "toast w-full  fixed inset-0 z-30  transition flex justify-center items-center",
-                    isOpen ? "show" : ""
+                     isOpen ? "show" : "" 
                 )
             }
         >
             <div
                 id="toast-default"
-                className={` fixed z-50 ${positionClass} flex transition items-stretch max-w-md w-full text-gray-500 bg-white shadow dark:text-gray-400 dark:bg-gray-800 ${isOpen ? "show" : ""}`}
+                className={` fixed z-auto ${className} ${positionClass} flex transition items-stretch max-w-md w-full text-gray-500 bg-white shadow dark:text-gray-400 dark:bg-gray-800 ${isOpen ? "show" : ""}`}
                 role="alert">
                 <div
                     className={`flex-shrink-0 w-1 rounded-r-lg ${background}`}></div>

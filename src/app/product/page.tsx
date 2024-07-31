@@ -5,11 +5,11 @@ import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ProductApprovalsData2, ProductApprovalsData3, ProductData } from "@/faker/ProductData";
 import Input from "@/components/atoms/Input";
-import Arrow from "@/assets/svgs/Arrow_switch.svg"
-import Trash from "@/assets/svgs/Trash_big.svg"
-import CartReport from "@/assets/svgs/Cart_report.svg"
-import Wrench from "@/assets/svgs/Wrench.svg"
-import Inventory from "@/assets/svgs/Inventory.svg"
+import Arrow from "@/assets/svgs/arrow_switch.svg"
+import Trash from "@/assets/svgs/trash_larger.svg"
+import CartReport from "@/assets/svgs/cart_report.svg"
+import Wrench from "@/assets/svgs/wrench.svg"
+import Inventory from "@/assets/svgs/inventory.svg"
 import { formatNumber } from "@/utils/FormatNumber";
 import PaginationSelect from "@/components/molecules/Pagination/Select";
 import Checkbox from "@/components/atoms/Checkbox";
@@ -32,13 +32,11 @@ import { FormatTimeHours } from "@/utils/FormatDate";
 import useProcessedData from "@/hooks/useProcessedData";
 import { colorStatus } from "@/hooks/useColorStatus";
 import { StatusEnum } from "@/enums/StatusNum";
-import Tooltip from "@/components/atoms/Tooltip";
 import PropertyPending from "@/components/atoms/PropertyPending";
 import StatusPending from "@/components/atoms/StatusPending";
 import TimeFill from "@/assets/svgs/time_fill.svg";
-import GroupInput from "@/components/molecules/GroupInput/GroupInput";
-import { Position } from "@/enums/PositionEnum";
-import {Tooltip, Button} from "@nextui-org/react";
+import GroupInput from "@/components/molecules/GroupInput";
+import TooltipCustom from "@/components/atoms/Tooltip";
 
 const tables = {
     "table1": {
@@ -109,9 +107,7 @@ const Product = () => {
     const processedData3 = processData(tables.table3.data);
     const primes = ["1B", "1A", "1", "3"]
     return (
-
         <LayoutContainer>
-
             <div className="flex flex-row m-4">
                 <div className="flex flex-col gap-1">
                     <h1 className="text-primary text-base font-medium">Product</h1>
@@ -201,14 +197,21 @@ const Product = () => {
                                         </div>
                                     </td>
                                     <td className={`${tdClasses}`}>
-                                        <GroupInput value1={value1} value2={value2} >
-                                        </GroupInput>
+                                        <div className="px-2">
+                                            <GroupInput value1={value1} value2={value2} >
+                                            </GroupInput>
+                                        </div>
                                     </td>
                                     <td className={`${tdClasses}`}>
-                                        <Tooltip content="I am a tooltip">
-                                            {formatNumber(item.unitPrice)}
-                                        </Tooltip>
-                                     
+                                        <div className="flex justify-center">
+                                            <TooltipCustom
+                                                placement="bottom"
+                                                message="Old price information 31,500 VND"
+                                            >
+                                                <p className="hover:cursor-pointer">{formatNumber(item.unitPrice)}</p>
+                                            </TooltipCustom>
+                                        </div>
+
                                     </td>
                                     <td className={`${tdClasses}`}>  {formatNumber(item.totalPrice)}</td>
                                     <td className={`${tdClasses} `}>

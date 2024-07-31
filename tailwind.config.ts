@@ -1,5 +1,4 @@
 import type {Config} from "tailwindcss";
-import type {Config} from "tailwindcss";
 
 const config: Config = {
     content: [
@@ -33,20 +32,9 @@ const config: Config = {
             "dangerous": "#FFF4F4",
             "violet": "#A644F6",
             "blue": "#5A92F7",
-            "blue-bold": "#1E4D83",
             "pink": "#FFEDDF",
             "yellow": "#F5BF00",
-            "custom-light-blue": "#EDFAFF",
-            "primary-1": "#111D2C",
-            "primary-2": "#112A45",
-            "primary-3": "#15395B",
-            "primary-4": "#164C7E",
-            "primary-5": "#01559B",
-            "primary-6": "#1765AD",
-            "primary-7": "#177DDC",
-            "primary-8": "#3C9AE8",
-            "primary-9": "#65B7F3",
-            "primary-10": "#65B7F3",
+            
             "gray": "#9A9C9F",
             "gray-1": "#FFFFFF",
             "gray-2": "#FAFAFA",
@@ -59,23 +47,35 @@ const config: Config = {
             "gray-9": "#434343",
             "gray-10": "#262626",
             "gray-11": "#1f1f1f",
-            "gray-12": "#141414"
+            "gray-12": "#141414",
+            "blue-bold": "#1E4D83",
+            "primary-1": "#111D2C",
+            "primary-2": "#112A45",
+            "primary-3": "#15395B",
+            "primary-4": "#164C7E",
+            "primary-5": "#01559B",
+            "primary-6": "#1765AD",
+            "primary-7": "#177DDC",
+            "primary-8": "#3C9AE8",
+            "primary-9": "#65B7F3",
+            "primary-10": "#65B7F3",
+            "custom-light-blue": "#EDFAFF",
         },
         extend: {
             backgroundColor: {
-                "black": "#3A3B3C",
-                "green-bold": "#69AA43",
-                "gray": "#BBBBBC",
                 "red": "#D6292E",
-                "red-bold": "#ED1E24",
+                "gray": "#BBBBBC",
+                "black": "#3A3B3C",
                 "error": "#FFFBEB",
                 "normal": "#EDFAFF",
-                "warning": "#FCE7E7",
                 "success": "#D2E5F5",
+                "warning": "#FCE7E7",
+                "red-bold": "#ED1E24",
                 "red-light": "#FFEEEE",
-                "yellow-light": "#FFFBEB",
+                "gray-light": "#E9E9E9",
+                "green-bold": "#69AA43",
                 "green-light": "#F2FFEB",
-                "gray-light": "#E9E9E9"
+                "yellow-light": "#FFFBEB",
             },
             backgroundImage: {
                 "custom-gradient-cart":
