@@ -31,8 +31,7 @@ import { Position } from "@/enums/PositionEnum";
 import { useRouter } from 'next/navigation';
 import PropertyPending from "@/components/atoms/PropertyPending";
 import StatusPending from "@/components/atoms/StatusPending";
-import TooltipCustom from "@/components/atoms/TooltipCustom";
-import { Tooltip } from "@nextui-org/tooltip";
+import TooltipCustom from "@/components/atoms/Tooltip";
 
 
 export default function Home() {

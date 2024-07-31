@@ -76,12 +76,6 @@ function useValidateTime({
                         hasDay: false,
                         isTimeUse: true
                     });
-                    const timeUse = calculateDate({
-                        startDate,
-                        endDate: new Date(Date.now()),
-                        hasDay: false,
-                        isTimeUse: true
-                    });
                     setTimeUsed(() => timeUse);
                 }
                 if (
