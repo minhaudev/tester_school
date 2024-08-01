@@ -16,6 +16,7 @@ export default function Standard(props: Props) {
         <>
             <button onClick={() => setIsOpen(true)}>Click me</button>
             <Drawer
+                // customClassName="max-h-[1000px]"
                 name="Tiến trình đơn hàng"
                 subName={
                     <div className="flex gap-4">
