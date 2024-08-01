@@ -13,7 +13,7 @@ export function calculateDate({
     endDate,
     isTotal = false,
     isTimeUse = false,
-    hasDay = true
+    hasDay = true,
 }: {
     startDate: Date;
     endDate: Date;
@@ -21,23 +21,18 @@ export function calculateDate({
     isTimeUse?: boolean;
     hasDay?: boolean;
 }) {
-    if (isNaN(endDate.getTime()) || isNaN(startDate.getTime())) {
-        return {day: 0, hours: 0, minutes: 0, secondTime: 0};
-    }
-    let milliSecondTimeAble = 0;
+    if (isNaN(endDate.getTime()) ||
+        isNaN(startDate.getTime())) {
 
-    if (
-        convertToTimeStamp(startDate) >
-            convertToTimeStamp(new Date(Date.now())) ||
-        isTotal ||
-        isTimeUse
-    ) {
+        return { day: 0, hours: 0, minutes: 0, secondTime: 0 };
+    }
+    let milliSecondTimeAble = 0
+
+    if (convertToTimeStamp(startDate) > convertToTimeStamp(new Date(Date.now())) || isTotal || isTimeUse) {
         milliSecondTimeAble =
             convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
     } else {
-        milliSecondTimeAble =
-            convertToTimeStamp(endDate) -
-            convertToTimeStamp(new Date(Date.now()));
+        milliSecondTimeAble = convertToTimeStamp(endDate) - convertToTimeStamp(new Date(Date.now()))
     }
     const timeAble = milliSecondTimeAble / (1000 * 60 * 60);
     const day = Math.floor(timeAble / 24);
@@ -47,13 +42,13 @@ export function calculateDate({
         (hours * 60 + day * 24 * 60);
     const secondTime = Math.floor(
         milliSecondTimeAble / 1000 -
-            (minutes * 60 + hours * 60 * 60 + day * 24 * 60 * 60)
+        (minutes * 60 + hours * 60 * 60 + day * 24 * 60 * 60)
     );
     if (!hasDay) {
-        hours = day * 24 + hours;
-        return {day: 0, hours, minutes, secondTime};
+        hours = day * 24 + hours
+        return { day: 0, hours, minutes, secondTime };
     }
-    return {day, hours, minutes, secondTime};
+    return { day, hours, minutes, secondTime };
 }
 
 export const convertToTimeStamp = (date: Date) => {
@@ -71,6 +66,12 @@ export const FormatTime = (time: number) => {
     const seconds = String(date.getSeconds()).padStart(2, "0");
 
     return `${hours}:${minutes}:${seconds}`;
+};
+export const FormatTimeHours = (time: number) => {
+    const date = new Date(time);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
 };
 
 export function timeToTimestamp(time: string) {

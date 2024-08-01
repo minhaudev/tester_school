@@ -1,4 +1,6 @@
+import { convertToTimeStamp } from '@/utils/FormatDate';
 import { useState, useEffect, useCallback } from 'react';
+import useValidateTime from './useValidateTime';
 
 // Define types for sort configuration and sort directions
 type SortDirection = 'asc' | 'desc';
@@ -30,7 +32,7 @@ const getInitialSortConfig = (): SortConfig => {
     } catch (error) {
         console.error('Failed to parse sort configuration from local storage:', error);
     }
-    return {}; // Return an empty object as fallback
+    return {}; 
 };
 export function useTableSorting(initialSortConfig: SortConfig = {}) {
 
@@ -38,9 +40,6 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
         const initialConfig = getInitialSortConfig();
         return Object.keys(initialSortConfig).length > 0 ? initialSortConfig : initialConfig;
     });
-
-
-    // const [sortConfig, setSortConfig] = useState<SortConfig>(initialSortConfig);
     useEffect(() => {
         try {
             const savedSortConfig = localStorage.getItem('sortConfig');
@@ -70,12 +69,10 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
             const newDirection: SortDirection =
                 index !== -1 && existingSorts[index].direction === 'asc' ? 'desc' : 'asc';
 
-            // Remove the existing sort if it exists
             const updatedSorts = index !== -1
                 ? [...existingSorts.slice(0, index), ...existingSorts.slice(index + 1)]
                 : [...existingSorts];
 
-            // Add or update the sort configuration
             updatedSorts.unshift({ key, direction: newDirection });
 
             return {
@@ -85,26 +82,20 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
         });
     }, []);
 
-    // Function to get sorted data based on the sort configuration
     const getSortedData = (tableId: string, data: any[]) => {
         const sorts = sortConfig[tableId] || [];
-
         return [...data].sort((a, b) => {
             for (const { key, direction } of sorts) {
-
                 let aValue = a[key];
                 let bValue = b[key];
-
                 if (typeof aValue === 'object' && aValue !== null && 'title' in aValue) {
                     aValue = aValue.title;
                 }
                 if (typeof bValue === 'object' && bValue !== null && 'title' in bValue) {
                     bValue = bValue.title;
                 }
-
                 if (aValue === undefined) aValue = '';
                 if (bValue === undefined) bValue = '';
-
                 if (typeof aValue === "string" && typeof bValue === "string") {
                     const comparison = direction === 'asc'
                         ? aValue.localeCompare(bValue)
@@ -118,7 +109,6 @@ export function useTableSorting(initialSortConfig: SortConfig = {}) {
                     if (comparison !== 0) return comparison;
                 }
             }
-
             return 0;
         });
     };

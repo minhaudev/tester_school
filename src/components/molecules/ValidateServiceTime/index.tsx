@@ -1,7 +1,7 @@
 import useValidateTime from "@/hooks/useValidateTime";
 import FormatTime from "../../atoms/FormatTime";
 import TimeValidate from "../../atoms/TimeValidate";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 function ValidateServiceTime({
     endDate,
@@ -19,7 +19,7 @@ function ValidateServiceTime({
         currentPercent,
         end,
         setEnd
-    } = useValidateTime({endDate, startDate, onEnd});
+    } = useValidateTime({ endDate, startDate, onEnd });
     useEffect(() => {
         const timeOutId = setTimeout(() => {
             if (end && onEnd && timeAble >= 0) {
@@ -29,7 +29,6 @@ function ValidateServiceTime({
         }, 1000);
         return () => clearTimeout(timeOutId);
     }, [end, onEnd, setEnd, timeAble]);
-
     return (
         <div className="flex items-center gap-2 text-[11px] font-[500] text-center font-sf-ui-display text-text">
             <TimeValidate

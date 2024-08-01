@@ -28,7 +28,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     };
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center justify-center w-full">
             <div
                 onClick={handleClick}
                 className={`w-5 h-5 cursor-pointer ${disable ? 'opacity-50' : ''}`}

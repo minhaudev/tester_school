@@ -60,16 +60,7 @@ const ServiceTime: React.FC<ServiceTimeProps> = ({
         timeUsed
     } = useValidateTime({ endDate, startDate, onEnd });
 
-    useEffect(() => {
-        const hoursRemaining = validityTime.hours;
-        if (hoursRemaining < 2) {
-            setTypeTime(StatusTimeEnum.Error);
-        } else if (hoursRemaining < 5) {
-            setTypeTime(StatusTimeEnum.Warning);
-        } else {
-            setTypeTime(StatusTimeEnum.Success);
-        }
-    }, [timeUsed.hours]);
+
     const { color, icon, background, background2 } = ServiceTimeValue[typeTime];
     const validityTime = {
         ...timeValidity,
@@ -89,6 +80,16 @@ const ServiceTime: React.FC<ServiceTimeProps> = ({
         timeTo.minutes = 0;
         timeTo.secondTime = 0;
     }
+    useEffect(() => {
+        const hoursRemaining = validityTime.hours;
+        if (hoursRemaining < 2) {
+            setTypeTime(StatusTimeEnum.Error);
+        } else if (hoursRemaining < 5) {
+            setTypeTime(StatusTimeEnum.Warning);
+        } else {
+            setTypeTime(StatusTimeEnum.Success);
+        }
+    }, [validityTime.hours, timeUsed.hours]);
     return (
         <div
             className={`px-2 py-1 flex flex-row ${background} items-center rounded-[3px]  gap-x-1 m-0`}>

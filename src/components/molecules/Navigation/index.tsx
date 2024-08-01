@@ -54,7 +54,7 @@ function Navigation({
     }, [expand, routePath]);
     return (
         <div
-            className={`min-h-[100vh] overflow-y-auto transition-width duration-100 ${
+            className={`min-h-[100vh] z-10 overflow-y-auto transition-width duration-100 ${
                 expand ? "min-w-[255px]" : "min-w-[56px]"
             } bg-primary pb-[13px]`}>
             <div
