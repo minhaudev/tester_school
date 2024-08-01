@@ -60,7 +60,7 @@ const TablePrice = ({
         <>
             <Table
                 data={data}
-                className="border border-stroke font-sf-ui-display"
+                className=" table border border-stroke font-sf-ui-display"
                 theme={theme}
                 layout={{custom: true}}>
                 {(listData: any) => (
