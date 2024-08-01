@@ -1,7 +1,6 @@
-import { initValidityTime } from "@/consts";
-import { calculateDate, convertToTimeStamp } from "@/utils";
-import { time } from "console";
-import React, { useEffect, useState } from "react";
+import {initValidityTime} from "@/consts";
+import {calculateDate, convertToTimeStamp} from "@/utils";
+import {useEffect, useState} from "react";
 
 function useValidateTime({
     endDate,
@@ -31,7 +30,7 @@ function useValidateTime({
             const timeAble = Math.floor(
                 (convertToTimeStamp(endDate) -
                     convertToTimeStamp(new Date(Date.now()))) /
-                1000
+                    1000
             );
             if (
                 totalTime <= 0 ||
@@ -46,16 +45,16 @@ function useValidateTime({
             const currentAble = Math.floor(
                 (convertToTimeStamp(new Date(Date.now())) -
                     convertToTimeStamp(startDate)) /
-                1000
+                    1000
             );
-            const timeData = calculateDate({ endDate, startDate });
+            const timeData = calculateDate({endDate, startDate});
             const timeAbleHours = timeAble / (60 * 60);
             const currentPercent = (timeAbleHours / totalTimeHours) * 100;
             if (
                 convertToTimeStamp(startDate) <=
                 convertToTimeStamp(new Date(Date.now()))
             ) {
-                setTimeValidity({ ...timeData });
+                setTimeValidity({...timeData});
                 setTimeAble(() => Math.floor(timeAble));
                 setCurrentPercent(() => currentPercent);
                 const timeUse = calculateDate({
@@ -70,7 +69,7 @@ function useValidateTime({
                 convertToTimeStamp(startDate) >
                 convertToTimeStamp(new Date(Date.now()))
             ) {
-                setTimeValidity({ ...timeData });
+                setTimeValidity({...timeData});
                 setTimeAble(() => Math.floor(timeAble));
                 setCurrentPercent(100);
             }

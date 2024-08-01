@@ -69,7 +69,7 @@ const Input: React.FC<PropsInput> = (props) => {
     const defaultClasses = ` ${
         isError ?
             "text-warning border-warning focus:border-warning"
-        :   "border-[#D9D9D9] text-[#000000D9]"
+        :   "border-stroke text-[#000000D9]"
     } flex items-center gap-1 relative bg-white disabled: rounded-sm border text-[14px] focus:!outline-none  focus:!shadow-md w-full ${getSizeClass(
         size
     )}`;
@@ -82,7 +82,7 @@ const Input: React.FC<PropsInput> = (props) => {
     }, [value]);
 
     return (
-        <div>
+        <div className="w-full">
             <label>
                 {label}
                 {require && <span className="text-warning"> &#160;*</span>}{" "}

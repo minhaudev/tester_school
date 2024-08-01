@@ -6,10 +6,13 @@ import "./style.css";
 interface Props {
     minDate?: Date | undefined;
     maxDate?: Date | undefined;
+
     selectsRange?: boolean;
     startDate?: Date | undefined;
     selectedDate?: Date | undefined;
     endDate?: Date | undefined;
+    placeholder?: string;
+
     formatDate?: "dd/MM/yyyy" | "MM/dd/yyyy" | "yyyy/MM/dd";
     isShowIcon?: boolean;
     isShowIconRight?: boolean;
@@ -17,9 +20,10 @@ interface Props {
 }
 export default function Calendar(props: Props) {
     const {
+        selectedDate,
+        placeholder,
         minDate,
         maxDate,
-        selectedDate,
         isShowIcon,
         formatDate,
         isShowIconRight,

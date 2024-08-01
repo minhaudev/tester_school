@@ -3,7 +3,7 @@
 import "./style.css"
 import LayoutContainer from "@/app/LayoutContainer";
 import React, { useState } from "react";
-import { ProductApprovalsData2, ProductApprovalsData3, ProductData } from "@/faker/ProductData";
+import { ProductApprovalsData2, ProductApprovalsData3, nodes } from "@/faker/ProductData";
 import Input from "@/components/atoms/Input";
 import Arrow from "@/assets/svgs/arrow_switch.svg"
 import Trash from "@/assets/svgs/trash_larger.svg"
@@ -41,8 +41,8 @@ import TooltipCustom from "@/components/atoms/Tooltip";
 const tables = {
     "table1": {
         "id": "table1",
-        "data": ProductData,
-        "totalRecords": ProductData.length,
+        "data": nodes,
+        "totalRecords": nodes.length,
     },
     "table2": {
         "id": "table2",

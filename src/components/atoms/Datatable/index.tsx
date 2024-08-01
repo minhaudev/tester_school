@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface DataTableProps {
     tableId: string;
@@ -6,11 +6,15 @@ interface DataTableProps {
     className?: string;
 }
 
-const DataTable: React.FC<DataTableProps> = ({ tableId, children, className }) => {
-
+const DataTable: React.FC<DataTableProps> = ({
+    tableId,
+    children,
+    className
+}) => {
     return (
-
-        <table id={tableId} className={` text-xs table-fixed mt-4 ${className}`}>
+        <table
+            id={tableId}
+            className={` text-xs table-fixed mt-4 ${className}`}>
             {children}
         </table>
     );
