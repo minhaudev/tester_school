@@ -1,4 +1,4 @@
-.th {
+.table th {
     border-left: 1px solid #E4E4E4;
     border-top: 1px solid #E4E4E4;
     font-size: 12px;
@@ -10,7 +10,7 @@
 
 
 /* Table Data  */
-.td {
+.table td {
     border-left: 1px solid #E4E4E4;
     font-size: 13px;
     font-weight: normal;
@@ -19,8 +19,8 @@
     height: 56px;
 }
 
-.th2 {
-    border-bottom: 1px solid ;
+.table2 th {
+    border-bottom: 1px solid;
     border-color: #E4E4E4;
     height: 48px;
     color: #01559B;
@@ -28,10 +28,10 @@
 }
 
 /* Alternative Table Data  */
-.td2 {
+.table2 td {
     font-size: 13px;
     font-weight: normal;
-    border-bottom: 1px solid ;
+    border-bottom: 1px solid;
     border-color: #E4E4E4;
     color: #3A3B3C;
     height: 72px;

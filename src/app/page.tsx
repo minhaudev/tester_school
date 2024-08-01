@@ -9,7 +9,7 @@ import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
 import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import { ToastPosition, ToastType } from "@/enums/ToastEnum";
 import { processFlowData } from "@/faker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LayoutContainer from "./LayoutContainer";
 import TableExample from "./TableExample";
 import ServiceTime from "@/components/atoms/ServiceTime";
@@ -23,7 +23,7 @@ import Paginator from "@/components/molecules/Pagination";
 import Checkbox from "@/components/atoms/Checkbox";
 import { PendingEnum } from "@/enums/PendingEnum";
 import Pending from "@/components/atoms/Pending";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import PropertyPending from "@/components/atoms/PropertyPending";
 import StatusPending from "@/components/atoms/StatusPending";
 import TooltipCustom from "@/components/atoms/Tooltip";
@@ -77,7 +77,7 @@ export default function Home() {
         setValueSelect(e.target.value);
     };
     const [selected, setSelected] = useState("option1");
-    const totalPages = 10;
+    const totalPages = 20;
 
     const { currentPage, handlePageChange } = usePagination({ totalPages });
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -96,6 +96,7 @@ export default function Home() {
 
             <Standard />
             <Paginator
+                buttonDouble
                 length={totalPages}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
@@ -138,7 +139,7 @@ export default function Home() {
                         />
                     }
                     typeFile="image/*"
-                    
+
                     variant="file"
                     color="blue"
                     fileDetails={fileDetails}
@@ -152,7 +153,7 @@ export default function Home() {
                     typeFile={""}>
                     Show Modal
                 </Button>
-                <Modal isOpen={isOpenModal} className="max-w-[1000px]" onClose={handleCloseModal}></Modal>
+                <Modal isOpen={isOpenModal} className="max-w-[500px]" onClose={handleCloseModal}></Modal>
 
                 <Toast
                     time={50000000}
@@ -309,3 +310,7 @@ export default function Home() {
 
     );
 }
+function setIsRedirecting(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+

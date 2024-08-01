@@ -97,52 +97,52 @@ const Product = () => {
                 </div>
             </div>
             <div className="bg-highlight py-4">
-                <DataTable className="w-full text-center" tableId={""} >
+                <DataTable className="w-full text-center table" tableId={""}  >
                     <tr className="bg-white">
-                        <th className={`th w-[55px] border-l-0 `}>
+                        <th className={` w-[55px] border-l-0 `}>
                             No
                         </th>
-                        <th className={`th w-[55px] `}>
+                        <th className={`w-[55px] `}>
                             Type
                         </th>
-                        <th className={`th `}>
+                        <th >
                             Specifications
                         </th>
-                        <th className={`th w-[93px] `}>
+                        <th className={`w-[93px] `}>
                             <div className="flex flex-col">
                                 Total coil
                                 <span className="text-unit">(PCS)</span>
                             </div>
                         </th>
-                        <th className={`th w-[119px]`}>
+                        <th className={`w-[119px]`}>
                             <div className="flex flex-col">
                                 Total weight
                                 <span className="text-unit">(KG)</span>
                             </div>
                         </th>
-                        <th className={`th w-[113px]`}>
+                        <th className={`w-[113px]`}>
                             Prime
                         </th>
-                        <th className={`th w-[158px]`}>
+                        <th className={`w-[158px]`}>
                             Preferred tolerances
                         </th>
-                        <th className={`th w-[120px] `}>
+                        <th className={`w-[120px] `}>
                             <div className="flex flex-col">
                                 Unit price
                                 <span className="text-unit">(PCS)</span>
                             </div>
                         </th>
-                        <th className={`th w-[120px]`}>
+                        <th className={`w-[120px]`}>
                             <div className="flex flex-col">
 
                                 Total price
                                 <span className="text-unit">(VND)</span>
                             </div>
                         </th>
-                        <th className={`th w-[64px]`}>
+                        <th className={`w-[64px]`}>
                             Status
                         </th>
-                        <th className={`th w-[115px]`}>
+                        <th className={`w-[115px]`}>
                             Action
                         </th>
                     </tr>
@@ -154,14 +154,14 @@ const Product = () => {
                             const { value1, value2 } = FormatTolerances(item.preferredTolerances);
                             return (
                                 <tr key={item.id} className="odd:bg-white even:bg-highlight">
-                                    <td className={`td  border-l-0`}>{No}</td>
-                                    <td className={`td `}>
+                                    <td className={` border-l-0`}>{No}</td>
+                                    <td >
                                         <div className="flex justify-center">
                                             <CartReport className="size-6" />
                                         </div>
                                     </td>
-                                    <td className={`td text-start px-2 leading-[15.51px]`}>{item.specifications}</td>
-                                    <td className={`td`} colSpan={2}>
+                                    <td className={`text-start px-2 leading-[15.51px]`}>{item.specifications}</td>
+                                    <td colSpan={2}>
                                         <div className="flex flex-row gap-x-[9px] justify-center">
                                             <Input isDisabled={isInputDisabled[item.id]} value={item.totalCoil} className="max-w-[74px] w-full flex flex-row justify-center" isContentCenter>
                                             </Input>
@@ -173,21 +173,21 @@ const Product = () => {
                                             </Input>
                                         </div>
                                     </td>
-                                    <td className={`td`}>
+                                    <td >
                                         <div className="flex justify-center items-center">
                                             <Input variant="select" optionSelect={primes} isContentCenter={false} className="min-w-[97px]" ></Input>
                                         </div>
                                     </td>
-                                    <td className={`td`}>
+                                    <td >
                                         <div className="px-2">
                                             <GroupInput value1={value1} value2={value2} >
                                             </GroupInput>
                                         </div>
                                     </td>
-                                    <td className={`td`}>
+                                    <td >
                                         <div className="flex justify-center">
                                             <TooltipCustom
-                                                placement="bottom"
+                                                placement="top"
                                                 message="Old price information 31,500 VND"
                                             >
                                                 <p className="hover:cursor-pointer">{formatNumber(item.unitPrice)}</p>
@@ -195,13 +195,13 @@ const Product = () => {
                                         </div>
 
                                     </td>
-                                    <td className={`td`}>  {formatNumber(item.totalPrice)}</td>
-                                    <td className={`td `}>
+                                    <td >  {formatNumber(item.totalPrice)}</td>
+                                    <td >
                                         <div className="flex justify-center">
                                             <Inventory className={`size-5 ${statusClass}`} />
                                         </div>
                                     </td>
-                                    <td className={`td`}>
+                                    <td >
                                         <div className="flex flex-row justify-center gap-2">
                                             {
                                                 item.action.includes("delete") && <Trash className="size-6" />
@@ -240,9 +240,9 @@ const Product = () => {
                 </div>
             </div>
             <div className=" py-4">
-                <DataTable className="w-full text-center" tableId={""} >
+                <DataTable className="w-full text-center table2" tableId={""} >
                     <tr className="bg-white">
-                        <th className={`th2 w-[40px] border-l-0 `}>
+                        <th className={`w-[40px] border-l-0 `}>
                             <Checkbox
                                 description=""
                                 id="allIds"
@@ -251,12 +251,12 @@ const Product = () => {
                                 onChange={() => handleSelectAll(tables.table2.id)}
                             />
                         </th>
-                        <th className={`th2 w-[96px] `}>
+                        <th className={`w-[96px] `}>
                         </th>
-                        <th className={`th2 w-[99px]`}>
+                        <th className={`w-[99px]`}>
                             TickedID
                         </th>
-                        <th className={`th2 w-[216px] `}>
+                        <th className={`w-[216px] `}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table2.id, "status")}>
                                 Status
@@ -266,10 +266,17 @@ const Product = () => {
                                 />
                             </div>
                         </th>
-                        <th className={`th2  `}>
-                            Customer
+                        <th >
+                            <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
+                                onClick={() => handleSort(tables.table2.id, "customer")}
+                            >
+                                Customer
+                                <Sort
+                                    className={`size-4 hover:cursor-pointer`}
+                                />
+                            </div>
                         </th>
-                        <th className={`th2 w-[206px]`}>
+                        <th className={`w-[206px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table2.id, "property")}
                             >
@@ -280,7 +287,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[151px]`}>
+                        <th className={`w-[151px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table2.id, "progresses")}
                             >
@@ -291,7 +298,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[144px]`}>
+                        <th className={`w-[144px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table2.id, "validateService")}
                             >
@@ -303,7 +310,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[119px] `}>
+                        <th className={`w-[119px] `}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table2.id, "validateService")}>
                                 Validity time
@@ -314,7 +321,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[86px] px-[9px]`}>
+                        <th className={`w-[86px] px-[9px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center "
                                 onClick={() => handleSort(tables.table2.id, "createdDateTimestamp")}>
                                 <p className={`text-justify`}> Created date</p>
@@ -324,7 +331,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[87px] px-[9px]`}>
+                        <th className={`w-[87px] px-[9px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center "
                                 onClick={() => handleSort(tables.table2.id, "totalTonnage")}>
 
@@ -344,7 +351,7 @@ const Product = () => {
                                 key={row.id}
                                 className="bg-white">
                                 <td
-                                    className={` td2 flex-col`}>
+                                    className={` flex-col`}>
                                     <Checkbox
                                         description=""
                                         id={row.id}
@@ -353,7 +360,7 @@ const Product = () => {
                                         onChange={() => handleCheckboxChange(tables.table2.id, row.id)}
                                     />
                                 </td>
-                                <td className={` td2 px-0`}>
+                                <td className={` px-0`}>
                                     <div className="flex flex-row justify-around w-full">
                                         <ValidityTime1 className={`size-4`} />
                                         <ValidityTime2 className={`size-4`} />
@@ -361,7 +368,7 @@ const Product = () => {
                                     </div>
                                 </td>
                                 <td
-                                    className={` td2  flex justify-center`}>
+                                    className={`  flex justify-center`}>
                                     <div className="flex flex-col justify-center items-start gap-1">
                                         <p>{row.itemId}</p>
                                         <div className="flex flex-row gap-x-2">
@@ -378,21 +385,21 @@ const Product = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className={`td2`}>
+                                <td >
                                     {row.status == "pending" ? (
                                         <StatusPending isIcon={false} title={row.status} />
                                     ) : (
                                         <StatusPending title={row.status} />
                                     )}
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     {row.customer}
                                 </td>
-                                <td className={`td2 `}>
+                                <td >
                                     <PropertyPending title={row.property} />
                                 </td>
                                 <td
-                                    className={` td2 `}>
+                                >
                                     <div className="flex flex-col items-start">
 
                                         <div className="flex flex-row items-center gap-1">
@@ -408,22 +415,22 @@ const Product = () => {
                                         </a>
                                     </div>
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     <ValidateServiceTime
                                         endDate={row.endDate}
                                         startDate={row.startDate}
                                     />
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     <ValidateValidityTime
                                         endDate={row.endDate}
                                         startDate={row.startDate}
                                     />
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     {FormatTimeHours(row.createdDateTimestamp)}
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     {row.totalTonnage.toLocaleString()}
                                 </td>
                             </tr>
@@ -456,9 +463,9 @@ const Product = () => {
                 </div>
             </div>
             <div className=" py-4">
-                <DataTable className="w-full text-center" tableId={""} >
+                <DataTable className="w-full text-center table2" tableId={""} >
                     <tr className="bg-white">
-                        <th className={`th2 w-[40px] border-l-0 `}>
+                        <th className={`w-[40px] border-l-0 `}>
                             <Checkbox
                                 description=""
                                 id="allIds"
@@ -467,12 +474,12 @@ const Product = () => {
                                 onChange={() => handleSelectAll(tables.table3.id)}
                             />
                         </th>
-                        <th className={`th2 w-[96px] `}>
+                        <th className={`w-[96px] `}>
                         </th>
-                        <th className={`th2 w-[99px]`}>
+                        <th className={`w-[99px]`}>
                             TickedID
                         </th>
-                        <th className={`th2 w-[216px] `}>
+                        <th className={`w-[216px] `}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table3.id, "status")}>
                                 Status
@@ -482,10 +489,10 @@ const Product = () => {
                                 />
                             </div>
                         </th>
-                        <th className={`th2  `}>
+                        <th >
                             Customer
                         </th>
-                        <th className={`th2 w-[206px]`}>
+                        <th className={`w-[206px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table3.id, "property")}
                             >
@@ -496,7 +503,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[151px]`}>
+                        <th className={`w-[151px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table3.id, "progresses")}
                             >
@@ -507,7 +514,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[144px]`}>
+                        <th className={`w-[144px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table3.id, "validateService")}
                             >
@@ -519,7 +526,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[119px] `}>
+                        <th className={`w-[119px] `}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                 onClick={() => handleSort(tables.table3.id, "validateService")}>
                                 Validity time
@@ -530,7 +537,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[86px] px-[9px]`}>
+                        <th className={`w-[86px] px-[9px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center "
                                 onClick={() => handleSort(tables.table3.id, "createdDateTimestamp")}>
                                 <p className={`text-justify`}> Created date</p>
@@ -540,7 +547,7 @@ const Product = () => {
                             </div>
 
                         </th>
-                        <th className={`th2 w-[87px] px-[9px]`}>
+                        <th className={`w-[87px] px-[9px]`}>
                             <div className="hover:cursor-pointer select-none flex flex-row justify-center items-center "
                                 onClick={() => handleSort(tables.table3.id, "totalTonnage")}>
 
@@ -559,7 +566,7 @@ const Product = () => {
                                 key={row.id}
                                 className="bg-white">
                                 <td
-                                    className={` td2 flex-col`}>
+                                    className={` flex-col`}>
                                     <Checkbox
                                         description=""
                                         id={row.id}
@@ -568,7 +575,7 @@ const Product = () => {
                                         onChange={() => handleCheckboxChange(tables.table3.id, row.id)}
                                     />
                                 </td>
-                                <td className={` td2 px-0`}>
+                                <td className={` px-0`}>
                                     <div className="flex flex-row justify-around w-full">
                                         <ValidityTime1 className={`size-4`} />
                                         <ValidityTime2 className={`size-4`} />
@@ -576,7 +583,7 @@ const Product = () => {
                                     </div>
                                 </td>
                                 <td
-                                    className={` td2  flex justify-center`}>
+                                    className={`  flex justify-center`}>
                                     <div className="flex flex-col justify-center items-start gap-1">
                                         <p>{row.itemId}</p>
                                         <div className="flex flex-row gap-x-2">
@@ -594,21 +601,21 @@ const Product = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td className={`td2`}>
+                                <td >
                                     {row.status == "pending" ? (
                                         <StatusPending isIcon={false} title={row.status} />
                                     ) : (
                                         <StatusPending title={row.status} />
                                     )}
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     {row.customer}
                                 </td>
-                                <td className={`td2 `}>
+                                <td >
                                     <PropertyPending title={row.property} />
                                 </td>
                                 <td
-                                    className={` td2 `}>
+                                >
                                     <div className="flex flex-col items-start">
                                         <div className="flex flex-row items-center gap-1">
                                             <TimeFill
@@ -623,22 +630,22 @@ const Product = () => {
                                         </a>
                                     </div>
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     <ValidateServiceTime
                                         endDate={row.endDate}
                                         startDate={row.startDate}
                                     />
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     <ValidateValidityTime
                                         endDate={row.endDate}
                                         startDate={row.startDate}
                                     />
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     {FormatTimeHours(row.createdDateTimestamp)}
                                 </td>
-                                <td className={` td2`}>
+                                <td >
                                     {row.totalTonnage.toLocaleString()}
                                 </td>
                             </tr>
