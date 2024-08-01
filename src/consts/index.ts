@@ -7,6 +7,31 @@ export const initValidityTime = {
     secondTime: 0
 };
 
+export const tableColumns = (arrColumns: string[]) => `
+          --data-table-library_grid-template-columns: ${arrColumns.join(" ")};
+        `;
+const calculateFix = (arrColumns: string[], numberOf: number) => {
+    let calcString = "";
+    for (var i = 0; i < numberOf - 1; i++) {
+        calcString += ` ${arrColumns[i]} +`;
+    }
+    return calcString.slice(0, -2);
+};
+export const formatColumns = (arrColumns: string[], fixColumns: number) => {
+    if (!fixColumns) return;
+    let columnFixed = `&:nth-of-type(1) {
+    z-index:10;
+  left: 0px;
+}`;
+    for (var i = 2; i <= fixColumns; i++) {
+        columnFixed += `&:nth-of-type(${i}) {
+        z-index: 10 ;
+        left: calc(${calculateFix(arrColumns, i)});
+      }`;
+    }
+    return columnFixed;
+};
+
 export const styleProcessItem = (state: stateProcess) =>
     ({
         [stateProcess.NONE]: {

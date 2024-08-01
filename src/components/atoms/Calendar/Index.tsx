@@ -34,9 +34,10 @@ const parseDate = (
 
 export default function Calendar(props: Props) {
     const {
+        selectedDate,
+        placeholder,
         minDate,
         maxDate,
-        selectedDate,
         isShowIcon,
         formatDate,
         isShowIconRight,
