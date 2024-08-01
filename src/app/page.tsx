@@ -98,7 +98,7 @@ export default function Home() {
         "11%",
         "6%",
         "8%",
-        "6%",
+        "8%",
         "264px",
         "264px",
         "8%",
