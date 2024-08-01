@@ -1,10 +1,14 @@
 .table {
-    table-layout: fixed;
     resize: none;
+    table-layout: fixed;
 }
 th,
 td {
     border-right: 1px solid #e4e4e4;
+    cursor: default !important;
+}
+.css-nwdtn5-area {
+    display: none;
 }
 th > div {
     display: flex;
