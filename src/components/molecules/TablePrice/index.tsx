@@ -175,7 +175,7 @@ const TablePrice = ({
                                     resize
                                     pinLeft
                                     className="border-r border-stroke">
-                                    <div className="flex-col w-[78px]">
+                                    <div className="flex-col w-full">
                                         <div
                                             className="hover:cursor-pointer select-none flex flex-row justify-center items-center gap-x-1"
                                             onClick={() =>
@@ -192,6 +192,7 @@ const TablePrice = ({
                                 </HeaderCell>
                                 <HeaderCell
                                     resize
+                                    pinLeft
                                     stiff
                                     className="border-r border-stroke  ">
                                     <div className="flex flex-col w-[264px]  ">
