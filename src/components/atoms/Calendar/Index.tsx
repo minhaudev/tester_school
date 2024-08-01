@@ -5,12 +5,12 @@ import DatePicker from "react-datepicker";
 import "./style.css";
 
 interface Props {
-    minDate?: string | undefined;
-    maxDate?: string | undefined;
+    minDate?: string;
+    maxDate?: string;
     selectsRange?: boolean;
-    startDate?: Date | undefined;
-    selectedDate?: Date | undefined;
-    endDate?: Date | undefined;
+    startDate?: Date | null;
+    selectedDate?: Date | null;
+    endDate?: Date | null;
     formatDate?: "dd/MM/yyyy" | "MM/dd/yyyy" | "yyyy/MM/dd";
     isShowIcon?: boolean;
     isShowIconRight?: boolean;
@@ -20,7 +20,7 @@ interface Props {
 const parseDate = (
     dateString: string,
     format: "dd/MM/yyyy" | "MM/dd/yyyy" | "yyyy/MM/dd"
-) => {
+): Date => {
     let year, month, day;
     if (format === "dd/MM/yyyy") {
         [day, month, year] = dateString.split("/");
@@ -60,7 +60,6 @@ export default function Calendar(props: Props) {
 
     registerLocale("custom", customLocale as any);
 
-    // Kiểm tra formatDate không phải là undefined
     const parsedMinDate =
         minDate && formatDate ? parseDate(minDate, formatDate) : undefined;
     const parsedMaxDate =
@@ -75,8 +74,8 @@ export default function Calendar(props: Props) {
                 selected={selectedDate ?? null}
                 showIcon={isShowIcon}
                 onChange={onChange}
-                startDate={startDate}
-                endDate={endDate}
+                startDate={startDate ?? undefined}
+                endDate={endDate ?? undefined}
                 selectsRange={selectsRange as true}
                 dateFormat={formatDate}
                 locale="custom"

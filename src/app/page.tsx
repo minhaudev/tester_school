@@ -15,14 +15,16 @@ export default function Home() {
     const handleFileDetailsChange = (details: any) => {
         setFileDetails(details);
     };
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+    // Initialize startDate and endDate to undefined
+    // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
     // const onChange = (date: Date | null) => {
     //     setSelectedDate(date);
     // };
-    const [startDate, setStartDate] = useState<Date | undefined>(new Date());
-    const [endDate, setEndDate] = useState<Date | undefined>();
-    const onChange = (dates: any) => {
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [endDate, setEndDate] = useState<Date | null>(null);
+    const onChange = (dates: [Date | null, Date | null]) => {
         const [start, end] = dates;
         setStartDate(start);
         setEndDate(end);
@@ -44,7 +46,7 @@ export default function Home() {
                 endDate={endDate}
                 startDate={startDate}
                 // selectedDate={selectedDate}
-                formatDate="yyyy/MM/dd"
+                formatDate="dd/MM/yyyy"
                 onChange={onChange}
                 isShowIcon={true}
                 selectsRange={true}
