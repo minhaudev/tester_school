@@ -1,6 +1,5 @@
 // hooks/useTableSelection.ts
 import { useState, useCallback } from 'react';
-import { ProductData, ProductApprovalsData } from '@/faker/ProductData';
 
 // Define the type for table data
 type TableData = { id: string }[];
