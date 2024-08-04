@@ -104,7 +104,7 @@ function useValidateTime({
         timeValidity,
         currentPercent,
         totalTimeHours,
-        totalTime: calculateDate({ endDate, startDate, isTotal: true }),
+        totalTime: calculateDate({endDate, startDate, isTotal: true}),
         setEnd,
         end,
         timeUsed

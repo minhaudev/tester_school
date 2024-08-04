@@ -32,13 +32,13 @@ function IconProcess({
                                 return onChangeState(id);
                             }
                         }}
-                        className={`rounded-full  ${stateProcess.NONE === state ? "disabled cursor-not-allowed" : "cursor-pointer"} w-[48px] h-[48px] flex items-center justify-center border-[0.5px] ${
+                        className={`rounded-full  ${stateProcess.NONE === state ? "disabled cursor-not-allowed" : "cursor-pointer"} w-[48px] h-[48px] p-1 flex items-center justify-center border-[0.5px] ${
                             stateProcess.ACTIVE === state ?
                                 "border-secondary"
                             :   "border-unit"
                         }`}>
                         <div
-                            className={`w-[39px] h-[39px] rounded-full  ${styleProcessItems.bg} 
+                            className={`w-full h-full  rounded-full  ${styleProcessItems.bg} 
           flex items-center justify-center
           `}>
                             <IconComponent

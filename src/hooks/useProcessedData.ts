@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
-import useValidateTime from './useValidateTime';
+import {useCallback} from "react";
+import useValidateTime from "./useValidateTime";
 
 const isValidDate = (dateString: string): boolean => {
     const date = new Date(dateString);
@@ -15,7 +15,10 @@ const useProcessedData = () => {
         let startDate = new Date();
         let endDate = new Date();
 
-        if (isValidDate(row.serviceTime.startDate) && isValidDate(row.serviceTime.endDate)) {
+        if (
+            isValidDate(row.serviceTime.startDate) &&
+            isValidDate(row.serviceTime.endDate)
+        ) {
             startDate = new Date(Date.parse(row.serviceTime.startDate));
             endDate = new Date(Date.parse(row.serviceTime.endDate));
         } else {
@@ -30,7 +33,7 @@ const useProcessedData = () => {
             createdDateTimestamp: convertToTimeStamp(new Date(Date.parse(row.createdDate))),
             validateService: timeAble,
             startDate,
-            endDate,
+            endDate
         };
     }, []);
 
@@ -45,7 +48,7 @@ const useProcessedData = () => {
         return data.map(row => processRow(row, validateService));
     }, [processRow, validateService]);
 
-    return { processData };
+    return {processData};
 };
 
 export default useProcessedData;
