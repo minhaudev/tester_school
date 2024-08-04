@@ -1,6 +1,6 @@
-import {initValidityTime} from "@/consts";
-import {calculateDate, convertToTimeStamp} from "@/utils";
-import {useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
+import { initValidityTime } from "@/consts";
+import { calculateDate, convertToTimeStamp } from "@/utils";
 
 function useValidateTime({
     endDate,
@@ -22,15 +22,17 @@ function useValidateTime({
     const [currentPercent, setCurrentPercent] = useState(0);
     const [timeCurrent, setTimeCurrent] = useState(initValidityTime);
     const [end, setEnd] = useState(false);
+
     const totalTime =
         convertToTimeStamp(endDate) - convertToTimeStamp(startDate);
     const totalTimeHours = totalTime / (1000 * 60 * 60);
-    const updateTime = () => {
+
+    const updateTime = useCallback(() => {
         try {
             const timeAble = Math.floor(
                 (convertToTimeStamp(endDate) -
                     convertToTimeStamp(new Date(Date.now()))) /
-                    1000
+                1000
             );
             if (
                 totalTime <= 0 ||
@@ -45,16 +47,16 @@ function useValidateTime({
             const currentAble = Math.floor(
                 (convertToTimeStamp(new Date(Date.now())) -
                     convertToTimeStamp(startDate)) /
-                    1000
+                1000
             );
-            const timeData = calculateDate({endDate, startDate});
+            const timeData = calculateDate({ endDate, startDate });
             const timeAbleHours = timeAble / (60 * 60);
             const currentPercent = (timeAbleHours / totalTimeHours) * 100;
             if (
                 convertToTimeStamp(startDate) <=
                 convertToTimeStamp(new Date(Date.now()))
             ) {
-                setTimeValidity({...timeData});
+                setTimeValidity({ ...timeData });
                 setTimeAble(() => Math.floor(timeAble));
                 setCurrentPercent(() => currentPercent);
                 const timeUse = calculateDate({
@@ -69,14 +71,15 @@ function useValidateTime({
                 convertToTimeStamp(startDate) >
                 convertToTimeStamp(new Date(Date.now()))
             ) {
-                setTimeValidity({...timeData});
+                setTimeValidity({ ...timeData });
                 setTimeAble(() => Math.floor(timeAble));
                 setCurrentPercent(100);
             }
         } catch (error) {
             return;
         }
-    };
+    }, [endDate, startDate, totalTime, totalTimeHours]);
+
     useEffect(() => {
         setEnd(false);
         if (timeAble > 0) {
@@ -88,12 +91,14 @@ function useValidateTime({
                 setCurrentPercent(() => 0);
                 setTimeValidity(initValidityTime);
                 setEnd(true);
+                if (onEnd) onEnd(); // Call the onEnd callback if provided
                 return;
             }
             updateTime();
         }, 1000);
         return () => clearInterval(intervalId);
-    }, [timeAble, endDate, startDate, totalTimeHours, totalTime]);
+    }, [timeAble, updateTime, onEnd]);
+
     return {
         timeAble,
         timeValidity,

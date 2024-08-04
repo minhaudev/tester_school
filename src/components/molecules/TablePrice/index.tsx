@@ -7,11 +7,10 @@ import Trash from "@/assets/svgs/trash_bin.svg";
 import WarningPrice from "@/assets/svgs/warning_price.svg";
 import Wrench from "@/assets/svgs/wrench.svg";
 import Input from "@/components/atoms/Input";
-import {formatColumns, tableColumns} from "@/consts";
-import {ProductData} from "@/faker/ProductData";
-import {formatPrice, FormatTolerances} from "@/utils";
+import { formatColumns, tableColumns } from "@/consts";
+import { formatPrice, FormatTolerances } from "@/utils";
 
-import {TypeStatus} from "@/enums/TypeStatusEnum";
+import { TypeStatus } from "@/enums/TypeStatusEnum";
 import {
     Body,
     Cell,
@@ -21,18 +20,18 @@ import {
     Row,
     Table
 } from "@table-library/react-table-library/table";
-import {useTheme} from "@table-library/react-table-library/theme";
-import {useState} from "react";
+import { useTheme } from "@table-library/react-table-library/theme";
+import { useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
-import GroupInput from "../GroupInput/GroupInput";
-import {nodes} from "@/faker/ProductData";
+import { nodes } from "@/faker/ProductData";
 import "./styles.css";
 import TooltipCustom from "@/components/atoms/Tooltip";
-import {StatusEnum} from "@/enums/StatusNum";
-import {colorStatus} from "@/hooks/useColorStatus";
+import { StatusEnum } from "@/enums/StatusNum";
+import { colorStatus } from "@/hooks/useColorStatus";
+import GroupInput from "../GroupInput";
 
 const TablePrice = () => {
-    const data = {nodes};
+    const data = { nodes };
     const [isInputDisabled, setInputDisabled] = useState<
         Record<string, boolean>
     >({});
@@ -66,9 +65,9 @@ const TablePrice = () => {
         Table: tableColumns(arrColumn),
         BaseCell: formatColumns(arrColumn, numberOfColumnFixed)
     });
-    const [products, setProduct] = useState(() => ProductData);
-    const onChangePrice = ({id, key, value}: any) => {
-        const productDataClone = {...products};
+    const [products, setProduct] = useState(() => nodes);
+    const onChangePrice = ({ id, key, value }: any) => {
+        const productDataClone = { ...products };
         const findProductById = productDataClone.findIndex(
             (item: any) => item.id === id
         );
@@ -79,7 +78,7 @@ const TablePrice = () => {
                 data={data}
                 className="border border-stroke font-sf-ui-display"
                 theme={theme}
-                layout={{custom: true}}>
+                layout={{ custom: true }}>
                 {(listData: any) => (
                     <>
                         <Header>
@@ -228,7 +227,7 @@ const TablePrice = () => {
                                 const no = `${index < 10 ? "0" : ""}${index}`;
                                 const statusClass =
                                     colorStatus[item.status as StatusEnum];
-                                const {value1, value2} = FormatTolerances(
+                                const { value1, value2 } = FormatTolerances(
                                     item.preferredTolerances
                                 );
                                 return (
@@ -244,8 +243,8 @@ const TablePrice = () => {
                                             )}
                                             {item.type ===
                                                 TypeStatus.ORIGINAL && (
-                                                <CartReport className="size-6" />
-                                            )}
+                                                    <CartReport className="size-6" />
+                                                )}
                                         </Cell>
                                         <Cell pinLeft>
                                             {item.specifications}
@@ -257,7 +256,7 @@ const TablePrice = () => {
                                                     <Input
                                                         isDisabled={
                                                             isInputDisabled[
-                                                                item.id
+                                                            item.id
                                                             ]
                                                         }
                                                         value={item.totalCoil}
@@ -280,7 +279,7 @@ const TablePrice = () => {
                                                     <Input
                                                         isDisabled={
                                                             !isInputDisabled[
-                                                                item.id
+                                                            item.id
                                                             ]
                                                         }
                                                         value={formatPrice(

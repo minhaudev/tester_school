@@ -1,2 +1,2 @@
-export * from "./Navigation";
-export * from "./ProcessFlow";
+export * from "./navigation"
+export * from "./processFlow"

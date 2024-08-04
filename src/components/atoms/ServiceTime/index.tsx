@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import TimeFill from "@/assets/svgs/Time_fill.svg";
-import HouseGlass from "@/assets/svgs/Hour_glass.svg";
+import TimeFill from "@/assets/svgs/time_fill.svg";
+import HouseGlass from "@/assets/svgs/hour_glass.svg";
 import { StatusTimeEnum } from "@/enums/StatusTimeEnum";
 import useValidateTime from "@/hooks/useValidateTime";
 import FormatTime from "../FormatTime";
-import { calculateDate, convertToTimeStamp } from "@/utils";
+import { convertToTimeStamp } from "@/utils";
 
 interface ServiceTimeProps {
     endDate: Date;

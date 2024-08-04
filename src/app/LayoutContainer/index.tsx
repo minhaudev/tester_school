@@ -2,9 +2,9 @@
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/atoms/Footer";
 import Navigation from "@/components/molecules/Navigation";
-import { NavigationType } from "@/interfaces";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { NavigationType } from "@/interfaces";
 interface LayoutContainerProps {
     isNav?: boolean;
     isHeader?: boolean;
@@ -32,6 +32,7 @@ export default function LayoutContainer({
     if (isLoading) return null;
 
     return (
+
         <div className="flex">
             {isNav && (
                 <Navigation

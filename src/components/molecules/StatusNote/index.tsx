@@ -2,7 +2,7 @@
 import MessengerSuccess from "@/assets/svgs/Messenger_success.svg";
 import MessengerNomal from "@/assets/svgs/Messenger_nomal.svg";
 import MessengerWarning from "@/assets/svgs/Messenger_warning.svg";
-import {StatusEnum} from "@/enums/StatusNum";
+import { StatusEnum } from "@/enums/StatusNum";
 
 interface StatusColors {
     icon: React.ReactNode;
@@ -33,10 +33,16 @@ export const statusColors: Record<StatusEnum, StatusColors> = {
         background: "bg-warning",
         border: "border-warning",
         textClass: "text-red" // Use Tailwind class name
+    },
+    [StatusEnum.Error]: {
+        icon: <MessengerWarning />,
+        background: "bg-warning",
+        border: "border-warning",
+        textClass: "text-red" // Use Tailwind class name
     }
 };
-const StatusNote = ({type, description}: StatusNoteProps) => {
-    const {icon, background, textClass, border} = statusColors[type]; // Destructure colors
+const StatusNote = ({ type, description }: StatusNoteProps) => {
+    const { icon, background, textClass, border } = statusColors[type]; // Destructure colors
 
     return (
         <div

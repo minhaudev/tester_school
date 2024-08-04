@@ -1,6 +1,4 @@
-import { convertToTimeStamp } from '@/utils/FormatDate';
 import { useState, useEffect, useCallback } from 'react';
-import useValidateTime from './useValidateTime';
 
 // Define types for sort configuration and sort directions
 type SortDirection = 'asc' | 'desc';
@@ -13,26 +11,28 @@ interface SortConfig {
 }
 const getInitialSortConfig = (): SortConfig => {
     try {
-        const savedSortConfig = localStorage.getItem('sortConfig');
-        if (savedSortConfig) {
-            const parsedConfig = JSON.parse(savedSortConfig);
-            if (parsedConfig && typeof parsedConfig === 'object') {
-                // Ensure the parsedConfig matches the SortConfig type
-                return Object.keys(parsedConfig).reduce((acc, key) => {
-                    if (Array.isArray(parsedConfig[key])) {
-                        acc[key] = parsedConfig[key].filter((item: any) =>
-                            typeof item.key === 'string' &&
-                            (item.direction === 'asc' || item.direction === 'desc')
-                        );
-                    }
-                    return acc;
-                }, {} as SortConfig);
+        if (typeof window !== "undefined") {
+            const savedSortConfig = localStorage.getItem('sortConfig');
+            if (savedSortConfig) {
+                const parsedConfig = JSON.parse(savedSortConfig);
+                if (parsedConfig && typeof parsedConfig === 'object') {
+                    // Ensure the parsedConfig matches the SortConfig type
+                    return Object.keys(parsedConfig).reduce((acc, key) => {
+                        if (Array.isArray(parsedConfig[key])) {
+                            acc[key] = parsedConfig[key].filter((item: any) =>
+                                typeof item.key === 'string' &&
+                                (item.direction === 'asc' || item.direction === 'desc')
+                            );
+                        }
+                        return acc;
+                    }, {} as SortConfig);
+                }
             }
         }
     } catch (error) {
         console.error('Failed to parse sort configuration from local storage:', error);
     }
-    return {}; 
+    return {};
 };
 export function useTableSorting(initialSortConfig: SortConfig = {}) {
 

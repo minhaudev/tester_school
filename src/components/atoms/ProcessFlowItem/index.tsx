@@ -1,4 +1,4 @@
-import {ProcessFlowProps, stateProcess} from "@/interfaces";
+import { ProcessFlowProps, stateProcess } from "@/interfaces";
 import IconProcess from "./IconProcess";
 import {styleProcessItem} from "@/consts";
 function ProcessFlowItem({

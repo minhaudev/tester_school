@@ -10,7 +10,6 @@ import Trash from "@/assets/svgs/trash_larger.svg"
 import CartReport from "@/assets/svgs/cart_report.svg"
 import Wrench from "@/assets/svgs/wrench.svg"
 import Inventory from "@/assets/svgs/inventory.svg"
-import { formatNumber } from "@/utils/FormatNumber";
 import PaginationSelect from "@/components/molecules/Pagination/Select";
 import Checkbox from "@/components/atoms/Checkbox";
 import Sort from "@/assets/svgs/Sort_arrow.svg";
@@ -27,8 +26,7 @@ import DataTable from "@/components/atoms/Datatable";
 import useTableSelection from "@/hooks/useTableSelection";
 import { useTableSorting } from "@/hooks/useTableSort";
 import useTablePagination from "@/hooks/useTablePagination";
-import { FormatTolerances } from "@/utils/FormatTolerances";
-import { FormatTimeHours } from "@/utils/FormatDate";
+import { FormatTolerances, FormatNumber, FormatIndex, FormatTimeHours } from "@/utils";
 import useProcessedData from "@/hooks/useProcessedData";
 import { colorStatus } from "@/hooks/useColorStatus";
 import { StatusEnum } from "@/enums/StatusNum";
@@ -149,8 +147,8 @@ const Product = () => {
                     {
                         tables.table1.data.map((item, index) => {
                             index += 1
-                            const No = `${index < 10 ? '0' : ''}${index}`
                             const statusClass = colorStatus[item.status as StatusEnum];
+                            const No = FormatIndex(index, tables.table1.data.length)
                             const { value1, value2 } = FormatTolerances(item.preferredTolerances);
                             return (
                                 <tr key={item.id} className="odd:bg-white even:bg-highlight">
@@ -162,19 +160,19 @@ const Product = () => {
                                     </td>
                                     <td className={`text-start px-2 leading-[15.51px]`}>{item.specifications}</td>
                                     <td colSpan={2}>
-                                        <div className="flex flex-row gap-x-[9px] justify-center">
-                                            <Input isDisabled={isInputDisabled[item.id]} value={item.totalCoil} className="max-w-[74px] w-full flex flex-row justify-center" isContentCenter>
+                                        <div className="flex flex-row gap-x-[9px] justify-center px-2">
+                                            <Input isDisabled={isInputDisabled[item.id]} value={item.totalCoil} className="w-full flex flex-row justify-center" isContentCenter>
                                             </Input>
                                             <div className="flex flex-row justify-center items-center">
                                                 <Arrow className="w-4 h-4 text-gray-10 hover:cursor-pointer hover:opacity-80"
                                                     onClick={() => changeInputDisabled(item.id)} />
                                             </div>
-                                            <Input isDisabled={!isInputDisabled[item.id]} value={formatNumber(Number(item.totalWeight))} className="max-w-[74px] w-full flex flex-row justify-center" isContentCenter>
+                                            <Input isDisabled={!isInputDisabled[item.id]} value={FormatNumber(Number(item.totalWeight))} className=" w-full flex flex-row justify-center" isContentCenter>
                                             </Input>
                                         </div>
                                     </td>
                                     <td >
-                                        <div className="flex justify-center items-center">
+                                        <div className="flex justify-center items-center px-2">
                                             <Input variant="select" optionSelect={primes} isContentCenter={false} className="min-w-[97px]" ></Input>
                                         </div>
                                     </td>
@@ -190,12 +188,12 @@ const Product = () => {
                                                 placement="top"
                                                 message="Old price information 31,500 VND"
                                             >
-                                                <p className="hover:cursor-pointer">{formatNumber(item.unitPrice)}</p>
+                                                <p className="hover:cursor-pointer">{FormatNumber(item.unitPrice)}</p>
                                             </TooltipCustom>
                                         </div>
 
                                     </td>
-                                    <td >  {formatNumber(item.totalPrice)}</td>
+                                    <td >  {FormatNumber(item.totalPrice)}</td>
                                     <td >
                                         <div className="flex justify-center">
                                             <Inventory className={`size-5 ${statusClass}`} />
@@ -386,11 +384,7 @@ const Product = () => {
                                     </div>
                                 </td>
                                 <td >
-                                    {row.status == "pending" ? (
-                                        <StatusPending isIcon={false} title={row.status} />
-                                    ) : (
-                                        <StatusPending title={row.status} />
-                                    )}
+                                    <StatusPending title={row.status} />
                                 </td>
                                 <td >
                                     {row.customer}
@@ -602,11 +596,7 @@ const Product = () => {
                                     </div>
                                 </td>
                                 <td >
-                                    {row.status == "pending" ? (
-                                        <StatusPending isIcon={false} title={row.status} />
-                                    ) : (
-                                        <StatusPending title={row.status} />
-                                    )}
+                                    <StatusPending title={row.status} />
                                 </td>
                                 <td >
                                     {row.customer}

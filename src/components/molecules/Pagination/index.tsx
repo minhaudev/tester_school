@@ -1,16 +1,11 @@
 // Paginator.tsx
 "use client";
 
-import React, {useEffect} from "react";
 
-import ExpandLeft from "@/assets/svgs/Expand_left.svg";
-import ExpandRight from "@/assets/svgs/Expand_right.svg";
-import ExpandLeftLight from "@/assets/svgs/Expand_left_light.svg";
-import ExpandRightLight from "@/assets/svgs/Expand_right_light.svg";
-import ExpandLeftDouble from "@/assets/svgs/Expand_left_double.svg";
-import ExpandRightDouble from "@/assets/svgs/Expand_right_double.svg";
-import ExpandLeftDoubleLight from "@/assets/svgs/Expand_left_double_light.svg";
-import ExpandRightDoubleLight from "@/assets/svgs/Expand_right_double_light.svg";
+import ExpandLeft from "@/assets/svgs/expand_left.svg";
+import ExpandRight from "@/assets/svgs/expand_right.svg";
+import ExpandLeftDouble from "@/assets/svgs/expand_left_double.svg";
+import ExpandRightDouble from "@/assets/svgs/expand_right_double.svg";
 
 interface PaginatorProps {
     length: number;
@@ -26,7 +21,7 @@ const Paginator = ({
     onPageChange
 }: PaginatorProps) => {
 
-    const pageNumbers = Array.from({length}, (_, i) => i + 1);
+    const pageNumbers = Array.from({ length }, (_, i) => i + 1);
     const count = 3;
     const getPaginationButtons = () => {
         if (length <= 5) {
@@ -35,11 +30,10 @@ const Paginator = ({
                     key={page}
                     type="button"
                     onClick={() => onPageChange(page)}
-                    className={`flex justify-center items-center text-input w-[25px] h-[25px] text-[13px] rounded-[3px] focus:outline-none ${
-                        page === currentPage ?
-                            "bg-blue-bold text-white"
-                        :   "bg-gray-200 text-gray-800 hover:bg-gray-100 dark:bg-neutral-600 dark:hover:bg-neutral-500"
-                    }`}
+                    className={`flex justify-center items-center text-input w-[25px] h-[25px] text-[13px] rounded-[3px] focus:outline-none ${page === currentPage ?
+                        "bg-blue-bold text-white"
+                        : "bg-gray-200 text-gray-800 hover:bg-gray-100 dark:bg-neutral-600 dark:hover:bg-neutral-500"
+                        }`}
                     aria-current={page === currentPage ? "page" : undefined}>
                     {page}
                 </button>
@@ -49,7 +43,7 @@ const Paginator = ({
         const firstPages =
             currentPage > 3 && currentPage < length - count + 1 ?
                 pageNumbers.slice(currentPage - count, currentPage)
-            :   pageNumbers.slice(0, count);
+                : pageNumbers.slice(0, count);
         const lastPages = pageNumbers.slice(-count);
 
         const middlePages = (
@@ -69,11 +63,10 @@ const Paginator = ({
                         key={page}
                         type="button"
                         onClick={() => onPageChange(page)}
-                        className={`flex justify-center items-center w-[25px] h-[25px] text-[13px] rounded-[3px] focus:outline-none ${
-                            page === currentPage ?
-                                "bg-blue-bold text-white"
-                            :   "bg-gray-200 text-input hover:bg-gray-100 dark:bg-neutral-600 dark:hover:bg-neutral-500"
-                        }`}
+                        className={`flex justify-center items-center w-[25px] h-[25px] text-[13px] rounded-[3px] focus:outline-none ${page === currentPage ?
+                            "bg-blue-bold text-white"
+                            : "bg-gray-200 text-input hover:bg-gray-100 dark:bg-neutral-600 dark:hover:bg-neutral-500"
+                            }`}
                         aria-current={
                             page === currentPage ? "page" : undefined
                         }>
@@ -88,11 +81,10 @@ const Paginator = ({
                         key={page}
                         type="button"
                         onClick={() => onPageChange(page)}
-                        className={`flex justify-center items-center w-[25px] h-[25px] text-[13px] rounded-[3px] focus:outline-none ${
-                            page === currentPage ?
-                                "bg-blue-bold text-white"
-                            :   "bg-gray-200 text-input hover:bg-gray-100 dark:bg-neutral-600 dark:hover:bg-neutral-500"
-                        }`}
+                        className={`flex justify-center items-center w-[25px] h-[25px] text-[13px] rounded-[3px] focus:outline-none ${page === currentPage ?
+                            "bg-blue-bold text-white"
+                            : "bg-gray-200 text-input hover:bg-gray-100 dark:bg-neutral-600 dark:hover:bg-neutral-500"
+                            }`}
                         aria-current={
                             page === currentPage ? "page" : undefined
                         }>
@@ -113,9 +105,7 @@ const Paginator = ({
                             onClick={() => onPageChange(1)}
                             disabled={currentPage === 1}
                             className="inline-flex justify-center items-center gap-x-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                            {currentPage === 1 ?
-                                <ExpandLeftDoubleLight />
-                            :   <ExpandLeftDouble />}
+                            <ExpandLeftDouble className={`${currentPage == 1 ? "text-gray" : "text-text"}`} />
                         </button>
                     )}
                     <button
@@ -123,9 +113,7 @@ const Paginator = ({
                         onClick={() => onPageChange(currentPage - 1)}
                         disabled={currentPage === 1}
                         className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                        {currentPage === 1 ?
-                            <ExpandLeftLight />
-                        :   <ExpandLeft />}
+                        <ExpandLeft className={`${currentPage == 1 ? "text-gray" : "text-text"}`} />
                     </button>
                 </div>
                 <div className="flex gap-x-2">{getPaginationButtons()}</div>
@@ -135,9 +123,7 @@ const Paginator = ({
                         onClick={() => onPageChange(currentPage + 1)}
                         disabled={currentPage === length}
                         className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                        {currentPage === length ?
-                            <ExpandRightLight />
-                        :   <ExpandRight />}
+                        <ExpandRight className={`${currentPage == length ? "text-gray" : "text-text"}`} />
                     </button>
                     {buttonDouble && (
                         <button
@@ -145,9 +131,7 @@ const Paginator = ({
                             onClick={() => onPageChange(length)}
                             disabled={currentPage === length}
                             className="inline-flex justify-center items-center gap-x-2 rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:pointer-events-none">
-                            {currentPage === length ?
-                                <ExpandRightDoubleLight />
-                            :   <ExpandRightDouble />}
+                            <ExpandRightDouble className={`${currentPage == length ? "text-gray" : "text-text"}`} />
                         </button>
                     )}
                 </div>

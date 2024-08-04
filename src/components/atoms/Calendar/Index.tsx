@@ -1,6 +1,5 @@
-import React from "react";
-import {registerLocale} from "react-datepicker";
-import {enGB} from "date-fns/locale";
+import { registerLocale } from "react-datepicker";
+import { enGB } from "date-fns/locale";
 import DatePicker from "react-datepicker";
 import "./style.css";
 
@@ -35,7 +34,6 @@ const parseDate = (
 export default function Calendar(props: Props) {
     const {
         selectedDate,
-        placeholder,
         minDate,
         maxDate,
         isShowIcon,

@@ -4,13 +4,13 @@ import Bell from "@/assets/svgs/Bell.svg";
 import User from "@/assets/svgs/user_1.svg";
 import DropsDown from "@/components/atoms/Dropdown";
 import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";
-import {dataOrderNotice} from "@/faker/OrderNotice";
-import {Notice} from "@/interfaces/Notice";
-import {formatNotice} from "@/utils";
+import { dataOrderNotice } from "@/faker/OrderNotice";
+import { FormatNotice } from "@/utils";
 import Link from "next/link";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../../app/globals.css";
 import Image from "next/image";
+import { Notice } from "@/interfaces/notice";
 
 interface NoticeResponse {
     total?: number;
@@ -90,9 +90,9 @@ export default function Header() {
                                 <span
                                     onClick={handleNotice}
                                     className="absolute select-none cursor-pointer rounded-full ml-3 z-10 px-[4px] text-[8px] text-white bg-red">
-                                    {formatNotice(notices?.total ?? 0)}
+                                    {FormatNotice(notices?.total ?? 0)}
                                 </span>
-                            :   ""}
+                                : ""}
 
                             <Bell
                                 className="w-6 h-6 cursor-pointer select-none"

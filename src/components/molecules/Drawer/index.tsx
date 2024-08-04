@@ -1,8 +1,7 @@
-import React, {ReactNode} from "react";
+import { ReactNode } from "react";
 import Delete from "@/assets/svgs/Close_round_light.svg";
-import {twMerge} from "tailwind-merge";
+import { twMerge } from "tailwind-merge";
 import "./style.css";
-import GroupInput from "../GroupInput/GroupInput";
 
 interface Props {
     positionContent?: "Top_Left" | "Top_Right" | "Top" | "Bottom";

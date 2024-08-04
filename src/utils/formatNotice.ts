@@ -1,4 +1,4 @@
-export const formatNotice = (number: number): string => {
+export const FormatNotice = (number: number): string => {
     if (!number) return "";
     if (number >= 100) {
         return "99+";

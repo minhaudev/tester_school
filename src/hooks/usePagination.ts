@@ -1,28 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 interface UsePaginationProps {
     initialPage?: number;
     totalPages: number;
 }
 
-export const usePagination = ({ initialPage = 1, totalPages }: UsePaginationProps) => {
+const usePagination = ({ initialPage = 1, totalPages }: UsePaginationProps) => {
     const [currentPage, setCurrentPage] = useState(initialPage);
     const router = useRouter();
-    const searchParams = useSearchParams();
 
     useEffect(() => {
-        const pageParam = Number(searchParams.get('page'));
-        if (pageParam) {
-            if (isNaN(pageParam) || pageParam < 1 || pageParam > totalPages) {
-                router.push('/404');
-            } else {
-                setCurrentPage(pageParam);
-            }
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageParam = Number(urlParams.get('page'));
+        if(urlParams.size == 0){
+            router.push(``);
+        }
+        else if (!isNaN(pageParam) && pageParam >= 1 && pageParam <= totalPages) {
+            setCurrentPage(pageParam);
+            router.push(`?page=${pageParam}`);
+
         } else {
+            router.push('/404');
             setCurrentPage(initialPage);
         }
-    }, [searchParams, router, initialPage, totalPages]);
+    }, [initialPage, totalPages]);
 
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -36,3 +38,5 @@ export const usePagination = ({ initialPage = 1, totalPages }: UsePaginationProp
         handlePageChange,
     };
 };
+
+export default usePagination;

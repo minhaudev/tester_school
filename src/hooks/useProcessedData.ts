@@ -11,7 +11,7 @@ const convertToTimeStamp = (date: Date): number => {
 };
 
 const useProcessedData = () => {
-    const processRow = useCallback((row: any) => {
+    const processRow = useCallback((row: any, validateService: (endDate: Date, startDate: Date) => { timeAble: number }) => {
         let startDate = new Date();
         let endDate = new Date();
 
@@ -22,20 +22,28 @@ const useProcessedData = () => {
             console.log("Invalid date");
         }
 
-        const validateService = useValidateTime({ endDate, startDate });
+        // Call the validation function directly with the dates
+        const { timeAble } = validateService(endDate, startDate);
 
         return {
             ...row,
             createdDateTimestamp: convertToTimeStamp(new Date(Date.parse(row.createdDate))),
-            validateService: validateService.timeAble,
+            validateService: timeAble,
             startDate,
             endDate,
         };
     }, []);
 
+    // Extract the hook call to the top level of the custom hook
+    const validateService = useCallback((endDate: Date, startDate: Date) => {
+        const { timeAble } = useValidateTime({ endDate, startDate });
+        return { timeAble };
+    }, []);
+
     const processData = useCallback((data: any[]) => {
-        return data.map(processRow);
-    }, [processRow]);
+        // Process each row by passing the validateService function
+        return data.map(row => processRow(row, validateService));
+    }, [processRow, validateService]);
 
     return { processData };
 };
