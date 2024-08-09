@@ -113,11 +113,7 @@ const Input: React.FC<PropsInput> = (props) => {
                             }}
                             disabled={isDisabled}>
                             {!isOptionSelected && (
-                                <option
-                                    value=""
-                                    className="hidden"
-                                    selected
-                                    disabled>
+                                <option value="" selected disabled>
                                     Select
                                 </option>
                             )}
