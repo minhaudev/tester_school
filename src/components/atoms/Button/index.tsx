@@ -1,7 +1,7 @@
 "use client";
 import "./style.css";
 import Frame from "@/assets/svgs/frame_v2.svg";
-import FileDock from "@/assets/svgs/File_dock_duotone.svg";
+import FileDock from "@/assets/svgs/file_dock_duotone.svg";
 import Close from "@/assets/svgs/close_square_light.svg";
 import Link from "next/link";
 import React, {

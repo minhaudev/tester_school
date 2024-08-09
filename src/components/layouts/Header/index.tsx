@@ -1,6 +1,6 @@
 "use client";
 import DropDown from "@/assets/svgs/dropdown_config.svg";
-import Bell from "@/assets/svgs/Bell.svg";
+import Bell from "@/assets/svgs/bell.svg";
 import User from "@/assets/svgs/user_1.svg";
 import DropsDown from "@/components/atoms/Dropdown";
 import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";

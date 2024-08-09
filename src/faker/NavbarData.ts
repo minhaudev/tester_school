@@ -5,12 +5,12 @@ import LineUp from "@/assets/svgs/line_up.svg";
 import PaperFill from "@/assets/svgs/paper_fill.svg";
 import UserCircle from "@/assets/svgs/user_cicrle.svg";
 import Database from "@/assets/svgs/database_fill.svg";
-import TagPercent from "@/assets/svgs/offer_Percent.svg";
-import FileCheck from "@/assets/svgs/file_Tick.svg";
+import TagPercent from "@/assets/svgs/offer_percent.svg";
+import FileCheck from "@/assets/svgs/file_tick.svg";
 import Box3d from "@/assets/svgs/3d_box.svg";
 import UserAdd from "@/assets/svgs/user_add_alt_fill.svg";
 import GroupUser from "@/assets/svgs/manage_user_group.svg";
-import ProductUser from "@/assets/svgs/product_User.svg";
+import ProductUser from "@/assets/svgs/product_user.svg";
 import ChevronUp from "@/assets/svgs/expand_up.svg";
 import {NavbarProps, NavigationTypeData} from "@/interfaces";
 
