@@ -17,6 +17,8 @@ interface FileDetail {
 }
 
 interface PropsBtn {
+    heplerText?: string;
+    onSubmit?: () => void;
     maxFile?: number;
     variant?:
         | "file"
@@ -50,6 +52,7 @@ export default function Button(
         AnchorHTMLAttributes<HTMLAnchorElement>
 ) {
     const {
+        heplerText = "",
         maxFile = 1,
         warningFile,
         typeFile,
@@ -290,21 +293,27 @@ export default function Button(
     }
 
     return (
-        <button
-            disabled={isDisabled}
-            {...rest}
-            className={`flex justify-center items-center gap-[6px]
+        <>
+            <button
+                disabled={isDisabled}
+                {...rest}
+                className={`flex justify-center items-center gap-[6px] w-full 
               text-[14px] rounded-[3px] px-5 leading-[16.71px] font-medium transition  disabled:bg-[#F7F7F7] disabled:text-input disabled:border disabled:border-stroke disabled:cursor-not-allowed ${
                   isIcon ? "!px-0 !border !border-white !text-white" : ""
               } ${className} ${getVariantClass(variant)} ${getErrorClass(
                   variant
               )} ${getSizeClass(size)} ${getOutline(color)}`}
-            style={{fontFamily: "inherit"}}>
-            {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
-            <span
-                className={`${isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""}`}>
-                {children}
-            </span>
-        </button>
+                style={{fontFamily: "inherit"}}>
+                {prefixIcon && <span className="w-4 h-4">{prefixIcon}</span>}
+                <span
+                    className={`${isIcon ? "[&_svg]:min-w-5 [&_svg]:min-h-5" : ""}`}>
+                    {children}
+                </span>
+            </button>
+            <small
+                className={`${isError ? "text-red focus:!outline-red" : "text-unit"}`}>
+                {heplerText}
+            </small>
+        </>
     );
 }

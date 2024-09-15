@@ -1,7 +1,7 @@
 import React from "react";
-import UnSelected from "@/assets/svgs/UnSelected.svg";
-import Selected from "@/assets/svgs/Selected.svg";
-import SelectedDisable from "@/assets/svgs/Selected_disable.svg";
+import UnSelected from "@/assets/svgs/unselected.svg";
+import Selected from "@/assets/svgs/selected.svg";
+import SelectedDisable from "@/assets/svgs/selected_disable.svg";
 
 interface CheckboxProps {
     description?: string;

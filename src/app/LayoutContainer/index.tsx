@@ -2,9 +2,9 @@
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/atoms/Footer";
 import Navigation from "@/components/molecules/Navigation";
-import { usePathname } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import { NavigationType } from "@/interfaces";
+import {usePathname} from "next/navigation";
+import {Suspense, useEffect, useState} from "react";
+import {NavigationType} from "@/interfaces";
 interface LayoutContainerProps {
     isNav?: boolean;
     isHeader?: boolean;
@@ -32,17 +32,17 @@ export default function LayoutContainer({
     if (isLoading) return null;
 
     return (
-
         <div className="flex">
             {isNav && (
                 <Navigation
                     type={NavigationType.CLIENT}
-                    routePath={pathCurrentPage}
+                    routePath={pathCurrentPage || ""}
                 />
             )}
+            slkdsljfdlskjd 324324324324
             <div className="flex-1 max-h-[100vh] overflow-scroll">
                 {isHeader && <Header />}
-                <div className=" mt-10 mb-10">{children}</div>
+                <div className="">{children}</div>
                 {isFooter && <Footer />}
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import TriagleExClamation from "@/assets/svgs/Triangle_exclamation.svg";
+import TriagleExClamation from "@/assets/svgs/triangle_exclamation.svg";
 
 interface PropertieProps {
     title: string;

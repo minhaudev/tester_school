@@ -2,9 +2,9 @@
 
 import React, { ReactNode, useEffect } from "react";
 import { ToastPosition, ToastType } from "@/enums/ToastEnum";
-import Success from "@/assets/svgs/Success_toast.svg";
-import Warning from "@/assets/svgs/Warning_toast.svg";
-import Close from "@/assets/svgs/Close_round.svg";
+import Success from "@/assets/svgs/success_toast.svg";
+import Warning from "@/assets/svgs/warning_toast.svg";
+import Close from "@/assets/svgs/close_round.svg";
 import Button from "@/components/atoms/Button";
 import { twMerge } from "tailwind-merge";
 import "./style.css";

@@ -15,11 +15,11 @@ import Wrench from "@/assets/svgs/wrench.svg"
 import Inventory from "@/assets/svgs/inventory.svg"
 import PaginationSelect from "@/components/molecules/Pagination/Select";
 import Checkbox from "@/components/atoms/Checkbox";
-import Sort from "@/assets/svgs/Sort_arrow.svg";
+import Sort from "@/assets/svgs/sort_arrow.svg";
 import ValidityTime1 from "@/assets/svgs/validity_time_1.svg";
 import ValidityTime2 from "@/assets/svgs/validity_time_2.svg";
 import ValidityTime3 from "@/assets/svgs/validity_time_3.svg";
-import Circle from "@/assets/svgs/Circle.svg";
+import Circle from "@/assets/svgs/circle.svg";
 import ValidateServiceTime from "@/components/molecules/ValidateServiceTime";
 import ValidateValidityTime from "@/components/molecules/ValidateValidityTime";
 import Drawer from "@/components/molecules/Drawer";

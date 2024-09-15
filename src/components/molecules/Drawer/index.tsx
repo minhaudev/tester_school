@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Delete from "@/assets/svgs/Close_round_light.svg";
+import Delete from "@/assets/svgs/close_round_light.svg";
 import { twMerge } from "tailwind-merge";
 import "./style.css";
 

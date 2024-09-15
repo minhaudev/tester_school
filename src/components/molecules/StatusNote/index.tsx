@@ -1,7 +1,7 @@
 "use client";
-import MessengerSuccess from "@/assets/svgs/Messenger_success.svg";
-import MessengerNomal from "@/assets/svgs/Messenger_nomal.svg";
-import MessengerWarning from "@/assets/svgs/Messenger_warning.svg";
+import MessengerSuccess from "@/assets/svgs/messenger_success.svg";
+import MessengerNomal from "@/assets/svgs/messenger_nomal.svg";
+import MessengerWarning from "@/assets/svgs/messenger_warning.svg";
 import { StatusEnum } from "@/enums/StatusNum";
 
 interface StatusColors {

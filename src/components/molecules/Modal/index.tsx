@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Close from "@/assets/svgs/Close_round.svg";
+import Close from "@/assets/svgs/close_round.svg";
 import { twMerge } from "tailwind-merge";
 import "./style.css";
 import Button from "@/components/atoms/Button";

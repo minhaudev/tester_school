@@ -9,7 +9,7 @@ import Wrench from "@/assets/svgs/wrench.svg";
 import Input from "@/components/atoms/Input";
 import {formatColumns, tableColumns} from "@/consts";
 import {formatPrice, FormatTolerances} from "@/utils";
-import Sort from "@/assets/svgs/Sort_arrow.svg";
+import Sort from "@/assets/svgs/sort_arrow.svg";
 import {TypeStatus} from "@/enums/TypeStatusEnum";
 import {
     Body,

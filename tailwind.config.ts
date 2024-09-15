@@ -1,13 +1,15 @@
+import {nextui} from '@nextui-org/theme';
 import type {Config} from "tailwindcss";
 
 const config: Config = {
-    content: [
-        "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
-        "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
-        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
-    ],
+  content: [
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/components/(spinner|popover).js"
+  ],
 
     theme: {
         colors: {
@@ -141,6 +143,5 @@ const config: Config = {
             "wendy-one": ["Wendy One", "sans-serif"]
         }
     },
-    plugins: []
-};
+  plugins: [nextui()]};
 export default config;

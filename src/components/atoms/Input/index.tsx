@@ -11,9 +11,8 @@ interface PropsInput {
     placeholder?: string;
     name?: string;
     handleOnChange?: (
-        e: React.ChangeEvent<
-            HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
-        >
+        e: any
+        // e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement>
     ) => void;
     isDisabled?: boolean;
     className?: string;
@@ -83,9 +82,9 @@ const Input: React.FC<PropsInput> = (props) => {
 
     return (
         <div className="w-full">
-            <label>
+            <label className="top-2">
                 {label}
-                {require && <span className="text-warning"> &#160;*</span>}{" "}
+                {require && <span className="text-red">*</span>}
             </label>
             <div className={combinedClasses} tabIndex={0}>
                 <div className="absolute p-1">{prefix}</div>
@@ -146,7 +145,7 @@ const Input: React.FC<PropsInput> = (props) => {
             </div>
 
             <small
-                className={`${isError ? "text-warning focus:!outline-warning" : "text-unit"}`}>
+                className={`${isError ? "text-red focus:!outline-red absolute" : "text-unit"}`}>
                 {helperText}
             </small>
         </div>

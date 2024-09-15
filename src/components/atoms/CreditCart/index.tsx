@@ -22,7 +22,7 @@ export default function Index(props: Props) {
 
     return (
         <div
-            className={`before:content-[''] before:w-full before:h-full  before:absolute before:bg-[url('/images/cart_img.png')] before:bg-no-repeat before:bg-[left_top_20px] w-[100%] h-full relative rounded bg-custom-gradient-cart`}>
+        className={`before:content-[''] before:w-full before:h-full  before:absolute before:bg-[url('/images/cart_img.png')] before:bg-no-repeat before:bg-[left_top_20px] w-[100%] h-full relative rounded bg-custom-gradient-cart`}>
             <div className="px-[25px] py-6 z-10 relative">
                 <div className="font-medium text-[16px] leading-[19.09px] text-white">
                     General information
