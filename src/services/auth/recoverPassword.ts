@@ -3,7 +3,7 @@ import {request} from "../axios";
 
 export const forgetpassword = async (email: string) => {
     try {
-        const response = await request.post(`/pass/forgetpassword`, {
+        const response = await request.post(`/auth/recover`, {
             email
         });
 
@@ -15,7 +15,7 @@ export const forgetpassword = async (email: string) => {
 };
 
 export const checkTimePassword = async (token: string) => {
-    const data = await request.get(`/pass/checkpassword/${token}`);
+    const data = await request.get(`/auth/checkpassword/${token}`);
     return data;
 };
 export const updatePassword = async (
@@ -23,7 +23,7 @@ export const updatePassword = async (
     conformPassword: string,
     token: string
 ) => {
-    const data = await request.post(`/pass/updatepassword/${token}`, {
+    const data = await request.post(`/auth/reset-password/${token}`, {
         newPassword: newPassword,
         conformPassword: conformPassword
     });

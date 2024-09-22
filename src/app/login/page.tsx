@@ -11,9 +11,11 @@ import {validateField} from "@/utils/validateForm";
 import {statusColors} from "@/components/molecules/StatusNote";
 import Modal from "@/components/molecules/Modal";
 import {Spinner} from "@nextui-org/react";
+import {jwtDecode} from "jwt-decode";
 function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -76,6 +78,11 @@ function Login() {
                 formData.email,
                 formData.password
             );
+            console.log("response", response);
+
+            if (response && response?.statusCode === "10001") {
+                setErrorMessage(response?.message);
+            }
 
             if (response && response.data.tokens) {
                 setIsSuccess(true);
@@ -161,7 +168,7 @@ function Login() {
                     </Button>
                     {!isSuccess && (
                         <p className="text-red text-[13px] absolute mt-[4px]">
-                            Authentication failed!
+                            {errorMessage}
                         </p>
                     )}
                     <p className="mb-6"></p>

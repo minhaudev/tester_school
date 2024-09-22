@@ -6,11 +6,13 @@ import LayoutContainer from "./LayoutContainer";
 import Modal from "@/components/molecules/Modal";
 import Toast from "@/components/molecules/Toast";
 import {ToastType} from "@/enums/ToastEnum";
+import Calendar from "@/components/atoms/Calendar/Index";
 
 export default function Home() {
-    // const [isLogin, setIsLogin] = useState(false);
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [endDate, setEndDate] = useState<Date | null>(null);
+    // onchange = (dates: [Date | null, Date | null]) => {};
     const router = useRouter();
-
     useEffect(() => {
         const checkToken = () => {
             const token = localStorage.getItem("authToken");
@@ -24,21 +26,13 @@ export default function Home() {
         }, 1000);
         return () => clearInterval(intervalId);
     }, [router]);
-
-    // useEffect(() => {
-    //     const isFirstLogin = localStorage.getItem("isFirstLogin");
-
-    //     if (isLogin && !isFirstLogin) {
-    //         console.log("322");
-    //         <Toast
-    //             onClose={() => {}}
-    //             type={ToastType.Success}
-    //             time={3000}
-    //             description="Đăng nhập thành công"
-    //         />;
-    //         localStorage.setItem("isFirstLogin", "true");
-    //     }
-    // }, [isLogin]);
-
-    return <LayoutContainer>layout</LayoutContainer>;
+    return (
+        <LayoutContainer>
+            <Calendar
+                selectsRange={true}
+                startDate={startDate}
+                endDate={endDate}
+            />
+        </LayoutContainer>
+    );
 }

@@ -82,7 +82,7 @@ function Recoverpassword() {
                 const currentTime = Math.floor(Date.now() / 1000);
                 const timeLeft = decodedToken.exp - currentTime;
                 setRemainingTime(timeLeft);
-
+                console.log("time", timeLeft);
                 if (timeLeft > 0) {
                     const interval = setInterval(() => {
                         setRemainingTime((prevTime) => {
