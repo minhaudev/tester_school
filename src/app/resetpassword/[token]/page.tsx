@@ -34,17 +34,19 @@ function Recoverpassword() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isMatch, setIsMatch] = useState(false);
-    const [remainingTime, setRemainingTime] = useState<number | null>(null);
+    const [responseMessage, setResponseMessage] = useState("");
+    const [isError, setIsError] = useState(false);
     const handleLogin = () => {
         router.push("/login");
     };
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChange = (e: any) => {
         const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value
         }),
-            setIsMatch(false);
+            setIsError(false);
+        setIsMatch(false);
         setErrForm((prevErrForm) => ({
             ...prevErrForm,
             [name]: validateField(fieldInput.PASSWORD, value)
@@ -55,57 +57,65 @@ function Recoverpassword() {
             setIsLoading(true);
             if (formData.newPassword !== formData.conformPassword) {
                 setIsMatch(true);
+                console.log(isMatch);
+
                 return;
             } else {
                 const res = await updatePassword(
                     formData.newPassword,
-                    formData.conformPassword,
                     params?.token as string
                 );
-                console.log("resetpassword", res);
-                setIsSuccess(true);
-                setIsMatch(false);
+
+                if ((res as any)?.data?.statusCode === "10000") {
+                    setIsSuccess(true);
+                    setResponseMessage((res as any).data.message || "Success");
+                } else {
+                    setIsError(true);
+                    setResponseMessage(
+                        (res as any)?.response?.data?.message ||
+                            "An error occurred"
+                    );
+                }
             }
         } catch (error: any) {
-            setIsSuccess(false);
+            console.log("error", error);
+
             setIsLoading(false);
             setIsMatch(false);
         } finally {
             setIsLoading(false);
         }
     };
-    useEffect(() => {
-        const fetchApi = async () => {
-            try {
-                await checkTimePassword(params?.token as string);
-                const decodedToken: any = jwtDecode(params?.token as string);
-                const currentTime = Math.floor(Date.now() / 1000);
-                const timeLeft = decodedToken.exp - currentTime;
-                setRemainingTime(timeLeft);
-                console.log("time", timeLeft);
-                if (timeLeft > 0) {
-                    const interval = setInterval(() => {
-                        setRemainingTime((prevTime) => {
-                            const updatedTime = (prevTime as number) - 1;
-                            if (updatedTime <= 0) {
-                                clearInterval(interval);
-                                router.push("/404");
-                            }
-                            return updatedTime;
-                        });
-                    }, 1000);
+    // useEffect(() => {
+    //     const fetchApi = async () => {
+    //         // Nếu không có token trong URL, chuyển hướng đến /404
+    //         if (!params?.token) {
+    //             console.log("No token in URL parameters.");
+    //             router.push("/404");
+    //             return;
+    //         }
 
-                    return () => clearInterval(interval);
-                } else {
-                    router.push("/404");
-                }
-            } catch (error: any) {
-                router.push("/404");
-            }
-        };
+    //         try {
+    //             // Kiểm tra token từ server
+    //             console.log("Checking token validity...");
+    //             const response = await checkTimePassword(
+    //                 params?.token as string
+    //             );
 
-        fetchApi();
-    }, [params?.token]);
+    //             // // Nếu token không hợp lệ, chuyển hướng đến /404
+    //             // if (!response) {
+    //             //     console.error("Token expired or invalid");
+    //             //     router.push("/404");
+    //             //     return;
+    //             // }
+    //         } catch (error) {
+    //             console.error("Error during token validation:", error);
+    //             router.push("/404");
+    //         }
+    //     };
+
+    //     fetchApi();
+    // }, [params?.token]); // Re-run effect when token changes
 
     return (
         <div
@@ -151,10 +161,7 @@ function Recoverpassword() {
                     <>
                         <div className="bg-[#EFFFEA] text-[13px] p-[10px] flex justify-center gap-2 mb-8">
                             <CheckSuccess className="text-[16px]" />
-                            <p>
-                                Reset password successfully, you can now login
-                                with your new password into{" "}
-                            </p>
+                            <p>{responseMessage}</p>
                         </div>
                     </>
                 )}
@@ -190,6 +197,9 @@ function Recoverpassword() {
                     <p className="text-red text-[13px]">
                         Password is not match!
                     </p>
+                )}
+                {isError && (
+                    <p className="text-red text-[13px]">{responseMessage}</p>
                 )}
             </div>
         </div>

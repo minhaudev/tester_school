@@ -11,8 +11,9 @@ interface PropsInput {
     placeholder?: string;
     name?: string;
     handleOnChange?: (
-        e: any
-        // e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement>
+        e: React.ChangeEvent<
+            HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+        >
     ) => void;
     isDisabled?: boolean;
     className?: string;

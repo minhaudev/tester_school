@@ -16,16 +16,18 @@ export const forgetpassword = async (email: string) => {
 
 export const checkTimePassword = async (token: string) => {
     const data = await request.get(`/auth/checkpassword/${token}`);
+
     return data;
 };
-export const updatePassword = async (
-    newPassword: string,
-    conformPassword: string,
-    token: string
-) => {
-    const data = await request.post(`/auth/reset-password/${token}`, {
-        newPassword: newPassword,
-        conformPassword: conformPassword
-    });
-    return data;
+export const updatePassword = async (newPassword: string, token: string) => {
+    try {
+        const response = await request.post(`/auth/reset-password/${token}`, {
+            newPassword: newPassword
+        });
+        if (response) {
+            return response;
+        }
+    } catch (error) {
+        return error;
+    }
 };

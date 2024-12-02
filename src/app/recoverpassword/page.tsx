@@ -9,6 +9,7 @@ import {forgetpassword} from "@/services/auth/recoverPassword";
 import CheckSuccess from "@/assets/svgs/check-success.svg";
 import {validateField} from "@/utils/validateForm";
 import {Spinner} from "@nextui-org/react";
+
 function Recoverpassword() {
     const router = useRouter();
     const [email, setEmail] = useState("");
@@ -16,6 +17,8 @@ function Recoverpassword() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [responseMessage, setResponseMessage] = useState(""); // State to store the response message
+
     const handleOnchangeValue = (e: any) => {
         const {name, value} = e.target;
         const emailError = validateField(name, value);
@@ -23,9 +26,11 @@ function Recoverpassword() {
         setEmail(value);
         setIsError(false);
     };
+
     const handleLogin = () => {
         router.push("/login");
     };
+
     const handleForgerPassword = async () => {
         setIsLoading(true);
         try {
@@ -33,8 +38,10 @@ function Recoverpassword() {
             console.log("res email", res);
             if (res.data?.statusCode === "10000") {
                 setIsSuccess(true);
+                setResponseMessage(res.data.message);
             } else {
                 setIsError(true);
+                setResponseMessage("old");
             }
         } catch (error) {
             console.error("forget password error:", error);
@@ -46,7 +53,7 @@ function Recoverpassword() {
 
     return (
         <div
-            className={`background bg-stroke w-[full] max-h-[100vh] flex justify-center items-center `}>
+            className={`background bg-stroke w-[full] max-h-[100vh] flex justify-center items-center`}>
             <div className="font-wendy-one uppercase text-[128px] font-[400] leading-[135.04px] text-primary mr-[350px]">
                 LUNA
             </div>
@@ -59,9 +66,9 @@ function Recoverpassword() {
                         Please input the registered email address, a
                         verification email will be sent to this address.
                     </div>
-                :   <div className=" text-[#3A3B3C] bg-[#EFFFEA] mb-4 font-normal text-[13px] leadsing-[18.83px] flex items-center  gap-2 p-[10px] pr-[36px]">
+                :   <div className="text-[#3A3B3C] bg-[#EFFFEA] mb-4 font-normal text-[13px] leadsing-[18.83px] flex items-center gap-2 p-[10px] pr-[36px]">
                         <CheckSuccess />
-                        <p> We have emailed your password reset link.</p>
+                        <p>{responseMessage}</p>
                     </div>
                 }
 
