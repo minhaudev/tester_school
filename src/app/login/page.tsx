@@ -12,33 +12,35 @@ import {statusColors} from "@/components/molecules/StatusNote";
 import Modal from "@/components/molecules/Modal";
 import {Spinner} from "@nextui-org/react";
 import {jwtDecode} from "jwt-decode";
+import {useUser} from "@/context/UserContext";
 function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState({
-        email: "",
+        username: "",
         password: ""
     });
     const [errors, setErrors] = useState<{
-        email?: string;
+        username?: string;
         password?: string;
     }>({
-        email: "",
+        username: "",
         password: ""
     });
     const [isRemember, setIsRemember] = useState(false);
+    const {setUserName} = useUser();
     const router = useRouter();
     useEffect(() => {
-        // Tự động điền email và password nếu có trong localStorage
+        // Tự động điền username và password nếu có trong localStorage
         const savedEmail = localStorage.getItem("rememberedEmail");
         const savedPassword = localStorage.getItem("rememberedPassword");
         if (savedEmail && savedPassword) {
-            setFormData({email: savedEmail, password: savedPassword});
+            setFormData({username: savedEmail, password: savedPassword});
             setIsRemember(true);
         }
     }, []);
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: any) => {
         const {name, value} = e.target;
         setFormData({
             ...formData,
@@ -54,20 +56,23 @@ function Login() {
         setIsRemember(!isRemember);
     };
 
-    const handleForgotPassword = () => {
-        router.push("/recoverpassword");
+    const handleRegisterpage = () => {
+        router.push("/register");
     };
     const handleLogin = async () => {
         setIsLoading(true);
-        const emailError = validateField(fieldInput.EMAIL, formData.email);
+        const usernameError = validateField(
+            fieldInput.USERNAME,
+            formData.username
+        );
         const passwordError = validateField(
             fieldInput.PASSWORD,
             formData.password
         );
 
-        if (emailError || passwordError) {
+        if (usernameError || passwordError) {
             setErrors({
-                email: emailError,
+                username: usernameError,
                 password: passwordError
             });
             return;
@@ -75,19 +80,17 @@ function Login() {
 
         try {
             const response = await signInUser(
-                formData.email,
+                formData.username,
                 formData.password
             );
-            console.log("response", response);
 
-            if (response && response?.statusCode === "10001") {
+            if (response && response?.code !== 1000) {
                 setErrorMessage(response?.message);
             }
-
-            if (response && response.data.tokens) {
+            if (response && response.code === 1000) {
                 setIsSuccess(true);
                 if (isRemember) {
-                    localStorage.setItem("rememberedEmail", formData.email);
+                    localStorage.setItem("rememberedEmail", formData.username);
                     localStorage.setItem(
                         "rememberedPassword",
                         formData.password
@@ -96,10 +99,9 @@ function Login() {
                     localStorage.removeItem("rememberedEmail");
                     localStorage.removeItem("rememberedPassword");
                 }
-                localStorage.setItem(
-                    "authToken",
-                    response.data.tokens.accessToken
-                );
+                setUserName(response.result.username);
+                localStorage.setItem("idUser", response.result.id);
+                localStorage.setItem("authToken", response.result.token);
 
                 router.push("/");
             } else {
@@ -123,14 +125,14 @@ function Login() {
                 </div>
                 <div className="w-[452px] py-[64px] px-[24px] bg-white shadow-lg shadow-[rgba(0,0,0,0.1)]">
                     <Input
-                        isError={!!errors.email}
-                        helperText={errors.email}
+                        isError={!!errors.username}
+                        helperText={errors.username}
                         size="large"
-                        label="Email"
+                        label="username"
                         require
-                        name="email"
-                        placeholder="Email"
-                        value={formData.email}
+                        name="username"
+                        placeholder="username"
+                        value={formData.username}
                         handleOnChange={handleInputChange}
                     />
                     <p className="mb-6"></p>
@@ -150,9 +152,9 @@ function Login() {
 
                     <Button
                         isDisabled={
-                            !!errors.email ||
+                            !!errors.username ||
                             !!errors.password ||
-                            formData.email === "" ||
+                            formData.username === "" ||
                             formData.password === "" ||
                             !isSuccess ||
                             isLoading
@@ -182,10 +184,15 @@ function Login() {
                                 description="Remember me"
                             />
                         </div>
-                        <p
+                        {/* <p
                             className="text-[13px] cursor-pointer text-[#01559B] font-medium leading-[15.51px]"
                             onClick={handleForgotPassword}>
                             Forgot password?
+                        </p> */}
+                        <p
+                            className="text-[13px] cursor-pointer text-[#01559B] font-medium leading-[15.51px]"
+                            onClick={handleRegisterpage}>
+                            Register User?
                         </p>
                     </div>
                 </div>

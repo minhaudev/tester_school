@@ -4,13 +4,16 @@ import Bell from "@/assets/svgs/bell.svg";
 import User from "@/assets/svgs/user_1.svg";
 import DropsDown from "@/components/atoms/Dropdown";
 import OrderNotice from "@/components/atoms/OrderNotice/OrderNotice";
-import { dataOrderNotice } from "@/faker/OrderNotice";
-import { FormatNotice } from "@/utils";
+import {dataOrderNotice} from "@/faker/OrderNotice";
+import {FormatNotice} from "@/utils";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import "../../../app/globals.css";
 import Image from "next/image";
-import { Notice } from "@/interfaces/notice";
+import {Notice} from "@/interfaces/notice";
+import {useRouter} from "next/navigation";
+import {getUser} from "@/services/auth/update";
+import {useUser} from "@/context/UserContext";
 
 interface NoticeResponse {
     total?: number;
@@ -18,13 +21,14 @@ interface NoticeResponse {
 }
 
 export default function Header() {
+    const {setUser, userName} = useUser();
     const [language, setLanguage] = useState<string>("ENG");
     const [isClicked, setIsClicked] = useState<boolean>(false);
     const [isNotice, setIsNotice] = useState<boolean>(false);
     const noticeRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [notices, setNotices] = useState<NoticeResponse>();
-
+    const router = useRouter();
     useEffect(() => {
         const savedLanguage = localStorage.getItem("language");
         if (savedLanguage) {
@@ -73,6 +77,34 @@ export default function Header() {
         setNotices(dataOrderNotice);
     }, []);
 
+    const handleGetUser = async () => {
+        const idUser = localStorage.getItem("idUser");
+        const token = localStorage.getItem("authToken");
+        if (!idUser || !token) {
+            router.push("/login");
+            return;
+        }
+        try {
+            const response = await getUser(idUser, token);
+
+            if (response && response.data.code === 1000) {
+                // lưu vào useContext
+
+                setUser(response.data.result); // Lưu vào useContext
+
+                router.push("/personalinformation");
+            }
+            console.log("response2222", response.data.result);
+        } catch (error) {}
+    };
+    const handleLogout = async () => {
+        const token = localStorage.getItem("authToken");
+        if (token) {
+            localStorage.removeItem("authToken");
+        }
+        router.push("/login");
+    };
+
     return (
         <>
             <div className="w-full sticky top-0 z-20">
@@ -92,7 +124,7 @@ export default function Header() {
                                     className="absolute select-none cursor-pointer rounded-full ml-3 z-10 px-[4px] text-[8px] text-white bg-red">
                                     {FormatNotice(notices?.total ?? 0)}
                                 </span>
-                                : ""}
+                            :   ""}
 
                             <Bell
                                 className="w-6 h-6 cursor-pointer select-none"
@@ -124,7 +156,7 @@ export default function Header() {
 
                             <div>
                                 <p className="text-text text-[13px] leading-4">
-                                    Nguyễn Văn A
+                                    {userName}
                                 </p>
                                 <p className="text-unit text-[12px]">
                                     Chuyên viên kinh doanh
@@ -132,7 +164,25 @@ export default function Header() {
                             </div>
                             <div className="relative">
                                 <DropDown className="w-3 h-2 cursor-pointer relative" />
-                                {isClicked && <DropsDown />}
+                                {isClicked && (
+                                    <DropsDown>
+                                        <div>
+                                            <p
+                                                onClick={handleGetUser}
+                                                className="border-b py-2 text-[13px] border-stroke cursor-pointer">
+                                                Thông tin cá nhân
+                                            </p>
+                                            <p className="border-b text-[13px] py-2 border-stroke cursor-pointer">
+                                                Đổi mật khẩu
+                                            </p>
+                                            <p
+                                                onClick={handleLogout}
+                                                className="py-2 text-[13px] cursor-pointer">
+                                                Đăng Xuất
+                                            </p>
+                                        </div>
+                                    </DropsDown>
+                                )}
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ import Navigation from "@/components/molecules/Navigation";
 import {usePathname} from "next/navigation";
 import {Suspense, useEffect, useState} from "react";
 import {NavigationType} from "@/interfaces";
+import {UserProvider} from "@/context/UserContext";
 interface LayoutContainerProps {
     isNav?: boolean;
     isHeader?: boolean;

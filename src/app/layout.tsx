@@ -23,6 +23,7 @@ const myFonts = localFont({
 
 import "./globals.css"; // Import global CSS styles
 import {PopupProvider} from "@/context/PopupContext";
+import {UserProvider} from "@/context/UserContext";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -37,7 +38,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body suppressHydrationWarning={true}>
-                <PopupProvider>{children}</PopupProvider>
+                <UserProvider>
+                    <PopupProvider>{children}</PopupProvider>
+                </UserProvider>
             </body>
         </html>
     );

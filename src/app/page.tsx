@@ -7,6 +7,7 @@ import Modal from "@/components/molecules/Modal";
 import Toast from "@/components/molecules/Toast";
 import {ToastType} from "@/enums/ToastEnum";
 import Calendar from "@/components/atoms/Calendar/Index";
+import Product from "./product/page";
 
 export default function Home() {
     const [startDate, setStartDate] = useState<Date | null>(null);
@@ -27,12 +28,8 @@ export default function Home() {
         return () => clearInterval(intervalId);
     }, [router]);
     return (
-        <LayoutContainer>
-            <Calendar
-                selectsRange={true}
-                startDate={startDate}
-                endDate={endDate}
-            />
-        </LayoutContainer>
+        // <LayoutContainer>
+        <Product />
+        // </LayoutContainer>
     );
 }

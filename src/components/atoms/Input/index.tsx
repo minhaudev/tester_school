@@ -4,7 +4,7 @@ import React, {ReactNode, useEffect, useState} from "react";
 
 interface PropsInput {
     isContentCenter?: boolean;
-    optionSelect?: string[];
+    optionSelect?: ReactNode[] | string[];
     variant?: "input" | "textarea" | "select";
     require?: boolean;
     value?: string;
@@ -117,13 +117,16 @@ const Input: React.FC<PropsInput> = (props) => {
                                     Select
                                 </option>
                             )}
-                            {optionSelect
-                                ?.filter((option) => option !== "")
-                                .map((option, index) => (
-                                    <option key={index} value={option}>
-                                        {option}
-                                    </option>
-                                ))}
+                            {Array.isArray(optionSelect) &&
+                                optionSelect
+                                    .filter((option) => option !== "")
+                                    .map((option, index) => (
+                                        <option
+                                            key={index}
+                                            value={option?.value}>
+                                            {option?.label}
+                                        </option>
+                                    ))}
                         </select>
 
                         <div className="absolute top-[35%] right-[10px] pointer-events-none">

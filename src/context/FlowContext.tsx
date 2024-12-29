@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, {
     createContext,
     useContext,
@@ -7,7 +7,7 @@ import React, {
     ReactNode
 } from "react";
 
-import { ProcessFlowProps, stateProcess } from "@/interfaces";
+import {ProcessFlowProps, stateProcess} from "@/interfaces";
 import useSaveLocalStorage from "@/hooks/useSaveLocalStorage";
 
 interface ProcessFlowContextProps {
